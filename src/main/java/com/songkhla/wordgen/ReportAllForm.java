@@ -99,6 +99,9 @@ import com.songkhla.document.W90;
 import com.songkhla.document.W91;
 import com.songkhla.document.W92;
 import com.songkhla.document.W93;
+import com.songkhla.document.W96;
+import com.songkhla.document.W97;
+import com.songkhla.document.W98;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseid;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseno;
 import java.awt.Desktop;
@@ -245,6 +248,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         jCheckW228 = new javax.swing.JCheckBox();
         jCheckW253 = new javax.swing.JCheckBox();
         jCheckW20812 = new javax.swing.JCheckBox();
+        jCheckW298 = new javax.swing.JCheckBox();
         jPanel17 = new javax.swing.JPanel();
         jCheckW240 = new javax.swing.JCheckBox();
         jCheckW241 = new javax.swing.JCheckBox();
@@ -269,6 +273,8 @@ public class ReportAllForm extends javax.swing.JDialog {
         jCheckW290 = new javax.swing.JCheckBox();
         jCheckW291 = new javax.swing.JCheckBox();
         jCheckW292 = new javax.swing.JCheckBox();
+        jCheckW297 = new javax.swing.JCheckBox();
+        jCheckW296 = new javax.swing.JCheckBox();
         jPanel16 = new javax.swing.JPanel();
         jCheckW246 = new javax.swing.JCheckBox();
         jCheckW245 = new javax.swing.JCheckBox();
@@ -533,7 +539,7 @@ public class ReportAllForm extends javax.swing.JDialog {
                 jCheckW226ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW226, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 100, 321, -1));
+        jPanel14.add(jCheckW226, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 321, -1));
 
         jCheckW225.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW225.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -543,7 +549,7 @@ public class ReportAllForm extends javax.swing.JDialog {
                 jCheckW225ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW225, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 314, -1));
+        jPanel14.add(jCheckW225, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 314, -1));
 
         jCheckW216.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW216.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -553,7 +559,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         jCheckW293.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW293.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW293.setText("คำร้องขอหมายจับ");
-        jPanel14.add(jCheckW293, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 314, -1));
+        jPanel14.add(jCheckW293, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 314, -1));
 
         jCheckW227.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW227.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -563,12 +569,12 @@ public class ReportAllForm extends javax.swing.JDialog {
                 jCheckW227ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW227, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 130, 321, -1));
+        jPanel14.add(jCheckW227, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 321, -1));
 
         jCheckW238.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW238.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW238.setText("หมายเรียกผู้ต้องหา");
-        jPanel14.add(jCheckW238, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 160, 314, -1));
+        jPanel14.add(jCheckW238, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 314, -1));
 
         jCheckW239.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW239.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -578,22 +584,22 @@ public class ReportAllForm extends javax.swing.JDialog {
                 jCheckW239ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW239, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 314, -1));
+        jPanel14.add(jCheckW239, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 314, -1));
 
         jCheckW231.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW231.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW231.setText("บันทึกการจับกุม");
-        jPanel14.add(jCheckW231, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 280, 314, -1));
+        jPanel14.add(jCheckW231, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 314, -1));
 
         jCheckW229.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW229.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW229.setText("บันทึกการชี้ตัวผู้ต้องหา");
-        jPanel14.add(jCheckW229, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 314, -1));
+        jPanel14.add(jCheckW229, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 314, -1));
 
         jCheckW230.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW230.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW230.setText("บันทึกการชี้รูปผู้ต้องหา");
-        jPanel14.add(jCheckW230, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 314, -1));
+        jPanel14.add(jCheckW230, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 314, -1));
 
         jCheckW280.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW280.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -603,7 +609,7 @@ public class ReportAllForm extends javax.swing.JDialog {
                 jCheckW280ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW280, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 314, -1));
+        jPanel14.add(jCheckW280, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 314, -1));
 
         jCheckW262.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW262.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -613,62 +619,62 @@ public class ReportAllForm extends javax.swing.JDialog {
                 jCheckW262ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW262, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 40, 330, -1));
+        jPanel14.add(jCheckW262, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 330, -1));
 
         jCheckW263.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW263.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW263.setText("คำร้องขอสืบพยานไว้ก่อน");
-        jPanel14.add(jCheckW263, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 70, 330, -1));
+        jPanel14.add(jCheckW263, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 330, -1));
 
         jCheckW264.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW264.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW264.setText("บันทึกการพบและปรึกษาทนาย");
-        jPanel14.add(jCheckW264, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 100, 330, -1));
+        jPanel14.add(jCheckW264, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, 330, -1));
 
         jCheckW220.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW220.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW220.setText("บันทึกการนำชี้ที่เกิดเหตุประกอบคำรับสารภาพ");
-        jPanel14.add(jCheckW220, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 130, 330, -1));
+        jPanel14.add(jCheckW220, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 330, -1));
 
         jCheckW219.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW219.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW219.setText("แผนที่สังเขปแสดงสถานที่เกิดเหตุ");
-        jPanel14.add(jCheckW219, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 220, 330, -1));
+        jPanel14.add(jCheckW219, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 330, -1));
 
         jCheckW218.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW218.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW218.setText("บันทึกการตรวจสอบสถานที่เกิดเหตุคดีจราจรทางบก");
-        jPanel14.add(jCheckW218, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 190, 330, -1));
+        jPanel14.add(jCheckW218, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 330, -1));
 
         jCheckW217.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW217.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW217.setText("บันทึกการตรวจสอบสถานที่เกิดเหตุคดีอาญา");
-        jPanel14.add(jCheckW217, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 160, 330, -1));
+        jPanel14.add(jCheckW217, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 330, -1));
 
         jCheckW237.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW237.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW237.setText("ตำหนิรูปพรรณผู้กระทำความผิด");
-        jPanel14.add(jCheckW237, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 250, 330, -1));
+        jPanel14.add(jCheckW237, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 330, -1));
 
         jCheckW266.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW266.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW266.setText("คำร้องขอตรวจสอบการจับ");
-        jPanel14.add(jCheckW266, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 280, 330, -1));
+        jPanel14.add(jCheckW266, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, 330, -1));
 
         jCheckW233.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW233.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW233.setText("บันทึกการตรวจค้น");
-        jPanel14.add(jCheckW233, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 370, 210, -1));
+        jPanel14.add(jCheckW233, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 210, -1));
 
         jCheckW261.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW261.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW261.setText("แผนประทุษกรรม");
-        jPanel14.add(jCheckW261, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 340, 321, -1));
+        jPanel14.add(jCheckW261, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, 321, -1));
 
         jCheckW228.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW228.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW228.setText("บันทึกการตรวจสภาพรถยนต์");
-        jPanel14.add(jCheckW228, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 310, 259, -1));
+        jPanel14.add(jCheckW228, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, 259, -1));
 
         jCheckW253.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW253.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -678,12 +684,22 @@ public class ReportAllForm extends javax.swing.JDialog {
                 jCheckW253ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW253, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 314, -1));
+        jPanel14.add(jCheckW253, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 314, -1));
 
         jCheckW20812.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW20812.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckW20812.setText("บันทึกคำให้การพยาน");
         jPanel14.add(jCheckW20812, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 227, 384, -1));
+
+        jCheckW298.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW298.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW298.setText("บันทึกคำให้การรับสารภาพของผู้ต้องหา");
+        jCheckW298.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW298ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jCheckW298, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 360, 314, -1));
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "เอกสารผัดฟ้องและอื่นๆ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("TH SarabunPSK", 1, 24))); // NOI18N
@@ -855,6 +871,24 @@ public class ReportAllForm extends javax.swing.JDialog {
             }
         });
 
+        jCheckW297.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW297.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW297.setText("ใบส่งตรวจสารเสพติด");
+        jCheckW297.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW297ActionPerformed(evt);
+            }
+        });
+
+        jCheckW296.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW296.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW296.setText("บันทึกการแจ้งสิทธิของผู้ถูกจับหรือผู้ต้องหา");
+        jCheckW296.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW296ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -897,7 +931,12 @@ public class ReportAllForm extends javax.swing.JDialog {
                         .addComponent(jCheckW288, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jCheckW289, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jCheckW292, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(jCheckW292, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCheckW297, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckW296, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel17Layout.setVerticalGroup(
@@ -950,8 +989,15 @@ public class ReportAllForm extends javax.swing.JDialog {
                     .addComponent(jCheckW290)
                     .addComponent(jCheckW291))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckW292)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(jCheckW292)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jCheckW297)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckW296))))
         );
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
@@ -1382,6 +1428,18 @@ public class ReportAllForm extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckW292ActionPerformed
 
+    private void jCheckW298ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW298ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW298ActionPerformed
+
+    private void jCheckW297ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW297ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW297ActionPerformed
+
+    private void jCheckW296ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW296ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW296ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1779,6 +1837,16 @@ public class ReportAllForm extends javax.swing.JDialog {
                if(jCheckW293.isSelected()){
                         W93.nw93();
                     }
+               if(jCheckW296.isSelected()){
+                        W96.nw96();
+                    }
+               if(jCheckW297.isSelected()){
+                        W97.nw97();
+                    }
+               if(jCheckW298.isSelected()){
+                        W98.nw98();
+                    }
+               
             }
         } catch (InterruptedException e) {
         }
@@ -1899,6 +1967,9 @@ public class ReportAllForm extends javax.swing.JDialog {
     private javax.swing.JCheckBox jCheckW291;
     private javax.swing.JCheckBox jCheckW292;
     private javax.swing.JCheckBox jCheckW293;
+    private javax.swing.JCheckBox jCheckW296;
+    private javax.swing.JCheckBox jCheckW297;
+    private javax.swing.JCheckBox jCheckW298;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel12;

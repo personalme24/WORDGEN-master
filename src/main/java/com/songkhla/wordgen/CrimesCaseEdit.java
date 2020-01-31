@@ -5158,7 +5158,7 @@ if(OccuredDate.getJFormattedTextField().getText().equals("23/8/2562")){
         }
         if(jCheckW206.isSelected()){
              insertDataReport(jCheckW206.getText());          
-           
+          
         }
         if(jCheckW207.isSelected()){
            insertDataReport(jCheckW207.getText());   
