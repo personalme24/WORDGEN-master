@@ -592,7 +592,7 @@ String  username=Username.getText();
 //                    --------------------------------Traning----------------------------------------------------
                                 pst4.setString(1,"70028");
 //                              pst4.setString(2,"70028");
-                              pst4.setString(2,"สภ.บ้านข่อย");
+                              pst4.setString(2,"สถานีตำรวจสภ.บ้านข่อย");
                               pst4.setString(3,"สภ.บ้านข่อย");
                               pst4.setString(4,"");
                               pst4.setString(5,"");
@@ -722,7 +722,7 @@ String  username=Username.getText();
                              pst4.setString(1,"1");
                               pst4.setString(2,"70028");
 //                              pst4.setString(2,"70028");                             
-                              pst4.setString(3,"สภ.บ้านข่อย");
+                              pst4.setString(3,"สถานีตำรวจสภ.บ้านข่อย");
                               pst4.setString(4,"สภ.บ้านข่อย");
                               pst4.setString(5,"");
                               pst4.setString(6,"");

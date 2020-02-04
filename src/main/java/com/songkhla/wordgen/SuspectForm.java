@@ -275,7 +275,7 @@ public class SuspectForm extends javax.swing.JDialog {
             Province.setText(Checknull(datain.get("Province"))+"");
              ZipCode.setText(Checknull(datain.get("ZipCode"))+""); 
              Road.setText(Checknull(datain.get("Road"))+"");
-            Soi.setText(Checknull(datain.get("StatusSuspectOther"))+"");         
+            Soi.setText(Checknull(datain.get("Soi"))+"");         
              OtherName.setText(Checknull(datain.get("OtherName"))+"");
             Race.setText(Checknull(datain.get("Race"))+"");
             Religion.setText(Checknull(datain.get("Religion"))+"");

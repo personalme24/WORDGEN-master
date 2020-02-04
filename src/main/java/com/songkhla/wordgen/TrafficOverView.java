@@ -641,12 +641,21 @@ public class TrafficOverView extends javax.swing.JDialog {
                 
                 String crimecaseId = jTable1.getModel().getValueAt(jTable1.getSelectedRow(), 0)+"";
                 String crimecaseno = jTable1.getModel().getValueAt(jTable1.getSelectedRow(),1)+"";
-
-                String sql = "DELETE FROM CrimeCase WHERE CrimeCase.CaseId='"+crimecaseId+"';\n"+
+                            String sql = "DELETE FROM DeliverySuspect\n" +
+                            "WHERE delipersonid IN (\n" +
+                            "  SELECT delipersonid FROM DeliverySuspect a\n" +
+                            "  INNER JOIN Person b\n" +
+                            "    ON a.delipersonid=b.noperson \n" +
+                            "  WHERE b.caseidperson ='"+crimecaseId+"');\n"+
+                            "DELETE FROM CrimeCase WHERE CrimeCase.CaseId='"+crimecaseId+"';\n"+
                              "DELETE FROM RecordInquiry WHERE caseidrecord='"+crimecaseId+"';\n"+
                              "DELETE FROM Person WHERE caseidperson='"+crimecaseId+"';\n"+
                              "DELETE FROM ChargeCase WHERE ChargeCaseId='"+crimecaseId+"';\n"+
-                             "DELETE FROM ActionsCaseData WHERE ActionCaseId='"+crimecaseId+"';";
+                             "DELETE FROM RecordInquiry WHERE CaseIdRecord='"+crimecaseId+"';\n"+
+                             "DELETE FROM BailAsset WHERE BailCaseId='"+crimecaseId+"';\n"+
+                             "DELETE FROM ActionsCaseData WHERE ActionCaseId='"+crimecaseId+"';\n"+
+                              "DELETE FROM Asset WHERE caseidasset='"+crimecaseId+"';";
+                
                 Connection con = ConnectDatabase.connect();
 //                System.out.println("Delete:"+sql);
                 Statement  stmt = con.createStatement();
