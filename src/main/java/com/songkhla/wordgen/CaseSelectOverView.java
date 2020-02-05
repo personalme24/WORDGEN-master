@@ -3052,8 +3052,8 @@ jlabeltoken.setVisible(true);
                              + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
-                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,Tambon,Province)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,Tambon,Province,Related)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
        
   
          try {
@@ -3090,8 +3090,8 @@ jlabeltoken.setVisible(true);
                pst2.setString(6,NewTypePerson(CheckNull(p, "PeopleVictimType")));
               }
     
-              pst2.setString(7,CheckNull(p, "TitleFather")+CheckNull(p, "FatherName")+CheckNull(p, "FatherSurnames"));
-              pst2.setString(8,CheckNull(p, "TitleMother")+CheckNull(p, "MotherName")+CheckNull(p, "MotherSurname"));
+              pst2.setString(7,CheckNull(p, "TitleFather")+CheckNull(p, "FatherName")+" "+CheckNull(p, "FatherSurname"));
+              pst2.setString(8,CheckNull(p, "TitleMother")+CheckNull(p, "MotherName")+" "+CheckNull(p, "MotherSurname"));
               pst2.setString(9,CheckNull(p, "Race"));
               pst2.setString(10,CheckNull(p, "Religion"));
               pst2.setString(11,CheckNull(p, "Nationality"));
@@ -3162,6 +3162,7 @@ jlabeltoken.setVisible(true);
                     pst2.setString(50,CheckNull(p, "Amphur"));
                     pst2.setString(51,CheckNull(p, "Tambon"));
                     pst2.setString(52,CheckNull(p, "Province"));
+                    pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
                      pst2.execute();
                      pst2.close();  
                      
@@ -4793,6 +4794,32 @@ jlabeltoken.setVisible(true);
             }
            else if (sts.equals("FiledWithJail")) {
                 status = "ผัดฟ้องฝากขัง";
+            }
+           else{status = "";}
+            return status;
+        
+//               return newGender;
+    }
+       public static String NewStatusRelate(String sts) {
+        String status = "";
+     
+            if (sts.equals("Victim")) {
+                status = "ผู้เสียหาย";
+            }
+           else if (sts.equals("Suspect")) {
+                status = "ผู้ต้องหา";
+            }
+           else if (sts.equals("Informant")) {
+                status = "ผู้แจ้ง";
+            }
+           else if (sts.equals("witness")) {
+                status = "พยาน";
+            }
+           else if (sts.equals("Litigant")) {
+                status = "คู่กรณี";
+            }
+           else if (sts.equals("Charger")) {
+                status = "ผู้กล่าวหา";
             }
            else{status = "";}
             return status;
