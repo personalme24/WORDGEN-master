@@ -3052,8 +3052,8 @@ jlabeltoken.setVisible(true);
                              + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
-                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,Tambon,Province,Related)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,Tambon,Province,Related,FullNamePersonEn)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
        
   
          try {
@@ -3163,6 +3163,8 @@ jlabeltoken.setVisible(true);
                     pst2.setString(51,CheckNull(p, "Tambon"));
                     pst2.setString(52,CheckNull(p, "Province"));
                     pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
+                      pst2.setString(54,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
+
                      pst2.execute();
                      pst2.close();  
                      
