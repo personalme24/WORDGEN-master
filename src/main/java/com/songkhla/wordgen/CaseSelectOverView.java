@@ -2854,8 +2854,9 @@ jlabeltoken.setVisible(true);
             Element err = (Element)errNodes2.item(0);
          String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
                        + "CaseRequestDate,CaseRequestTime,OccuredDate,OccuredTime,OccuredDateEnd,OccuredTimeEnd,ActionCodeCase,ChargeCodeCase,"
-                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,AssetCode,TypeCourt)\n"
-                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,AssetCode,TypeCourt,CrimeLocation,CrimeLocationDistrict,"
+                      + "CrimeLocationAmphur,CrimeLocationProvince)\n"
+                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
          String insertCharge="insert into Charge(ChargeCode,ChargeName,Law,RateOfPenalty,Note)\n"
                        + "VALUES (?,?,?,?,?)";
           String insertChargeCase="insert into ChargeCase(ChargeCodeCase,ChargeNameCase,LawCase,RateOfPenaltyCase,NoteCase,ChargeCaseId)\n"
@@ -2924,7 +2925,10 @@ jlabeltoken.setVisible(true);
                             pst.setString(20,"1");   
                              pst.setString(21,CheckNull(err, "EvidenceRecordNumber")); 
                              pst.setString(22,"ศาลอาญา/ศาลจังหวัด"); 
-
+                            pst.setString(23,CheckNull(err, "CrimeLocation")); 
+                             pst.setString(24,CheckNull(err, "Tambon")); 
+                            pst.setString(25,CheckNull(err, "Amphur")); 
+                            pst.setString(26,CheckNull(err, "Province")); 
 //                      pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
                      pst.execute();
                      pst.close(); 
@@ -3086,8 +3090,8 @@ jlabeltoken.setVisible(true);
                pst2.setString(6,NewTypePerson(CheckNull(p, "PeopleVictimType")));
               }
     
-              pst2.setString(7,CheckNull(p, "FatherName"));
-              pst2.setString(8,CheckNull(p, "MotherName"));
+              pst2.setString(7,CheckNull(p, "TitleFather")+CheckNull(p, "FatherName")+CheckNull(p, "FatherSurnames"));
+              pst2.setString(8,CheckNull(p, "TitleMother")+CheckNull(p, "MotherName")+CheckNull(p, "MotherSurname"));
               pst2.setString(9,CheckNull(p, "Race"));
               pst2.setString(10,CheckNull(p, "Religion"));
               pst2.setString(11,CheckNull(p, "Nationality"));
@@ -3306,6 +3310,7 @@ jlabeltoken.setVisible(true);
              NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
              NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
                 NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
+                 NodeList errNodesT = doc.getElementsByTagName("Tambon"); 
 //               NodeList errNodes4 = doc.getElementsByTagName("Charge");
 //                 NodeList errNodes5 = doc.getElementsByTagName("LawCategory");               
                
@@ -3317,10 +3322,11 @@ jlabeltoken.setVisible(true);
 
          if (errNodes2.getLength() > 0) {
             Element err = (Element)errNodes2.item(0);
+             Element er = (Element)errNodesT.item(0);
          String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
                        + "CaseRequestDate,CaseRequestTime,OccuredDate,OccuredTime,OccuredDateEnd,OccuredTimeEnd,ActionCodeCase,ChargeCodeCase,"
-                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,CrimeLocation,TypeCourt)\n"
-                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,CrimeLocation,TypeCourt,CrimeLocationDistrict,CrimeLocationAmphur,CrimeLocationProvince)\n"
+                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
          String insertCharge="insert into Charge(ChargeCode,ChargeName,Law,RateOfPenalty,Note)\n"
                        + "VALUES (?,?,?,?,?)";
           String insertChargeCase="insert into ChargeCase(ChargeCodeCase,ChargeNameCase,LawCase,RateOfPenaltyCase,NoteCase,ChargeCaseId)\n"
@@ -3365,8 +3371,11 @@ jlabeltoken.setVisible(true);
                             pst.setString(18, CheckNull(err, "DisplaySuspectsName").replace("1) ", ""));
                              pst.setString(19, CheckNull(err, "DisplayVictimsName").replace("1) ", ""));   
                             pst.setString(20,"1");
-                           pst.setString(21,CheckNull(err, "Road"));   
+                           pst.setString(21,CheckNull(err, "Location"));   
                             pst.setString(22,"ศาลอาญา/ศาลจังหวัด"); 
+                           pst.setString(23,CheckNull(er, "Name"));   
+                           pst.setString(24,CheckNull(err, "Amphur"));   
+                           pst.setString(25,CheckNull(err, "Province"));   
 
                             
 //                      pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
@@ -3433,7 +3442,7 @@ jlabeltoken.setVisible(true);
 //                                     Element err7 = (Element)errNodes8.item(0);  
                                               pst5=conn.prepareStatement(insertAsset);
                                               pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
-                                              pst5.setString(2, CheckNull(t,"ModelString")+CheckNull(t,"FullNoPlate"));
+                                              pst5.setString(2, CheckNull(t,"BrandString")+CheckNull(t,"ModelString")+CheckNull(t,"FullNoPlate"));
                                               pst5.setString(3, CheckNull(t,"Amount1"));
                                               pst5.setString(4, CheckNull(t,"Value"));
                                               pst5.setString(5, "");
@@ -3535,7 +3544,7 @@ jlabeltoken.setVisible(true);
              pst2.setString(16,"");
              }
 ////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
-                  pst2.setString(17,NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
+                  pst2.setString(17,"");
 //                  if(p.getElementsByTagName("Sue").item(0) != null){
 //                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
 //                    pst2.setString(18,CheckNullSue(p, "SueSeq",1));
@@ -3760,10 +3769,11 @@ jlabeltoken.setVisible(true);
 
          if (errNodes2.getLength() > 0) {
             Element err = (Element)errNodes2.item(0);
-         String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
+        String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
                        + "CaseRequestDate,CaseRequestTime,OccuredDate,OccuredTime,OccuredDateEnd,OccuredTimeEnd,ActionCodeCase,ChargeCodeCase,"
-                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,AssetCode,TypeCourt)\n"
-                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,AssetCode,TypeCourt,CrimeLocation,CrimeLocationDistrict,"
+                      + "CrimeLocationAmphur,CrimeLocationProvince)\n"
+                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
          String insertCharge="insert into Charge(ChargeCode,ChargeName,Law,RateOfPenalty,Note)\n"
                        + "VALUES (?,?,?,?,?)";
           String insertChargeCase="insert into ChargeCase(ChargeCodeCase,ChargeNameCase,LawCase,RateOfPenaltyCase,NoteCase,ChargeCaseId)\n"
@@ -3832,7 +3842,10 @@ jlabeltoken.setVisible(true);
                             pst.setString(20,"1");   
                              pst.setString(21,CheckNull(err, "EvidenceRecordNumber")); 
                              pst.setString(22,"ศาลอาญา/ศาลจังหวัด"); 
-
+                            pst.setString(23,CheckNull(err, "CrimeLocation")); 
+                             pst.setString(24,CheckNull(err, "Tambon")); 
+                            pst.setString(25,CheckNull(err, "Amphur")); 
+                            pst.setString(26,CheckNull(err, "Province")); 
 //                      pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
                      pst.execute();
                      pst.close(); 
