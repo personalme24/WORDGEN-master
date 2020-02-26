@@ -155,6 +155,7 @@ public class W36 {
                         tablecolumn.add("AS4");
 			tablecolumn.add("AS5");
                         tablecolumn.add("AS6");
+                        tablecolumn.add("AS9");
 			tablecolumn.add("AS10");
                         tablecolumn.add("AS241");
 			tablecolumn.add("AS242");
@@ -167,6 +168,7 @@ public class W36 {
                         row1.put("AS4",Checknull(s.getString("Name")));
                         row1.put("AS5",Checknull(s.getString("Amount")));
                         row1.put("AS6",Checknull(s.getString("Value")));
+                        row1.put("AS9",Checknull(s.getString("Amount")));
                         row1.put("AS10",Checknull(s.getString("Remark")));
                         row1.put("AS241",Checknull(s.getString("DefectMark")));
                         row1.put("AS242",Checknull(s.getString("PointFoundCheck")));
@@ -226,8 +228,8 @@ public class W36 {
                     bookmarkvalue.put("AS4","");
                    
                     bookmarkvalue.put("AS5","");
-                  
                     bookmarkvalue.put("AS6","");
+                    bookmarkvalue.put("AS9","");
                    bookmarkvalue.put("AS10","");
                     bookmarkvalue.put("AS241", "");
                     

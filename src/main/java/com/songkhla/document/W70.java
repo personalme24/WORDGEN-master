@@ -55,6 +55,8 @@ public static void w70(String cc,String noperson) {
             String caseno;
             String suspectFullNamePerson="";
              String PoliceStationName="";
+             String HeadRankFull ="";
+             String HeadRankShort="";
              String HeadName="";
              String HeadPosition="";
              String ProvincProsecutor="";
@@ -72,6 +74,8 @@ public static void w70(String cc,String noperson) {
                   ResultSet rs=sp.executeQuery(sqlDataPoliceStation); 
                   while (rs.next()) {                    
                          PoliceStationName=rs.getString("PoliceStaionName");
+                         HeadRankFull =rs.getString("HeadRankFull");
+                         HeadRankShort=rs.getString("HeadRankShort");
                          HeadName=rs.getString("HeadName");
                          HeadPosition=rs.getString("HeadPosition");
                          ProvincProsecutor=rs.getString("ProvincProsecutor");
@@ -142,6 +146,8 @@ public static void w70(String cc,String noperson) {
                 bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
                 bookmarkvalue.put("S13",Checknull(HeadName));
                 bookmarkvalue.put("S14",Checknull(HeadPosition));
+                bookmarkvalue.put("S34",Checknull(HeadRankFull));
+                bookmarkvalue.put("S35",Checknull(HeadRankShort));
                    
 //                   ----------------------------ผู้กล่าวหา--------------------
                
@@ -273,6 +279,8 @@ public static void nw70() {
                 bookmarkvalue.put("S27","");
                 bookmarkvalue.put("S13","");
                 bookmarkvalue.put("S14","");
+                bookmarkvalue.put("S34","");
+                bookmarkvalue.put("S35","");
                    
 //                   ----------------------------ผู้กล่าวหา--------------------
                
