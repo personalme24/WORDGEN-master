@@ -245,9 +245,9 @@ public class W5 {
                         bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
                         bookmarkvalue.put("B3", Checknull(s.getString("LawCase")));
                   
-                            bookmarkvalue.put("C4",ToDate(s.getString("OccuredDate")));
+                            bookmarkvalue.put("C4",getThaiNumber(ToDate(s.getString("OccuredDate"))));
                             bookmarkvalue.put("C441", ReplaceCollon(s.getString("OccuredTime")));
-                            bookmarkvalue.put("C5", ToDate(s.getString("CaseAcceptDate")));
+                            bookmarkvalue.put("C5", getThaiNumber(ToDate(s.getString("CaseAcceptDate"))));
                             bookmarkvalue.put("C551",Checknull(ReplaceCollon(s.getString("CaseAccepTime"))));
                             bookmarkvalue.put("C8", Checknull(s.getString("CrimeLocation")));
                             bookmarkvalue.put("C9", Checknull(s.getString("CrimeLocationMoo")));

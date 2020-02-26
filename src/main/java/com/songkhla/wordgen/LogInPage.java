@@ -507,7 +507,8 @@ String  username=Username.getText();
                String updateUser="UPDATE User SET Username=?,Password=?,StatusLogin=?,DateLogin=?,SerialNum=?,PeopleCard=?\n"        
                       + "where iduser='1'";
                  String updateStation="UPDATE PoliceStation SET PoliceStartionCode=?,PoliceStaionName=?,PoliceStaionShort=?,StationAddress=?,StationTambon=?,"
-                         + "StationAmphur=?,StationProvince=?,PostCode=?,BK=?,BH=?,PhonePolice=?,StationAddress=?,HeadRankFull=?,HeadRankShort=?,HeadName=?,HeadPosition=?\n"        
+                         + "StationAmphur=?,StationProvince=?,PostCode=?,BK=?,BH=?,PhonePolice=?,StationAddress=?,HeadRankFull=?,HeadRankShort=?,HeadName=?,HeadPosition=?,"    
+                         + "CriminalCourt=?,JuvenileCourt=?,DistrictCourt=?,MilitaryCourt=?,AssetCourt=?\n"                         
                          + "where PoliceStartionId='1'";
                   Date d=new Date();
                              pst=con.prepareStatement(updatePolice);    
@@ -592,7 +593,7 @@ String  username=Username.getText();
 //                    --------------------------------Traning----------------------------------------------------
                                 pst4.setString(1,"70028");
 //                              pst4.setString(2,"70028");
-                              pst4.setString(2,"สถานีตำรวภูธรบ้านข่อย");
+                              pst4.setString(2,"สถานีตำรวจภูธรบ้านข่อย");
                               pst4.setString(3,"สภ.บ้านข่อย");
                               pst4.setString(4,"38 หมู่ 10");
                               pst4.setString(5,"บ้านข่อย");
@@ -606,7 +607,12 @@ String  username=Username.getText();
                              pst4.setString(13,"พันตำรวจเอก");                        
                              pst4.setString(14,"พ.ต.อ.");                        
                              pst4.setString(15,"สมศักดิ์"+" "+"สมมุติ");                        
-                             pst4.setString(16,"ผกก.");   
+                             pst4.setString(16,"ผกก.");  
+                                pst4.setString(17,"ศาลจังหวัดลพบุรี");                        
+                             pst4.setString(18,"ศาลเยาวชนและครอบครัวจังหวัดลพบุรี");                        
+                             pst4.setString(19,"ศาลแขวงลพบุรี");                        
+                             pst4.setString(20,"ศาลมณฑลทหารบกที่ 13 (ลพบุรี)");                        
+                             pst4.setString(21,"ศาลทรัพย์สินทางปัญญาและการค้าระหว่างประเทศกลาง"); 
                               pst4.executeUpdate();                
                               pst4.close();
                           
@@ -628,8 +634,8 @@ String  username=Username.getText();
                String insertUser="INSERT INTO User (iduser,Username,Password,StatusLogin,DateLogin,SerialNum,PeopleCard)\n"        
                       + "VALUES (?,?,?,?,?,?,?)";
                  String insertStation="INSERT INTO PoliceStation (PoliceStartionId,PoliceStartionCode,PoliceStaionName,PoliceStaionShort,StationAddress,StationTambon,"
-                         + "StationAmphur,StationProvince,PostCode,BK,BH,PhonePolice,StationAddress,HeadRankFull,HeadRankShort,HeadName,HeadPosition)\n"        
-                      + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                         + "StationAmphur,StationProvince,PostCode,BK,BH,PhonePolice,StationAddress,HeadRankFull,HeadRankShort,HeadName,HeadPosition,CriminalCourt,JuvenileCourt,DistrictCourt,MilitaryCourt,AssetCourt)\n"        
+                      + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                try {
                               Date d=new Date();
                              pst=con.prepareStatement(insertPolice);
@@ -722,7 +728,7 @@ String  username=Username.getText();
                              pst4.setString(1,"1");
                               pst4.setString(2,"70028");
 //                              pst4.setString(2,"70028");                             
-                              pst4.setString(3,"สถานีตำรวภูธรบ้านข่อย");
+                              pst4.setString(3,"สถานีตำรวจภูธรบ้านข่อย");
                               pst4.setString(4,"สภ.บ้านข่อย");
                               pst4.setString(5,"38 หมู่ 10");
                               pst4.setString(6,"บ้านข่อย");
@@ -737,6 +743,11 @@ String  username=Username.getText();
                              pst4.setString(15,"พ.ต.อ.");                        
                              pst4.setString(16,"สมศักดิ์"+" "+"สมมุติ");                        
                              pst4.setString(17,"ผกก.");   
+                              pst4.setString(18,"ศาลจังหวัดลพบุรี");                        
+                             pst4.setString(19,"ศาลเยาวชนและครอบครัวจังหวัดลพบุรี");                        
+                             pst4.setString(20,"ศาลแขวงลพบุรี");                        
+                             pst4.setString(21,"ศาลมณฑลทหารบกที่ 13 (ลพบุรี)");                        
+                             pst4.setString(22,"ศาลทรัพย์สินทางปัญญาและการค้าระหว่างประเทศกลาง"); 
                               pst4.executeUpdate();                
                               pst4.close();
                         
