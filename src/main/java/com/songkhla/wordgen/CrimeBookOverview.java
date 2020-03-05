@@ -34,7 +34,7 @@ public class CrimeBookOverview extends javax.swing.JDialog {
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTable1.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());
         RefreshData();
-        jButton1.setVisible(false);
+//        jButton1.setVisible(false);
         
     }
 

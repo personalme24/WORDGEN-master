@@ -2998,12 +2998,13 @@ jlabeltoken.setVisible(true);
                                 Node nNode = errNodesAs.item(temp);
                                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                                     Element p = (Element) nNode; 
-
+                                        String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
+                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
                                             pst5=conn.prepareStatement(insertAsset);
                                                 pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
                                              pst5.setString(2, CheckNull(p,"Name"));
-                                              pst5.setString(3, CheckNull(p,"Amount"));
-                                              pst5.setString(4, CheckNull(p,"Value"));     
+                                              pst5.setString(3, newAmount[0]);
+                                              pst5.setString(4, newValue[0]);     
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
@@ -3018,11 +3019,13 @@ jlabeltoken.setVisible(true);
                                 Node nNode = errNodesWea.item(temp);
                                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                                     Element p = (Element) nNode;
+                                    String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
+                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
                                         pst5=conn.prepareStatement(insertAsset);
                                                 pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
                                              pst5.setString(2, CheckNull(p,"WeaponName"));
-                                              pst5.setString(3, CheckNull(p,"Amount"));
-                                              pst5.setString(4, CheckNull(p,"Value"));     
+                                              pst5.setString(3,newAmount[0]);
+                                              pst5.setString(4,newValue[0]);     
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
@@ -3040,6 +3043,8 @@ jlabeltoken.setVisible(true);
                                     Element p = (Element) nNode;
                                     Element dr = (Element)errNodes8.item(temp);
                                         pst5=conn.prepareStatement(insertAsset);
+                                          String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
+                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
                                                 pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
                                                 if(errNodes8.getLength()>0){
                                                pst5.setString(2, CheckNull(dr,"NameTH")); 
@@ -3048,8 +3053,8 @@ jlabeltoken.setVisible(true);
                                                   pst5.setString(2, ""); 
                                                 }
                                              
-                                              pst5.setString(3, CheckNull(p,"Amount"));
-                                              pst5.setString(4, CheckNull(p,"Value"));     
+                                              pst5.setString(3, newAmount[0]);
+                                              pst5.setString(4,newValue[0]);     
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
@@ -3069,12 +3074,14 @@ jlabeltoken.setVisible(true);
                                 Node nNode = errNodes71.item(temp);
                                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                                     Element p = (Element) nNode; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
+//                                     Element err7 = (Element)errNodes8.item(0); 
+                                        String[] newAmount=CheckNull(p,"Amount1").replace(".", ",").split(",");
+                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
                                               pst5=conn.prepareStatement(insertAsset);
                                               pst5.setString(1, CheckNull(err,"EvidenceRecordNumber").replace("null", ""));
                                               pst5.setString(2, CheckNull(p,"DisplayAsset"));
-                                              pst5.setString(3, CheckNull(p,"Amount1"));
-                                              pst5.setString(4, CheckNull(p,"Value"));
+                                              pst5.setString(3, newAmount[0]);
+                                              pst5.setString(4,newValue[0]);
                                               pst5.setString(5, "ได้คืน");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
@@ -3092,12 +3099,14 @@ jlabeltoken.setVisible(true);
                                 Node nNode = errNodeslost.item(temp);
                                 if (nNode.getNodeType() == Node.ELEMENT_NODE) {
                                     Element p = (Element) nNode; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
+//                                     Element err7 = (Element)errNodes8.item(0); 
+                                        String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
+                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
                                               pst5=conn.prepareStatement(insertAsset);
                                               pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
                                               pst5.setString(2, CheckNull(p,"Name"));
-                                              pst5.setString(3, CheckNull(p,"Amount"));
-                                              pst5.setString(4, CheckNull(p,"Value"));
+                                              pst5.setString(3, newAmount[0]);
+                                              pst5.setString(4, newValue[0]);
                                               pst5.setString(5, "ประทุษร้าย");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
