@@ -38,14 +38,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author Computer
  */
-public class WriteExcelDemo
+public class WriteExcelBookDead
 {
     public static  void crimebook()
     {   Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
      XSSFWorkbook workbook = new XSSFWorkbook();
-    XSSFSheet sheet = workbook.createSheet("สมุดคุมคดีอาญา");
+    XSSFSheet sheet = workbook.createSheet("สมุดคุมคดีชันสูตร");
          CellStyle style = workbook.createCellStyle();  
          Font newFont = workbook.createFont();
          newFont.setBold(true);
@@ -122,7 +122,7 @@ public class WriteExcelDemo
          ResultSet rsp=po.executeQuery(sqlDataPolice);
          String sqlCrimeCase="select crimecase.*,chargecase.ChargeCodeCase ChargeCase,chargecase.ChargeNameCase ChargeNameCase,ArrestDateTime from crimecase "
                 + "left join chargecase on crimecase.CaseId=chargecase.ChargeCaseId "
-                 + "left join person on crimecase.CaseId=person.caseIdPerson where CaseType='คดีอาญา' group by person.caseIdPerson";
+                 + "left join person on crimecase.CaseId=person.caseIdPerson where CaseType='คดีชันสูตร' group by person.caseIdPerson";
                       Statement sp = conn.createStatement();
                   ResultSet rs=sp.executeQuery(sqlCrimeCase); 
                   
@@ -175,7 +175,7 @@ public class WriteExcelDemo
             System.out.println("Excel with foumula cells written successfully");
              File f3=new File("./สมุดคุมคดี");
         f3.mkdirs();
-        FileOutputStream fileOut = new FileOutputStream("./สมุดคุมคดี/สมุดคุมคดีอาญา.xlsx");
+        FileOutputStream fileOut = new FileOutputStream("./สมุดคุมคดี/สมุดคุมคดีชันสูตร.xlsx");
         workbook.write(fileOut);
         fileOut.close();
        Desktop desktop = Desktop.getDesktop();
