@@ -134,6 +134,7 @@ public class LogInPage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         Password = new javax.swing.JPasswordField();
+        jPanel3 = new InformPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -189,6 +190,17 @@ public class LogInPage extends javax.swing.JFrame {
                 .addGap(19, 19, 19))
         );
 
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 301, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 329, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -196,14 +208,21 @@ public class LogInPage extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(445, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(411, 411, 411))
+                .addGap(69, 69, 69)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(294, 294, 294)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(302, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(294, 294, 294)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(181, 181, 181)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -265,35 +284,38 @@ try{
              
          try { 
              
-//             System.out.println("FirstTimeeeeeeeeee");
-//         String url=  "http://172.31.191.163:8383/wordgenauthen/?USER="+username+"&PASS="+password+"&Serial="+getMotherboardSerial();
-//             System.out.println("url:"+url);
-//                  String fff =sendGET(url);
-//                  if(..equals("0")){
-//                     JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อ", "แจ้งเตือน",
-//                 JOptionPane.OK_OPTION); 
-//                  }
-//                  else{
-//                   JSONObject myResponse = new JSONObject(fff);
+             System.out.println("FirstTimeeeeeeeeee");
+         String url=  "http://172.31.191.163:8383/wordgenauthen/?USER="+username+"&PASS="+password+"&Serial="+getMotherboardSerial();
+             System.out.println("url:"+url);
+                  String fff =sendGET(url); 
+                  System.out.println("Status network:"+fff);
+                  
+                  if(fff.equals("0")){
+                     JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อ", "แจ้งเตือน",
+                 JOptionPane.OK_OPTION); 
+                  }
+                  else{
+                 JSONObject myResponse = new JSONObject(fff);
+                  String statusconnect=myResponse.getString("statusconnect");
 //                   String statusconnect=myResponse.getString("statusconnect");
-//                  if(statusconnect.equals("0")){
-//                   
-//                    JOptionPane.showMessageDialog(null, "ไม่พบข้อมูลผู้ใช้ของท่านในระบบ CRIMES กรุณาติดต่อ 1228 กด 2");  
-//                  } 
-//                 else if(statusconnect.equals("6")){
-//                   JOptionPane.showMessageDialog(null, "ชื่อผู้ใช้ของท่านยังไม่ได้รับสิทธิ์พนักงานสอบสวนหรือหัวหน้างานสอบสวน กรุณาติดต่อ 1228 กด 2");            
-//                  } 
-//                  else if(statusconnect.equals("1")){
-//                          yourAttemptActionPerformed();
-//                  }
-//                  }
+                  if(statusconnect.equals("0")){
+                   
+                    JOptionPane.showMessageDialog(null, "ไม่พบข้อมูลผู้ใช้ของท่านในระบบ CRIMES กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน\nหรือติดต่อ 1228 กด 2");  
+                  } 
+                 else if(statusconnect.equals("6")){
+                   JOptionPane.showMessageDialog(null, "ชื่อผู้ใช้ของท่านยังไม่ได้รับสิทธิ์พนักงานสอบสวนหรือหัวหน้างานสอบสวน กรุณาติดต่อ 1228 กด 2");            
+                  } 
+                  else if(statusconnect.equals("1")){
+                          yourAttemptActionPerformed();
+                  }
+                  }
 //-------------------------Traning-------------------------------------------
-                    if(username.equals("98UT01")&&password.equals("1234")){
-                             yourAttemptActionPerformed();
-                    }
-                    else{
-                     JOptionPane.showMessageDialog(null, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องกรุณากรอกใหม่");  
-                    }
+//                    if(username.equals("98UT01")&&password.equals("1234")){
+//                             yourAttemptActionPerformed();
+//                    }
+//                    else{
+//                     JOptionPane.showMessageDialog(null, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้องกรุณากรอกใหม่");  
+//                    }
                  
         } catch (Exception e) {
         }
@@ -484,10 +506,10 @@ String  username=Username.getText();
        PreparedStatement pst4=null; 
 
         try { 
-//              String url=  "http://172.31.191.163:8383/wordgenauthen/?USER="+username+"&PASS="+password+"&Serial="+getMotherboardSerial();
+              String url=  "http://172.31.191.163:8383/wordgenauthen/?USER="+username+"&PASS="+password+"&Serial="+getMotherboardSerial();
 //                System.out.println("url2:"+url);
-//             String fff =sendGET(url);
-//             JSONObject myResponse = new JSONObject(fff);
+             String fff =sendGET(url);
+             JSONObject myResponse = new JSONObject(fff);
 //                
 //                x = x - i;
 //            setProgress((int)((i*100)/1)+1);
@@ -500,7 +522,7 @@ String  username=Username.getText();
                  System.out.println("UpDATE LOGIN DATA");
                String updatePolice="UPDATE Police SET IdCardPolice=?,RankPolice=?,FirstName=?,LastName=?,"
                                  + "Birthday=?,Age=?,Tel=?,Position=?,RankPoliceFull=? where IdPolice='1'";
-               System.out.println("updatePolice"+updatePolice);
+//               System.out.println("updatePolice"+updatePolice);
                String updateInvest="UPDATE InvestInformation SET InvestCardID=?,InvestRank=?,InvestName=?,"
                        + "InvestPosition=?,InvestBirthDay=?,InvestAge=?,InvestTel=?,InvestRankFull=?\n"        
                       + "where InvestId='1'"; 
@@ -512,46 +534,46 @@ String  username=Username.getText();
                          + "where PoliceStartionId='1'";
                   Date d=new Date();
                              pst=con.prepareStatement(updatePolice);    
-//                              pst.setString(1,myResponse.getString("idcard"));
-//                              pst.setString(2,myResponse.getString("rank"));
-//                              pst.setString(3,myResponse.getString("firstname"));
-//                              pst.setString(4,myResponse.getString("lastname"));
-//                              pst.setString(5,ChangDate(myResponse.getString("birthday")));
-//                              pst.setString(6,myResponse.getString("age"));
-//                              pst.setString(7,myResponse.getString("mobilephone"));
-//                              pst.setString(8,myResponse.getString("position"));  
-//                              pst.setString(9,myResponse.getString("rankfull"));        
-                              pst.setString(1,"3100501488409");
-                              pst.setString(2,"พ.ต.ท.");
-                              pst.setString(3,"ศรันย์วิทย์");
-                              pst.setString(4,"สายศิลา");
-                              pst.setString(5,"27/02/2522");
-                              pst.setString(6,"40");
-                              pst.setString(7,"0898998888");
-                              pst.setString(8,"พงส.ผู้ชำนาญการ");  
-                              pst.setString(9,"พันตำรวจโท");
+                              pst.setString(1,myResponse.getString("idcard"));
+                              pst.setString(2,myResponse.getString("rank"));
+                              pst.setString(3,myResponse.getString("firstname"));
+                              pst.setString(4,myResponse.getString("lastname"));
+                              pst.setString(5,ChangDate(myResponse.getString("birthday")));
+                              pst.setString(6,myResponse.getString("age"));
+                              pst.setString(7,myResponse.getString("mobilephone"));
+                              pst.setString(8,myResponse.getString("position"));  
+                              pst.setString(9,myResponse.getString("rankfull"));        
+//                              pst.setString(1,"3100501488409");
+//                              pst.setString(2,"พ.ต.ท.");
+//                              pst.setString(3,"ศรันย์วิทย์");
+//                              pst.setString(4,"สายศิลา");
+//                              pst.setString(5,"27/02/2522");
+//                              pst.setString(6,"40");
+//                              pst.setString(7,"0898998888");
+//                              pst.setString(8,"พงส.ผู้ชำนาญการ");  
+//                              pst.setString(9,"พันตำรวจโท");
                               pst.executeUpdate();                
                               pst.close();
                               
                               pst2=con.prepareStatement(updateInvest);    
-//                              pst2.setString(1,myResponse.getString("idcard"));
-//                              pst2.setString(2,myResponse.getString("rank"));
-////                              pst.setString(4,myResponse.getString("rank"));
-//                              pst2.setString(3,myResponse.getString("firstname")+" "+myResponse.getString("lastname"));
-//                              pst2.setString(4,myResponse.getString("position"));
-//                              pst2.setString(5,ChangDate(myResponse.getString("birthday")));
-//                              pst2.setString(6,myResponse.getString("age"));
-//                              pst2.setString(7,myResponse.getString("mobilephone"));
-//                              pst2.setString(8,myResponse.getString("rankfull"));     
-                              pst2.setString(1,"3100501488409");
-                              pst2.setString(2,"พ.ต.ท.");
+                              pst2.setString(1,myResponse.getString("idcard"));
+                              pst2.setString(2,myResponse.getString("rank"));
 //                              pst.setString(4,myResponse.getString("rank"));
-                              pst2.setString(3,"ศรันย์วิทย์"+" "+"สายศิลา");
-                              pst2.setString(4,"พงส.ผู้ชำนาญการ");
-                              pst2.setString(5,"27/02/2522");
-                              pst2.setString(6,"40");
-                              pst2.setString(7,"0898998888");
-                              pst2.setString(8,"พันตำรวจโท"); 
+                              pst2.setString(3,myResponse.getString("firstname")+" "+myResponse.getString("lastname"));
+                              pst2.setString(4,myResponse.getString("position"));
+                              pst2.setString(5,ChangDate(myResponse.getString("birthday")));
+                              pst2.setString(6,myResponse.getString("age"));
+                              pst2.setString(7,myResponse.getString("mobilephone"));
+                              pst2.setString(8,myResponse.getString("rankfull"));     
+//                              pst2.setString(1,"3100501488409");
+//                              pst2.setString(2,"พ.ต.ท.");
+////                              pst.setString(4,myResponse.getString("rank"));
+//                              pst2.setString(3,"ศรันย์วิทย์"+" "+"สายศิลา");
+//                              pst2.setString(4,"พงส.ผู้ชำนาญการ");
+//                              pst2.setString(5,"27/02/2522");
+//                              pst2.setString(6,"40");
+//                              pst2.setString(7,"0898998888");
+//                              pst2.setString(8,"พันตำรวจโท"); 
                               pst2.executeUpdate();                
                               pst2.close();
                               
@@ -561,58 +583,63 @@ String  username=Username.getText();
                               pst3.setString(3,"1");
                               pst3.setString(4,d+"");
                               pst3.setString(5,getMotherboardSerial());        
-//                              pst3.setString(6,myResponse.getString("idcard")); 
-                              pst3.setString(6,"22222"); 
+                              pst3.setString(6,myResponse.getString("idcard")); 
+//                              pst3.setString(6,"22222"); 
 
 //                              pst3.setString(8,myResponse.getString("passwordwordgen"));  
 //                              pst3.setString(8,"eZS5PPB/9zCElUbubieWKoD9pctqrANqhXqK49z1250=");  
-//                             MainMenuWord.tk=myResponse.getString("passwordwordgen");
-                             MainMenuWord.tk="eZS5PPB9zCElUbubieWKoD9pctqrANqhXqK49z1250=";
+                             MainMenuWord.tk=myResponse.getString("passwordwordgen");
+//                             MainMenuWord.tk="eZS5PPB9zCElUbubieWKoD9pctqrANqhXqK49z1250=";
 
                               pst3.executeUpdate();                
                               pst3.close();
                               
                               pst4=con.prepareStatement(updateStation); 
-//                              pst4.setString(1,myResponse.getString("orgcode"));
-////                              pst4.setString(2,"70028");
-//                              pst4.setString(2,myResponse.getString("stationname"));
-//                              pst4.setString(3,myResponse.getString("initialname"));
-//                              pst4.setString(4,myResponse.getString("address"));
-//                              pst4.setString(5,myResponse.getString("tambon"));
-//                              pst4.setString(6,myResponse.getString("amphur"));                        
-//                             pst4.setString(7,myResponse.getString("province"));                        
-//                             pst4.setString(8,myResponse.getString("zipcode"));                        
-//                             pst4.setString(9,myResponse.getString("bk"));                        
-//                             pst4.setString(10,myResponse.getString("bh"));  
-//                             pst4.setString(11,myResponse.getString("mobilephone"));                                                     
-//                             pst4.setString(12,myResponse.getString("address"));                        
-//                             pst4.setString(13,myResponse.getString("headrankfull"));                        
-//                             pst4.setString(14,myResponse.getString("headpolicerank"));                        
-//                             pst4.setString(15,myResponse.getString("headpolicename")+" "+myResponse.getString("headpolicesurname"));                        
-//                             pst4.setString(16,myResponse.getString("headpositionfull"));                        
-//                    --------------------------------Traning----------------------------------------------------
-                                pst4.setString(1,"70028");
+                              pst4.setString(1,myResponse.getString("orgcode"));
 //                              pst4.setString(2,"70028");
-                              pst4.setString(2,"สถานีตำรวจภูธรบ้านข่อย");
-                              pst4.setString(3,"สภ.บ้านข่อย");
-                              pst4.setString(4,"38 หมู่ 10");
-                              pst4.setString(5,"บ้านข่อย");
-                              pst4.setString(6,"เมืองลพบุรี");                        
-                             pst4.setString(7,"ลพบุรี");                        
-                             pst4.setString(8,"15000");                        
-                             pst4.setString(9,"ภ.จว.ลพบุรี");                        
-                             pst4.setString(10,"ภ.1");  
-                             pst4.setString(11,"0898998888");                                                     
-                             pst4.setString(12,"");                        
-                             pst4.setString(13,"พันตำรวจเอก");                        
-                             pst4.setString(14,"พ.ต.อ.");                        
-                             pst4.setString(15,"สมศักดิ์"+" "+"สมมุติ");                        
-                             pst4.setString(16,"ผกก.");  
-                                pst4.setString(17,"ศาลจังหวัดลพบุรี");                        
-                             pst4.setString(18,"ศาลเยาวชนและครอบครัวจังหวัดลพบุรี");                        
-                             pst4.setString(19,"ศาลแขวงลพบุรี");                        
-                             pst4.setString(20,"ศาลมณฑลทหารบกที่ 13 (ลพบุรี)");                        
-                             pst4.setString(21,"ศาลทรัพย์สินทางปัญญาและการค้าระหว่างประเทศกลาง"); 
+                              pst4.setString(2,myResponse.getString("stationname"));
+                              pst4.setString(3,myResponse.getString("initialname"));
+                              pst4.setString(4,myResponse.getString("address"));
+                              pst4.setString(5,myResponse.getString("tambon"));
+                              pst4.setString(6,myResponse.getString("amphur"));                        
+                             pst4.setString(7,myResponse.getString("province"));                        
+                             pst4.setString(8,myResponse.getString("zipcode"));                        
+                             pst4.setString(9,myResponse.getString("bk"));                        
+                             pst4.setString(10,myResponse.getString("bh"));  
+                             pst4.setString(11,myResponse.getString("mobilephone"));                                                     
+                             pst4.setString(12,myResponse.getString("address"));                        
+                             pst4.setString(13,myResponse.getString("headrankfull"));                        
+                             pst4.setString(14,myResponse.getString("headpolicerank"));                        
+                             pst4.setString(15,myResponse.getString("headpolicename")+" "+myResponse.getString("headpolicesurname"));                        
+                             pst4.setString(16,myResponse.getString("headpositionfull"));   
+                                pst4.setString(17,"");                        
+                             pst4.setString(18,"");                        
+                             pst4.setString(19,"");                        
+                             pst4.setString(20,"");                        
+                             pst4.setString(21,""); 
+//                    --------------------------------Traning----------------------------------------------------
+//                                pst4.setString(1,"70028");
+////                              pst4.setString(2,"70028");
+//                              pst4.setString(2,"สถานีตำรวจภูธรบ้านข่อย");
+//                              pst4.setString(3,"สภ.บ้านข่อย");
+//                              pst4.setString(4,"38 หมู่ 10");
+//                              pst4.setString(5,"บ้านข่อย");
+//                              pst4.setString(6,"เมืองลพบุรี");                        
+//                             pst4.setString(7,"ลพบุรี");                        
+//                             pst4.setString(8,"15000");                        
+//                             pst4.setString(9,"ภ.จว.ลพบุรี");                        
+//                             pst4.setString(10,"ภ.1");  
+//                             pst4.setString(11,"0898998888");                                                     
+//                             pst4.setString(12,"");                        
+//                             pst4.setString(13,"พันตำรวจเอก");                        
+//                             pst4.setString(14,"พ.ต.อ.");                        
+//                             pst4.setString(15,"สมศักดิ์"+" "+"สมมุติ");                        
+//                             pst4.setString(16,"ผกก.");  
+//                                pst4.setString(17,"ศาลจังหวัดลพบุรี");                        
+//                             pst4.setString(18,"ศาลเยาวชนและครอบครัวจังหวัดลพบุรี");                        
+//                             pst4.setString(19,"ศาลแขวงลพบุรี");                        
+//                             pst4.setString(20,"ศาลมณฑลทหารบกที่ 13 (ลพบุรี)");                        
+//                             pst4.setString(21,"ศาลทรัพย์สินทางปัญญาและการค้าระหว่างประเทศกลาง"); 
                               pst4.executeUpdate();                
                               pst4.close();
                           
@@ -639,51 +666,51 @@ String  username=Username.getText();
                try {
                               Date d=new Date();
                              pst=con.prepareStatement(insertPolice);
-//                              pst.setString(1,"1");
-//                              pst.setString(2,myResponse.getString("idcard"));
-//                              pst.setString(3,myResponse.getString("rank"));
-//                              pst.setString(4,myResponse.getString("firstname"));
-//                              pst.setString(5,myResponse.getString("lastname"));
-//                              pst.setString(6,ChangDate(myResponse.getString("birthday")));
-//                              pst.setString(7,myResponse.getString("age"));
-//                              pst.setString(8,myResponse.getString("mobilephone"));
-//                              pst.setString(9,myResponse.getString("position"));  
-//                              pst.setString(10,myResponse.getString("rankfull"));     
-//                        ----------------------------Training------------------------------
                               pst.setString(1,"1");
-                              pst.setString(2,"3100501488409");
-                              pst.setString(3,"พ.ต.ท.");
-                              pst.setString(4,"ศรันย์วิทย์");
-                              pst.setString(5,"สายศิลา");
-                              pst.setString(6,"27/02/2522");
-                              pst.setString(7,"40");
-                              pst.setString(8,"0898998888");
-                              pst.setString(9,"พงส.ผู้ชำนาญการ");  
-                              pst.setString(10,"พันตำรวจโท");   
+                              pst.setString(2,myResponse.getString("idcard"));
+                              pst.setString(3,myResponse.getString("rank"));
+                              pst.setString(4,myResponse.getString("firstname"));
+                              pst.setString(5,myResponse.getString("lastname"));
+                              pst.setString(6,ChangDate(myResponse.getString("birthday")));
+                              pst.setString(7,myResponse.getString("age"));
+                              pst.setString(8,myResponse.getString("mobilephone"));
+                              pst.setString(9,myResponse.getString("position"));  
+                              pst.setString(10,myResponse.getString("rankfull"));     
+//                        ----------------------------Training------------------------------
+//                              pst.setString(1,"1");
+//                              pst.setString(2,"3100501488409");
+//                              pst.setString(3,"พ.ต.ท.");
+//                              pst.setString(4,"ศรันย์วิทย์");
+//                              pst.setString(5,"สายศิลา");
+//                              pst.setString(6,"27/02/2522");
+//                              pst.setString(7,"40");
+//                              pst.setString(8,"0898998888");
+//                              pst.setString(9,"พงส.ผู้ชำนาญการ");  
+//                              pst.setString(10,"พันตำรวจโท");   
 
                               pst.executeUpdate();                
                               pst.close();
                               
                                pst2=con.prepareStatement(insertInvest);    
-//                              pst2.setString(1,"1");
-//                              pst2.setString(2,myResponse.getString("idcard"));
-//                              pst2.setString(3,myResponse.getString("rank"));
-//                              pst2.setString(4,myResponse.getString("firstname")+" "+myResponse.getString("lastname"));
-//                              pst2.setString(5,myResponse.getString("position"));
-//                              pst2.setString(6,ChangDate(myResponse.getString("birthday")));
-//                              pst2.setString(7,myResponse.getString("age"));
-//                              pst2.setString(8,myResponse.getString("mobilephone"));
-//                              pst2.setString(9,myResponse.getString("rankfull"));  
+                              pst2.setString(1,"1");
+                              pst2.setString(2,myResponse.getString("idcard"));
+                              pst2.setString(3,myResponse.getString("rank"));
+                              pst2.setString(4,myResponse.getString("firstname")+" "+myResponse.getString("lastname"));
+                              pst2.setString(5,myResponse.getString("position"));
+                              pst2.setString(6,ChangDate(myResponse.getString("birthday")));
+                              pst2.setString(7,myResponse.getString("age"));
+                              pst2.setString(8,myResponse.getString("mobilephone"));
+                              pst2.setString(9,myResponse.getString("rankfull"));  
 //                              -------------------------Training---------------------------------
-                                pst2.setString(1,"1");
-                              pst2.setString(2,"3100501488409");
-                              pst2.setString(3,"พ.ต.ท.");
-                              pst2.setString(4,"ศรันย์วิทย์"+" "+"สายศิลา");
-                              pst2.setString(5,"พงส.ผู้ชำนาญการ");
-                              pst2.setString(6,"27/02/2522");
-                              pst2.setString(7,"40");
-                              pst2.setString(8,"0898998888");
-                              pst2.setString(9,"พันตำรวจโท");      
+//                                pst2.setString(1,"1");
+//                              pst2.setString(2,"3100501488409");
+//                              pst2.setString(3,"พ.ต.ท.");
+//                              pst2.setString(4,"ศรันย์วิทย์"+" "+"สายศิลา");
+//                              pst2.setString(5,"พงส.ผู้ชำนาญการ");
+//                              pst2.setString(6,"27/02/2522");
+//                              pst2.setString(7,"40");
+//                              pst2.setString(8,"0898998888");
+//                              pst2.setString(9,"พันตำรวจโท");      
                               pst2.executeUpdate();                
                               pst2.close();
                               
@@ -694,60 +721,65 @@ String  username=Username.getText();
                               pst3.setString(4,"1");
                               pst3.setString(5,d+"");
                               pst3.setString(6,getMotherboardSerial());        
-//                              pst3.setString(7,myResponse.getString("idcard")); 
-                              pst3.setString(7,"3100501488409"); 
+                              pst3.setString(7,myResponse.getString("idcard")); 
+//                              pst3.setString(7,"3100501488409"); 
 
 //                              pst3.setString(8,myResponse.getString("passwordwordgen"));  
 //                              pst3.setString(8,"eZS5PPB/9zCElUbubieWKoD9pctqrANqhXqK49z1250=");  
-//                             MainMenuWord.tk=myResponse.getString("passwordwordgen");
-                              MainMenuWord.tk="eZS5PPB9zCElUbubieWKoD9pctqrANqhXqK49z1250=";
+                             MainMenuWord.tk=myResponse.getString("passwordwordgen");
+//                              MainMenuWord.tk="eZS5PPB9zCElUbubieWKoD9pctqrANqhXqK49z1250=";
 
                               pst3.executeUpdate();                
                               pst3.close();
                               
                               pst4=con.prepareStatement(insertStation);
-//                              pst4.setString(1,"1");
-//                              pst4.setString(2,myResponse.getString("orgcode"));
-////                              pst4.setString(2,"70028");
-//                              pst4.setString(3,myResponse.getString("stationname"));
-//                              pst4.setString(4,myResponse.getString("initialname"));
-//                              pst4.setString(5,myResponse.getString("address"));
-//                              pst4.setString(6,myResponse.getString("tambon"));
-//                              pst4.setString(7,myResponse.getString("amphur"));                        
-//                             pst4.setString(8,myResponse.getString("province"));                        
-//                             pst4.setString(9,myResponse.getString("zipcode"));                        
-//                             pst4.setString(10,myResponse.getString("bk"));                        
-//                             pst4.setString(11,myResponse.getString("bh"));  
-//                             pst4.setString(12,myResponse.getString("mobilephone"));                                                     
-//                             pst4.setString(13,myResponse.getString("address"));                        
-//                             pst4.setString(14,myResponse.getString("headrankfull"));                        
-//                             pst4.setString(15,myResponse.getString("headpolicerank"));                        
-//                             pst4.setString(16,myResponse.getString("headpolicename")+" "+myResponse.getString("headpolicesurname"));                        
-//                             pst4.setString(17,myResponse.getString("headpositionfull"));                        
+                              pst4.setString(1,"1");
+                              pst4.setString(2,myResponse.getString("orgcode"));
+//                              pst4.setString(2,"70028");
+                              pst4.setString(3,myResponse.getString("stationname"));
+                              pst4.setString(4,myResponse.getString("initialname"));
+                              pst4.setString(5,myResponse.getString("address"));
+                              pst4.setString(6,myResponse.getString("tambon"));
+                              pst4.setString(7,myResponse.getString("amphur"));                        
+                             pst4.setString(8,myResponse.getString("province"));                        
+                             pst4.setString(9,myResponse.getString("zipcode"));                        
+                             pst4.setString(10,myResponse.getString("bk"));                        
+                             pst4.setString(11,myResponse.getString("bh"));  
+                             pst4.setString(12,myResponse.getString("mobilephone"));                                                     
+                             pst4.setString(13,myResponse.getString("address"));                        
+                             pst4.setString(14,myResponse.getString("headrankfull"));                        
+                             pst4.setString(15,myResponse.getString("headpolicerank"));                        
+                             pst4.setString(16,myResponse.getString("headpolicename")+" "+myResponse.getString("headpolicesurname"));                        
+                             pst4.setString(17,myResponse.getString("headpositionfull"));
+                              pst4.setString(18,"");                        
+                             pst4.setString(19,"");                        
+                             pst4.setString(20,"");                        
+                             pst4.setString(21,"");                        
+                             pst4.setString(22,""); 
 //                            ----------------------------Traning--------------------------------
-                             pst4.setString(1,"1");
-                              pst4.setString(2,"70028");
-//                              pst4.setString(2,"70028");                             
-                              pst4.setString(3,"สถานีตำรวจภูธรบ้านข่อย");
-                              pst4.setString(4,"สภ.บ้านข่อย");
-                              pst4.setString(5,"38 หมู่ 10");
-                              pst4.setString(6,"บ้านข่อย");
-                              pst4.setString(7,"เมืองลพบุรี");                        
-                             pst4.setString(8,"ลพบุรี");                        
-                             pst4.setString(9,"15000");                        
-                             pst4.setString(10,"ภ.จว.ลพบุรี");                        
-                             pst4.setString(11,"ภ.1");  
-                             pst4.setString(12,"0898998888");                                                     
-                             pst4.setString(13,"");                        
-                             pst4.setString(14,"พันตำรวจเอก");                        
-                             pst4.setString(15,"พ.ต.อ.");                        
-                             pst4.setString(16,"สมศักดิ์"+" "+"สมมุติ");                        
-                             pst4.setString(17,"ผกก.");   
-                              pst4.setString(18,"ศาลจังหวัดลพบุรี");                        
-                             pst4.setString(19,"ศาลเยาวชนและครอบครัวจังหวัดลพบุรี");                        
-                             pst4.setString(20,"ศาลแขวงลพบุรี");                        
-                             pst4.setString(21,"ศาลมณฑลทหารบกที่ 13 (ลพบุรี)");                        
-                             pst4.setString(22,"ศาลทรัพย์สินทางปัญญาและการค้าระหว่างประเทศกลาง"); 
+//                             pst4.setString(1,"1");
+//                              pst4.setString(2,"70028");
+////                              pst4.setString(2,"70028");                             
+//                              pst4.setString(3,"สถานีตำรวจภูธรบ้านข่อย");
+//                              pst4.setString(4,"สภ.บ้านข่อย");
+//                              pst4.setString(5,"38 หมู่ 10");
+//                              pst4.setString(6,"บ้านข่อย");
+//                              pst4.setString(7,"เมืองลพบุรี");                        
+//                             pst4.setString(8,"ลพบุรี");                        
+//                             pst4.setString(9,"15000");                        
+//                             pst4.setString(10,"ภ.จว.ลพบุรี");                        
+//                             pst4.setString(11,"ภ.1");  
+//                             pst4.setString(12,"0898998888");                                                     
+//                             pst4.setString(13,"");                        
+//                             pst4.setString(14,"พันตำรวจเอก");                        
+//                             pst4.setString(15,"พ.ต.อ.");                        
+//                             pst4.setString(16,"สมศักดิ์"+" "+"สมมุติ");                        
+//                             pst4.setString(17,"ผกก.");   
+//                              pst4.setString(18,"ศาลจังหวัดลพบุรี");                        
+//                             pst4.setString(19,"ศาลเยาวชนและครอบครัวจังหวัดลพบุรี");                        
+//                             pst4.setString(20,"ศาลแขวงลพบุรี");                        
+//                             pst4.setString(21,"ศาลมณฑลทหารบกที่ 13 (ลพบุรี)");                        
+//                             pst4.setString(22,"ศาลทรัพย์สินทางปัญญาและการค้าระหว่างประเทศกลาง"); 
                               pst4.executeUpdate();                
                               pst4.close();
                         
@@ -775,6 +807,13 @@ class BgPanel extends JPanel {
 }
 class LoginPanel extends JPanel {
     Image bg = new ImageIcon("./Master/LOgin.png").getImage();
+    @Override
+    public void paintComponent(Graphics g) {
+        g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
+    }
+}
+class InformPanel extends JPanel {
+    Image bg = new ImageIcon("./Master/252.jpg").getImage();
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
@@ -834,5 +873,6 @@ public static String ChangDate(String date){
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 }

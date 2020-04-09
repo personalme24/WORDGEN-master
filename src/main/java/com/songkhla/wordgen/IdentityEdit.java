@@ -433,7 +433,7 @@ JDatePickerImpl CaseRequestDateTime,CaseAcceptDate,OccuredDate,Invest_SendCaseDa
 //            Date date2=new Date();
 //            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
 //            Date date = dateFormat.parse(date2);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/mm/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 	Date date = new Date();
         dateFormat.format(date);
 //	System.out.println(dateFormat.format(date));

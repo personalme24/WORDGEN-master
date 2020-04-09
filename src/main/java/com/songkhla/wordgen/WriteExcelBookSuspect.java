@@ -38,14 +38,14 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author Computer
  */
-public class WriteExcelBookDead
+public class WriteExcelBookSuspect
 {
     public static  void crimebook()
     {   Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
      XSSFWorkbook workbook = new XSSFWorkbook();
-    XSSFSheet sheet = workbook.createSheet("สมุดคุมคดีชันสูตร");
+    XSSFSheet sheet = workbook.createSheet("สมุดคุมคดีผู้ต้องหา");
          CellStyle style = workbook.createCellStyle();  
          Font newFont = workbook.createFont();
          newFont.setBold(true);
@@ -74,27 +74,28 @@ public class WriteExcelBookDead
         }
             
     Row tittle = sheet.createRow(0);    
-    tittle.createCell(7).setCellValue("สมุดบันทึกคดีอาญา");
+    tittle.createCell(7).setCellValue("สมุดคุมคดีผู้ต้องหา");
  
     Row header = sheet.createRow(2);
-    header.createCell(0).setCellValue("คดีที่");
-    header.createCell(1).setCellValue("ชื่อผู้กล่าวหา");
-    header.createCell(2).setCellValue("ชื่อผู้ต้องหา");
-    header.createCell(3).setCellValue("ชื่อผู้จับ");
+    header.createCell(0).setCellValue("เลขบัตรประจำตัวประชาชน");
+    header.createCell(1).setCellValue("ชื่อผู้ต้องหา");
+    header.createCell(2).setCellValue("คดีที่");
+    header.createCell(3).setCellValue("ศาล");
     header.createCell(4).setCellValue("ข้อหา");
-    header.createCell(5).setCellValue("วันเดือนปี สถานที่เกิดเหตุ");
-    header.createCell(6).setCellValue("วันเวลาที่ถูกควบคุม");
-    header.createCell(7).setCellValue("วันครบกำหนดควบคุม");
-    header.createCell(8).setCellValue("การปล่อยชั่วคราว");
-    header.createCell(9).setCellValue("การเสนอขอฝากขังต่อศาล");
-    header.createCell(10).setCellValue("ผลการสอบสวน");
-    header.createCell(11).setCellValue("เสนอต่อหน.พงส.เมื่อใด");
-        header.createCell(12).setCellValue("หน.พงส.สั่งอย่างใด");
-    header.createCell(13).setCellValue("เสนออัยการเมื่อใด");
-    header.createCell(14).setCellValue("ผลคดีชั้นอัยการ");
-    header.createCell(15).setCellValue("ผลคดีชั้นศาล");
-    header.createCell(16).setCellValue("พงส.เจ้าของคดี");
-    header.createCell(17).setCellValue("หมายเหตุ");
+    header.createCell(5).setCellValue("สถานะ");
+    header.createCell(6).setCellValue("สถานะประกัน");
+    header.createCell(7).setCellValue("วันที่ประกัน");
+    header.createCell(8).setCellValue("วันที่ถูกจับกุม");
+//    header.createCell(8).setCellValue("การปล่อยชั่วคราว");
+//    header.createCell(9).setCellValue("การเสนอขอฝากขังต่อศาล");
+    header.createCell(9).setCellValue("ผลการสอบสวน");
+//    header.createCell(11).setCellValue("เสนอต่อหน.พงส.เมื่อใด");
+//        header.createCell(12).setCellValue("หน.พงส.สั่งอย่างใด");
+//    header.createCell(13).setCellValue("เสนออัยการเมื่อใด");
+    header.createCell(10).setCellValue("ผลคดีชั้นอัยการ");
+    header.createCell(11).setCellValue("ผลคดีชั้นศาล");
+    header.createCell(12).setCellValue("พงส.เจ้าของคดี");
+    header.createCell(13).setCellValue("หมายเหตุ");
    
 //    ----------------------------------------Set Style Cell--------------------------------------------
     header.getCell(0).setCellStyle(style);
@@ -111,43 +112,40 @@ public class WriteExcelBookDead
     header.getCell(11).setCellStyle(style);
     header.getCell(12).setCellStyle(style);
     header.getCell(13).setCellStyle(style);
-    header.getCell(14).setCellStyle(style);
-    header.getCell(15).setCellStyle(style);
-    header.getCell(16).setCellStyle(style);
-    header.getCell(17).setCellStyle(style);
+//    header.getCell(14).setCellStyle(style);
+//    header.getCell(15).setCellStyle(style);
+//    header.getCell(16).setCellStyle(style);
+//    header.getCell(17).setCellStyle(style);
 
      try {
          String sqlDataPolice="SELECT * FROM Police";
          Statement po = conn.createStatement();
          ResultSet rsp=po.executeQuery(sqlDataPolice);
-         String sqlCrimeCase="select crimecase.*,chargecase.ChargeCodeCase ChargeCase,chargecase.ChargeNameCase ChargeNameCase,ArrestDateTime from crimecase "
-                + "left join chargecase on crimecase.CaseId=chargecase.ChargeCaseId "
-                 + "left join person on crimecase.CaseId=person.caseIdPerson where CaseType='คดีชันสูตร' group by person.caseIdPerson "
-                + "order by CrimeCase.crimecaseno ASC,CrimeCase.crimecaseyears ASC";
+         String sqlCrimeCase="Select Person.*,crimecase.*,chargecase.ChargeCodeCase ChargeCase,chargecase.ChargeNameCase ChargeNameCase  from person\n"
+                     + "left join crimecase on crimecase.caseid=person.caseidperson\n"
+                     + "left join chargecase on crimecase.CaseId=chargecase.ChargeCaseId\n"
+                     + "where person.typePerson='ผู้ต้องหา' ";
+//                 + "order by CrimeCase.crimecaseno ASC,CrimeCase.crimecaseyears ASC";
                       Statement sp = conn.createStatement();
                   ResultSet rs=sp.executeQuery(sqlCrimeCase); 
                   
      for (int i = 3;rs.next(); i++) {
              Row dataRow = sheet.createRow(i);
 
-    dataRow.createCell(0).setCellValue(rs.getString("crimecasenoyear"));
-    dataRow.createCell(1).setCellValue(rs.getString("AccureandOther"));
-    dataRow.createCell(2).setCellValue(rs.getString("SuspectandOther"));
-    dataRow.createCell(3).setCellValue("");
+    dataRow.createCell(0).setCellValue(rs.getString("PeopleRegistrationID"));
+    dataRow.createCell(1).setCellValue(rs.getString("FullNamePerson"));
+    dataRow.createCell(2).setCellValue(rs.getString("crimecasenoyear"));
+    dataRow.createCell(3).setCellValue(rs.getString("CourtSuspect"));
     dataRow.createCell(4).setCellValue(rs.getString("ChargeNameCase"));
-    dataRow.createCell(5).setCellValue(rs.getString("OccuredDate")+" สถานที่ "+Checknull(rs.getString("CrimeLocation")));
-    dataRow.createCell(6).setCellValue(rs.getString("ArrestDateTime"));
-    dataRow.createCell(7).setCellValue("");
-    dataRow.createCell(8).setCellValue("");
-    dataRow.createCell(9).setCellValue("");
-    dataRow.createCell(10).setCellValue(rs.getString("Investigator_Result"));
-    dataRow.createCell(11).setCellValue("");
-    dataRow.createCell(12).setCellValue("");
+    dataRow.createCell(5).setCellValue(rs.getString("StatusSuspect"));
+    dataRow.createCell(6).setCellValue(rs.getString("StatusBail"));
+    dataRow.createCell(7).setCellValue(rs.getString("BailDate"));
+    dataRow.createCell(8).setCellValue(rs.getString("ArrestDateTime"));
+    dataRow.createCell(9).setCellValue(rs.getString("Investigator_Result"));
+    dataRow.createCell(10).setCellValue(rs.getString("Prosecutor_Result"));
+    dataRow.createCell(11).setCellValue(rs.getString("CourtResult"));
+    dataRow.createCell(12).setCellValue(rsp.getString("RankPolice")+rsp.getString("FirstName")+" "+rsp.getString("LastName"));
     dataRow.createCell(13).setCellValue("");
-    dataRow.createCell(14).setCellValue(rs.getString("Prosecutor_Result"));
-    dataRow.createCell(15).setCellValue(rs.getString("CourtResult"));
-    dataRow.createCell(16).setCellValue(rsp.getString("RankPolice")+rsp.getString("FirstName")+" "+rsp.getString("LastName"));
-    dataRow.createCell(17).setCellValue("");
     
     //    ----------------------------------------Set Style Cell--------------------------------------------
 
@@ -165,10 +163,10 @@ public class WriteExcelBookDead
     dataRow.getCell(11).setCellStyle(style);
     dataRow.getCell(12).setCellStyle(style);
     dataRow.getCell(13).setCellStyle(style);
-    dataRow.getCell(14).setCellStyle(style);
-    dataRow.getCell(15).setCellStyle(style);
-    dataRow.getCell(16).setCellStyle(style);
-    dataRow.getCell(17).setCellStyle(style);
+//    dataRow.getCell(14).setCellStyle(style);
+//    dataRow.getCell(15).setCellStyle(style);
+//    dataRow.getCell(16).setCellStyle(style);
+//    dataRow.getCell(17).setCellStyle(style);
 
 
         }
@@ -176,7 +174,7 @@ public class WriteExcelBookDead
             System.out.println("Excel with foumula cells written successfully");
              File f3=new File("./สมุดคุมคดี");
         f3.mkdirs();
-        FileOutputStream fileOut = new FileOutputStream("./สมุดคุมคดี/สมุดคุมคดีชันสูตร.xlsx");
+        FileOutputStream fileOut = new FileOutputStream("./สมุดคุมคดี/สมุดคุมคดีผู้ต้องหา.xlsx");
         workbook.write(fileOut);
         fileOut.close();
        Desktop desktop = Desktop.getDesktop();
@@ -224,9 +222,8 @@ public class WriteExcelBookDead
     sheet.getRow(2).createCell(1).setCellValue("<== Duplicates numbers in the column are highlighted.  " +
             "Condition: Formula Is =COUNTIF($A$2:$A$11,A2)>1   (Blue Font)");
 }
-    public static String Checknull(Object input){
+          public static String Checknull(Object input){
 					if(input==null||input==""||input=="null") { return ""; }
 					return input+"";
 					}
-
 }

@@ -1427,8 +1427,8 @@ public class MainMenuWord extends javax.swing.JFrame {
     private void jPanel15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel15MouseClicked
         // TODO add your handling code here:
         SuspectBookOverview bcf=new SuspectBookOverview();
-         bcf.pack();
-            bcf.setLocationRelativeTo(null);
+//         bcf.pack();
+//            bcf.setLocationRelativeTo(null);
         bcf.setVisible(true);
     }//GEN-LAST:event_jPanel15MouseClicked
 

@@ -196,42 +196,42 @@ public class LogInConfirm extends javax.swing.JDialog{
        
              
          try { 
-                if(username.equals("98UT01")&&password.equals("1234")){
-                      String token="eZS5PPB9zCElUbubieWKoD9pctqrANqhXqK49z1250=";
-                      System.out.println("");
-                      MainMenuWord.tk=token;
-                      CaseSelectOverView.jLabel2.setText("1");
-                        JOptionPane.showMessageDialog(null, "เข้าสู่ระบบเรียบร้อยแล้วกรุณากดปุ่ม 'เชื่อมต่อข้อมูล' อีกครั้ง"); 
-                      setVisible(false);
-                    }
-                    else{
-                     JOptionPane.showMessageDialog(null, "รหัสผ่านไม่ถูกต้องกรุณากรอกใหม่");  
-                    }
-                 
-            
-//         String url=  "http://172.31.191.163:8383/wordgenauthen/?USER="+username+"&PASS="+password+"&Serial="+getMotherboardSerial();
-//             System.out.println("url:"+url);
-//                  String fff =sendGET(url);
-//                  if(fff.equals("0")){
-//                     JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อ", "แจ้งเตือน",
-//                 JOptionPane.OK_OPTION); 
-//                  }
-//                  else{
-//                  JSONObject myResponse = new JSONObject(fff);
-//                   String statusconnect=myResponse.getString("statusconnect");
-//                  if(statusconnect.equals("0")){
-//                    JOptionPane.showConfirmDialog(jPanel1, "รหัสผ่านไม่ถูกต้อง", "แจ้งเตือน",
-//                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);               
-//                  } 
-//                  else if(statusconnect.equals("1")){
-//                      String token=myResponse.getString("passwordwordgen");
+//                if(username.equals("98UT01")&&password.equals("1234")){
+//                      String token="eZS5PPB9zCElUbubieWKoD9pctqrANqhXqK49z1250=";
 //                      System.out.println("");
 //                      MainMenuWord.tk=token;
 //                      CaseSelectOverView.jLabel2.setText("1");
 //                        JOptionPane.showMessageDialog(null, "เข้าสู่ระบบเรียบร้อยแล้วกรุณากดปุ่ม 'เชื่อมต่อข้อมูล' อีกครั้ง"); 
 //                      setVisible(false);
-//                  }
-//                  }
+//                    }
+//                    else{
+//                     JOptionPane.showMessageDialog(null, "รหัสผ่านไม่ถูกต้องกรุณากรอกใหม่");  
+//                    }
+//                 
+            
+         String url=  "http://172.31.191.163:8383/wordgenauthen/?USER="+username+"&PASS="+password+"&Serial="+getMotherboardSerial();
+             System.out.println("url:"+url);
+                  String fff =sendGET(url);
+                  if(fff.equals("0")){
+                     JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อ", "แจ้งเตือน",
+                 JOptionPane.OK_OPTION); 
+                  }
+                  else{
+                  JSONObject myResponse = new JSONObject(fff);
+                   String statusconnect=myResponse.getString("statusconnect");
+                  if(statusconnect.equals("0")){
+                    JOptionPane.showConfirmDialog(jPanel1, "ไม่พบข้อมูลผู้ใช้ของท่านในระบบ CRIMES กรุณาตรวจสอบชื่อผู้ใช้และรหัสผ่าน\nหรือติดต่อ 1228 กด 2", "แจ้งเตือน",
+                     JOptionPane.OK_OPTION);               
+                  } 
+                  else if(statusconnect.equals("1")){
+                      String token=myResponse.getString("passwordwordgen");
+                      System.out.println("");
+                      MainMenuWord.tk=token;
+                      CaseSelectOverView.jLabel2.setText("1");
+                        JOptionPane.showMessageDialog(null, "เข้าสู่ระบบเรียบร้อยแล้วกรุณากดปุ่ม 'เชื่อมต่อข้อมูล' อีกครั้ง"); 
+                      setVisible(false);
+                  }
+                  }
                  
         } catch (Exception e) {
         }

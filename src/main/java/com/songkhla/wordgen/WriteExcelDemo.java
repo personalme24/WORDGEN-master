@@ -122,7 +122,8 @@ public class WriteExcelDemo
          ResultSet rsp=po.executeQuery(sqlDataPolice);
          String sqlCrimeCase="select crimecase.*,chargecase.ChargeCodeCase ChargeCase,chargecase.ChargeNameCase ChargeNameCase,ArrestDateTime from crimecase "
                 + "left join chargecase on crimecase.CaseId=chargecase.ChargeCaseId "
-                 + "left join person on crimecase.CaseId=person.caseIdPerson where CaseType='คดีอาญา' group by person.caseIdPerson";
+                 + "left join person on crimecase.CaseId=person.caseIdPerson where CaseType='คดีอาญา' group by person.caseIdPerson "
+                 + "order by CrimeCase.crimecaseno ASC,CrimeCase.crimecaseyears ASC";
                       Statement sp = conn.createStatement();
                   ResultSet rs=sp.executeQuery(sqlCrimeCase); 
                   
@@ -134,7 +135,7 @@ public class WriteExcelDemo
     dataRow.createCell(2).setCellValue(rs.getString("SuspectandOther"));
     dataRow.createCell(3).setCellValue("");
     dataRow.createCell(4).setCellValue(rs.getString("ChargeNameCase"));
-    dataRow.createCell(5).setCellValue(rs.getString("OccuredDate")+" สถานที่ "+rs.getString("CrimeLocation"));
+    dataRow.createCell(5).setCellValue(rs.getString("OccuredDate")+" สถานที่ "+Checknull(rs.getString("CrimeLocation")));
     dataRow.createCell(6).setCellValue(rs.getString("ArrestDateTime"));
     dataRow.createCell(7).setCellValue("");
     dataRow.createCell(8).setCellValue("");
@@ -223,5 +224,8 @@ public class WriteExcelDemo
     sheet.getRow(2).createCell(1).setCellValue("<== Duplicates numbers in the column are highlighted.  " +
             "Condition: Formula Is =COUNTIF($A$2:$A$11,A2)>1   (Blue Font)");
 }
-    
+          public static String Checknull(Object input){
+					if(input==null||input==""||input=="null") { return ""; }
+					return input+"";
+					}
 }

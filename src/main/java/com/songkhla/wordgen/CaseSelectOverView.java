@@ -1632,14 +1632,22 @@ jlabeltoken.setVisible(true);
            
          try {
 
-                String url=  "http://118.175.46.24:8989/wordgenchecktoken/?PASSWORDWORDGEN="+aa;
+                String url=  "http://172.31.191.163:8383/wordgenchecktoken/?PASSWORDWORDGEN="+aa;
                 System.out.println("url:"+url);
                 String fff =sendGET(url);
-                JSONObject myResponse = new JSONObject(fff);
+                System.out.println("Statussssssssssssssss:"+fff);    
+                 if(fff.equals("0")){
+                        JOptionPane.showMessageDialog(jTabbedPane1, "ไม่พบการเชื่อมต่อ กรุณาตรวจสอบการเชื่อมต่อ", "แจ้งเตือน",
+                        JOptionPane.OK_OPTION); 
+              
+                   } 
+                 else{
+                      JSONObject myResponse = new JSONObject(fff);
                 String statuspasswordgen=myResponse.getString("statuspasswordgen");
-                System.out.println("Statussssssssssssssss:"+fff);
-                if(statuspasswordgen.equals("1")){
-
+               if(statuspasswordgen.equals("1")){
+                  
+                    new BackgroundWorker().execute();
+                    
                 }
                 else if(statuspasswordgen.equals("2")){
                     JFrame frame = new JFrame();
@@ -1652,10 +1660,14 @@ jlabeltoken.setVisible(true);
                     lc.setVisible(true);
                     aa=MainMenuWord.tk;
                 }
-
+                 }
+ 
+              
             } catch (Exception e) {
+                
+                
             }
-           new BackgroundWorker().execute();
+      
 //            String timeStart="00:00";
 //        String timeEnd="23:59";
 //        JsonObject jsonInput = new JsonObject();
@@ -2096,10 +2108,16 @@ jlabeltoken.setVisible(true);
                 String url=  "http://172.31.191.163:8383/wordgenchecktoken/?PASSWORDWORDGEN="+aa;
                 System.out.println("url:"+url);
                 String fff =sendGET(url);
-                JSONObject myResponse = new JSONObject(fff);
+                
+                if(fff.equals("0")){
+                        JOptionPane.showMessageDialog(jTabbedPane1, "ไม่พบการเชื่อมต่อ กรุณาตรวจสอบการเชื่อมต่อ", "แจ้งเตือน",
+                        JOptionPane.OK_OPTION); 
+                }
+                else{
+                    JSONObject myResponse = new JSONObject(fff);
                 String statuspasswordgen=myResponse.getString("statuspasswordgen");
                 if(statuspasswordgen.equals("1")){
-
+                     new BackgroundWorkerTraff().execute();
                 }
                 else if(statuspasswordgen.equals("2")){
                     JFrame frame = new JFrame();
@@ -2112,10 +2130,11 @@ jlabeltoken.setVisible(true);
                     lc.setVisible(true);
                     aa=MainMenuWord.tk;
                 }
+                }
 
             } catch (Exception e) {
             }
-            new BackgroundWorkerTraff().execute();
+    
     
               }
     }
@@ -2391,9 +2410,9 @@ jlabeltoken.setVisible(true);
 }
     public void call_crimes(JsonObject json){
      try {
-//                String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen/";
+                String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen/";
 //               String url = "http://172.31.191.171:8989/ws/CrimeCaseService_Wordgen/";
-               String url = "http://118.175.46.24:8989/ws/CrimeCaseService_Wordgen/";
+//               String url = "http://118.175.46.24:8989/ws/CrimeCaseService_Wordgen/";
 
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -2559,9 +2578,9 @@ jlabeltoken.setVisible(true);
  public void call_traffic(JsonObject json){
      try {
 //         System.out.println("ssssssssssaaaaaaaaaaaaaaaaaaa");
-//                String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen/";
+                String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen/";
 //                  String url = "http://172.31.191.171:8989/ws/TrafficCaseService_Wordgen/";
-                 String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen/";
+//                 String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen/";
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
                 
@@ -2783,9 +2802,9 @@ jlabeltoken.setVisible(true);
      try {
              
                 
-//                 String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen_Import/";
+                 String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen_Import/";
 //                 String url = "http://172.31.191.171:8989/ws/CrimeCaseService_Wordgen_Import/";
-               String url = "http://118.175.46.24:8989/ws/CrimeCaseService_Wordgen_Import/";
+//               String url = "http://118.175.46.24:8989/ws/CrimeCaseService_Wordgen_Import/";
 
 
                 URL obj = new URL(url);
@@ -3410,9 +3429,9 @@ jlabeltoken.setVisible(true);
      try {
              
                 
-//                 String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen_Import/";
+                 String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen_Import/";
 //                 String url = "http://172.31.191.171:8989/ws/TrafficCaseService_Wordgen_Import";
-                 String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen_Import";
+//                 String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen_Import";
 
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -3917,9 +3936,9 @@ jlabeltoken.setVisible(true);
              System.out.println(ex);
          }
                 
-//                 String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen_Import/";
+                 String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen_Import/";
 //                 String url = "http://172.31.191.171:8989/ws/CrimeCaseService_Wordgen_Import/";
-               String url = "http://118.175.46.24:8989/ws/CrimeCaseService_Wordgen_Import/";
+//               String url = "http://118.175.46.24:8989/ws/CrimeCaseService_Wordgen_Import/";
 
                 URL obj = new URL(url);
                 HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -4565,8 +4584,8 @@ jlabeltoken.setVisible(true);
              System.out.println(ex);
          }
                 
-//                String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen_Import/";
-                                String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen_Import/";
+                String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen_Import/";
+//                                String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen_Import/";
 
 
                 URL obj = new URL(url);
@@ -5510,13 +5529,41 @@ Object a=nd.getElementsByTagName(type).item(2);
 //
 //      
 //      }
-    private static String sendGET(String GET_URL) throws IOException {
+    private static String sendGET(String GET_URL)  {
                 String a="";
+//		URL serverUrl = new URL(GET_URL);
+//		HttpURLConnection con = (HttpURLConnection) serverUrl.openConnection();
+//		con.setRequestMethod("GET");
+//		con.setRequestProperty("User-Agent", "Mozilla/5.0");
+//                con.setRequestProperty("Accept-Charset", "UTF-8");
+//		int responseCode = con.getResponseCode();
+//		System.out.println("GET Response Code :: " + responseCode);
+//		if (responseCode == HttpURLConnection.HTTP_OK) { // success
+//			BufferedReader in = new BufferedReader(new InputStreamReader(
+//					con.getInputStream(),"UTF-8"));
+//			String inputLine;
+//			StringBuffer response = new StringBuffer();
+//
+//			while ((inputLine = in.readLine()) != null) {
+//				response.append(inputLine);
+//			}
+//			in.close();
+//
+//			// print result
+////			System.out.println(response.toString());
+//                        return response.toString();
+//		} else {
+//			System.out.println("GET request not worked");
+//                        return null;
+//		}
+  try{
 		URL serverUrl = new URL(GET_URL);
-		HttpURLConnection con = (HttpURLConnection) serverUrl.openConnection();
+		HttpURLConnection con = (HttpURLConnection) serverUrl.openConnection();      
+                con.setConnectTimeout(1000);
 		con.setRequestMethod("GET");
 		con.setRequestProperty("User-Agent", "Mozilla/5.0");
                 con.setRequestProperty("Accept-Charset", "UTF-8");
+                System.out.println("ssss"+con.getResponseCode());
 		int responseCode = con.getResponseCode();
 		System.out.println("GET Response Code :: " + responseCode);
 		if (responseCode == HttpURLConnection.HTTP_OK) { // success
@@ -5537,6 +5584,11 @@ Object a=nd.getElementsByTagName(type).item(2);
 			System.out.println("GET request not worked");
                         return null;
 		}
+                }
+                catch(IOException ie){
+                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+ie);
+                return "0";
+                }
                 
 	}  
     public static String getMotherboardSerial(){
