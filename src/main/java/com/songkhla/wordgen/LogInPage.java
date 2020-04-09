@@ -87,6 +87,7 @@ public class LogInPage extends javax.swing.JFrame {
 //                 pm.setVisible(true);
                     Username.setText(rs2.getString("Username")); 
                  Username.setEditable(false);
+                 jPanel3.setVisible(false);
                     
 //                 JOptionPane.showConfirmDialog(jPanel1, "***ท่านได้ทำการเข้าสู่ระบบไว้แล้ว ไม่สามารถทำการเปลี่ยนแปลงชื่อผู้ใช้ได้\nหากต้องการเข้าใช้งานด้วยชื่อผู้ใช้อื่นให้ท่านทำการดาวน์โหลดโปรแกรมใหม่***", "แจ้งเตือน",
 //                 JOptionPane.OK_OPTION); 
@@ -206,7 +207,7 @@ public class LogInPage extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(445, Short.MAX_VALUE)
+                .addGap(445, 445, 445)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(69, 69, 69)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,7 +223,7 @@ public class LogInPage extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(181, 181, 181)
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(250, Short.MAX_VALUE))
+                .addGap(250, 250, 250))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -291,7 +292,7 @@ try{
                   System.out.println("Status network:"+fff);
                   
                   if(fff.equals("0")){
-                     JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อ", "แจ้งเตือน",
+                     JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อเครือข่าย", "แจ้งเตือน",
                  JOptionPane.OK_OPTION); 
                   }
                   else{
@@ -300,7 +301,7 @@ try{
 //                   String statusconnect=myResponse.getString("statusconnect");
                   if(statusconnect.equals("0")){
                    
-                    JOptionPane.showMessageDialog(null, "ไม่พบข้อมูลผู้ใช้ของท่านในระบบ CRIMES กรุณาตรวจสอบชื่อผู้ใช้หรือรหัสผ่าน\nหรือติดต่อ 1228 กด 2");  
+                    JOptionPane.showMessageDialog(null, "ไม่พบข้อมูลผู้ใช้ของท่านในระบบ CRIMES \nกรุณาตรวจสอบชื่อผู้ใช้และรหัสผ่าน\nหรือติดต่อ 1228 กด 2");  
                   } 
                  else if(statusconnect.equals("6")){
                    JOptionPane.showMessageDialog(null, "ชื่อผู้ใช้ของท่านยังไม่ได้รับสิทธิ์พนักงานสอบสวนหรือหัวหน้างานสอบสวน กรุณาติดต่อ 1228 กด 2");            

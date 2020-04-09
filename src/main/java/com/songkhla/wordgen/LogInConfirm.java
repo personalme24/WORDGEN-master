@@ -213,7 +213,7 @@ public class LogInConfirm extends javax.swing.JDialog{
              System.out.println("url:"+url);
                   String fff =sendGET(url);
                   if(fff.equals("0")){
-                     JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อ", "แจ้งเตือน",
+                     JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อเครือข่าย", "แจ้งเตือน",
                  JOptionPane.OK_OPTION); 
                   }
                   else{
