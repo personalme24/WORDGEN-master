@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,6 +34,7 @@ public class ConnectDatabase {
                 System.out.println("Connection to Database has been Complete.");
 
             } catch (SQLException e) {
+            
                 System.out.println(e.getMessage());
             } catch (ClassNotFoundException ex) { 
                   Logger.getLogger(ConnectDatabase.class.getName()).log(Level.SEVERE, null, ex);

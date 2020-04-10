@@ -814,7 +814,7 @@ class LoginPanel extends JPanel {
     }
 }
 class InformPanel extends JPanel {
-    Image bg = new ImageIcon("./Master/252.jpg").getImage();
+    Image bg = new ImageIcon("./Master/252.png").getImage();
     @Override
     public void paintComponent(Graphics g) {
         g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);

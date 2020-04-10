@@ -12,8 +12,12 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 /**
@@ -27,12 +31,13 @@ public class LoginAuthen {
         System.out.println(getMotherboardSerial());
     try{
         con = ConnectDatabase.connect();
+           
+        
              Statement stmt = con.createStatement();
             Statement stmt2 = con.createStatement();
-
-            String sql ="Select * from User";
+                String sql ="Select * from User";
              ResultSet rs = stmt.executeQuery(sql);
-             if(rs.next()){
+              if(rs.next()){
                  if(rs.getString("StatusLogin").equals("0")){
                   LogInPage aa=new LogInPage();
                  SwingUtilities.updateComponentTreeUI(aa);
@@ -79,10 +84,16 @@ public class LoginAuthen {
              SwingUtilities.updateComponentTreeUI(lp);
              lp.setVisible(true);
              }
+             
+            
             }
-    catch(Exception ex){
+    catch(SQLException ex){
             ex.printStackTrace();
+             JOptionPane.showMessageDialog(null, "Unable to make connection with DB"); 
         }
+     catch (Exception ex) { 
+                  Logger.getLogger(ConnectDatabase.class.getName()).log(Level.SEVERE, null, ex);
+              }
     }
     
         public static String getMotherboardSerial(){
