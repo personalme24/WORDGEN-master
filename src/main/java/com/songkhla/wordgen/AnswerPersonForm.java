@@ -33,7 +33,7 @@ public class AnswerPersonForm extends javax.swing.JDialog {
         initComponents();
             ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
          AnswerTypeCase.setVisible(false);
           AnswerTypePerson.setVisible(false);
         typePerson=datacase.get("TypePerson")+"";

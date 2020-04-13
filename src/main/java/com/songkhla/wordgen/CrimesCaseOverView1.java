@@ -52,7 +52,7 @@ public class CrimesCaseOverView1 extends javax.swing.JDialog {
         initComponents();
         ImageIcon img = new ImageIcon("D://Master//WD.png");
         setIconImage(img.getImage());
-        setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES)");
+        setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
     
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         

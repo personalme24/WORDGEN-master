@@ -41,7 +41,7 @@ public class ChargeOverView extends javax.swing.JDialog {
         initComponents();
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
             jButton1.setVisible(false);
             jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             jTable1.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());

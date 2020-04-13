@@ -29,7 +29,7 @@ public class AnswerPersonOverview extends javax.swing.JDialog {
         initComponents();
      ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
         typeCase=datacase.get("TypeCase")+"";
          typePerson=datacase.get("TypePerson")+"";
        RefreshData();

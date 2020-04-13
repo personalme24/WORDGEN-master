@@ -37,7 +37,7 @@ String typeC,cid;
         initComponents(); 
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES)");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
          
             
                 txtCaseNO.setVisible(false);

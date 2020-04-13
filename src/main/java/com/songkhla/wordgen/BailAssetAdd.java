@@ -31,7 +31,7 @@ public class BailAssetAdd extends javax.swing.JDialog {
                 initComponents();
                 ImageIcon img = new ImageIcon("./Master/WD.png");
                 setIconImage(img.getImage());
-                setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+                setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
                 jLabel2.setVisible(false);
                 jLabel3.setVisible(false);
                 caseId=dataId.get("BailCaseId")+"";

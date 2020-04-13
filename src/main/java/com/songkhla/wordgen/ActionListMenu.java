@@ -33,7 +33,7 @@ public class ActionListMenu extends javax.swing.JDialog {
 //        jScrollPane3.getVerticalScrollBar().setUI(new CustomScrollBarUI());
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
             jTableAction.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
             jTableAction.getTableHeader().setOpaque(false);
         RefreshData();

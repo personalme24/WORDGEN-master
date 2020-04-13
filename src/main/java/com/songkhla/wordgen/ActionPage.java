@@ -58,7 +58,7 @@ public class ActionPage extends javax.swing.JDialog {
         initComponents();       
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
         con=ConnectDatabase.connect();
         typecase=caseid.get("typecase")+"";
         jLabel21.setVisible(false);

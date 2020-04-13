@@ -118,7 +118,7 @@ public class ReportforCrimesCase extends javax.swing.JDialog  {
         initComponents();
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES)");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
             caseidreport.setVisible(false);
          //jCheckW5.setSelected(true);
          //jCheckW6.setSelected(true);

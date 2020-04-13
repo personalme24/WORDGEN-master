@@ -69,7 +69,7 @@ public class Identity_DeadForm extends javax.swing.JDialog {
         initComponents();  
             ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES)");
+            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
            crimecaseno.setVisible(false);
 //  ---------------------------------------------Date Filed----------------------------------------------
      UtilDateModel model = new UtilDateModel();

@@ -42,7 +42,7 @@ public class LogInConfirm extends javax.swing.JDialog{
         initComponents();
       ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES CRIMES E-inquiry) BETA");
             Username.setEnabled(false);
              Connection con=null;
              con = ConnectDatabase.connect();

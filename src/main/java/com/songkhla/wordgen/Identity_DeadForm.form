@@ -64,7 +64,7 @@
                       </Group>
                       <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="103" max="32767" attributes="0"/>
+                  <EmptySpace pref="93" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -322,7 +322,7 @@
                                           <Component id="OtherName" alignment="0" min="-2" pref="207" max="-2" attributes="0"/>
                                           <Component id="jPanelBirthDay" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="22" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel8" max="32767" attributes="0"/>
                                           <Component id="jLabel11" min="-2" pref="99" max="-2" attributes="0"/>
