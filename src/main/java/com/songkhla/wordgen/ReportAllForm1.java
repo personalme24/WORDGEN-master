@@ -100,7 +100,7 @@ public class ReportAllForm1 extends javax.swing.JDialog {
         initComponents();
          ImageIcon img = new ImageIcon("D://Master//WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES)");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
          //jCheckW5.setSelected(true);
          //jCheckW6.setSelected(true);
         crimecaseno.setVisible(true);

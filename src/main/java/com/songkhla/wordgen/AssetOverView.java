@@ -38,7 +38,7 @@ public class AssetOverView extends javax.swing.JDialog {
         initComponents();
         ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
         EvidenceRecordNumber.setVisible(false);
         CaseId=datain.get("CaseId")+"";
         TypeCase=datain.get("TypeCase")+"";

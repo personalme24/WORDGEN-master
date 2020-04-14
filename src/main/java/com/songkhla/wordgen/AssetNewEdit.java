@@ -39,7 +39,7 @@ public class AssetNewEdit extends javax.swing.JDialog {
         initComponents();
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
         crimecaseno.setVisible(false);
           crimecaseno.setText(AssetOverView.txtCaseno.getText());
       caseType=dataType.get("typecase")+"";

@@ -176,7 +176,7 @@ JDatePickerImpl CaseRequestDateTime,CaseAcceptDate,OccuredDate,Invest_SendCaseDa
            initComponents(); 
             ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES) BETA");
+            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
 //            AutoCompleteDecorator.decorate(CrimeLocationProvince);
 //            AutoCompleteDecorator.decorate(CrimeLocationAmphur);
 //            AutoCompleteDecorator.decorate(CrimeLocationDistrict);

@@ -58,7 +58,7 @@ public class MainMenuWord extends javax.swing.JFrame {
 //        checkdata();
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
-        setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES) BETA");
+        setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
       jLabel13.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        jPanel9.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
        jPanel12.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

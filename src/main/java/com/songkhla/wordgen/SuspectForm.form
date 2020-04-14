@@ -1888,7 +1888,7 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jRadioSue" pref="136" max="32767" attributes="0"/>
+                                      <Component id="jRadioSue" pref="132" max="32767" attributes="0"/>
                                       <Component id="jRadioStatus2" max="32767" attributes="0"/>
                                       <Component id="jRadioOther" alignment="0" max="32767" attributes="0"/>
                                   </Group>
@@ -1927,7 +1927,7 @@
                           </Group>
                           <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelStatusSuspect" pref="37" max="32767" attributes="0"/>
+                              <Component id="jLabelStatusSuspect" max="32767" attributes="0"/>
                               <Component id="StatusSuspectOther" min="-2" pref="31" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -2099,7 +2099,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
                           <Component id="jLabel28" min="-2" pref="137" max="-2" attributes="0"/>
-                          <EmptySpace pref="182" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>

@@ -105,7 +105,7 @@ public class CaseSelectOverView extends javax.swing.JDialog {
         initComponents();
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
-        setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES) BETA");
+        setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
         jLabel2.setVisible(false);
         jPanel7.setVisible(true);
         jTableCrime.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);

@@ -1701,46 +1701,44 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
-                                      <Component id="jCheckW21" min="-2" pref="350" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="jCheckW43" min="-2" pref="350" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="445" max="-2" attributes="0"/>
-                                      <Component id="jCheckW67" min="-2" pref="460" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
+                                  <Component id="jCheckW21" min="-2" pref="350" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="jCheckW43" min="-2" pref="350" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="445" max="-2" attributes="0"/>
+                                  <Component id="jCheckW67" min="-2" pref="460" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jCheckW23" min="-2" pref="350" max="-2" attributes="0"/>
+                                              <Component id="jCheckW22" min="-2" pref="350" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jCheckW44" min="-2" pref="350" max="-2" attributes="0"/>
+                                              <Component id="jCheckW37" min="-2" pref="350" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="411" max="-2" attributes="0"/>
+                                          <Component id="jCheckW29" min="-2" pref="350" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <EmptySpace min="-2" pref="760" max="-2" attributes="0"/>
+                                          <Component id="jCheckW35" min="-2" pref="350" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="415" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jCheckW23" min="-2" pref="350" max="-2" attributes="0"/>
-                                                  <Component id="jCheckW22" min="-2" pref="350" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="jCheckW44" min="-2" pref="350" max="-2" attributes="0"/>
-                                                  <Component id="jCheckW37" min="-2" pref="350" max="-2" attributes="0"/>
-                                              </Group>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="411" max="-2" attributes="0"/>
-                                              <Component id="jCheckW29" min="-2" pref="350" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="760" max="-2" attributes="0"/>
-                                              <Component id="jCheckW35" min="-2" pref="350" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="445" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jCheckW68" min="-2" pref="460" max="-2" attributes="0"/>
-                                          <Component id="jCheckW69" min="-2" pref="460" max="-2" attributes="0"/>
-                                          <Component id="jCheckW70" min="-2" pref="460" max="-2" attributes="0"/>
-                                          <Component id="jCheckW78" min="-2" pref="460" max="-2" attributes="0"/>
-                                          <Component id="jCheckW71" min="-2" pref="460" max="-2" attributes="0"/>
-                                      </Group>
+                                  <EmptySpace min="-2" pref="445" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jCheckW68" min="-2" pref="460" max="-2" attributes="0"/>
+                                      <Component id="jCheckW69" min="-2" pref="460" max="-2" attributes="0"/>
+                                      <Component id="jCheckW70" min="-2" pref="460" max="-2" attributes="0"/>
+                                      <Component id="jCheckW78" min="-2" pref="460" max="-2" attributes="0"/>
+                                      <Component id="jCheckW71" min="-2" pref="460" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -1758,7 +1756,6 @@
                                           <Component id="jCheckW19" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Component id="jCheckW24" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" attributes="0">
                                           <Group type="103" groupAlignment="0" attributes="0">
@@ -1804,7 +1801,6 @@
                                               <Component id="jCheckW43" min="-2" max="-2" attributes="0"/>
                                               <Component id="jCheckW67" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="103" groupAlignment="0" attributes="0">
@@ -2257,7 +2253,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jScrollPane5" min="-2" pref="1123" max="-2" attributes="0"/>
-                          <EmptySpace pref="14" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
