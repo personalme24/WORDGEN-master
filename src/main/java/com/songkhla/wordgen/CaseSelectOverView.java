@@ -670,9 +670,9 @@ jlabeltoken.setVisible(true);
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabelorgcode, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 360, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
                 .addComponent(jButtonConCrime)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -719,7 +719,7 @@ jlabeltoken.setVisible(true);
                             .addComponent(jPanelReg, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
                             .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanelReg2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(38, Short.MAX_VALUE))))
         );
 
         jTableCrime.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -804,8 +804,8 @@ jlabeltoken.setVisible(true);
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -831,7 +831,7 @@ jlabeltoken.setVisible(true);
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 623, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 627, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("คดีอาญา", jPanel6);
@@ -1191,7 +1191,7 @@ jlabeltoken.setVisible(true);
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -2110,7 +2110,7 @@ jlabeltoken.setVisible(true);
                 String fff =sendGET(url);
                 
                 if(fff.equals("0")){
-                        JOptionPane.showMessageDialog(jTabbedPane1, "ไม่พบการเชื่อมต่อ กรุณาตรวจสอบการเชื่อมต่อ", "แจ้งเตือน",
+                        JOptionPane.showMessageDialog(jPanel1, "ไม่พบการเชื่อมต่อ กรุณาตรวจสอบการเชื่อมต่อ", "แจ้งเตือน",
                         JOptionPane.OK_OPTION); 
                 }
                 else{
@@ -3166,8 +3166,8 @@ jlabeltoken.setVisible(true);
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
                             + "HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,FullNamePersonEn)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
     String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
          try {          
                      Statement st = conn.createStatement();
@@ -3210,7 +3210,8 @@ jlabeltoken.setVisible(true);
                     pd.setString(17,CheckNull(p, "Tambon"));
                     pd.setString(18,CheckNull(p, "Province"));
                       pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                     pd.execute();
+                   pd.setString(20,"");
+                      pd.execute();
                      pd.close();  
                             }
 //                        int order=temp+1;
@@ -3664,8 +3665,8 @@ jlabeltoken.setVisible(true);
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
                             + "HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,FullNamePersonEn)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
     String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
          try {           Element oc = (Element)errNodesOc.item(0); 
                      Statement st = conn.createStatement();
@@ -3712,7 +3713,9 @@ jlabeltoken.setVisible(true);
                     pd.setString(17,CheckNull(p, "Tambon"));
                     pd.setString(18,CheckNull(p, "Province"));
                       pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                     pd.execute();
+                     pd.setString(20,"");
+                 
+                      pd.execute();
                      pd.close();  
                             }
                         int order=temp+1;
@@ -4300,8 +4303,8 @@ jlabeltoken.setVisible(true);
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
                             + "HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,FullNamePersonEn)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
     String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
          try {          
                      Statement st = conn.createStatement();
@@ -4344,7 +4347,9 @@ jlabeltoken.setVisible(true);
                     pd.setString(17,CheckNull(p, "Tambon"));
                     pd.setString(18,CheckNull(p, "Province"));
                       pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                     pd.execute();
+                    pd.setString(20,"");
+                   
+                      pd.execute();
                      pd.close();  
                             }
   
@@ -4819,8 +4824,8 @@ jlabeltoken.setVisible(true);
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
                             + "HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,FullNamePersonEn)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
     String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
          try {           Element oc = (Element)errNodesOc.item(0); 
                      Statement st = conn.createStatement();
@@ -4867,7 +4872,9 @@ jlabeltoken.setVisible(true);
                     pd.setString(17,CheckNull(p, "Tambon"));
                     pd.setString(18,CheckNull(p, "Province"));
                       pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                     pd.execute();
+                    pd.setString(20,"");
+
+                      pd.execute();
                      pd.close();  
                             }
                         int order=temp+1;

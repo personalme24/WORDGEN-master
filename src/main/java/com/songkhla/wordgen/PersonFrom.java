@@ -18,6 +18,8 @@ import static com.songkhla.wordgen.CrimesCaseEdit.jLabelNumberWitness;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextAccused;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextSuspect;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextWitness;
+import java.awt.Font;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import javax.swing.ImageIcon;
@@ -44,7 +46,77 @@ public class PersonFrom extends javax.swing.JDialog {
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
             NoPerson.setVisible(false);
-            
+              try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,20f);
+                     jLabel10.setFont(labelother);
+                     jLabel9.setFont(labelother);
+                     jLabel11.setFont(labelother);
+                     jLabel12.setFont(labelother);
+                     jLabel13.setFont(labelother);
+                     jLabel14.setFont(labelother);
+                     jLabel15.setFont(labelother);
+                     jLabel16.setFont(labelother);
+                     jLabel17.setFont(labelother);
+                     jLabel18.setFont(labelother);
+                     jLabel19.setFont(labelother);
+                     jLabel20.setFont(labelother);
+                     jLabel21.setFont(labelother);
+                     jLabel22.setFont(labelother);
+                     jLabel23.setFont(labelother);
+                     jLabel24.setFont(labelother);
+                     jLabel25.setFont(labelother);
+                     jLabel26.setFont(labelother);
+                     jLabel27.setFont(labelother);
+                     jLabel28.setFont(labelother);
+                     jLabel29.setFont(labelother);
+                     jLabel30.setFont(labelother);
+                     jLabel34.setFont(labelother);
+                     jLabel37.setFont(labelother);
+                     jLabel36.setFont(labelother);
+                     jLabel33.setFont(labelother);
+                     jLabel32.setFont(labelother);
+                     jLabel31.setFont(labelother);
+            Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+                Font  textboxFont = font2.deriveFont(20f);
+                      PeopleRegistrationID.setFont(textboxFont);
+                        FullNamePerson.setFont(textboxFont);
+                        Race.setFont(textboxFont);
+                        Nationality.setFont(textboxFont);
+                        Religion.setFont(textboxFont);
+                        Occupation.setFont(textboxFont);
+                        BirthDay.setFont(textboxFont);
+                        Age.setFont(textboxFont);
+                        OccupationPosition.setFont(textboxFont);
+                        HouseNumber.setFont(textboxFont);
+                        Moo.setFont(textboxFont);
+                        Tambon.setFont(textboxFont);
+                        Amphur.setFont(textboxFont);
+                        Province.setFont(textboxFont);
+                        PhonePerson.setFont(textboxFont);
+                        FatherFullName.setFont(textboxFont);
+                        MotherFullName.setFont(textboxFont);
+                        CurrentAddress.setFont(textboxFont);
+                        OtherName.setFont(textboxFont);
+                         SpouseFullName.setFont(textboxFont);
+                        Education.setFont(textboxFont);
+                        StatusSueAndPutInJail.setFont(textboxFont);
+                        FatherAddress.setFont(textboxFont);
+                        CarUse.setFont(textboxFont);
+                        FavouritePlace.setFont(textboxFont);                        
+                        Identification.setFont(textboxFont);
+                        WarrantList.setFont(textboxFont);
+                        NotePersonData.setFont(textboxFont);
+                 Font  buttonFont = font.deriveFont(1,20f);
+                 jButtonSave.setFont(buttonFont);
+
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
            
 //            jButtonSave.setEnabled(false);
         if(datain != null){
@@ -281,7 +353,7 @@ public class PersonFrom extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Nationality))
+                        .addComponent(Nationality, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(Religion, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -312,18 +384,6 @@ public class PersonFrom extends javax.swing.JDialog {
                 .addGap(3, 3, 3)
                 .addComponent(Amphur))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Province, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(8, 8, 8)
-                .addComponent(PhonePerson, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(FatherFullName))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MotherFullName))
@@ -340,6 +400,20 @@ public class PersonFrom extends javax.swing.JDialog {
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PeopleRegistrationID))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jLabel22, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel24, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(FatherFullName)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(Province, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8)
+                        .addComponent(PhonePerson, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

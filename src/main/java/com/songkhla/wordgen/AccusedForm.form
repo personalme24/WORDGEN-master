@@ -48,10 +48,10 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jPanel3" max="32767" attributes="0"/>
-              <Group type="102" alignment="0" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="1089" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -61,7 +61,7 @@
                   <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="608" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                  <EmptySpace pref="40" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -349,23 +349,27 @@
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="OrderPerson" min="-2" max="-2" attributes="0"/>
-                              <Component id="jCheckInjured" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jCheckDead" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="jButtonInjuryOrDie" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="WhereSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
-                              <Component id="CauseSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
-                              <Component id="TimeSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <EmptySpace min="3" pref="3" max="-2" attributes="0"/>
+                                  <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel28" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                      <Component id="OrderPerson" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jCheckInjured" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jCheckDead" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="jButtonInjuryOrDie" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="WhereSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
+                                      <Component id="CauseSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
+                                      <Component id="TimeSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Component id="jPanel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabel28" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
+                                      <Component id="jLabel19" alignment="1" min="-2" pref="28" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -938,16 +942,16 @@
                 </Container>
                 <Component class="javax.swing.JLabel" name="jLabel19">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="TH SarabunPSK" size="22" style="1"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="new java.awt.Font(&quot;TH SarabunPSK&quot;, 1, 22)" type="code"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&#xe04;&#xe19;&#xe17;&#xe35;&#xe48;"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel28">
                   <Properties>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="TH SarabunPSK" size="22" style="1"/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                      <Connection code="sizedFont" type="code"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="&#xe1c;&#xe39;&#xe49;&#xe01;&#xe25;&#xe48;&#xe32;&#xe27;&#xe2b;&#xe32;"/>
                   </Properties>

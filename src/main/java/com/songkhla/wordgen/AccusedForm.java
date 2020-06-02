@@ -14,12 +14,15 @@ import static com.songkhla.wordgen.CrimesCaseEdit.jTextAccused;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,7 +71,7 @@ public class AccusedForm extends javax.swing.JDialog {
      JDatePickerImpl IssueDate,ExpiredDate,BirthDay;
      public static JDatePickerImpl DateSendInjuredOrDie;
      ArrayList<String> personname=new ArrayList<String>();
-      
+     Font font,sizedFont;
 //     private JComboBox<String> comboBox;
     /**
      * Creates new form AccusedForm
@@ -79,7 +82,15 @@ public class AccusedForm extends javax.swing.JDialog {
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
-      
+            try{
+                   font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+                     sizedFont = font.deriveFont(1,22f);
+                     jLabel28.setFont(sizedFont);
+                     jLabel5.setFont(sizedFont);
+            }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
 //     Occupation = new HintTextField("Another hint here");
      crimecaseno.setVisible(false);
      AnswerPerson.setVisible(false);
@@ -670,10 +681,10 @@ UtilDateModel model5 = new UtilDateModel();
             .addGap(0, 37, Short.MAX_VALUE)
         );
 
-        jLabel19.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("TH SarabunPSK", 1, 22));
         jLabel19.setText("คนที่");
 
-        jLabel28.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel28.setFont(sizedFont);
         jLabel28.setText("ผู้กล่าวหา");
 
         OrderPerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -961,21 +972,23 @@ UtilDateModel model5 = new UtilDateModel();
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(OrderPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckInjured, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckDead, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonInjuryOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(WhereSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CauseSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TimeSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
+                        .addGap(10, 10, 10)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel28)
-                            .addComponent(jLabel19)))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(OrderPerson, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckInjured, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCheckDead, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonInjuryOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(WhereSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CauseSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(TimeSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1084,7 +1097,7 @@ UtilDateModel model5 = new UtilDateModel();
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(21, 21, 21)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1089, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1092,7 +1105,7 @@ UtilDateModel model5 = new UtilDateModel();
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -1151,12 +1164,14 @@ UtilDateModel model5 = new UtilDateModel();
              SimpleDateFormat format = new SimpleDateFormat("HH:mm");
               String sendTime=format.format(TimeSendInjuredOrDie.getValue());
         if(isInsert){    
-         
+//         
         String sql="INSERT INTO Person (Age,Amphur,BirthDay,BloodGroup,ExpiredDate,FatherFullName,FullNamePerson,FullNamePersonEn,Gender,\n" +
                         "Height,HouseNumber,IssueDate,Moo,MotherFullName,Nationality,Occupation,OtherName,PassportNumber,PeopleRegistrationID,\n" +
                         "PhonePerson,Province,Race,Religion,Tambon,TypePerson,Weight,ZipCode,caseIdPerson,OrderPerson,Related,AnswerPerson,OccupationPosition,"
                       + "CauseSendInjuredOrDie,WhereSendInjuredOrDie,DateSendInjuredOrDie,TimeSendInjuredOrDie,StatusInjuryOrDie)\n"
                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         
+
 //        String sqlinsert = "INSERT INTO PersonData (FullNamePerson,Race) VALUES (?,?)";
          System.out.println("SQL : "+sql);
       try {
@@ -1221,9 +1236,9 @@ UtilDateModel model5 = new UtilDateModel();
 
      } 
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(jPanel1,e,null, JOptionPane.INFORMATION_MESSAGE);
+             JOptionPane.showMessageDialog(jPanel1,"sdfsdfsdf",null, JOptionPane.INFORMATION_MESSAGE);
 
-             System.out.println("SQL : "+pst);
+             System.out.println("SQL : "+e);
         }
         }
         else{
@@ -1816,7 +1831,7 @@ catch (Exception d) {  //System.out.println(d);
                 Age.setText(rs.getString("Age")); 
                 Amphur.setText(rs.getString("Amphur")); 
                 BloodGroup.setSelectedItem(rs.getString("BloodGroup")); 
-                BirthDay.getJFormattedTextField().setText(rs.getString("BirthDay")); 
+                BirthDay.getJFormattedTextField().setText(Checknull(rs.getString("BirthDay"))); 
                 FatherFullName.setText(rs.getString("FatherFullName")); 
                 FullNamePersonEn.setText(rs.getString("FullNamePersonEn")); 
                 OccupationPosition.setText(rs.getString("OccupationPosition")); 
@@ -1836,7 +1851,7 @@ catch (Exception d) {  //System.out.println(d);
             Moo.setText(rs.getString("Moo")+"");
             Province.setText(rs.getString("Province"));
             Tambon.setText(rs.getString("Tambon")+"");
-             ZipCode.setText(rs.getString("ZipCode")+"");
+             ZipCode.setText(Checknull(rs.getString("ZipCode"))+"");
             OtherName.setText(rs.getString("OtherName")+"");
 
 //

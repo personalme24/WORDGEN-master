@@ -47,7 +47,36 @@ public class PersonOverView extends javax.swing.JDialog {
  
         jTable1.setOpaque(false);
         jTable1.getTableHeader().setFont(new Font("TH SarabunPSK",Font.BOLD,20));
-
+        try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel2.setFont(labelother);
+                     jTable1.setFont(labelother);
+//                     jLabel13.setFont(labelother);
+//                     jLabel10.setFont(labelother);
+//                     jLabel11.setFont(labelother);
+//                     jLabel12.setFont(labelother);
+                     
+            Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+                Font  textboxFont = font2.deriveFont(22f);
+                      txtSearchCase.setFont(textboxFont);
+//                        RankPoliceFull.setFont(textboxFont);
+//                        RankPolice.setFont(textboxFont);
+//                        FirstName.setFont(textboxFont);
+//                        LastName.setFont(textboxFont);
+//                        Position.setFont(textboxFont);
+                 Font  buttonFont = font2.deriveFont(20f);
+                 jButtonEdit.setFont(buttonFont);
+                 jButtonDelete.setFont(buttonFont);
+                jButtonSearch.setFont(buttonFont);
+                 jButtonSearch1.setFont(buttonFont);
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
 
         RefreshData();
  

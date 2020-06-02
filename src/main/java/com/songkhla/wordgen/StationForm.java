@@ -19,6 +19,7 @@ import javax.swing.text.DefaultEditorKit;
 import org.json.simple.JSONObject;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
 import javax.swing.*;
 import javax.swing.text.*;
 /**
@@ -41,6 +42,100 @@ public class StationForm extends javax.swing.JDialog {
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
         setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+                 try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,20f);
+                     jLabel8.setFont(labelother);
+                     jLabel9.setFont(labelother);
+                     jLabel10.setFont(labelother);
+                     jLabel13.setFont(labelother);
+                     jLabel14.setFont(labelother);
+                     jLabel11.setFont(labelother);
+                     jLabel12.setFont(labelother);
+                     jLabel15.setFont(labelother);
+                     jLabel16.setFont(labelother);
+                     jLabel13.setFont(labelother);
+                     jLabel18.setFont(labelother);
+                     jLabel19.setFont(labelother);
+                       jLabel20.setFont(labelother);
+                     jLabel38.setFont(labelother);
+                     jLabel21.setFont(labelother);
+                     jLabel47.setFont(labelother);
+                     jLabel45.setFont(labelother);
+                     jLabel39.setFont(labelother);
+                     jLabel46.setFont(labelother);
+                      jLabel44.setFont(labelother);
+                     jLabel43.setFont(labelother);
+                     jLabel23.setFont(labelother);
+                     jLabel24.setFont(labelother);
+                         jLabel25.setFont(labelother);
+                     jLabel27.setFont(labelother);
+                     jLabel29.setFont(labelother);
+                     jLabel30.setFont(labelother);
+                        jLabel26.setFont(labelother);
+                     jLabel28.setFont(labelother);
+                     jLabel31.setFont(labelother);
+                     jLabel33.setFont(labelother);
+                      jLabel32.setFont(labelother);
+                     jLabel35.setFont(labelother);
+                     jLabel36.setFont(labelother);
+                     jLabel37.setFont(labelother);
+                     jLabel34.setFont(labelother);
+                      jLabel17.setFont(labelother);
+            Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+                Font  textboxFont = font2.deriveFont(20f);
+                      PoliceStationCode.setFont(textboxFont);
+                        PoliceStationName.setFont(textboxFont);
+                        PoliceStationShort.setFont(textboxFont);
+                        BK.setFont(textboxFont);
+                        BH.setFont(textboxFont);
+                        StationAddress.setFont(textboxFont);
+                        StationMoo.setFont(textboxFont);
+                        StationTambon.setFont(textboxFont);
+                        StationAmphur.setFont(textboxFont);
+                        StationProvince.setFont(textboxFont);
+                        Postcode.setFont(textboxFont);
+                         TelStation.setFont(textboxFont);
+                        PhonePolice.setFont(textboxFont);
+                        THNumBook.setFont(textboxFont);
+                        Fax.setFont(textboxFont);
+                        HeadRankFull.setFont(textboxFont);
+                             HeadRankShort.setFont(textboxFont);
+                        HeadName.setFont(textboxFont);
+                        HeadPosition.setFont(textboxFont);
+                        HeadWorkRankFull.setFont(textboxFont);
+                        HeadWorkRankShort.setFont(textboxFont);
+                        HeadWorkName.setFont(textboxFont);
+                        HeadWorkPosition.setFont(textboxFont);
+                        
+                         CriminalCourt.setFont(textboxFont);
+                        JuvenileCourt.setFont(textboxFont);
+                        DistrictCourt.setFont(textboxFont);
+                        MilitaryCourt.setFont(textboxFont);
+                        AssetCourt.setFont(textboxFont);
+                        CheckGun.setFont(textboxFont);
+                         LocationOfD.setFont(textboxFont);
+                        CheckOtherExhibit.setFont(textboxFont);
+                        CheckDrug.setFont(textboxFont);
+                        ProtectChild.setFont(textboxFont);
+                        ProvincProsecutor.setFont(textboxFont);
+                        ProvincProsecutorCh.setFont(textboxFont);
+                        CauseSerious.setFont(textboxFont);
+
+               Font  labelHead = font2.deriveFont(1,24f);  
+                     jLabel3.setFont(labelHead);
+                 Font  buttonFont = font.deriveFont(1,20f);
+                 jButtonSaveStation.setFont(buttonFont);
+                 jButtonEditStation.setFont(buttonFont);
+                 
+
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         PoliceStartionId.setVisible(false);
        if(datain != null)
        {
@@ -533,7 +628,7 @@ public class StationForm extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(51, 51, 51)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -688,26 +783,25 @@ public class StationForm extends javax.swing.JDialog {
                         .addComponent(jButtonSaveStation, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonEditStation, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel3)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGap(643, 643, 643)
-                            .addComponent(JuvenileCourt))
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addGap(106, 106, 106)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(DistrictCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(CriminalCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel26)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel28)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(MilitaryCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(643, 643, 643)
+                        .addComponent(JuvenileCourt))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(DistrictCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CriminalCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel28)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(MilitaryCourt, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(59, 59, 59))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );

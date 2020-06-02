@@ -5,6 +5,8 @@
  */
 package com.songkhla.wordgen;
 
+import java.awt.Font;
+import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -26,6 +28,17 @@ public class BaseDataMenu extends javax.swing.JDialog {
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
         setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES) BETA");
+        try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel13.setFont(sizedFont);
+                  Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  buttonFont = font2.deriveFont(22f);
+                     jButton2.setFont(buttonFont)
+                ;}
+        catch(Exception x){
+        
+        }
     }
 
     /**
@@ -66,7 +79,7 @@ public class BaseDataMenu extends javax.swing.JDialog {
 
         jLabel1.setIcon(new javax.swing.ImageIcon("./Master/Hodiday.png"));
 
-        jLabel2.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jLabel2.setText("วันหยุด");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -109,7 +122,7 @@ public class BaseDataMenu extends javax.swing.JDialog {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon("./Master/Intor.png"));
 
-        jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jLabel10.setText("พนักงานสอบสวน");
 
         javax.swing.GroupLayout jPanelInvestLayout = new javax.swing.GroupLayout(jPanelInvest);
@@ -151,7 +164,7 @@ public class BaseDataMenu extends javax.swing.JDialog {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon("./Master/Charge.png"));
 
-        jLabel15.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("คลังข้อหา");
 
@@ -194,7 +207,7 @@ public class BaseDataMenu extends javax.swing.JDialog {
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setIcon(new javax.swing.ImageIcon("./Master/Circumstance.png"));
 
-        jLabel17.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("คลังพฤติการณ์");
 
@@ -236,7 +249,7 @@ public class BaseDataMenu extends javax.swing.JDialog {
 
         jLabel3.setIcon(new javax.swing.ImageIcon("./Master/diagram.png"));
 
-        jLabel4.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jLabel4.setText("รายงาน");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -316,8 +329,8 @@ public class BaseDataMenu extends javax.swing.JDialog {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabel13)
-                .addGap(857, 857, 857)
+                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(818, 818, 818)
                 .addComponent(jButton2)
                 .addGap(26, 26, 26))
         );

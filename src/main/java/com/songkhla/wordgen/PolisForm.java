@@ -16,7 +16,9 @@ import static com.songkhla.wordgen.CrimesCaseEdit.jLabelChargeCode;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextAccused;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextSuspect;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextWitness;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,6 +53,35 @@ public class PolisForm extends javax.swing.JDialog {
          ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
         setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+            try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel8.setFont(labelother);
+                     jLabel9.setFont(labelother);
+                     jLabel13.setFont(labelother);
+                     jLabel10.setFont(labelother);
+                     jLabel11.setFont(labelother);
+                     jLabel12.setFont(labelother);
+                     
+            Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+                Font  textboxFont = font2.deriveFont(20f);
+                      IdCardPolice.setFont(textboxFont);
+                        RankPoliceFull.setFont(textboxFont);
+                        RankPolice.setFont(textboxFont);
+                        FirstName.setFont(textboxFont);
+                        LastName.setFont(textboxFont);
+                        Position.setFont(textboxFont);
+                 Font  buttonFont = font.deriveFont(1,20f);
+                 jButtonSave.setFont(buttonFont);
+                 jButtonEdit.setFont(buttonFont);
+
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
             idpolice.setVisible(false);
             BlockUSer();
         if(datain!=null){

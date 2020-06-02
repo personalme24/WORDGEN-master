@@ -105,16 +105,21 @@ import com.songkhla.document.W98;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseid;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseno;
 import java.awt.Desktop;
+import java.awt.Font;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.font.TextAttribute;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.Collections;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
@@ -138,6 +143,7 @@ public class ReportAllForm extends javax.swing.JDialog {
     String caseid,caseyear,casetype,caseno,PoliceStaionName;
     Connection con=null;
     PreparedStatement pst=null;;
+    final InputStream is2 = ReportAllForm.class.getResourceAsStream("./Fonts/THSarabun.ttf");
     public ReportAllForm(JFrame parrent,JSONObject datain) {
         super(parrent,true);
 
@@ -148,8 +154,42 @@ public class ReportAllForm extends javax.swing.JDialog {
          //jCheckW5.setSelected(true);
          //jCheckW6.setSelected(true);
         crimecaseno .setVisible(false);
-        
-       
+        jButtonPrintDoc2.setEnabled(false);
+//     TextAttribute.WEIGHT_SEMIBOLD=1;
+
+ try{
+     
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+                     
+                 Font font3 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+                  Font labelother= font3.deriveFont(22f);
+//            Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+
+            GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+                ge.registerFont(font3);
+//            Font labelother = new Font("TH SarabunPSK", Font.PLAIN, 22);
+            Font  dvs = font3.deriveFont(Font.BOLD,22f);
+//                 Font  labelother = labelother2.deriveFont(Font.BOLD);
+    
+                     
+                     
+//                Font  textboxFont = font2.deriveFont(20f);
+//                      IdCardPolice.setFont(textboxFont);
+//                        RankPoliceFull.setFont(textboxFont);
+//                        RankPolice.setFont(textboxFont);
+//                        FirstName.setFont(textboxFont);
+//                        LastName.setFont(textboxFont);
+//                        Position.setFont(textboxFont);
+                 Font  buttonFont = font.deriveFont(1,20f);
+//                 jButtonSave.setFont(buttonFont);
+//                 jButtonEdit.setFont(buttonFont);
+
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         if(datain != null){
         caseid=datain.get("caseid")+"";
                 crimecaseno.setText(caseid);
@@ -315,7 +355,7 @@ public class ReportAllForm extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(44, 44, 44)
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -335,72 +375,72 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel13.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "เอกสารเกี่ยวกับต่างด้าว คนหายและเยาวชน", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("TH SarabunPSK", 1, 24))); // NOI18N
 
         jCheckW247.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW247.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW247.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW247.setText("หนังสือรายงานคนต่างด้าวเป็นผู้เสียหายในคดีอุกฉกรรจ์หรือตายโดยธรรมชาติ");
         jCheckW247.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW248.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW248.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW248.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW248.setText("หนังสือรายงานคนต่างด้าวกระทำความผิดและถูกจับกุมตัวดำเนินคดี");
         jCheckW248.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW249.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW249.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW249.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW249.setText("หนังสือขอส่งตัวคนต่างด้าว");
         jCheckW249.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW250.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW250.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW250.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW250.setText("หนังสือขอส่งรายละเอียดเกี่ยวกับคนต่างด้าวถูกกักขังหรือกักขังแทนค่าปรับ");
         jCheckW250.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW251.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW251.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW251.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW251.setText("หนังสือขอส่งตัวคนต่างด้าวหลบหนีเข้าเมืองมาเพื่อดำเนินการผลักดันออกไปนอกราชอาณาจักร");
         jCheckW251.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW252.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW252.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW252.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW252.setText("หนังสือขอให้ตรวจสอบหนังสือเดินทางหรือเอกสารที่ใช้แทนการเดินทางของบุคคลต่างด้าว");
         jCheckW252.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW254.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW254.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW254.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW254.setText("แบบแจ้งรูปพรรณคนหาย");
         jCheckW254.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW255.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW255.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW255.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW255.setText("แบบการสืบสวนติดตามคนหาย");
         jCheckW255.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW256.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW256.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW256.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW256.setText("แบบแจ้งผลการได้ตัวคนหายคืน");
         jCheckW256.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW275.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW275.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW275.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW275.setText("บันทึกการสอบถามเบื้องต้น(กรณีเด็กหรือเยาวชน)");
         jCheckW275.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW276.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW276.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW276.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW276.setText("หนังสือแจ้งการดำเนินคดีเด็กหรือเยาวชนไปยังสถานพินิจ");
         jCheckW276.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW277.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW277.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW277.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW277.setText("หนังสือแจ้งการจับกุมเด็กหรือเยาวชนไปยังสถานพินิจ");
         jCheckW277.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW232.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW232.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW232.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW232.setText("บันทึกการจับกุมผู้ต้องหาที่เป็นเด็กหรือเยาวชน");
         jCheckW232.setPreferredSize(new java.awt.Dimension(384, 33));
 
         jCheckW278.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW278.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW278.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW278.setText("หนังสือแจ้งการจับกุมเด็กหรือเยาวชนไปยังผู้ปกครอง");
         jCheckW278.setPreferredSize(new java.awt.Dimension(384, 33));
 
@@ -415,7 +455,7 @@ public class ReportAllForm extends javax.swing.JDialog {
                     .addComponent(jCheckW252, javax.swing.GroupLayout.PREFERRED_SIZE, 565, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(jCheckW247, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jCheckW248, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 469, Short.MAX_VALUE))
+                        .addComponent(jCheckW248, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 795, Short.MAX_VALUE))
                     .addComponent(jCheckW251, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW254, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -423,7 +463,7 @@ public class ReportAllForm extends javax.swing.JDialog {
                     .addComponent(jCheckW278, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jCheckW232, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jCheckW255, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckW255, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 585, Short.MAX_VALUE)
                         .addComponent(jCheckW277, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckW276, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jCheckW275, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -471,12 +511,12 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jCheckW201.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW201.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW201.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW201.setText("บันทึกการตรวจสำนวนการสอบสวน");
         jPanel14.add(jCheckW201, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 32, 384, -1));
 
         jCheckW202.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW202.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW202.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW202.setText("หนังสือส่งสำนวนคดีที่เห็นควรงดหรือให้งดการสอบสวน");
         jCheckW202.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -486,12 +526,12 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW202, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 62, 384, -1));
 
         jCheckW203.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW203.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW203.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW203.setText("หนังสือส่งสำนวนคดีที่เห็นควรสั่งฟ้อง แต่ยังไม่ได้ตัวผู้ต้องหา");
         jPanel14.add(jCheckW203, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 95, 384, -1));
 
         jCheckW204.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW204.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW204.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW204.setText("หนังสือส่งสำนวนคดีที่เห็นควรสั่งฟ้องหรือไม่สั่งฟ้อง");
         jCheckW204.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -501,12 +541,12 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW204, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 128, 384, -1));
 
         jCheckW205.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW205.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW205.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW205.setText("รายงานการสอบสวน");
         jPanel14.add(jCheckW205, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 194, 384, -1));
 
         jCheckW206.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW206.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW206.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW206.setText("รายงานการสอบสวนสำนวนคดีไม่ปรากฎว่าผู้ใดเป็นผู้กระทำผิด");
         jCheckW206.setPreferredSize(new java.awt.Dimension(384, 33));
         jCheckW206.addActionListener(new java.awt.event.ActionListener() {
@@ -517,22 +557,22 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW206, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 161, -1, -1));
 
         jCheckW207.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW207.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW207.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW207.setText("รายงานการสอบสวนสำนวนชันสูตรพลิกศพ");
         jPanel14.add(jCheckW207, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 384, -1));
 
         jCheckW208.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW208.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW208.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW208.setText("บันทึกคำให้การผู้กล่าวหา");
         jPanel14.add(jCheckW208, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 384, -1));
 
         jCheckW209.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW209.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW209.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW209.setText("บันทึกคำให้การผู้ต้องหา");
         jPanel14.add(jCheckW209, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 384, -1));
 
         jCheckW226.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW226.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW226.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW226.setText("หนังสือส่งยาเสพติดของกลางไปตรวจพิสูจน์");
         jCheckW226.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -542,7 +582,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW226, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 90, 321, -1));
 
         jCheckW225.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW225.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW225.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW225.setText("หนังสือส่งของกลางไปตรวจพิสูจน์");
         jCheckW225.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -552,17 +592,17 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW225, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 60, 314, -1));
 
         jCheckW216.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW216.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW216.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW216.setText("บันทึกพนักงานสอบสวน");
         jPanel14.add(jCheckW216, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 384, -1));
 
         jCheckW293.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW293.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW293.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW293.setText("คำร้องขอหมายจับ");
         jPanel14.add(jCheckW293, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 30, 314, -1));
 
         jCheckW227.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW227.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW227.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW227.setText("ฉลากปิดภาชนะบรรจุยาเสพติด");
         jCheckW227.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -572,12 +612,12 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW227, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 120, 321, -1));
 
         jCheckW238.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW238.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW238.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW238.setText("หมายเรียกผู้ต้องหา");
         jPanel14.add(jCheckW238, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 314, -1));
 
         jCheckW239.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW239.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW239.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW239.setText("หมายเรียกพยาน");
         jCheckW239.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -587,22 +627,22 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW239, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, 314, -1));
 
         jCheckW231.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW231.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW231.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW231.setText("บันทึกการจับกุม");
         jPanel14.add(jCheckW231, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 270, 314, -1));
 
         jCheckW229.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW229.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW229.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW229.setText("บันทึกการชี้ตัวผู้ต้องหา");
         jPanel14.add(jCheckW229, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 314, -1));
 
         jCheckW230.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW230.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW230.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW230.setText("บันทึกการชี้รูปผู้ต้องหา");
         jPanel14.add(jCheckW230, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 240, 314, -1));
 
         jCheckW280.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW280.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW280.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW280.setText("บัญชีสำนวนการสอบสวน");
         jCheckW280.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -612,7 +652,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW280, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 314, -1));
 
         jCheckW262.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW262.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW262.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW262.setText("บันทึกการควบคุมผู้ต้องหา");
         jCheckW262.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -622,62 +662,62 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW262, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, 330, -1));
 
         jCheckW263.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW263.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW263.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW263.setText("คำร้องขอสืบพยานไว้ก่อน");
         jPanel14.add(jCheckW263, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, 330, -1));
 
         jCheckW264.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW264.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW264.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW264.setText("บันทึกการพบและปรึกษาทนาย");
         jPanel14.add(jCheckW264, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 90, 330, -1));
 
         jCheckW220.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW220.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW220.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW220.setText("บันทึกการนำชี้ที่เกิดเหตุประกอบคำรับสารภาพ");
         jPanel14.add(jCheckW220, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, 330, -1));
 
         jCheckW219.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW219.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW219.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW219.setText("แผนที่สังเขปแสดงสถานที่เกิดเหตุ");
         jPanel14.add(jCheckW219, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 330, -1));
 
         jCheckW218.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW218.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW218.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW218.setText("บันทึกการตรวจสอบสถานที่เกิดเหตุคดีจราจรทางบก");
         jPanel14.add(jCheckW218, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, 330, -1));
 
         jCheckW217.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW217.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW217.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW217.setText("บันทึกการตรวจสอบสถานที่เกิดเหตุคดีอาญา");
         jPanel14.add(jCheckW217, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 150, 330, -1));
 
         jCheckW237.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW237.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW237.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW237.setText("ตำหนิรูปพรรณผู้กระทำความผิด");
         jPanel14.add(jCheckW237, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 240, 330, -1));
 
         jCheckW266.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW266.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW266.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW266.setText("คำร้องขอตรวจสอบการจับ");
         jPanel14.add(jCheckW266, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 270, 330, -1));
 
         jCheckW233.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW233.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW233.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW233.setText("บันทึกการตรวจค้น");
         jPanel14.add(jCheckW233, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 360, 210, -1));
 
         jCheckW261.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW261.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW261.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW261.setText("แผนประทุษกรรม");
         jPanel14.add(jCheckW261, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 330, 321, -1));
 
         jCheckW228.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW228.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW228.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW228.setText("บันทึกการตรวจสภาพรถยนต์");
         jPanel14.add(jCheckW228, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 300, 259, -1));
 
         jCheckW253.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW253.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW253.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW253.setText("หนังสือแจ้งความคืบหน้าการสอบสวน");
         jCheckW253.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -687,12 +727,12 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel14.add(jCheckW253, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 300, 314, -1));
 
         jCheckW20812.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW20812.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW20812.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW20812.setText("บันทึกคำให้การพยาน");
         jPanel14.add(jCheckW20812, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 227, 384, -1));
 
         jCheckW298.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW298.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW298.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW298.setText("บันทึกคำให้การรับสารภาพของผู้ต้องหา");
         jCheckW298.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -705,31 +745,31 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "เอกสารผัดฟ้องและอื่นๆ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("TH SarabunPSK", 1, 24))); // NOI18N
 
         jCheckW240.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW240.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW240.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW240.setText("บันทึกการแจ้งสิทธิตาม พ.ร.บ. ค่าตอบแทนผู้เสียหาย และค่าทดแทน \n");
 
         jCheckW241.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW241.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW241.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW241.setText("บันทึกการตกลงค่าเสียหาย");
 
         jCheckW242.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW242.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW242.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW242.setText("บันทึกคำขอรับชดใช้ค่าใช้จ่ายเบื้องต้นอันเกิดจากการขนส่ง");
 
         jCheckW221.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW221.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW221.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW221.setText("ใบนำส่งผู้บาดเจ็บหรือศพ");
 
         jCheckW222.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW222.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW222.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW222.setText("หนังสือส่งผู้ต้องหาป่วยทางจิตตรวจวินิจฉัย");
 
         jCheckW223.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW223.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW223.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW223.setText("รายงานชันสูตรพลิกศพ");
 
         jCheckW224.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW224.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW224.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW224.setText("แบบรายงานพบศพไม่ทราบชื่อ");
         jCheckW224.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -738,11 +778,11 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW265.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW265.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW265.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW265.setText("คำร้องขอส่งตัวผู้ต้องหาไปควบคุมตัวเพื่อพิสูจน์การเสพหรือการติดยาเสพติด");
 
         jCheckW269.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW269.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW269.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW269.setText("คำร้องขอฝากขัง");
         jCheckW269.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -751,11 +791,11 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW267.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW267.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW267.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW267.setText("คำร้องขอผัดฟ้องหรือผัดฟ้องและฝากขังครั้งที่ 1");
 
         jCheckW279.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW279.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW279.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW279.setText("พิมพ์ลายนิ้วมือผู้ต้องหา");
         jCheckW279.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -764,7 +804,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW281.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW281.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW281.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW281.setText("สมุดสารบบการดำเนินคดีอาญาทั่วไป");
         jCheckW281.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -773,7 +813,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW283.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW283.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW283.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW283.setText("สมุดสารบบการรับแจ้งความโดยไม่สอบสวน");
         jCheckW283.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -782,7 +822,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW282.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW282.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW282.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW282.setText("สมุดสารบบการดำเนินคดีจราจรทางบก");
         jCheckW282.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -791,7 +831,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW284.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW284.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW284.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW284.setText("สมุดบันทึกสถิติคดีอาญา จราจร");
         jCheckW284.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -800,7 +840,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW285.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW285.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW285.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW285.setText("สมุดบันทึกคดีที่ตนสอบสวน อาญา จราจร");
         jCheckW285.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -809,7 +849,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW286.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW286.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW286.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW286.setText("สมุดเก็บสำนวนที่อัยการไม่รับ");
         jCheckW286.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -818,7 +858,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW287.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW287.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW287.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW287.setText("สมุดเก็บสำนวนที่อัยการสั่งงดการสอบสวน");
         jCheckW287.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -827,7 +867,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW288.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW288.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW288.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW288.setText("สมุดเก็บสำเนาสำนวนการสอบสวน");
         jCheckW288.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -836,7 +876,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW289.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW289.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW289.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW289.setText("สมุดเก็บสำนวนชันสูตรพลิกศพ");
         jCheckW289.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -845,7 +885,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW290.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW290.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW290.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW290.setText("สมุดคุมพยานสำหรับพนักงานสอบสวน");
         jCheckW290.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -854,7 +894,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW291.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW291.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW291.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW291.setText("สมุดคุมพยานประจำที่ทำการพนักงานสอบสวน");
         jCheckW291.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -863,7 +903,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW292.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW292.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW292.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW292.setText("สมุดคุมคดีที่มีการอายัดตัวผู้ต้องหา");
         jCheckW292.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -872,7 +912,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW297.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW297.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW297.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW297.setText("ใบส่งตรวจสารเสพติด");
         jCheckW297.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -881,7 +921,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW296.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW296.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW296.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW296.setText("บันทึกการแจ้งสิทธิของผู้ถูกจับหรือผู้ต้องหา");
         jCheckW296.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1004,7 +1044,7 @@ public class ReportAllForm extends javax.swing.JDialog {
         jPanel16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "เอกสารทรัพย์ ประกัน", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("TH SarabunPSK", 1, 24))); // NOI18N
 
         jCheckW246.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW246.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW246.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW246.setText("หนังสือแจ้งการขอประกันสิ่งของไปดูแลรักษาหรือใช้ประโยชน์");
         jCheckW246.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1013,19 +1053,19 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW245.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW245.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW245.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW245.setText("สัญญาประกันและรับมอบสิ่งของ");
 
         jCheckW244.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW244.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW244.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW244.setText("คำร้องขอคืนสิ่งของ");
 
         jCheckW243.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW243.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW243.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW243.setText("บันทึกเสนอสัญญาประกันสิ่งของ");
 
         jCheckW215.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW215.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW215.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW215.setText("บัญชีทรัพย์ที่ถูกเพลิงไหม้");
         jCheckW215.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1034,11 +1074,11 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW213.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW213.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW213.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW213.setText("บัญชีทรัพย์ถูกประทุษร้ายได้คืน");
 
         jCheckW214.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW214.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW214.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW214.setText("บัญชีทรัพย์ถูกประทุษร้ายไม่ได้คืน");
         jCheckW214.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1047,11 +1087,11 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW212.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW212.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW212.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW212.setText("บัญชีทรัพย์ถูกประทุษร้าย");
 
         jCheckW234.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW234.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW234.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW234.setText("บัญชีทรัพย์ประกอบบันทึกการตรวจค้น");
         jCheckW234.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1060,11 +1100,11 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW257.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW257.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW257.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW257.setText("ตำหนิรูปพรรณทรัพย์หาย");
 
         jCheckW258.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW258.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW258.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW258.setText("ตำหนิรูปพรรณทรัพย์หายได้คืน");
         jCheckW258.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1073,19 +1113,19 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW273.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW273.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW273.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW273.setText("บันทึกรับรองการเป็นโสด");
 
         jCheckW272.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW272.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW272.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW272.setText("คำยินยอมกรณีผู้ให้สัญญาค้ำประกันมีคู่สมรส");
 
         jCheckW270.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW270.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW270.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW270.setText("บันทึกเสนอสัญญาประกัน");
 
         jCheckW271.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW271.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW271.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW271.setText("คำร้องและสัญญาประกัน");
         jCheckW271.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1094,19 +1134,19 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW236.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW236.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW236.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW236.setText("บัญชีทรัพย์ประกอบบันทึกการตรวจค้นโดยไม่มีหมายค้น");
 
         jCheckW235.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW235.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW235.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW235.setText("บัญชีการตรวจค้นโดยไม่มีหมายค้น");
 
         jCheckW260.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW260.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW260.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW260.setText("แบบรายการรถยนต์หรือรถจักรยานยนต์ที่ได้คืน");
 
         jCheckW259.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW259.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW259.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW259.setText("แบบรูปพรรณรถยนต์หรือรถจักรยนต์ที่ถูกโจรกรรม");
         jCheckW259.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1115,11 +1155,11 @@ public class ReportAllForm extends javax.swing.JDialog {
         });
 
         jCheckW211.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW211.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW211.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW211.setText("บัญชีของกลางคดีอาญา");
 
         jCheckW274.setBackground(new java.awt.Color(255, 255, 255));
-        jCheckW274.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jCheckW274.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW274.setText("หนังสือแจ้งอายัดตั๋วฯ");
         jCheckW274.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1140,7 +1180,7 @@ public class ReportAllForm extends javax.swing.JDialog {
                         .addComponent(jCheckW235, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jCheckW236, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jCheckW215, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckW214, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
+                    .addComponent(jCheckW214, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
                     .addComponent(jCheckW213, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jCheckW211, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1154,7 +1194,7 @@ public class ReportAllForm extends javax.swing.JDialog {
                     .addComponent(jCheckW246)
                     .addComponent(jCheckW243, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW272, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckW260)
                     .addComponent(jCheckW259)
