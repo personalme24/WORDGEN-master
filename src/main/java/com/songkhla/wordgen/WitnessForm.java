@@ -71,6 +71,8 @@ public class WitnessForm extends javax.swing.JDialog {
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
                try{
                Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                Font   titleName = font.deriveFont(28f);
+                      jLabel3.setFont(titleName);
                 Font   labelName = font.deriveFont(22f);
                      jLabel5.setFont(labelName);
                      jLabel28.setFont(labelName);

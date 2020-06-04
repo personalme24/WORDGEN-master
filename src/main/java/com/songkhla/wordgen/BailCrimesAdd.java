@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import org.json.simple.JSONObject;
 import java.awt.Font;
+import java.io.File;
 import javax.swing.BorderFactory;
 
 /**
@@ -37,6 +38,40 @@ public class BailCrimesAdd extends javax.swing.JDialog {
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
          setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+         try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel30.setFont(labelother);
+                     jLabel5.setFont(labelother);
+                     jLabel7.setFont(labelother);
+                     jLabel6.setFont(labelother);
+                     jLabel8.setFont(labelother);
+                     jLabel2.setFont(labelother);
+                     jButton1.setFont(labelother);
+                     jButton3.setFont(labelother);
+                     jButton2.setFont(labelother);
+                   jLabel31.setFont(labelother);
+                     jLabel34.setFont(labelother);
+                     jButtonAddSue.setFont(labelother);
+                     jButtonEditSue.setFont(labelother);
+                     jButtonDeleteBailAsset.setFont(labelother);
+                     jLabel35.setFont(labelother);
+                     jButtonAddSue1.setFont(labelother);
+                     jButtonEditSue1.setFont(labelother);
+                     jButtonDelete1.setFont(labelother);
+                     
+                     Font  tableFont = font.deriveFont(1,20f);
+                jTableBailAsset.getTableHeader().setFont(tableFont);
+                jTableBailAsset.getTableHeader().setOpaque(false);
+                jTableBailSend.getTableHeader().setFont(tableFont);
+            jTableBailSend.getTableHeader().setOpaque(false);
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
          ChargeName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
         refreshAssetData();
         refreshBailSendData();
@@ -260,8 +295,6 @@ public class BailCrimesAdd extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
-        jTableBailAsset.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
-        jTableBailAsset.getTableHeader().setOpaque(false);
         jScrollPane1.setViewportView(jTableBailAsset);
 
         jLabel34.setBackground(java.awt.SystemColor.activeCaptionBorder);
@@ -381,8 +414,6 @@ public class BailCrimesAdd extends javax.swing.JDialog {
                 return types [columnIndex];
             }
         });
-        jTableBailSend.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
-        jTableBailSend.getTableHeader().setOpaque(false);
         jScrollPane2.setViewportView(jTableBailSend);
 
         jButtonAddSue1.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N

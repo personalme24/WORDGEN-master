@@ -11,6 +11,8 @@ import static com.songkhla.wordgen.ActionPage.ActionDetail;
 import static com.songkhla.wordgen.ActionPage.ActionNote;
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -50,6 +52,22 @@ public class RecordInvestigatorForm extends javax.swing.JDialog {
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
+                  try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel11.setFont(labelother);
+                     jLabel9.setFont(labelother);
+                     jLabel10.setFont(labelother);
+                     jButtonSave.setFont(labelother);
+    
+            
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
             caseId.setVisible(false);
          UtilDateModel model2 = new UtilDateModel();
             model2.setValue(Calendar.getInstance().getTime());
@@ -162,13 +180,13 @@ public class RecordInvestigatorForm extends javax.swing.JDialog {
         );
 
         DetailRecord.setColumns(20);
-        DetailRecord.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        DetailRecord.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         DetailRecord.setLineWrap(true);
         DetailRecord.setRows(5);
         DetailRecord.setTabSize(1);
         jScrollPane1.setViewportView(DetailRecord);
 
-        NameInguiry.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        NameInguiry.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

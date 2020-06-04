@@ -36,6 +36,7 @@ import org.json.simple.JSONObject;
 import org.xlsx4j.sml.Col;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 
@@ -60,6 +61,27 @@ public class BailCrimesForm extends javax.swing.JDialog {
             ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+             try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel30.setFont(labelother);
+                     jLabel5.setFont(labelother);
+                     jLabel7.setFont(labelother);
+                     jLabel6.setFont(labelother);
+                     jLabel8.setFont(labelother);
+                     AddEditBail.setFont(labelother);
+                     jCheckOnly.setFont(labelother);
+                     jButton3.setFont(labelother);
+                jTableBail.getTableHeader().setFont(labelother);
+            jTableBail.getTableHeader().setOpaque(false);
+        
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         eventJStatusManage();
         RefreshData();
 //        ShowData();
@@ -151,7 +173,7 @@ jTableBail.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScr
                 .addComponent(jButton3))
         );
 
-        jTableBail.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTableBail.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableBail.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null},
@@ -189,8 +211,6 @@ jTableBail.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScr
                 jTableBailMouseClicked(evt);
             }
         });
-        jTableBail.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
-        jTableBail.getTableHeader().setOpaque(false);
         jScrollPane1.setViewportView(jTableBail);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));

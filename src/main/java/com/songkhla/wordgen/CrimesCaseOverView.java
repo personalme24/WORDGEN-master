@@ -59,7 +59,33 @@ public class CrimesCaseOverView  extends javax.swing.JDialog {
         setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
         setMaximumSize(new Dimension(1280, 755));
         setMinimumSize(new Dimension(1280, 755));
-    
+     try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel4.setFont(labelother);
+                     jLabel5.setFont(labelother);
+                     jLabel6.setFont(labelother);
+                     jLabel8.setFont(labelother);
+                     jLabel9.setFont(labelother);
+                     jLabel7.setFont(labelother);
+                     jButtonAdd.setFont(labelother);
+                     jButtonEdit.setFont(labelother);
+                     jButtonDelete.setFont(labelother);
+                     jButtonSearch.setFont(labelother);
+                     jButtonClearSearch.setFont(labelother);
+                     jLabel11.setFont(labelother);
+                      jTable1.getTableHeader().setFont(labelother);
+                      jButton2.setFont(labelother);
+//                      jTable1.setFont(labelother);
+      
+
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         jPanelSearch.setVisible(false);
         jTable1.setOpaque(false);
@@ -214,7 +240,7 @@ public class CrimesCaseOverView  extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jTable1.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTable1.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTable1.setForeground(new java.awt.Color(51, 51, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

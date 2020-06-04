@@ -85,6 +85,7 @@ import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -158,6 +159,50 @@ public class SueCrimesFrom extends javax.swing.JDialog {
         setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
         ChargeName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 //        jLabel2.setVisible(false);
+  try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel30.setFont(labelother);
+                     jLabel31.setFont(labelother);
+                     CourtSuspect1.setFont(labelother);
+                     jLabel5.setFont(labelother);
+                     jLabel7.setFont(labelother);
+                     jLabel15.setFont(labelother);
+                     jLabel6.setFont(labelother);
+                     jLabel2.setFont(labelother);
+                     jLabel18.setFont(labelother);
+                     jLabel25.setFont(labelother);
+                       StatusSuspect.setFont(labelother);
+                     jLabel26.setFont(labelother);
+                     jLabel11.setFont(labelother);
+                     jLabel16.setFont(labelother);
+                     jLabel17.setFont(labelother);
+                     jLabel13.setFont(labelother);
+                     jLabel14.setFont(labelother);
+                     jLabel4.setFont(labelother);
+                     jLabel3.setFont(labelother);
+                     jLabel8.setFont(labelother);
+                     jLabel9.setFont(labelother);
+                     jLabel10.setFont(labelother);
+                     jLabel12.setFont(labelother);
+                     jButtonSave.setFont(labelother);
+                     jButtonEdit.setFont(labelother);
+                     Print1.setFont(labelother);
+                     Print2.setFont(labelother);
+                     Print3.setFont(labelother);
+                     Print4.setFont(labelother);
+                     Print5.setFont(labelother);
+                     Print6.setFont(labelother);
+                     Print7.setFont(labelother);
+                      Font  titleother = font.deriveFont(1,24f);
+            jLabel24.setFont(titleother);
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
     closePrint();
     jButtonEdit.setEnabled(false);
           person=datain.get("NoPerson")+"";
@@ -947,7 +992,7 @@ public class SueCrimesFrom extends javax.swing.JDialog {
         SueFirstRequest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
 
         SueFirstCause.setEditable(true);
-        SueFirstCause.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        SueFirstCause.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         SueFirstCause.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "สอบพยานอีก 5 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 4 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 3 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 2 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 1 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "รอผลการตรวจสอบพิมพ์มือผู้ต้องหา" }));
 
         SueSeventh.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -1023,7 +1068,7 @@ public class SueCrimesFrom extends javax.swing.JDialog {
         SueSecRequest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
 
         SueSecCause.setEditable(true);
-        SueSecCause.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        SueSecCause.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         SueSecCause.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "สอบพยานอีก 5 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 4 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 3 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 2 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 1 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "รอผลการตรวจสอบพิมพ์มือผู้ต้องหา" }));
 
         SueThirdTotal.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -1038,7 +1083,7 @@ public class SueCrimesFrom extends javax.swing.JDialog {
         SueThirdRequest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
 
         SueSevCause.setEditable(true);
-        SueSevCause.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        SueSevCause.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         SueSevCause.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "สอบพยานอีก 5 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 4 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 3 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 2 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 1 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "รอผลการตรวจสอบพิมพ์มือผู้ต้องหา" }));
 
         SueSevenTotal.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -1086,19 +1131,19 @@ public class SueCrimesFrom extends javax.swing.JDialog {
         SueSixthRequest.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-" }));
 
         SueThirdCause.setEditable(true);
-        SueThirdCause.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        SueThirdCause.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         SueThirdCause.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "สอบพยานอีก 5 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 4 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 3 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 2 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 1 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "รอผลการตรวจสอบพิมพ์มือผู้ต้องหา" }));
 
         SueFourthCause.setEditable(true);
-        SueFourthCause.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        SueFourthCause.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         SueFourthCause.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "สอบพยานอีก 5 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 4 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 3 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 2 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 1 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "รอผลการตรวจสอบพิมพ์มือผู้ต้องหา" }));
 
         SueFifthCause.setEditable(true);
-        SueFifthCause.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        SueFifthCause.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         SueFifthCause.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "สอบพยานอีก 5 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 4 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 3 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 2 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 1 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "รอผลการตรวจสอบพิมพ์มือผู้ต้องหา" }));
 
         SueSixthCause.setEditable(true);
-        SueSixthCause.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        SueSixthCause.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         SueSixthCause.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "-", "สอบพยานอีก 5 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 4 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 3 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 2 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "สอบพยานอีก 1 ปาก และรอผลการตรวจสอบพิมพ์มือผู้ต้องหา", "รอผลการตรวจสอบพิมพ์มือผู้ต้องหา" }));
 
         SevDate.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N

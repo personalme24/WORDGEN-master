@@ -12,6 +12,7 @@ import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,7 +62,24 @@ public class SueCrimesOverview extends javax.swing.JDialog {
         jTableSue.getTableHeader().setFont(new Font("TH SarabunPSK",Font.BOLD,20));
         jTableSue.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());
-     
+       try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel3.setFont(labelother);
+                     jLabel2.setFont(labelother);
+                     jLabel2.setFont(labelother);
+                     jButtonDate.setFont(labelother);
+                     jButtonClearSearch.setFont(labelother);
+                     jButtonAddSue.setFont(labelother);
+                     jLabel6.setFont(labelother);
+                      jLabel5.setFont(labelother);
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
 //        CalculateDate();
 //        TestDate();
 
@@ -174,7 +192,7 @@ jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScre
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1210, -1));
 
-        jTableSue.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTableSue.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableSue.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null},
@@ -285,7 +303,7 @@ jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScre
         jLabel5.setText("ประเภทคดี");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, -1, 30));
 
-        jComboBoxSue.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jComboBoxSue.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jComboBoxSue.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ทั้งหมด", "ผัดฟ้องฝากขัง", "ผัดฟ้อง", "ฝากขัง" }));
         jComboBoxSue.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -298,7 +316,7 @@ jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScre
         jLabel6.setText("สถานะการผัดฟ้องฝากขัง");
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, 30));
 
-        jComboBoxCaseType.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jComboBoxCaseType.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jComboBoxCaseType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ทั้งหมด", "อาญา", "จราจร", "ชันสูตร" }));
         jComboBoxCaseType.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {

@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.songkhla.wordgen;
+import java.awt.Font;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,12 +34,31 @@ public class BailAssetAdd extends javax.swing.JDialog {
                 ImageIcon img = new ImageIcon("./Master/WD.png");
                 setIconImage(img.getImage());
                 setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+                   try{
+                       Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel16.setFont(labelother);
+                     BailAssetOrder.setFont(labelother);
+                     jLabel17.setFont(labelother);
+                     jLabel19.setFont(labelother);
+                     jLabel18.setFont(labelother);
+                    jLabel21.setFont(labelother);
+                        jLabel23.setFont(labelother);
+                     jButtonSave.setFont(labelother);
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
                 jLabel2.setVisible(false);
                 jLabel3.setVisible(false);
                 caseId=dataId.get("BailCaseId")+"";
                 personId=dataId.get("BailPersonId")+"";
                 jLabel2.setText(caseId);
                 jLabel3.setText(personId);
+                
                 if(datain!=null){
                     BailAssetOrder.setText(datain.get("BailAssetOrder")+"");
                      BailAssetDetail.setText(datain.get("BailAssetDetail")+"");

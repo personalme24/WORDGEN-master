@@ -13,10 +13,12 @@ import static com.songkhla.wordgen.CrimesCaseEdit.jTextAccused;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,6 +70,49 @@ public class OwnerBailForm extends javax.swing.JDialog {
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
             crimecaseno.setVisible(false);
+               try{
+                   
+               Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                Font   titleName = font.deriveFont(28f);
+                      jLabel3.setFont(titleName);
+
+                Font   labelName = font.deriveFont(22f);
+                     jLabel5.setFont(labelName);
+                     jLabel28.setFont(labelName);
+                     jLabel2.setFont(labelName);
+                     jLabel7.setFont(labelName);
+                     jLabel9.setFont(labelName);
+                     jLabel1.setFont(labelName);
+                      jLabel6.setFont(labelName);
+                     jLabel8.setFont(labelName);
+                     jLabel18.setFont(labelName);
+                     jLabel12.setFont(labelName);
+                     jLabel13.setFont(labelName);
+                     jLabel16.setFont(labelName);
+                     jLabel17.setFont(labelName);
+                     jLabel20.setFont(labelName);
+                      jLabel15.setFont(labelName);
+                     jLabel14.setFont(labelName);                    
+                     jLabel26.setFont(labelName);
+                     jLabel29.setFont(labelName);
+                     jLabel25.setFont(labelName);
+                     jLabel21.setFont(labelName);
+                     jLabel30.setFont(labelName);
+                     jLabel22.setFont(labelName);
+                     jLabel23.setFont(labelName);
+                     jLabel27.setFont(labelName);
+                     jLabel24.setFont(labelName);
+                     jLabel4.setFont(labelName);
+                     jLabel19.setFont(labelName);
+                     jLabel11.setFont(labelName);
+                     BtSaveAccused.setFont(labelName);
+                     jButton2.setFont(labelName);
+                 
+                     
+            }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
       UtilDateModel model2 = new UtilDateModel();
 //            model2.setValue(Calendar.getInstance().getTime());
             Properties p = new Properties();
@@ -406,11 +451,11 @@ public class OwnerBailForm extends javax.swing.JDialog {
             }
         });
 
-        FullNamePerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FullNamePerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
-        OtherName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OtherName.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
-        FullNamePersonEn.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FullNamePersonEn.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel8.setText("อายุ");
@@ -418,7 +463,7 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel10.setText("วันเกิด");
 
-        Age.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Age.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         Age.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 AgeKeyTyped(evt);
@@ -428,7 +473,7 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel11.setText("ชื่อภาษาอังกฤษ");
 
-        Nationality.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Nationality.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         Nationality.setText("ไทย");
 
         jLabel12.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -437,7 +482,7 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel13.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel13.setText("เชื้อชาติ");
 
-        Race.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Race.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         Race.setText("ไทย");
 
         jLabel14.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -446,7 +491,7 @@ public class OwnerBailForm extends javax.swing.JDialog {
         Gender.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         Gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ชาย", "หญิง", "ไม่ระบุ" }));
 
-        OccupationPosition.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OccupationPosition.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jLabel15.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel15.setText("เพศ");
@@ -454,18 +499,18 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel16.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel16.setText("สูง");
 
-        Religion.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        Religion.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         Religion.setText("พุทธ");
 
         jLabel17.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel17.setText("น้ำหนัก");
 
-        Height.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Height.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jLabel18.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel18.setText("ศาสนา");
 
-        Weight.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Weight.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel7.setText("ชื่อสกุลอื่น");
@@ -497,13 +542,13 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel27.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel27.setText("จังหวัด");
 
-        HouseNumber.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        HouseNumber.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
-        FatherFullName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FatherFullName.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
-        MotherFullName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        MotherFullName.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
-        PhonePerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PhonePerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         PhonePerson.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PhonePersonActionPerformed(evt);
@@ -513,23 +558,23 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel30.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel30.setText("หมู่ที่");
 
-        Moo.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Moo.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
-        Tambon.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Tambon.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         Tambon.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TambonKeyReleased(evt);
             }
         });
 
-        Amphur.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Amphur.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         Amphur.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 AmphurKeyReleased(evt);
             }
         });
 
-        ZipCode.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        ZipCode.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         ZipCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ZipCodeActionPerformed(evt);
@@ -541,9 +586,9 @@ public class OwnerBailForm extends javax.swing.JDialog {
             }
         });
 
-        Province.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Province.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
-        Related.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Related.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jLabel19.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(204, 0, 0));
@@ -593,7 +638,7 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel4.setText("พยานและบุคคลอื่นคนที่");
 
-        OrderPerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OrderPerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jComboBoxListName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBoxListName.addActionListener(new java.awt.event.ActionListener() {
@@ -605,15 +650,15 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel28.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel28.setText("อาชีพ");
 
-        Occupation.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Occupation.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
-        BloodGroup.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        BloodGroup.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         BloodGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "A", "B", "AB", "O", "A Rh-", "B Rh-", "AB Rh-", "O Rh-" }));
 
         jLabel2.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel2.setText("เลขบัตรประชาชน");
 
-        PeopleRegistrationID.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PeopleRegistrationID.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         PeopleRegistrationID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 PeopleRegistrationIDKeyTyped(evt);
@@ -623,7 +668,7 @@ public class OwnerBailForm extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel9.setText("เลขหนังสือเดินทาง");
 
-        PassportNumber.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PassportNumber.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jButton2.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
         jButton2.setText("อ่านข้อมูลจากบัตร");
@@ -911,7 +956,7 @@ public class OwnerBailForm extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtSaveAccused)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(322, Short.MAX_VALUE))
+                .addContainerGap(321, Short.MAX_VALUE))
         );
 
         PhonePerson.getAccessibleContext().setAccessibleName("");

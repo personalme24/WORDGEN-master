@@ -23,6 +23,7 @@ import javax.swing.table.DefaultTableModel;
 import org.json.simple.JSONObject;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.io.File;
 
 /**
  *
@@ -42,7 +43,25 @@ public class AssetOverView extends javax.swing.JDialog {
         EvidenceRecordNumber.setVisible(false);
         CaseId=datain.get("CaseId")+"";
         TypeCase=datain.get("TypeCase")+"";
-
+ try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel6.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel1.setFont(labelother);
+                     EvidenceRecordNumber.setFont(labelother);
+                     txtCaseno.setFont(labelother);
+                     jButton1.setFont(labelother);
+                     jButton3.setFont(labelother);
+                     jButton2.setFont(labelother);
+                     jTableAsset.getTableHeader().setFont(labelother);
+            jTableAsset.getTableHeader().setOpaque(false);
+          
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         txtCaseno.setVisible(false);
 //        JTable rowTable = new RowNumberTable(jTableAsset);
 //        jScrollPane2.setRowHeaderView(rowTable);
@@ -138,7 +157,7 @@ public class AssetOverView extends javax.swing.JDialog {
         txtCaseno.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
         txtCaseno.setText("เลขคดี");
 
-        jTableAsset.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTableAsset.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableAsset.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -151,8 +170,6 @@ public class AssetOverView extends javax.swing.JDialog {
         jTableAsset.setRowHeight(25);
         jTableAsset.setRowMargin(2);
         jScrollPane2.setViewportView(jTableAsset);
-        jTableAsset.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
-        jTableAsset.getTableHeader().setOpaque(false);
         jTableAsset.getAccessibleContext().setAccessibleDescription("");
 
         EvidenceRecordNumber.setText("jLabel2");

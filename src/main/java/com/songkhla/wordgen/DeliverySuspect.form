@@ -245,6 +245,11 @@
           </Layout>
         </Container>
         <Component class="javax.swing.JSpinner" name="DeliTimes">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="TH SarabunPSK" size="22" style="0"/>
+            </Property>
+          </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="JSpinner.DateEditor te = new JSpinner.DateEditor(DeliTimes, &quot;HH:mm&quot;);&#xa;DeliTimes.setEditor(te);&#xa;//jSpinner1.setValue(new Date());&#xa;DeliTimes.setPreferredSize(new java.awt.Dimension(29, 25));&#xa;&#xa;jPanel1.add(DeliTimes, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 250, 100, 32));"/>
             <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JSpinner(sm2)"/>

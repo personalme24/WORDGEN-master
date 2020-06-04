@@ -7,6 +7,8 @@ package com.songkhla.wordgen;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,6 +42,29 @@ public class AssetNewEdit extends javax.swing.JDialog {
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+            try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel8.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel1.setFont(labelother);
+                     jRecord.setFont(labelother);
+                     jLabel2.setFont(labelother);
+                     jLabel5.setFont(labelother);
+                     jLabel6.setFont(labelother);
+                     jLabel11.setFont(labelother);
+                     jLabel10.setFont(labelother);
+                     jLabel7.setFont(labelother);
+                     jLabel3.setFont(labelother);
+                     jLabel4.setFont(labelother);
+                     jLabel9.setFont(labelother);
+                     
+          
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         crimecaseno.setVisible(false);
           crimecaseno.setText(AssetOverView.txtCaseno.getText());
       caseType=dataType.get("typecase")+"";
@@ -245,7 +270,7 @@ public class AssetNewEdit extends javax.swing.JDialog {
 
         EvidenceRecordNumber1.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        StatusAsset.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        StatusAsset.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         StatusAsset.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ของกลาง", "ประทุษร้าย", "ได้คืน", "ไม่ได้คืน", "เพลิงไหม้", " " }));
 
         jPanelDateAsset.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N

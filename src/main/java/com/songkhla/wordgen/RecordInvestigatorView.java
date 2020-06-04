@@ -16,6 +16,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import org.json.simple.JSONObject;
 import java.awt.Font;
+import java.io.File;
 import javax.swing.ImageIcon;
 
 /**
@@ -37,7 +38,23 @@ public class RecordInvestigatorView extends javax.swing.JDialog {
             setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
         caseIdRec=datain.get("CaseIdRec")+"";
         TypeCase=datain.get("TypeCase")+"";
+      try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel1.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(22f);
+                     jButtonSave.setFont(labelother);
+                     jButton1.setFont(labelother);
+                     jButton2.setFont(labelother);
+                     jTableRecord.getTableHeader().setFont(labelother);
+            jTableRecord.getTableHeader().setOpaque(false);
 
+            
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         caseId.setText(caseIdRec);
         caseId.setVisible(false);
         RefreshData();
@@ -65,7 +82,7 @@ public class RecordInvestigatorView extends javax.swing.JDialog {
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
 
-        jTableRecord.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTableRecord.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableRecord.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -86,8 +103,6 @@ public class RecordInvestigatorView extends javax.swing.JDialog {
         jTableRecord.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jTableRecord.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jTableRecord.getTableHeader().setReorderingAllowed(false);
-        jTableRecord.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
-        jTableRecord.getTableHeader().setOpaque(false);
         jScrollPane1.setViewportView(jTableRecord);
 
         jPanel3.setBackground(new java.awt.Color(4, 93, 179));

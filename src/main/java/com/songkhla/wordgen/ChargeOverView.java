@@ -19,6 +19,7 @@ import javax.swing.JFrame;
 import org.json.simple.JSONObject;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.io.File;
 import javax.swing.JTable;
 
 /**
@@ -42,6 +43,25 @@ public class ChargeOverView extends javax.swing.JDialog {
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+            try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel8.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel9.setFont(labelother);
+                     jLabel10.setFont(labelother);
+                     jButton1.setFont(labelother);
+                     jTable1.getTableHeader().setFont(labelother);
+                     jButton3.setFont(labelother);
+                     jButton5.setFont(labelother);
+                     jButton4.setFont(labelother);
+   
+            
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
             jButton1.setVisible(false);
             jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
             jTable1.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -87,12 +107,12 @@ public class ChargeOverView extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel9.setText("รหัสข้อหา");
 
-        ChargeCode.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        ChargeCode.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel10.setText("ข้อหา");
 
-        ChargeName.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        ChargeName.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jButton3.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
         jButton3.setText("ค้นหา");
@@ -112,7 +132,7 @@ public class ChargeOverView extends javax.swing.JDialog {
             }
         });
 
-        jTable1.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTable1.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTable1.setForeground(new java.awt.Color(51, 51, 51));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -146,7 +166,6 @@ public class ChargeOverView extends javax.swing.JDialog {
                 jTable1MouseClicked(evt);
             }
         });
-        jTable1.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
         jTable1.getTableHeader().setOpaque(false);
         jScrollPane1.setViewportView(jTable1);
 

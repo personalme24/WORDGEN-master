@@ -19,7 +19,9 @@ import static com.songkhla.wordgen.CrimesCaseEdit.ChargeNameCase;
 import static com.songkhla.wordgen.CrimesCaseEdit.Checknull;
 import static com.songkhla.wordgen.CrimesCaseEdit.jLabelChargeCode;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Rectangle;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -56,6 +58,25 @@ public class ChargePage extends javax.swing.JDialog {
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
         caseno.setVisible(false);
          typecase=dataid.get("typecase")+"";
+          try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel6.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel5.setFont(labelother);
+                     jLabel4.setFont(labelother);
+                     jLabel2.setFont(labelother);
+                     jLabel1.setFont(labelother);
+                     jLabel3.setFont(labelother);
+                     jButton2.setFont(labelother);
+                     jButtonSaveCharge.setFont(labelother);
+                     jButtonSaveChargeData.setFont(labelother);
+            
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
             if(datain!=null){
                 
 //            caseid= "" + datain.get("CaseId"); 

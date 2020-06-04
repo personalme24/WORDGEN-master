@@ -26,7 +26,9 @@ import static com.songkhla.wordgen.CrimesCaseEdit.jTextAccused;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextSuspect;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextWitness;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Rectangle;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -65,7 +67,24 @@ public class ActionPage extends javax.swing.JDialog {
         jLabel20.setVisible(false);
         jScrollPane5.setVisible(false);
         jScrollPane6.setVisible(false);
-        
+             try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel6.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel5.setFont(labelother);
+                     jLabel4.setFont(labelother);
+                     jLabel2.setFont(labelother);
+                     jLabel3.setFont(labelother);
+                     jButton2.setFont(labelother);
+                     ButtonAddAction.setFont(labelother);
+                     ButtonAddAction1.setFont(labelother);
+            
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         if(datain!=null){
             caseidac=datain.get("ActionCaseId")+"";
 //            caseid= "" + datain.get("CaseId"); 
@@ -149,7 +168,7 @@ public class ActionPage extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(744, 720));
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel6.setFont(new java.awt.Font("TH SarabunPSK", 1, 30)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("TH SarabunPSK", 1, 36)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("พฤติการณ์คดี");
 

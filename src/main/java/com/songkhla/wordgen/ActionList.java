@@ -15,6 +15,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import java.awt.Font;
+import java.io.File;
 /**
  *
  * @author Matazz
@@ -32,6 +33,23 @@ public class ActionList extends javax.swing.JDialog {
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
            jButton1.setVisible(false);
+                try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel8.setFont(sizedFont);
+           
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel9.setFont(labelother);
+                     jLabel10.setFont(labelother);
+                     jButton3.setFont(labelother);
+                     jButton5.setFont(labelother);
+                     jButton1.setFont(labelother);
+                     jButton4.setFont(labelother);
+            
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         RefreshData();
        
     }
@@ -70,7 +88,7 @@ public class ActionList extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel9.setText("รหัสพฤติการณ์คดี");
 
-        ActionCode.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        ActionCode.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         ActionCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ActionCodeActionPerformed(evt);
@@ -80,7 +98,7 @@ public class ActionList extends javax.swing.JDialog {
         jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel10.setText("พฤติการณ์คดี");
 
-        ActionCrimes.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        ActionCrimes.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
         jButton3.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
         jButton3.setText("ค้นหา");
@@ -90,7 +108,7 @@ public class ActionList extends javax.swing.JDialog {
             }
         });
 
-        jTableAction.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTableAction.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableAction.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
