@@ -1527,7 +1527,7 @@ JTextPopupMenu.addTo(CourtResult);
             }
         });
 
-        jTableAccure.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTableAccure.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableAccure.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
@@ -1646,7 +1646,7 @@ JTextPopupMenu.addTo(CourtResult);
             }
         });
 
-        jTableSuspect.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTableSuspect.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableSuspect.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -1770,7 +1770,7 @@ JTextPopupMenu.addTo(CourtResult);
             }
         });
 
-        jTableWitness.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jTableWitness.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableWitness.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

@@ -143,7 +143,7 @@ public class SueCrimesFrom extends javax.swing.JDialog {
     DataCase dc =new DataCase();
     String person;
     String caseid,stSuspect,arrestDate;
-    String dateF,dateTot,Court,StatusBail,RatePrison;
+    String dateF,dateTot,Court,StatusBail,RatePrison,TypeChild;
          String caseyear,casetype,caseno="",PoliceStaionName;
 
 //    JDatePickerImpl SueSecDate,SueThirdDate,SueFourthDate,SueFifthDate,SueSixthDate,SueSevDate;
@@ -293,6 +293,7 @@ public class SueCrimesFrom extends javax.swing.JDialog {
                      stSuspect=rs.getString("StatusSuspect");
              StatusSuspect.setText(rs.getString("StatusSuspect"));
              Court=rs.getString("CourtSuspect");
+             TypeChild=rs.getString("TypeChild");
               RatePrison=rs.getString("RatePrison");
                 StatusBail=rs.getString("StatusBail");
               Block();
@@ -413,7 +414,7 @@ public class SueCrimesFrom extends javax.swing.JDialog {
                      if(Court.equals("ศาลเยาวชนและครอบครัว")&&(stSuspect.equals("ผัดฟ้องฝากขัง")||stSuspect.equals("ผัดฟ้อง"))){
             SueFirst.setText("1");
             SueFirstDate.setText(arrestDate);
-            SueFirstTotal.setText("15");
+            SueFirstTotal.setText("30");
             SueFirstEnd.setText(CalculateDateEnd(SueFirstDate.getText(), SueFirstTotal.getText()));
             SueFirstRequest.setSelectedIndex(1);
             SueSecond.setText("2");
@@ -421,7 +422,16 @@ public class SueCrimesFrom extends javax.swing.JDialog {
             SueSecTotal.setText("15");
             SueSecEnd.setText(CalculateDateEnd(SueSecDateT.getText(), SueSecTotal.getText()));
             SueSecRequest.setSelectedIndex(1);
-            
+             SueThird.setText("3");
+            ThirdDate.setText(CalculateDateNextTimes(SueSecEnd.getText()));
+            SueThirdTotal.setText("15");
+            SueThirdEnd.setText(CalculateDateEnd(ThirdDate.getText(), SueThirdTotal.getText()));
+            SueThirdRequest.setSelectedIndex(1);
+            SueForth.setText("4");
+            FourthDate.setText(CalculateDateNextTimes(SueThirdEnd.getText()));
+            SueFourthTotal.setText("15");
+            SueFourthEnd.setText(CalculateDateEnd(FourthDate.getText(), SueFourthTotal.getText()));
+            SueFourthRequest.setSelectedIndex(1);
                 }
                     
             }
@@ -2153,20 +2163,20 @@ SueFirstCause.setEnabled(true);
        SueFifthRequest.setEnabled(false);
        SueFifthCause.setEnabled(false);
        Print5.setEnabled(false);
-       SueForth.setEnabled(false);
-       FourthDate.setEnabled(false);
-       SueFourthTotal.setEnabled(false);
-       SueFourthEnd.setEnabled(false);
-       SueFourthRequest.setEnabled(false);
-       SueFourthCause.setEnabled(false);
-       Print4.setEnabled(false);
-       SueThird.setEnabled(false);
-       ThirdDate.setEnabled(false);
-       SueThirdTotal.setEnabled(false);
-       SueThirdEnd.setEnabled(false);
-       SueThirdRequest.setEnabled(false);
-       SueThirdCause.setEnabled(false);
-       Print3.setEnabled(false);
+//       SueForth.setEnabled(false);
+//       FourthDate.setEnabled(false);
+//       SueFourthTotal.setEnabled(false);
+//       SueFourthEnd.setEnabled(false);
+//       SueFourthRequest.setEnabled(false);
+//       SueFourthCause.setEnabled(false);
+//       Print4.setEnabled(false);
+//       SueThird.setEnabled(false);
+//       ThirdDate.setEnabled(false);
+//       SueThirdTotal.setEnabled(false);
+//       SueThirdEnd.setEnabled(false);
+//       SueThirdRequest.setEnabled(false);
+//       SueThirdCause.setEnabled(false);
+//       Print3.setEnabled(false);
        }
  
 //   try{

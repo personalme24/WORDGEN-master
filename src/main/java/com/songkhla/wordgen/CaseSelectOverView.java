@@ -793,7 +793,7 @@ jlabeltoken.setVisible(true);
                         .addContainerGap(38, Short.MAX_VALUE))))
         );
 
-        jTableCrime.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
+        jTableCrime.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableCrime.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
