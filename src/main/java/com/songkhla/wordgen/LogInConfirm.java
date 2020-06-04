@@ -100,6 +100,8 @@ public class LogInConfirm extends javax.swing.JDialog{
         jLabel2.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel2.setText("รหัสผ่าน");
 
+        Password.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+
         jLabel3.setBackground(new java.awt.Color(255, 255, 255));
         jLabel3.setFont(new java.awt.Font("TH SarabunPSK", 1, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 0, 0));

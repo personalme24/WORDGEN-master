@@ -106,6 +106,71 @@ public class CaseSelectOverView extends javax.swing.JDialog {
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
         setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+          try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,36f);
+                     jLabel1.setFont(sizedFont);
+         Font font2 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                 Font  labelother = font2.deriveFont(1,22f); 
+                 jTabbedPane1.setFont(labelother);
+                 jTableTraffic.getTableHeader().setFont(labelother);
+                 jTableCrime.getTableHeader().setFont(labelother);
+                  jTableCrime.getTableHeader().setOpaque(false);
+                    Font  labelname = font2.deriveFont(1,20f); 
+                     jLabel10.setFont(labelname);
+                     jLabel28.setFont(labelname);
+                     jLabel25.setFont(labelname);
+                     jLabel7.setFont(labelname);
+                     jLabel8.setFont(labelname);
+                     jLabel16.setFont(labelname);
+                     jLabel18.setFont(labelname);
+                     jLabel17.setFont(labelname);
+                      jLabel9.setFont(labelname);
+                     jLabel11.setFont(labelname);
+                     jLabel14.setFont(labelname);
+                     jLabel15.setFont(labelname);
+                     
+                     jLabel23.setFont(labelname);
+                        jLabel27.setFont(labelname);
+                     jLabel37.setFont(labelname);
+                     jLabel19.setFont(labelname);
+                     jLabel20.setFont(labelname);
+                     jLabel38.setFont(labelname);
+                     jLabel40.setFont(labelname);
+                     jLabel39.setFont(labelname);
+                      jLabel21.setFont(labelname);
+                     jLabel22.setFont(labelname);
+                     jLabel24.setFont(labelname);
+                     jLabel26.setFont(labelname);
+                     
+                      Font  labelRemark = font2.deriveFont(1,18f); 
+                     jLabel4.setFont(labelRemark);
+                     jLabel6.setFont(labelRemark);
+                     jLabel3.setFont(labelRemark);
+                     jLabel5.setFont(labelRemark);
+//            Font font1 = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
+//            Font  formFont = font1.deriveFont(1,20f);
+                   
+             Font  font20 = font2.deriveFont(1,20f);
+                         jLabelorgcode.setFont(font20 );
+                     orgnamelabel.setFont(font20 );
+                      casenocc.setFont(font20 );
+                     caseyearscc.setFont(font20 );
+                      casenocc1.setFont(font20 );
+                     casenocc3.setFont(font20 );
+                      caseyearscc1.setFont(font20 );
+                      jButtonConCrime.setFont(font20 );
+                      jButton3.setFont(font20 );
+                      jButtonConTraffic.setFont(font20 );
+                      jButton7.setFont(font20 );
+//                     jLabel10.setFont(labelother);
+//                     jLabel11.setFont(labelother);
+//                     jLabel12.setFont(labelother);
+                     
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
         jLabel2.setVisible(false);
         jPanel7.setVisible(true);
         jTableCrime.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -449,23 +514,24 @@ jlabeltoken.setVisible(true);
         jPanel7.setPreferredSize(new java.awt.Dimension(1000, 135));
         jPanel7.setRequestFocusEnabled(false);
 
+        casenocc.setFont(new java.awt.Font("TH SarabunPSK", 0, 16)); // NOI18N
         casenocc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 casenoccKeyTyped(evt);
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel7.setText("เลขคดี");
 
-        jLabel8.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel8.setText("ปี");
 
-        jLabel9.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel9.setText("วันที่รับคดี");
         jLabel9.setPreferredSize(new java.awt.Dimension(57, 30));
 
-        jLabel11.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel11.setText("ถึงวันที่");
         jLabel11.setPreferredSize(new java.awt.Dimension(39, 30));
 
@@ -493,11 +559,12 @@ jlabeltoken.setVisible(true);
             .addGap(0, 35, Short.MAX_VALUE)
         );
 
-        jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel10.setText("รหัสสถานี :");
 
-        jLabelorgcode.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabelorgcode.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
+        caseyearscc.setFont(new java.awt.Font("TH SarabunPSK", 0, 16)); // NOI18N
         caseyearscc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 caseyearsccKeyTyped(evt);
@@ -530,10 +597,10 @@ jlabeltoken.setVisible(true);
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jLabel14.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel14.setText("วันที่รับแจ้ง");
 
-        jLabel15.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel15.setText("ถึงวันที่");
 
         jButtonConCrime.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
@@ -544,32 +611,35 @@ jlabeltoken.setVisible(true);
             }
         });
 
-        jLabel25.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel25.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel25.setText("สถานะคดี : ระหว่างสอบสวน");
 
-        orgnamelabel.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        orgnamelabel.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
+        caseyearscc1.setFont(new java.awt.Font("TH SarabunPSK", 0, 16)); // NOI18N
         caseyearscc1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 caseyearscc1KeyTyped(evt);
             }
         });
 
+        casenocc1.setFont(new java.awt.Font("TH SarabunPSK", 0, 16)); // NOI18N
         casenocc1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 casenocc1KeyTyped(evt);
             }
         });
 
-        jLabel16.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel16.setText("ระหว่างเลขคดี");
 
-        jLabel17.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel17.setText("ปี");
 
-        jLabel18.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel18.setText("ถึงเลขคดี");
 
+        casenocc3.setFont(new java.awt.Font("TH SarabunPSK", 0, 16)); // NOI18N
         casenocc3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 casenocc3KeyTyped(evt);
@@ -600,7 +670,7 @@ jlabeltoken.setVisible(true);
             }
         });
 
-        jLabel28.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
         jLabel28.setText("สถานี :");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -609,7 +679,7 @@ jlabeltoken.setVisible(true);
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addGap(4, 4, 4)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -645,18 +715,17 @@ jlabeltoken.setVisible(true);
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel28))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel7Layout.createSequentialGroup()
-                                        .addComponent(orgnamelabel, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel25))
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addComponent(caseyearscc, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(jCheckCaseTwo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel16)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel16))
+                                    .addComponent(orgnamelabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel7Layout.createSequentialGroup()
                                         .addComponent(casenocc1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel18)
@@ -665,14 +734,16 @@ jlabeltoken.setVisible(true);
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(caseyearscc1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(caseyearscc1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel25)))))
                     .addGroup(jPanel7Layout.createSequentialGroup()
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelorgcode, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 349, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabelorgcode, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(548, 548, 548)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
                 .addComponent(jButtonConCrime)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -722,7 +793,7 @@ jlabeltoken.setVisible(true);
                         .addContainerGap(38, Short.MAX_VALUE))))
         );
 
-        jTableCrime.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jTableCrime.setFont(new java.awt.Font("Times New Roman", 0, 22)); // NOI18N
         jTableCrime.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -740,8 +811,6 @@ jlabeltoken.setVisible(true);
             }
         });
         jTableCrime.setRowHeight(25);
-        jTableCrime.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
-        jTableCrime.getTableHeader().setOpaque(false);
         jScrollPane2.setViewportView(jTableCrime);
         if (jTableCrime.getColumnModel().getColumnCount() > 0) {
             jTableCrime.getColumnModel().getColumn(5).setResizable(false);
@@ -764,10 +833,10 @@ jlabeltoken.setVisible(true);
         jLabel12.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jLabel12.setText("จำนวนคดีทั้งหมด");
 
-        jLabel4.setFont(new java.awt.Font("TH SarabunPSK", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("TH SarabunPSK", 0, 18)); // NOI18N
         jLabel4.setText("**กรณีที่มีการเลือกคดีจากระบบ CRIMES ซ้ำกับคดีที่มีอยู่ในโปรแกรม หากทำการยืนยันการดึงข้อมูลคดี ");
 
-        jLabel5.setFont(new java.awt.Font("TH SarabunPSK", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("TH SarabunPSK", 0, 18)); // NOI18N
         jLabel5.setText("ข้อมูลคดีจากระบบ CRIMES จะแทนที่ข้อมูลเดิมทั้งหมดของคดีที่ได้ทำการเลือก");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -1130,7 +1199,6 @@ jlabeltoken.setVisible(true);
             }
         });
         jTableTraffic.setRowHeight(25);
-        jTableTraffic.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
         jTableTraffic.getTableHeader().setOpaque(false);
         jScrollPane3.setViewportView(jTableTraffic);
         if (jTableTraffic.getColumnModel().getColumnCount() > 0) {
@@ -2914,6 +2982,7 @@ jlabeltoken.setVisible(true);
                         pst.setString(3, err.getElementsByTagName("CrimeCaseNo").item(0).getTextContent());
                         pst.setString(4,  err.getElementsByTagName("CrimeCaseYear").item(0).getTextContent());
                         pst.setString(5,  err.getElementsByTagName("CaseNo").item(0).getTextContent());
+                        System.out.println("DATE ???:"+NewDate( err.getElementsByTagName("CaseRequestDate").item(0).getTextContent()));
                         pst.setString(6,  NewDate( err.getElementsByTagName("CaseRequestDate").item(0).getTextContent())); 
                         pst.setString(7,   NewTime(err.getElementsByTagName("CaseRequestDate").item(0).getTextContent()));         
                         pst.setString(8, NewDate( err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
@@ -5276,7 +5345,9 @@ jlabeltoken.setVisible(true);
         Date date = inputFormat.parse(dateold);
        
         String formattedDate = outputFormat.format(date);
-              return   formattedDate;
+        Date newdate=outputFormat.parse(formattedDate);
+        String dateThai= outputFormat.format(newdate);
+              return   dateThai;
         }
       }
        public static String NewTime(String dateold) throws Exception{

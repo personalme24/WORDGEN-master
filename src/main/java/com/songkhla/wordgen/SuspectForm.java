@@ -18,6 +18,7 @@ import static com.songkhla.wordgen.CrimesCaseEdit.jTextAccused;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.ItemSelectable;
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
@@ -27,6 +28,7 @@ import java.awt.event.ItemListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,6 +88,96 @@ public class SuspectForm extends javax.swing.JDialog {
             ImageIcon img = new ImageIcon("D://Master//WD.png");
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
+            try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                  Font  sizedFont = font.deriveFont(1,28f);
+                     jLabel4.setFont(sizedFont);
+                  Font  title24 = font.deriveFont(1,24f);
+                      jLabel31.setFont(title24);
+                      jLabel28.setFont(title24);
+
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel35.setFont(labelother);
+                     jCheckInjured.setFont(labelother);
+                     jCheckDead.setFont(labelother);
+                     jRadioButton6.setFont(labelother);
+                     jRadioButton7.setFont(labelother);
+                      jLabel5.setFont(labelother);
+                     jLabel2.setFont(labelother);
+                     jLabel1.setFont(labelother);
+                     jLabel6.setFont(labelother);
+                     jLabel7.setFont(labelother);
+                     jLabel11.setFont(labelother);
+                     jLabel9.setFont(labelother);
+                     jLabel10.setFont(labelother);
+                     jLabel8.setFont(labelother);
+                     jLabel12.setFont(labelother);
+                     jLabel19.setFont(labelother);
+                     jLabel18.setFont(labelother);
+                     jLabel16.setFont(labelother);
+                     jLabel17.setFont(labelother);
+                     jLabel20.setFont(labelother);
+                     jLabel15.setFont(labelother);
+                     jLabel26.setFont(labelother);
+                     jLabel29.setFont(labelother);
+                     jLabel25.setFont(labelother);
+                     jLabel14.setFont(labelother);
+                     jLabel38.setFont(labelother);
+                     jLabel21.setFont(labelother);
+                     jLabel30.setFont(labelother);
+                     jLabel42.setFont(labelother);
+                     jLabel43.setFont(labelother);
+                     jLabel22.setFont(labelother);
+                     jLabel23.setFont(labelother);
+                     jLabel27.setFont(labelother);
+                     jLabel24.setFont(labelother);
+                     jLabel32.setFont(labelother);
+                     jLabel33.setFont(labelother);
+                     jLabel34.setFont(labelother);
+                     jLabelArrestEnd.setFont(labelother);
+                     jRadioCantCatch.setFont(labelother);
+                     jRadioWithdrawComplaint.setFont(labelother);
+                     jRadioSue.setFont(labelother);
+                       jRadioRelease.setFont(labelother);
+                     jRadioFreeze.setFont(labelother);
+                     jRadioOther.setFont(labelother);
+                     jRadioRestore.setFont(labelother);
+                     jRadioStatus1.setFont(labelother);
+                     jRadioStatus2.setFont(labelother);
+                     jLabelStatusSuspect.setFont(labelother);
+                     jLabel3.setFont(labelother);
+                     jCheckBail.setFont(labelother);
+                     jLabelBailDate.setFont(labelother);
+                     jLabel39.setFont(labelother);
+                     jLabel44.setFont(labelother);
+                     jRadioButton1.setFont(labelother);
+                     jRadioButton2.setFont(labelother);
+                     jRadioButton3.setFont(labelother);
+                     jRadioButton4.setFont(labelother);
+                     jRadioButton5.setFont(labelother);
+                    jLabelRate.setFont(labelother);
+                     jLabelArrestPlace.setFont(labelother);
+                     jLabelArrestTambon.setFont(labelother);
+                     jLabelArrestAmphur.setFont(labelother);
+                     jLabelArrestProvince.setFont(labelother);
+                     jLabelArrestDate.setFont(labelother);
+                     jLabelArrTime.setFont(labelother);
+                     jLabelRestoreDate.setFont(labelother);
+                     jLabelFreezeOrg.setFont(labelother);
+                     jLabelFreezeDate.setFont(labelother);                    
+                     jLabel13.setFont(labelother);   
+                     
+                     BtAddAnswer.setFont(labelother);
+                     jButtonInjuryOrDie.setFont(labelother);
+                     BtSaveAccused.setFont(labelother);
+                      jButton1.setFont(labelother);
+                      jButtonSue.setFont(labelother);
+                      jButtonBail.setFont(labelother);
+
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
                        jButtonBail.setVisible(false);
            jButtonSue.setVisible(false);
      jLabel36.setVisible(false);
@@ -669,6 +761,8 @@ public class SuspectForm extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jButtonSue = new javax.swing.JButton();
         jButtonBail = new javax.swing.JButton();
+        jRadioButton6 = new javax.swing.JRadioButton();
+        jRadioButton7 = new javax.swing.JRadioButton();
         jPanel5 = new javax.swing.JPanel();
         jLabelArrestPlace = new javax.swing.JLabel();
         PlaceArrest = new javax.swing.JTextField();
@@ -788,7 +882,7 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel5.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel5.setText("ชื่อ-สกุล");
 
-        FullNamePerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FullNamePerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel1.setText("วันที่ออกบัตร");
@@ -799,7 +893,7 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel7.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel7.setText("ชื่อสกุลอื่น");
 
-        OtherName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OtherName.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         OtherName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OtherNameActionPerformed(evt);
@@ -809,17 +903,17 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel11.setText("ชื่อภาษาอังกฤษ");
 
-        FullNamePersonEn.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FullNamePersonEn.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel9.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel9.setText("เลขหนังสือเดินทาง");
 
-        PassportNumber.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PassportNumber.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel10.setText("วันเกิด");
 
-        Age.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Age.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Age.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AgeActionPerformed(evt);
@@ -834,10 +928,10 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel12.setText("สัญชาติ");
 
-        Nationality.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Nationality.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Nationality.setText("ไทย");
 
-        Race.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Race.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Race.setText("ไทย");
 
         jLabel18.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -849,12 +943,12 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel16.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel16.setText("สูง");
 
-        Height.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Height.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel17.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel17.setText("น้ำหนัก");
 
-        Weight.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Weight.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel20.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel20.setText("หมู่โลหิต");
@@ -862,28 +956,28 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel15.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel15.setText("เพศ");
 
-        Gender.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Gender.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ชาย", "หญิง", "ไม่ระบุ" }));
 
         jLabel14.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel14.setText("อาชีพ");
 
-        Occupation.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Occupation.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel26.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel26.setText("ชื่อบิดา");
 
-        FatherFullName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FatherFullName.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel29.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel29.setText("ชื่อมารดา");
 
-        MotherFullName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        MotherFullName.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel25.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel25.setText("หมายเลขโทรศัพท์");
 
-        PhonePerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PhonePerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jPanelIssueDate.setBackground(new java.awt.Color(255, 255, 255));
         jPanelIssueDate.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -930,7 +1024,7 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel19.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel19.setText("เชื้อชาติ");
 
-        Moo.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Moo.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel21.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel21.setText("บ้านเลขที่");
@@ -941,7 +1035,7 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel32.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel32.setText("เคยต้องโทษ");
 
-        ZipCode.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        ZipCode.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         ZipCode.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 ZipCodeKeyTyped(evt);
@@ -951,11 +1045,11 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel24.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel24.setText("รหัสไปรษณีย์");
 
-        StatusSueAndPutInJail.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        StatusSueAndPutInJail.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        HouseNumber.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        HouseNumber.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        Tambon.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Tambon.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Tambon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TambonActionPerformed(evt);
@@ -967,7 +1061,7 @@ public class SuspectForm extends javax.swing.JDialog {
             }
         });
 
-        Amphur.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Amphur.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Amphur.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 AmphurKeyReleased(evt);
@@ -977,7 +1071,7 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel22.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel22.setText("แขวง/ตำบล");
 
-        Identification.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Identification.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel23.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel23.setText("เขต/อำเภอ");
@@ -994,7 +1088,7 @@ public class SuspectForm extends javax.swing.JDialog {
         });
 
         SusConfress.setEditable(true);
-        SusConfress.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        SusConfress.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         SusConfress.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "รับสารภาพ", "ปฏิเสธ", "ภาคเสธ" }));
         SusConfress.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1002,7 +1096,7 @@ public class SuspectForm extends javax.swing.JDialog {
             }
         });
 
-        Province.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Province.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel27.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel27.setText("จังหวัด");
@@ -1010,10 +1104,10 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel30.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel30.setText("หมู่ที่");
 
-        jLabel35.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel35.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jLabel35.setText("ผู้ต้องหาคนที่");
 
-        OrderPerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OrderPerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jComboBoxListName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -1022,14 +1116,14 @@ public class SuspectForm extends javax.swing.JDialog {
 
         ArrestDateTimeEnd.setEditable(false);
         ArrestDateTimeEnd.setBackground(new java.awt.Color(255, 255, 255));
-        ArrestDateTimeEnd.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        ArrestDateTimeEnd.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         ArrestDateTimeEnd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ArrestDateTimeEndActionPerformed(evt);
             }
         });
 
-        BloodGroup.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        BloodGroup.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         BloodGroup.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { " ", "A", "B", "AB", "O", "A Rh-", "B Rh-", "AB Rh-", "O Rh-" }));
 
         jLabelNameArrest.setText("ผู้จับกุม");
@@ -1043,7 +1137,7 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel38.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel38.setText("ที่ทำงาน ตำแหน่ง หน้าที่");
 
-        OccupationPosition.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OccupationPosition.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jCheckInjured.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jCheckInjured.setText("บาดเจ็บ");
@@ -1089,7 +1183,7 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel2.setText("เลขบัตรประชาชน");
 
-        PeopleRegistrationID.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PeopleRegistrationID.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         PeopleRegistrationID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 PeopleRegistrationIDKeyTyped(evt);
@@ -1107,12 +1201,12 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabel42.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel42.setText("ถนน");
 
-        Road.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Road.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel43.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel43.setText("ซอย");
 
-        Soi.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Soi.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jButton1.setFont(new java.awt.Font("TH SarabunPSK", 1, 20)); // NOI18N
         jButton1.setText("อ่านข้อมูลจากบัตร");
@@ -1137,6 +1231,10 @@ public class SuspectForm extends javax.swing.JDialog {
                 jButtonBailActionPerformed(evt);
             }
         });
+
+        jRadioButton6.setText("เด็ก-เยาวชน");
+
+        jRadioButton7.setText("ผู้ใหญ่");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -1235,10 +1333,10 @@ public class SuspectForm extends javax.swing.JDialog {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(AnswerPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabelArrestEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(AnswerPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelArrestEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(ArrestDateTimeEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelNameArrest)
@@ -1249,9 +1347,16 @@ public class SuspectForm extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel40))
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel25)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(PhonePerson, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel25)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(PhonePerson, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel38)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(OccupationPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1263,17 +1368,18 @@ public class SuspectForm extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButtonInjuryOrDie)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButton6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButton7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(WhereSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
                                 .addComponent(DateSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
                                 .addComponent(CauseSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(10, 10, 10)
-                                .addComponent(TimeSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel38)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(OccupationPosition, javax.swing.GroupLayout.PREFERRED_SIZE, 595, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(TimeSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)))
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1347,7 +1453,9 @@ public class SuspectForm extends javax.swing.JDialog {
                         .addComponent(OrderPerson, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jCheckInjured, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jCheckDead, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonInjuryOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonInjuryOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRadioButton6)
+                        .addComponent(jRadioButton7))
                     .addComponent(WhereSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(DateSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(CauseSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1491,7 +1599,7 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabelArrestPlace.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabelArrestPlace.setText("สถานที่จับกุม");
 
-        PlaceArrest.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PlaceArrest.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         PlaceArrest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 PlaceArrestActionPerformed(evt);
@@ -1574,10 +1682,10 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabelRate.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabelRate.setText("อัตราโทษจำคุก");
 
-        RatePrison.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        RatePrison.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         RatePrison.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ไม่เกิน 10 ปี", "ตั้งแต่ 10 ปีขึ้นไป" }));
 
-        CourtSuspect.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        CourtSuspect.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         CourtSuspect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ศาลแขวง", "ศาลอาญา/ศาลจังหวัด", "ศาลเยาวชนและครอบครัว", "ศาลทหาร", " " }));
         CourtSuspect.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -1602,7 +1710,7 @@ public class SuspectForm extends javax.swing.JDialog {
             .addGap(0, 32, Short.MAX_VALUE)
         );
 
-        Attach.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Attach.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabelFreezeDate.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabelFreezeDate.setText("วันที่อายัดตัว");
@@ -1695,7 +1803,7 @@ public class SuspectForm extends javax.swing.JDialog {
             }
         });
 
-        StatusSuspectOther.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        StatusSuspectOther.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabelStatusSuspect.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabelStatusSuspect.setText("อื่นๆ");
@@ -1805,7 +1913,7 @@ public class SuspectForm extends javax.swing.JDialog {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(157, 157, 157)
                 .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1824,21 +1932,21 @@ public class SuspectForm extends javax.swing.JDialog {
         jLabelArrestProvince.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabelArrestProvince.setText("จังหวัด");
 
-        PlaceArrestTambon.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PlaceArrestTambon.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         PlaceArrestTambon.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 PlaceArrestTambonKeyReleased(evt);
             }
         });
 
-        PlaceArrestAmphur.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PlaceArrestAmphur.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         PlaceArrestAmphur.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 PlaceArrestAmphurKeyReleased(evt);
             }
         });
 
-        PlaceArrestProvince.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PlaceArrestProvince.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel39.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel39.setText("เลขที่คำร้องขอหมายจับ");
@@ -3922,6 +4030,8 @@ public static String Checknull(Object input){
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JRadioButton jRadioButton5;
+    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRadioButton7;
     private javax.swing.JRadioButton jRadioCantCatch;
     private javax.swing.JRadioButton jRadioFreeze;
     private javax.swing.JRadioButton jRadioOther;

@@ -699,13 +699,13 @@ jTableSue.getColumnModel().getColumn(12).setMinWidth(120);
         String newFormatDate=null;
        try{   Calendar cal;
        Locale lc = new Locale("th","TH");
-        SimpleDateFormat formatdate =new SimpleDateFormat("yyyy/MM/d");     
+        SimpleDateFormat formatdate =new SimpleDateFormat("yyyy/MM/d",lc);     
         if(DateSue != null && !"".equals(DateSue)){
         Date b=formatdate.parse(DateSue);
          cal = Calendar.getInstance();
           cal.setTime(b); 
           System.out.println("fffffff : "+cal.getTime());
-           SimpleDateFormat dateformat =new SimpleDateFormat("d/MM/yyyy");   
+           SimpleDateFormat dateformat =new SimpleDateFormat("d/MM/yyyy",lc);   
          newFormatDate=dateformat.format(cal.getTime()); 
         
         }

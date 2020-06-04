@@ -71,11 +71,12 @@ public class AccusedForm extends javax.swing.JDialog {
      JDatePickerImpl IssueDate,ExpiredDate,BirthDay;
      public static JDatePickerImpl DateSendInjuredOrDie;
      ArrayList<String> personname=new ArrayList<String>();
-     Font font,sizedFont;
+//     Font font,sizedFont;
 //     private JComboBox<String> comboBox;
     /**
      * Creates new form AccusedForm
      */
+
     public AccusedForm(JFrame parrent,JSONObject datain,JSONObject datacase) {
         super(parrent,true);
         initComponents();  
@@ -83,10 +84,44 @@ public class AccusedForm extends javax.swing.JDialog {
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
             try{
-                   font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
-                     sizedFont = font.deriveFont(1,22f);
-                     jLabel28.setFont(sizedFont);
-                     jLabel5.setFont(sizedFont);
+               Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+                Font   labelName = font.deriveFont(22f);
+                     jLabel5.setFont(labelName);
+                     jLabel28.setFont(labelName);
+                     jLabel2.setFont(labelName);
+                     jCheckInjured.setFont(labelName);
+                     jCheckDead.setFont(labelName);
+                     jLabel7.setFont(labelName);
+                     jLabel9.setFont(labelName);
+                     jLabel1.setFont(labelName);
+                      jLabel6.setFont(labelName);
+                     jLabel8.setFont(labelName);
+                     jLabel18.setFont(labelName);
+                     jLabel12.setFont(labelName);
+                     jLabel13.setFont(labelName);
+                     jLabel16.setFont(labelName);
+                     jLabel17.setFont(labelName);
+                     jLabel20.setFont(labelName);
+                      jLabel15.setFont(labelName);
+                     jLabel14.setFont(labelName);
+                     jLabel31.setFont(labelName);
+                     jLabel26.setFont(labelName);
+                     jLabel29.setFont(labelName);
+                     jLabel25.setFont(labelName);
+                     jLabel21.setFont(labelName);
+                     jLabel30.setFont(labelName);
+                     jLabel22.setFont(labelName);
+                     jLabel23.setFont(labelName);
+                     jLabel27.setFont(labelName);
+                     jLabel24.setFont(labelName);
+                     jLabel4.setFont(labelName);
+                     jLabel19.setFont(labelName);
+                     jLabel11.setFont(labelName);
+                     BtSaveAccused.setFont(labelName);
+                     jButton2.setFont(labelName);
+                     jButton1.setFont(labelName);
+                     jButtonInjuryOrDie.setFont(labelName);
+                     
             }
             catch(Exception x){
                 System.out.println("Error Font:"+x);
@@ -485,11 +520,11 @@ UtilDateModel model5 = new UtilDateModel();
             }
         });
 
-        FullNamePerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FullNamePerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        OtherName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OtherName.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        FullNamePersonEn.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FullNamePersonEn.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel8.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel8.setText("อายุ");
@@ -497,7 +532,7 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel10.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel10.setText("วันเกิด");
 
-        Age.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Age.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Age.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 AgeKeyTyped(evt);
@@ -507,7 +542,7 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel11.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel11.setText("ชื่อภาษาอังกฤษ");
 
-        Nationality.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Nationality.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Nationality.setText("ไทย");
 
         jLabel12.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
@@ -516,7 +551,7 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel13.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel13.setText("เชื้อชาติ");
 
-        Race.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Race.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Race.setText("ไทย");
         Race.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -527,7 +562,7 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel14.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel14.setText("อาชีพ");
 
-        Gender.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Gender.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ชาย", "หญิง", "ไม่ระบุ" }));
         Gender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -535,7 +570,7 @@ UtilDateModel model5 = new UtilDateModel();
             }
         });
 
-        Occupation.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Occupation.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         //Occupation = new HintTextField("หากเป็นตำรวจ รับราชการตำรวจ");
         Occupation.setToolTipText("");
 
@@ -545,18 +580,18 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel16.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel16.setText("สูง");
 
-        Religion.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Religion.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Religion.setText("พุทธ");
 
         jLabel17.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel17.setText("น้ำหนัก");
 
-        Height.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Height.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel18.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel18.setText("ศาสนา");
 
-        Weight.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Weight.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel7.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel7.setText("ชื่อสกุลอื่น");
@@ -588,20 +623,20 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel27.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel27.setText("จังหวัด");
 
-        HouseNumber.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        HouseNumber.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        FatherFullName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        FatherFullName.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        MotherFullName.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        MotherFullName.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        PhonePerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PhonePerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jLabel30.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel30.setText("หมู่ที่");
 
-        Moo.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Moo.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
-        Tambon.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Tambon.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Tambon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TambonActionPerformed(evt);
@@ -613,14 +648,14 @@ UtilDateModel model5 = new UtilDateModel();
             }
         });
 
-        Amphur.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Amphur.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Amphur.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 AmphurKeyReleased(evt);
             }
         });
 
-        ZipCode.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        ZipCode.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         ZipCode.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ZipCodeActionPerformed(evt);
@@ -632,7 +667,7 @@ UtilDateModel model5 = new UtilDateModel();
             }
         });
 
-        Province.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        Province.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         Province.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ProvinceActionPerformed(evt);
@@ -646,7 +681,7 @@ UtilDateModel model5 = new UtilDateModel();
         jPanelBirthDay.setLayout(jPanelBirthDayLayout);
         jPanelBirthDayLayout.setHorizontalGroup(
             jPanelBirthDayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 231, Short.MAX_VALUE)
+            .addGap(0, 223, Short.MAX_VALUE)
         );
         jPanelBirthDayLayout.setVerticalGroup(
             jPanelBirthDayLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -684,10 +719,10 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel19.setFont(new java.awt.Font("TH SarabunPSK", 1, 22));
         jLabel19.setText("คนที่");
 
-        jLabel28.setFont(sizedFont);
+        jLabel28.setFont(new java.awt.Font("TH SarabunPSK", 0, 18)); // NOI18N
         jLabel28.setText("ผู้กล่าวหา");
 
-        OrderPerson.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OrderPerson.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         comboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -706,7 +741,7 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel31.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel31.setText("ที่ทำงาน ตำแหน่ง หน้าที่");
 
-        OccupationPosition.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        OccupationPosition.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         OccupationPosition.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 OccupationPositionActionPerformed(evt);
@@ -774,7 +809,7 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel2.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel2.setText("เลขบัตรประชาชน");
 
-        PeopleRegistrationID.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PeopleRegistrationID.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         PeopleRegistrationID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 PeopleRegistrationIDKeyTyped(evt);
@@ -784,7 +819,7 @@ UtilDateModel model5 = new UtilDateModel();
         jLabel9.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel9.setText("เลขหนังสือเดินทาง");
 
-        PassportNumber.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        PassportNumber.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
 
         jButton1.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jButton1.setText("คำให้การ");
@@ -882,8 +917,8 @@ UtilDateModel model5 = new UtilDateModel();
                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(8, 8, 8)
                                 .addComponent(Gender, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Occupation, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -937,8 +972,8 @@ UtilDateModel model5 = new UtilDateModel();
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton2))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(53, 53, 53)
                                         .addComponent(Nationality, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -946,13 +981,12 @@ UtilDateModel model5 = new UtilDateModel();
                                         .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(Race, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addGap(413, 413, 413)
                                         .addComponent(jPanelBirthDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(Height, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1081,7 +1115,7 @@ UtilDateModel model5 = new UtilDateModel();
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         PhonePerson.getAccessibleContext().setAccessibleName("");

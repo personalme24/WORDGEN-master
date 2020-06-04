@@ -22,7 +22,7 @@ public class CreateTable {
          
 	        // SQLite connection string
 	       Connection cc= ConnectDatabase.connect();
-               
+   
 //             String url = "jdbc:sqlite:D://db/SR2.db";
 	        String sqlLogin = "CREATE TABLE IF NOT EXISTS User (\n"+
                                "   IdUSer	INTEGER	Primary Key AUTOINCREMENT,	\n"+        
@@ -761,6 +761,22 @@ String [] insertCharge={
 	     */
 	    public static void main(String[] args) {
 	        createNewTable();
+                	       Connection cc= ConnectDatabase.connect();
+
+              String addTable="ALTER TABLE Person ADD COLUMN TypeChild VARCHAR(100);";
+	        try ( 
+                        Statement stmt = cc.createStatement()) {
+	            // create a new table
+                   
+	              stmt.execute(addTable);
+
+                       stmt.close();
+                    System.out.println("Add Table Complete");
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+                
+                
 //                InsertBaseData();
 	    }
     

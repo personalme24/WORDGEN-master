@@ -5,6 +5,8 @@
  */
 package com.songkhla.wordgen;
 
+import java.awt.Font;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,6 +36,20 @@ public class AnswerPersonForm extends javax.swing.JDialog {
             ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+              try{
+                  Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
+          
+                 Font  labelother = font.deriveFont(1,22f);
+                     jLabel1.setFont(labelother);
+                     jButton3.setFont(labelother);
+                     jButton1.setFont(labelother);
+                     jButton2.setFont(labelother);
+
+
+               }
+            catch(Exception x){
+                System.out.println("Error Font:"+x);
+            }
          AnswerTypeCase.setVisible(false);
           AnswerTypePerson.setVisible(false);
         typePerson=datacase.get("TypePerson")+"";
@@ -82,7 +98,7 @@ public class AnswerPersonForm extends javax.swing.JDialog {
         AnswerDetail.setTabSize(1);
         jScrollPane1.setViewportView(AnswerDetail);
 
-        jButton1.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jButton1.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jButton1.setText("ตกลง");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +106,7 @@ public class AnswerPersonForm extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jButton2.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jButton2.setText("เพิ่มคำให้การ");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,7 +114,7 @@ public class AnswerPersonForm extends javax.swing.JDialog {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jButton3.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jButton3.setText("เลือกคำให้การ");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,7 +122,7 @@ public class AnswerPersonForm extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jLabel1.setText("คำให้การ");
 
         AnswerTypeCase.setText("คดี");
