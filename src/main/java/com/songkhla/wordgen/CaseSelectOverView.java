@@ -4366,8 +4366,8 @@ jlabeltoken.setVisible(true);
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
                             + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,Related,FullNamePersonEn,BailDate)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,BloodGroup)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
@@ -4537,7 +4537,7 @@ jlabeltoken.setVisible(true);
                    else{
                    pst2.setString(55,"");
                    }
-                
+                 pst2.setString(56," ");
 
                      pst2.execute();
                      pst2.close();  
@@ -4881,13 +4881,13 @@ jlabeltoken.setVisible(true);
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
         String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
-                             + " CourtSuspect,Related)\n"
+                             + " CourtSuspect,Related,BloodGroup)\n"
 //                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
 //                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
 //                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
 //                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Moo)\n"
 //                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,,?,?,?)";  
-                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
+                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
   
               String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
@@ -4941,7 +4941,7 @@ jlabeltoken.setVisible(true);
                     pd.setString(17,CheckNull(p, "Tambon"));
                     pd.setString(18,CheckNull(p, "Province"));
                       pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                    pd.setString(20,"");
+                    pd.setString(20," ");
 
                       pd.execute();
                      pd.close();  
@@ -5009,7 +5009,7 @@ jlabeltoken.setVisible(true);
 ////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
                   pst2.setString(17,"");
               pst2.setString(18,NewStatusRelate(CheckNull(p, "Traffice_TypeOfPersonCase")));
-
+             pst2.setString(19," ");
 //                  if(p.getElementsByTagName("Sue").item(0) != null){
 //                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
 //                    pst2.setString(18,CheckNullSue(p, "SueSeq",1));

@@ -195,28 +195,28 @@ jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScre
         jTableSue.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jTableSue.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "เลขคดี", "คดี", "ผู้ต้องหา", "ครั้งที่ 1", "ครั้งที่ 2", "ครั้งที่ 3", "ครั้งที่ 4", "ครั้งที่ 5", "ครั้งที่ 6", "ครั้งที่ 7"
+                "เลขคดี", "คดี", "ผู้ต้องหา", "ครั้งที่ 1", "ครั้งที่ 2", "ครั้งที่ 3", "ครั้งที่ 4", "ครั้งที่ 5", "ครั้งที่ 6", "ครั้งที่ 7", ""
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -543,7 +543,7 @@ jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScre
         String sql;
                 sql=    "select CaseId,crimecasenoyear,CaseType,StatusSuspect,CaseIdPerson,SueFirstDate,SueSecDate,CourtSuspect,"
                         + "SueThirdDate,SueFourthDate,SueFifthDate,SueSixthDate,SueSevenDate,"
-                        + "FullNamePerson,SueFirstEnd,SueSecEnd,SueThirdEnd,SueFourthEnd,SueFifthEnd,SueSixthEnd,SueSevenEnd\n"
+                        + "FullNamePerson,SueFirstEnd,SueSecEnd,SueThirdEnd,SueFourthEnd,SueFifthEnd,SueSixthEnd,SueSevenEnd,TypeChild\n"
                         + "from Person\n"+
                         "left join CrimeCase on Person.CaseIdPerson=CrimeCase.CaseId ";
                     if(jComboBoxSue.getSelectedItem().equals("ทั้งหมด")){
@@ -610,6 +610,7 @@ jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScre
              row.add(rs.getString("CaseType"));
             row.add(rs.getString("crimecasenoyear"));
             row.add(rs.getString("FullNamePerson"));
+           row.add(rs.getString("TypeChild"));
             row.add(rs.getString("CourtSuspect"));            
             row.add(rs.getString("StatusSuspect"));
             row.add(ChangFormat(rs.getString("SueFirstEnd")));
@@ -628,6 +629,7 @@ jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScre
          ColumnName.add("ประเภทคดี");
          ColumnName.add("เลขคดี"); 
          ColumnName.add("ผู้ต้องหา"); 
+         ColumnName.add("ประเภทผู้ต้องหา"); 
          ColumnName.add("ศาล");  
          ColumnName.add("สถานะ");              
          ColumnName.add("ครั้งที่ 1 ครบ");         
@@ -655,7 +657,7 @@ jTableSue.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScre
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, 
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, 
                 java.lang.String.class, java.lang.String.class, java.lang.String.class,
-                java.lang.String.class
+                java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -672,16 +674,18 @@ jTableSue.getColumnModel().getColumn(0).setMaxWidth(0);
 
 jTableSue.getColumnModel().getColumn(1).setMinWidth(80);                
 jTableSue.getColumnModel().getColumn(3).setMinWidth(125);
-jTableSue.getColumnModel().getColumn(4).setMinWidth(135);
-jTableSue.getColumnModel().getColumn(5).setMinWidth(100);
+jTableSue.getColumnModel().getColumn(4).setMinWidth(125);
 
-jTableSue.getColumnModel().getColumn(6).setMinWidth(120);
+jTableSue.getColumnModel().getColumn(5).setMinWidth(135);
+jTableSue.getColumnModel().getColumn(6).setMinWidth(100);
+
 jTableSue.getColumnModel().getColumn(7).setMinWidth(120);
 jTableSue.getColumnModel().getColumn(8).setMinWidth(120);
 jTableSue.getColumnModel().getColumn(9).setMinWidth(120);
 jTableSue.getColumnModel().getColumn(10).setMinWidth(120);
 jTableSue.getColumnModel().getColumn(11).setMinWidth(120);
 jTableSue.getColumnModel().getColumn(12).setMinWidth(120);
+jTableSue.getColumnModel().getColumn(13).setMinWidth(120);
 
 
     }

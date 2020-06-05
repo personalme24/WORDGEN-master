@@ -10,6 +10,8 @@ import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseid;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseno;
 import static com.songkhla.wordgen.CrimesCaseEdit.jLabelChargeCode;
 import static com.songkhla.wordgen.CrimesCaseEdit.jTextAccused;
+import static com.songkhla.wordgen.SuspectForm.Checknull;
+//import static com.songkhla.wordgen.SuspectForm.Checknull;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -198,7 +200,8 @@ public class WitnessForm extends javax.swing.JDialog {
             Age.setText(Checknull(datain.get("Age"))+"");
             Amphur.setText(Checknull(datain.get("Amphur"))+"");
             BirthDay.getJFormattedTextField().setText(Checknull(datain.get("BirthDay"))+"");
-            BloodGroup.setSelectedItem(Checknull(datain.get("BloodGroup"))+"");
+//              System.out.println("BloodGroup:"+datain.get("BloodGroup"));
+             BloodGroup.setSelectedItem(Checknull(datain.get("BloodGroup"))+"");
             ExpiredDate.getJFormattedTextField().setText(Checknull(datain.get("ExpiredDate"))+"");
             FatherFullName.setText(Checknull(datain.get("FatherFullName"))+"");
             FullNamePersonEn.setText(Checknull(datain.get("FullNamePersonEn"))+"");
@@ -249,6 +252,7 @@ public class WitnessForm extends javax.swing.JDialog {
             isInsert=true;
           
         }
+
  try {
               Connection con2 = ConnectDatabase.connect();
 	Statement st = con2.createStatement();
@@ -1814,10 +1818,10 @@ public class WitnessForm extends javax.swing.JDialog {
     
     
     }
-        public static String Checknull(Object input){
-					if(input==null||input==""||input=="null") { return ""; }
-					return input+"";
-					}
+public static String Checknull(Object input){
+	if(input==null||input==""||input=="null") { return ""; }
+	return input+"";
+}
       public static String DateCard(String dateC) throws Exception{
      
      

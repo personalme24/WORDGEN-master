@@ -349,7 +349,8 @@ public class SuspectForm extends javax.swing.JDialog {
             Age.setText(Checknull(datain.get("Age"))+"");
             Amphur.setText(Checknull(datain.get("Amphur"))+"");
             BirthDay.getJFormattedTextField().setText(Checknull(datain.get("BirthDay"))+"");
-            BloodGroup.setSelectedItem(Checknull(datain.get("BloodGroup"))+"");
+
+             BloodGroup.setSelectedItem(Checknull(datain.get("BloodGroup"))+"");
             ExpiredDate.getJFormattedTextField().setText(Checknull(datain.get("ExpiredDate"))+"");
             FatherFullName.setText(Checknull(datain.get("FatherFullName"))+"");
             FullNamePersonEn.setText(Checknull(datain.get("FullNamePersonEn"))+"");
@@ -1233,11 +1234,13 @@ public class SuspectForm extends javax.swing.JDialog {
             }
         });
 
-        jRadioChild.setText("เด็ก-เยาวชน");
+        jRadioChild.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jRadioChild.setText("เด็กและเยาวชน");
 
         jLabel45.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jLabel45.setText("ประเภท");
 
+        jRadioAdult.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jRadioAdult.setText("ผู้ใหญ่");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -1375,17 +1378,16 @@ public class SuspectForm extends javax.swing.JDialog {
                                 .addComponent(jLabel45)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jRadioAdult)
-                                .addGap(0, 0, 0)
-                                .addComponent(jRadioChild)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(WhereSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jRadioChild)
                                 .addGap(10, 10, 10)
-                                .addComponent(DateSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(CauseSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(10, 10, 10)
-                                .addComponent(TimeSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(28, 28, 28)))
+                                .addComponent(WhereSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(DateSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(CauseSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(TimeSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap())
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1463,10 +1465,11 @@ public class SuspectForm extends javax.swing.JDialog {
                         .addComponent(jRadioChild)
                         .addComponent(jLabel45)
                         .addComponent(jRadioAdult))
-                    .addComponent(WhereSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(DateSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(CauseSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TimeSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(CauseSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(DateSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(WhereSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(TimeSendInjuredOrDie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -2323,7 +2326,7 @@ public class SuspectForm extends javax.swing.JDialog {
                     InsertPerson();
                     CheckBail(IdPersonLast());
 //                    System.out.println("SQL : "+sql);
-//                    setVisible(false);
+                    setVisible(false);
                 }
 
             } catch (Exception e) {

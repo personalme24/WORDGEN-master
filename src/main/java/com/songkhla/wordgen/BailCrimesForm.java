@@ -60,7 +60,7 @@ public class BailCrimesForm extends javax.swing.JDialog {
         ChargeName.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
             ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
              try{
                   Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
                   Font  sizedFont = font.deriveFont(1,28f);
@@ -342,8 +342,8 @@ jTableBail.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScr
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1190, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(AddEditBail, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(904, 904, 904)
+                        .addComponent(AddEditBail, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(872, 872, 872)
                         .addComponent(jCheckOnly)))
                 .addGap(41, 41, 41))
         );

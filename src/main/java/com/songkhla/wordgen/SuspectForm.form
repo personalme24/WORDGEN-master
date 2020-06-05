@@ -313,17 +313,16 @@
                                       <Component id="jLabel45" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Component id="jRadioAdult" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                      <Component id="jRadioChild" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="WhereSendInjuredOrDie" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Component id="DateSendInjuredOrDie" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
-                                      <Component id="CauseSendInjuredOrDie" min="-2" pref="20" max="-2" attributes="0"/>
-                                      <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
+                                      <Component id="jRadioChild" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
+                                      <Component id="WhereSendInjuredOrDie" min="-2" pref="4" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="DateSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="CauseSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
                                       <Component id="TimeSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -422,10 +421,12 @@
                               <Component id="jLabel45" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioAdult" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="WhereSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
-                          <Component id="DateSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
-                          <Component id="CauseSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
-                          <Component id="TimeSendInjuredOrDie" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="CauseSendInjuredOrDie" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="DateSendInjuredOrDie" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="WhereSendInjuredOrDie" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="TimeSendInjuredOrDie" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                       <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -1425,7 +1426,10 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioChild">
               <Properties>
-                <Property name="text" type="java.lang.String" value="&#xe40;&#xe14;&#xe47;&#xe01;-&#xe40;&#xe22;&#xe32;&#xe27;&#xe0a;&#xe19;"/>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="TH SarabunPSK" size="22" style="0"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="&#xe40;&#xe14;&#xe47;&#xe01;&#xe41;&#xe25;&#xe30;&#xe40;&#xe22;&#xe32;&#xe27;&#xe0a;&#xe19;"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel45">
@@ -1438,6 +1442,9 @@
             </Component>
             <Component class="javax.swing.JRadioButton" name="jRadioAdult">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="TH SarabunPSK" size="22" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="&#xe1c;&#xe39;&#xe49;&#xe43;&#xe2b;&#xe0d;&#xe48;"/>
               </Properties>
             </Component>

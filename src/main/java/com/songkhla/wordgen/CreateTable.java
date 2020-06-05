@@ -615,7 +615,23 @@ public class CreateTable {
 
                 
 	    }
-	 
+	   public static void AlterDataBase() {
+            Connection cc= ConnectDatabase.connect();
+
+              String addTable="ALTER TABLE Person ADD COLUMN TypeChild VARCHAR(100);";
+	        try ( 
+                        Statement stmt = cc.createStatement()) {
+	            // create a new table
+                   
+	              stmt.execute(addTable);
+
+                       stmt.close();
+                    System.out.println("Add Table Complete");
+	        } catch (SQLException e) {
+	            System.out.println(e.getMessage());
+	        }
+                
+           }
           public static void InsertBaseData() {
 //                InsertBaseData.Insert();
 	        // SQLite connection string
@@ -761,21 +777,7 @@ String [] insertCharge={
 	     */
 	    public static void main(String[] args) {
 	        createNewTable();
-                	       Connection cc= ConnectDatabase.connect();
-
-              String addTable="ALTER TABLE Person ADD COLUMN TypeChild VARCHAR(100);";
-	        try ( 
-                        Statement stmt = cc.createStatement()) {
-	            // create a new table
-                   
-	              stmt.execute(addTable);
-
-                       stmt.close();
-                    System.out.println("Add Table Complete");
-	        } catch (SQLException e) {
-	            System.out.println(e.getMessage());
-	        }
-                
+                	      
                 
 //                InsertBaseData();
 	    }

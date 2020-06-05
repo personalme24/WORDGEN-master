@@ -26,6 +26,11 @@ import javax.swing.UIManager;
  */
 public class LoginAuthen {
     public static void main(String[] args) {
+           CreateTable.createNewTable();      
+        CreateTable.InsertBaseData();
+        CreateTable.AlterDataBase();
+        InsertBaseData.Insert();
+        InsertBaseData.insertTambon();
     Connection con=null;
     PreparedStatement pst=null;
         System.out.println(getMotherboardSerial());
