@@ -42,6 +42,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -2561,6 +2563,7 @@ jlabeltoken.setVisible(true);
                row.add("");
                }
                else{
+                  System.out.println("Dateeeeeeeeeeeeeeeeeeeeee:"+eElement.getElementsByTagName("CaseRequestDate").item(0).getTextContent().replace("1)", ""));
                     row.add(NewDate(eElement.getElementsByTagName("CaseRequestDate").item(0).getTextContent().replace("1)", "")));
                }
                if(eElement.getElementsByTagName("DisplayCharge").item(0)==null){
@@ -5334,19 +5337,27 @@ jlabeltoken.setVisible(true);
       }
      public static String NewDate(String dateold) throws Exception{
          Locale lc = new Locale("th","TH");
-         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("d/MM/yyyy",lc);
+         DateTimeFormatter  inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateTimeFormatter outputFormat =DateTimeFormatter.ofPattern("d/MM/yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("d/MM/yyyy",new Locale("th", "TH"));
+       
           if(dateold.equals("")){
               String a="";
         return   a;
         
         }
-        else{
-        Date date = inputFormat.parse(dateold);
-       
-        String formattedDate = outputFormat.format(date);
-        Date newdate=outputFormat.parse(formattedDate);
-        String dateThai= outputFormat.format(newdate);
+        else{  
+              LocalDateTime dateTime = LocalDateTime.parse(dateold, inputFormat);
+             dateTime = dateTime.plusYears(543);
+             
+            String dateThai = dateTime.format(outputFormat);
+//        Date date = inputFormat.parse(dateTime.plusYears(543););
+//  
+//        String formattedDate = outputFormat.format(date);
+//              System.out.println("DateNewwwwwwwwwwwww:"+formattedDate);
+//        Date newdate=outputFormat.parse(formattedDate);
+//        
+//        String dateThai= dateFormat.format(newdate);
               return   dateThai;
         }
       }
