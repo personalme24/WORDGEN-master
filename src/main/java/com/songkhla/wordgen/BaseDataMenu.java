@@ -27,7 +27,7 @@ public class BaseDataMenu extends javax.swing.JDialog {
         initComponents();
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
-        setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES) BETA");
+        setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES)");
         try{
                   Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun.ttf"));
                   Font  sizedFont = font.deriveFont(1,36f);

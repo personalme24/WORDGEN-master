@@ -55,7 +55,7 @@ public class ChargePage extends javax.swing.JDialog {
         initComponents();
          ImageIcon img = new ImageIcon("D://Master//WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
         caseno.setVisible(false);
          typecase=dataid.get("typecase")+"";
           try{

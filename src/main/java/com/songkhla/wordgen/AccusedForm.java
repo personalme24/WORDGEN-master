@@ -82,7 +82,7 @@ public class AccusedForm extends javax.swing.JDialog {
         initComponents();  
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
             try{
                Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
                 Font   labelName = font.deriveFont(22f);
@@ -1376,7 +1376,7 @@ UtilDateModel model5 = new UtilDateModel();
          JFrame frame = new JFrame();
         JDialog dialog = new JDialog(frame);//frame is owner
         JFrame in = (JFrame)(dialog.getParent());
-        in.removeAll();
+        frame.removeAll();
     AnswerPersonForm rf =new AnswerPersonForm(in,type);
         rf.pack();
         rf.setLocationRelativeTo(null);

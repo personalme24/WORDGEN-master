@@ -59,7 +59,7 @@ public class MainMenuWord extends javax.swing.JFrame {
 //        checkdata();
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
-       setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry)");
+       setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) Version 1.1");
                try{
                   Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
                   Font  sizedFont = font.deriveFont(1,28f);

@@ -42,7 +42,7 @@ public class PersonOverView extends javax.swing.JDialog {
         initComponents();
           ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
  
         jTable1.setOpaque(false);

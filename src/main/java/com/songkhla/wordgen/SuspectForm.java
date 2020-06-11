@@ -88,6 +88,7 @@ public class SuspectForm extends javax.swing.JDialog {
             ImageIcon img = new ImageIcon("D://Master//WD.png");
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
+            
             try{
                   Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
                   Font  sizedFont = font.deriveFont(1,28f);
@@ -303,7 +304,10 @@ public class SuspectForm extends javax.swing.JDialog {
         w.add(jRadioButton2);
         w.add(jRadioButton3);
         w.add(jRadioButton4);
-        w.add(jRadioButton5);      
+        w.add(jRadioButton5);    
+        ButtonGroup tchild=new ButtonGroup();    
+        tchild.add(jRadioAdult);
+        tchild.add(jRadioChild);
            FullNamePerson.addCaretListener(new TextFieldSusListener());
           jComboBoxListName.addActionListener(new ComboBoxActionListener());
 //           jRadioStatus1.setEnabled(false);
@@ -525,7 +529,7 @@ public class SuspectForm extends javax.swing.JDialog {
                      
 
         }else{
-
+            jRadioAdult.setSelected(true);
 //           crimecaseno.setText(ListSuspect.txtCaseNO.getText());
             isInsert=true;
             jLabel36.setText(datacase.get("CaseId")+"");

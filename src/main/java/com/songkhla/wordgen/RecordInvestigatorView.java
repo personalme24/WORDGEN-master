@@ -35,7 +35,7 @@ public class RecordInvestigatorView extends javax.swing.JDialog {
         initComponents();
          ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
+            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry)");
         caseIdRec=datain.get("CaseIdRec")+"";
         TypeCase=datain.get("TypeCase")+"";
       try{

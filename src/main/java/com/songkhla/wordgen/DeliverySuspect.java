@@ -47,7 +47,7 @@ public class DeliverySuspect extends javax.swing.JDialog {
         initComponents();
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
-        setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
+        setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry)");
         personid=dataId.get("BailPersonId")+"";
         jLabel2.setText(personid);
         jLabel2.setVisible(false);
