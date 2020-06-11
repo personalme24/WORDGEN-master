@@ -93,6 +93,7 @@ import com.songkhla.document.W93;
 import com.songkhla.document.W96;
 import com.songkhla.document.W97;
 import com.songkhla.document.W98;
+import com.songkhla.document.W99;
 import static com.songkhla.wordgen.ListAccused.jTableAccure;
 import static com.songkhla.wordgen.ListAccused.txtCaseNO;
 import com.sun.javafx.applet.Splash;
@@ -818,6 +819,7 @@ JTextPopupMenu.addTo(CourtResult);
         jCheckW279 = new javax.swing.JCheckBox();
         jCheckW297 = new javax.swing.JCheckBox();
         jCheckW296 = new javax.swing.JCheckBox();
+        jCheckW299 = new javax.swing.JCheckBox();
         jPanel16 = new javax.swing.JPanel();
         jCheckW246 = new javax.swing.JCheckBox();
         jCheckW245 = new javax.swing.JCheckBox();
@@ -2495,6 +2497,15 @@ JTextPopupMenu.addTo(CourtResult);
             }
         });
 
+        jCheckW299.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW299.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW299.setText("แบบรายงานเหตุอุกฉกรรจ์และสะเทือนขวัญ");
+        jCheckW299.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW299ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -2505,15 +2516,16 @@ JTextPopupMenu.addTo(CourtResult);
                     .addComponent(jCheckW241, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW242, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW265, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckW297, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckW297, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckW296, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckW299, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW224, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW221, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW223, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW222, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW279, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
-            .addComponent(jCheckW296, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2541,7 +2553,9 @@ JTextPopupMenu.addTo(CourtResult);
                     .addComponent(jCheckW279)
                     .addComponent(jCheckW297))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckW296)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckW296)
+                    .addComponent(jCheckW299))
                 .addContainerGap())
         );
 
@@ -4120,6 +4134,10 @@ JTextPopupMenu.addTo(CourtResult);
     private void jCheckW296ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW296ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckW296ActionPerformed
+
+    private void jCheckW299ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW299ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW299ActionPerformed
      private void yourAttemptActionPerformed() {
 
 
@@ -4466,6 +4484,9 @@ JTextPopupMenu.addTo(CourtResult);
                     }
                if(jCheckW298.isSelected()){
                         W98.w98(no);
+                    }
+               if(jCheckW299.isSelected()){
+                        W99.w99(no);
                     }
             }
         } catch (InterruptedException e) {
@@ -5219,6 +5240,10 @@ if(OccuredDate.getJFormattedTextField().getText().equals("23/8/2562")){
                        counter++;
 
                     }
+               if(jCheckW299.isSelected()){
+                       counter++;
+
+                    }
                
                System.out.println("c+++++++++++"+counter);
                return counter;
@@ -5475,6 +5500,9 @@ if(OccuredDate.getJFormattedTextField().getText().equals("23/8/2562")){
                     }
                if(jCheckW293.isSelected()){
                    insertDataReport(jCheckW293.getText());
+                    }
+               if(jCheckW299.isSelected()){
+                   insertDataReport(jCheckW299.getText());
                     }
       }
       public void RefreshData(){
@@ -5917,6 +5945,7 @@ jTableWitness.getColumnModel().getColumn(7).setMaxWidth(0);
     private javax.swing.JCheckBox jCheckW296;
     private javax.swing.JCheckBox jCheckW297;
     private javax.swing.JCheckBox jCheckW298;
+    private javax.swing.JCheckBox jCheckW299;
     private javax.swing.JComboBox<Object> jComboPoliceName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

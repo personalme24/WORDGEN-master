@@ -3200,16 +3200,18 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jCheckW240" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jCheckW241" alignment="0" min="-2" pref="445" max="-2" attributes="0"/>
                                           <Component id="jCheckW242" alignment="0" min="-2" pref="445" max="-2" attributes="0"/>
                                           <Component id="jCheckW265" min="-2" pref="475" max="-2" attributes="0"/>
                                           <Component id="jCheckW297" min="-2" pref="350" max="-2" attributes="0"/>
+                                          <Component id="jCheckW296" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jCheckW299" min="-2" pref="350" max="-2" attributes="0"/>
                                           <Component id="jCheckW224" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
                                           <Component id="jCheckW221" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
                                           <Component id="jCheckW223" alignment="0" min="-2" pref="350" max="-2" attributes="0"/>
@@ -3217,7 +3219,6 @@
                                           <Component id="jCheckW279" min="-2" pref="350" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jCheckW296" min="-2" pref="350" max="-2" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
@@ -3252,7 +3253,10 @@
                                           <Component id="jCheckW297" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jCheckW296" min="-2" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="jCheckW296" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jCheckW299" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -3390,6 +3394,20 @@
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckW296ActionPerformed"/>
+                              </Events>
+                            </Component>
+                            <Component class="javax.swing.JCheckBox" name="jCheckW299">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="TH SarabunPSK" size="22" style="0"/>
+                                </Property>
+                                <Property name="text" type="java.lang.String" value="&#xe41;&#xe1a;&#xe1a;&#xe23;&#xe32;&#xe22;&#xe07;&#xe32;&#xe19;&#xe40;&#xe2b;&#xe15;&#xe38;&#xe2d;&#xe38;&#xe01;&#xe09;&#xe01;&#xe23;&#xe23;&#xe08;&#xe4c;&#xe41;&#xe25;&#xe30;&#xe2a;&#xe30;&#xe40;&#xe17;&#xe37;&#xe2d;&#xe19;&#xe02;&#xe27;&#xe31;&#xe0d;"/>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCheckW299ActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
