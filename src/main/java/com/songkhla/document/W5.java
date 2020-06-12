@@ -256,7 +256,7 @@ public class W5 {
                             bookmarkvalue.put("C12", Checknull(s.getString("CrimeLocationDistrict")));
                             bookmarkvalue.put("C13", Checknull(s.getString("CrimeLocationAmphur")));
                             bookmarkvalue.put("C14", Checknull(s.getString("CrimeLocationProvince")));
-                            bookmarkvalue.put("C131", ToDate(s.getString("OccuredDateEnd")));
+                            bookmarkvalue.put("C131", getThaiNumber(ToDate(s.getString("OccuredDateEnd"))));
                             bookmarkvalue.put("C132", ReplaceCollon(s.getString("OccuredTimeEnd")));
                             
                            
