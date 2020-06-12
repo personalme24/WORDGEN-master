@@ -3232,8 +3232,8 @@ jlabeltoken.setVisible(true);
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
                             + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,Related,FullNamePersonEn,BailDate)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,TypeChild)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
@@ -3400,7 +3400,17 @@ jlabeltoken.setVisible(true);
                    else{
                    pst2.setString(55,"");
                    }
-                
+                  if(CheckNull(p, "DisplayLevelDecision")!=null){
+                     if(NewCourtProvince(CheckNull(p, "DisplayLevelDecision")).equals("ศาลเยาวชนและครอบครัว")){
+                         pst2.setString(56,"ศาลเด็กและเยาวชน");
+                     }
+                     else{
+                       pst2.setString(56,"ผู้ใหญ่");
+                     }
+                     }
+                 else{
+                  pst2.setString(56,"");
+                 }
 
                      pst2.execute();
                      pst2.close();  
@@ -4369,8 +4379,8 @@ jlabeltoken.setVisible(true);
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
                             + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,BloodGroup)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,BloodGroup,TypeChild)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
@@ -4541,8 +4551,18 @@ jlabeltoken.setVisible(true);
                    pst2.setString(55,"");
                    }
                  pst2.setString(56," ");
-
-                     pst2.execute();
+                 if(CheckNull(p, "DisplayLevelDecision")!=null){
+                     if(NewCourtProvince(CheckNull(p, "DisplayLevelDecision")).equals("ศาลเยาวชนและครอบครัว")){
+                         pst2.setString(57,"ศาลเด็กและเยาวชน");
+                     }
+                     else{
+                       pst2.setString(57,"ผู้ใหญ่");
+                     }
+                     }
+                 else{
+                  pst2.setString(57,"");
+                 }
+                    pst2.execute();
                      pst2.close();  
                      
                //       =----- ----- --------------------Bail------------------------------------------

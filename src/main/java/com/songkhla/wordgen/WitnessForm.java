@@ -70,7 +70,7 @@ public class WitnessForm extends javax.swing.JDialog {
         initComponents();  
           ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
                try{
                Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
                 Font   titleName = font.deriveFont(28f);

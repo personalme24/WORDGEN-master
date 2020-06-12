@@ -155,7 +155,7 @@ public class ReportAllForm extends javax.swing.JDialog {
          //jCheckW5.setSelected(true);
          //jCheckW6.setSelected(true);
         crimecaseno .setVisible(false);
-        jButtonPrintDoc2.setEnabled(false);
+//        jButtonPrintDoc2.setEnabled(false);
 //     TextAttribute.WEIGHT_SEMIBOLD=1;
 
  try{

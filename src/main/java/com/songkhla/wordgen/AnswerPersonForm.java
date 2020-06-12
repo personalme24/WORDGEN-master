@@ -6,6 +6,9 @@
 package com.songkhla.wordgen;
 
 import java.awt.Font;
+import java.awt.Rectangle;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +24,7 @@ import org.json.simple.JSONObject;
  *
  * @author Computer
  */
-public class AnswerPersonForm extends javax.swing.JDialog {
+public class AnswerPersonForm extends javax.swing.JDialog{
 
     /**
      * Creates new form AnswerPersonForm
@@ -29,10 +32,24 @@ public class AnswerPersonForm extends javax.swing.JDialog {
     String typecase,typePerson;
         Connection con=null;
     PreparedStatement pst=null;
+
     public AnswerPersonForm(JFrame parrent,JSONObject datacase) {
     super(parrent,true);
-    
+
         initComponents();
+//         final int h = getHeight();
+//        addComponentListener(new ComponentAdapter() {
+//
+//            @Override
+//            public void componentResized(ComponentEvent e) {
+//                Rectangle b = getBounds();
+//                if (b.height != h) {
+//                    b.height = h;
+//                    setBounds(b);
+//                }
+//                super.componentResized(e);
+//            }
+//        });
         setResizable(true);
             ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
@@ -91,6 +108,7 @@ public class AnswerPersonForm extends javax.swing.JDialog {
         AnswerTypePerson = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setAutoRequestFocus(false);
 
         AnswerDetail.setColumns(20);
         AnswerDetail.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -145,13 +163,14 @@ public class AnswerPersonForm extends javax.swing.JDialog {
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton3))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(52, 52, 52))
+                    .addComponent(jLabel1))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(49, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 614, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,13 +179,13 @@ public class AnswerPersonForm extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AnswerTypeCase)
                     .addComponent(AnswerTypePerson))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16)
+                .addComponent(jButton3)
+                .addGap(2, 2, 2)
+                .addComponent(jLabel1)
                 .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 364, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -181,7 +200,9 @@ public class AnswerPersonForm extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();

@@ -411,7 +411,7 @@ public class SueCrimesFrom extends javax.swing.JDialog {
             SueSevenEnd.setText(CalculateDateEnd(SevDate.getText(), SueSevenTotal.getText()));
             SueSevRequest.setSelectedIndex(1);
                 }
-                     if(TypeChild.equals("เด็กและเยาวชน")&&Court.equals("ศาลเยาวชนและครอบครัว")&&(stSuspect.equals("ผัดฟ้องฝากขัง")||stSuspect.equals("ผัดฟ้อง"))){
+                     if((TypeChild.equals("เด็กและเยาวชน")||Court.equals("ศาลเยาวชนและครอบครัว"))&&(stSuspect.equals("ผัดฟ้องฝากขัง")||stSuspect.equals("ผัดฟ้อง"))){
             SueFirst.setText("1");
             SueFirstDate.setText(arrestDate);
             SueFirstTotal.setText("30");
@@ -2140,7 +2140,7 @@ SueFirstCause.setEnabled(true);
        SueFifthCause.setEnabled(false);
        Print5.setEnabled(false);
        }
-        if(Court.equals("ศาลเยาวชนและครอบครัว")&&TypeChild.equals("เด็กและเยาวชน"))
+        if(Court.equals("ศาลเยาวชนและครอบครัว")||TypeChild.equals("เด็กและเยาวชน"))
        {
        SueSeventh.setEnabled(false);
        SevDate.setEnabled(false);

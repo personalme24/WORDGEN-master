@@ -87,7 +87,7 @@ public class SuspectForm extends javax.swing.JDialog {
          eventJRadioManage();
             ImageIcon img = new ImageIcon("D://Master//WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) BETA");
+            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry)");
             
             try{
                   Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
@@ -331,6 +331,7 @@ public class SuspectForm extends javax.swing.JDialog {
            
 //---------------------------------------------------Data--------------------------------------------
           if(datain!=null){
+              String typeChild=datain.get("TypeChild")+"";
             noPerson=datain.get("NoPerson")+"";
               CheckBail(noPerson);
             isInsert=false;
@@ -341,7 +342,13 @@ public class SuspectForm extends javax.swing.JDialog {
             Gender.setSelectedItem(Checknull(datain.get("Gender")));               
             RatePrison.setSelectedItem(Checknull(datain.get("RatePrison")));            
             caseid=datain.get("caseIdPerson")+"";
-          
+              System.out.println("Childdddddddd:"+typeChild);
+            if(typeChild.equals("เด็กและเยาวชน")){
+                jRadioChild.setSelected(true);
+            }
+            else{
+                 jRadioAdult.setSelected(true);
+            }
            
             jLabel37.setText(Checknull(datain.get("NoPerson"))+"");
             jLabel36.setText(Checknull(datain.get("caseIdPerson"))+"");
@@ -2316,10 +2323,10 @@ public class SuspectForm extends javax.swing.JDialog {
                       pst.setString(54,jRadioButton5.getText());
                          }
                  pst.setString(55,idPerson());
-                 if(jRadioAdult.isSelected()){
+                 if(jRadioChild.isSelected()){
                  pst.setString(56,"เด็กและเยาวชน");
                  }
-                 else if(jRadioChild.isSelected()){
+                 else if(jRadioAdult.isSelected()){
                   pst.setString(56,"ผู้ใหญ่");
                  }
                 int response = JOptionPane.showConfirmDialog(jPanel1, "ต้องการบันทึกข้อมูล", "ยืนยัน",
@@ -2387,7 +2394,7 @@ public class SuspectForm extends javax.swing.JDialog {
              +"PlaceArrestProvince=?,"
              +"OccupationPosition=?,"
              +"CauseSendInjuredOrDie=?,WhereSendInjuredOrDie=?,DateSendInjuredOrDie=?,TimeSendInjuredOrDie=?,StatusInjuryOrDie=?,"       
-            + "OrderPerson=?,Road=?,Soi=?,StatusWarrant=? "
+            + "OrderPerson=?,Road=?,Soi=?,StatusWarrant=?,TypeChild=? "
             + "where NoPerson=? and TypePerson=?   ";
 
             try {
@@ -2510,9 +2517,16 @@ public class SuspectForm extends javax.swing.JDialog {
                   else if(jRadioButton5.isSelected()){
                       pst.setString(54,jRadioButton5.getText());
                          }
-                pst.setString(55,noPerson);
+                 if(jRadioAdult.isSelected()){
+                      pst.setString(55,"ผู้ใหญ่");
+                         }
+                 else if(jRadioChild.isSelected())
+                 {pst.setString(55,"เด็กและเยาวชน");
+                 }
+                 
+                pst.setString(56,noPerson);
 
-                pst.setString(56,"ผู้ต้องหา");
+                pst.setString(57,"ผู้ต้องหา");
 
                 int response = JOptionPane.showConfirmDialog(jPanel1, "ต้องการบันทึกข้อมูล", "ยืนยัน",
                     JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);

@@ -98,6 +98,7 @@ public class RecordInvestigatorForm extends javax.swing.JDialog {
        caseId.setText(RecordInvestigatorView.caseId.getText());
        
        }
+        JTextPopupMenu.addTo(DetailRecord);
     }
 
     /**
