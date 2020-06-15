@@ -146,6 +146,7 @@ public class W47 {
                 bookmarkvalue.put("PA6",  Checknull(s.getString("PassportNumber")));
                 bookmarkvalue.put("PA7",  Checknull(s.getString("FullNamePerson")));
                 bookmarkvalue.put("PA8",  Checknull(s.getString("FullNamePersonEn")));
+                bookmarkvalue.put("PA11", Checknull(ToDate(s.getString("BirthDay"))));
                 bookmarkvalue.put("PA12", Checknull(s.getString("Gender")));
                 bookmarkvalue.put("PA13", Checknull(s.getString("Age")));
                 bookmarkvalue.put("PA14", Checknull(s.getString("Race")));

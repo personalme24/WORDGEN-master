@@ -62,7 +62,9 @@ public class W21 {
              String FirstName ="";
              String LastName ="";
              String Position ="";
-              String namePerson ="";
+             String namePerson ="";
+             String StatusInjuryOrDie="";
+             String TypePerson="";
 
              
              
@@ -90,7 +92,7 @@ public class W21 {
                                     "left join crimecase on Person.caseIdPerson=crimecase.CaseId\n" +
                                     "left join ChargeCase on crimecase.caseid=ChargeCase.ChargeCaseid\n" +
                                     "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
-"where Person.TypePerson='ผู้ตาย' or (Person.StatusInjuryOrDie='ตาย' or Person.StatusInjuryOrDie='บาดเจ็บ') and crimecase.CaseId='"+cc+"'";
+                                    "where Person.TypePerson='ผู้ตาย' or (Person.StatusInjuryOrDie='ตาย' or Person.StatusInjuryOrDie='บาดเจ็บ') and crimecase.CaseId='"+cc+"'";
                  
                    
 //                   pst=conn.prepareStatement(sql);
@@ -98,6 +100,8 @@ public class W21 {
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
+             
+               
             while((s!=null) && (s.next()))
             {  String  
                     cs =s.getString("crimecaseno");
@@ -105,7 +109,9 @@ public class W21 {
                     casetype =s.getString("casetype");
                     caseno  =s.getString("crimecasenoyear");
                     namePerson=s.getString("FullNamePerson");
-                 String Date="";
+                    TypePerson =s.getString("TypePerson");
+                    StatusInjuryOrDie =s.getString("Related");
+                String Date="";
                 String Month="";
                 String Year="";
                 
@@ -124,18 +130,18 @@ public class W21 {
 //                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
 //                System.out.print(" - ");
                  JSONObject bookmarkvalue = new JSONObject();
-//              
+                
                 bookmarkvalue.put("C1",Checknull(Date));
-                 bookmarkvalue.put("C01",Checknull(Month));
+                bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
-                 bookmarkvalue.put("CC2",Checknull(caseno));
+                bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3", Checknull(ccYear));
-                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                 bookmarkvalue.put("S5", Checknull(StationAmphur));
-                 bookmarkvalue.put("S6", Checknull(StationProvince));
-                 bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
-                 bookmarkvalue.put("S10",Checknull(TelStation));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S5", Checknull(StationAmphur));
+                bookmarkvalue.put("S6", Checknull(StationProvince));
+                bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+                bookmarkvalue.put("S10",Checknull(TelStation));
                    
                    bookmarkvalue.put("PD7",Checknull(s.getString("FullNamePerson")));
                    bookmarkvalue.put("PD135", Checknull(ToDate(s.getString("DateSendInjuredOrDie"))));
@@ -145,50 +151,31 @@ public class W21 {
                    bookmarkvalue.put("PD138", Checknull(s.getString("WhereSendInjuredOrDie")));
                    
                          
-                      bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
-                      /*
-                        bookmarkvalue.put("P02", Checknull(RankPolice));
-                        bookmarkvalue.put("P03", Checknull(FirstName));
-                        bookmarkvalue.put("P04", Checknull(LastName));
-                        bookmarkvalue.put("P05", Checknull(Position));
-                        */
-                        bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
-                        bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
-                        bookmarkvalue.put("P04", "");
-                        bookmarkvalue.put("P05", Checknull(s.getString("InvestPosition")));
-                        bookmarkvalue.put("P012", Checknull(s.getString("InvestRankFull"))); //ยศเต็ม
-                        bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
-                            bookmarkvalue.put("C4",Checknull(ToDate(s.getString("OccuredDate"))));
-                            bookmarkvalue.put("C441", ReplaceCollon(s.getString("OccuredTime")));
-                            bookmarkvalue.put("C131", Checknull(ToDate(s.getString("OccuredDateEnd"))));
-                            bookmarkvalue.put("C132", ReplaceCollon(s.getString("OccuredTimeEnd")));
-                          
-                          
+                   bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
                     
-                   
-    
+                   bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
+                   bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
+                   bookmarkvalue.put("P04", "");
+                   bookmarkvalue.put("P05", Checknull(s.getString("InvestPosition")));
+                   bookmarkvalue.put("P012", Checknull(s.getString("InvestRankFull"))); //ยศเต็ม
+                   bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
+                   bookmarkvalue.put("C4",Checknull(ToDate(s.getString("OccuredDate"))));
+                   bookmarkvalue.put("C441", ReplaceCollon(s.getString("OccuredTime")));
+                   bookmarkvalue.put("C131", Checknull(ToDate(s.getString("OccuredDateEnd"))));
+                   bookmarkvalue.put("C132", ReplaceCollon(s.getString("OccuredTimeEnd")));
+                        
+                 
 			JSONArray tablecolumn = new JSONArray();
 			tablecolumn.add("C2");
 			tablecolumn.add("C3");
-//			tablecolumn.add("SUSPECT");
-//			tablecolumn.add("VICTIM");
-//			tablecolumn.add("REMARK");
+
 			JSONArray table1 = new JSONArray();
 			JSONObject row1 = new JSONObject();
 			row1.put("C2",cs);
 			row1.put("C3", ccYear);
-//			row1.put("SUSPECT", "period1");
-//			row1.put("VICTIM", "period1");
-//			row1.put("REMARK", "period1");
+
 			table1.add(row1);
-			
-//			JSONObject repl2 = new JSONObject();
-//			repl2.put("CRIMESNO", "function1");
-//			repl2.put("DESCRIPTION", "desc1");
-//			repl2.put("SUSPECT", "period1");
-//			repl2.put("VICTIM", "period1");
-//			repl2.put("REMARK", "period1");
-//			table1.add(repl2);
+
 		JSONObject tableobj = new JSONObject();
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", table1);
@@ -210,11 +197,14 @@ public class W21 {
 			ex.printStackTrace();
 		}
             }
+                                
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
         
-              
+                
+            
 	}
      
      public static void nw21() {

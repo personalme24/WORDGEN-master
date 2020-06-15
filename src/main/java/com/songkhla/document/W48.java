@@ -145,7 +145,7 @@ public class W48 {
                 bookmarkvalue.put("PS6",  Checknull(s.getString("PassportNumber")));
                 bookmarkvalue.put("PS7",  Checknull(s.getString("FullNamePerson")));
                 bookmarkvalue.put("PS8",  Checknull(s.getString("FullNamePersonEn")));
-                bookmarkvalue.put("PS11", Checknull(s.getString("BirthDay")));
+                bookmarkvalue.put("PS11", Checknull(ToDate(s.getString("BirthDay"))));
                 bookmarkvalue.put("PS12", Checknull(s.getString("Gender")));
                 bookmarkvalue.put("PS13", Checknull(s.getString("Age")));
                 bookmarkvalue.put("PS14", Checknull(s.getString("Race")));

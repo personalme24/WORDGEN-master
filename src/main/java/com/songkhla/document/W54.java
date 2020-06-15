@@ -90,11 +90,12 @@ public class W54 {
                          Position=rs1.getString("Position");
                       }
                   
-                        String sql="select crimecase.*,InvestInformation.*\n" +
+                        String sql="select crimecase.*,Person.*,InvestInformation.*\n" +
                               "from crimecase \n" +
+                              "left join Person on crimecase.CaseId=Person.caseIdPerson\n" +
                               "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
-                              "where crimecase.CaseId='"+cc+"'\n" +
-                              "group by crimecase.CaseId";
+                              "where crimecase.CaseId='"+cc+"'and Person.Related='ผู้แจ้ง' \n" +
+                              "group by crimecase.CaseId,Person.NoPerson";
 
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
@@ -136,18 +137,17 @@ public class W54 {
                 
                
                     
-                    bookmarkvalue.put("PR7",  ""); 
-                    bookmarkvalue.put("PR13", "");
-                    bookmarkvalue.put("PR14", "");
-                    bookmarkvalue.put("PR15", "");
-                    bookmarkvalue.put("PR16", "");
-                    bookmarkvalue.put("PR17", "");
-                    bookmarkvalue.put("PR22", "");
-                    bookmarkvalue.put("PR23", "");
-                    bookmarkvalue.put("PR24", "");
-                    bookmarkvalue.put("PR25", "");
-                    bookmarkvalue.put("PR26", "");
-                    bookmarkvalue.put("PR28", "");
+                    bookmarkvalue.put("PR7",  Checknull(s.getString("FullNamePerson"))); 
+                    bookmarkvalue.put("PR13", Checknull(s.getString("Age")));
+                    bookmarkvalue.put("PR14", Checknull(s.getString("Race")));
+                    bookmarkvalue.put("PR15", Checknull(s.getString("Nationality"))); 
+                    bookmarkvalue.put("PR17", Checknull(s.getString("Occupation"))); 
+                    bookmarkvalue.put("PR22", Checknull(s.getString("HouseNumber"))); 
+                    bookmarkvalue.put("PR23", Checknull(s.getString("Moo"))); 
+                    bookmarkvalue.put("PR24", Checknull(s.getString("Tambon"))); 
+                    bookmarkvalue.put("PR25", Checknull(s.getString("Amphur"))); 
+                    bookmarkvalue.put("PR26", Checknull(s.getString("Province"))); 
+                    bookmarkvalue.put("PR28", Checknull(s.getString("PhonePerson")));
                     bookmarkvalue.put("PR104","");
                     bookmarkvalue.put("PR105","");
                     
