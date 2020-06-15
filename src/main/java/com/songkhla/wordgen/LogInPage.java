@@ -333,6 +333,9 @@ try{
                   else if(statusconnect.equals("1")){
                           yourAttemptActionPerformed();
                   }
+                  else if(statusconnect.equals("2")){
+                        JOptionPane.showMessageDialog(null, "อายุการใช้งานชื่อผู้ใช้ของท่านในระบบ CRIMES หมดอายุ 12กรุณาติดต่อ 1228");            
+                  }
                   }
 //-------------------------Traning-------------------------------------------
 //                    if(username.equals("98UT01")&&password.equals("1234")){

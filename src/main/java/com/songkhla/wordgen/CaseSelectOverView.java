@@ -3232,8 +3232,8 @@ jlabeltoken.setVisible(true);
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
                             + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,TypeChild)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,TypeChild,PlaceArrest)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
@@ -3330,7 +3330,7 @@ jlabeltoken.setVisible(true);
                pst2.setString(13,"");
                }
                else{
-                    pst2.setString(13,NewDateTime(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
+                    pst2.setString(13,NewDate(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
                }  
                pst2.setString(14,  IdCasePerson()); 
           
@@ -3411,7 +3411,7 @@ jlabeltoken.setVisible(true);
                  else{
                   pst2.setString(56,"");
                  }
-
+                  pst2.setString(57,CheckNull(p, "ArrestLocation"));
                      pst2.execute();
                      pst2.close();  
                      
@@ -3557,6 +3557,7 @@ jlabeltoken.setVisible(true);
         Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
          .parse(new InputSource(new StringReader(response.toString())));
 	       NodeList errNodes = doc.getElementsByTagName("Person");
+               NodeList errNodesArr = doc.getElementsByTagName("ArrestAndBailOut");
                NodeList errNodes2 = doc.getElementsByTagName("TrafficCase");       
                NodeList errNodes3 = doc.getElementsByTagName("InvolvedVehicle_TrafficCase");
                NodeList errNodes4 = doc.getElementsByTagName("InvolvedVehicle");
@@ -3735,13 +3736,13 @@ jlabeltoken.setVisible(true);
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
         String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
-                             + " CourtSuspect,Related)\n"
+                             + " CourtSuspect,Related,PlaceArrest)\n"
 //                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
 //                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
 //                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
 //                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Moo)\n"
 //                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,,?,?,?)";  
-                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
+                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
   
               String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
@@ -3843,7 +3844,7 @@ jlabeltoken.setVisible(true);
                pst2.setString(13,"");
                }
                else{
-                    pst2.setString(13,NewDateTime(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
+                    pst2.setString(13,NewDate(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
                }  
                pst2.setString(14,  IdCasePerson()); 
              if (p.getElementsByTagName("StatusSueOrBail").item(0) == null) {
@@ -3862,6 +3863,7 @@ jlabeltoken.setVisible(true);
 ////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
                   pst2.setString(17,"");
                   pst2.setString(18,NewStatusRelate(CheckNull(p, "Traffice_TypeOfPersonCase")));
+                   pst2.setString(19,CheckNull(p, "ArrestLocation"));
 
                   
 //                  if(p.getElementsByTagName("Sue").item(0) != null){
@@ -4379,8 +4381,8 @@ jlabeltoken.setVisible(true);
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
                             + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,BloodGroup,TypeChild)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,BloodGroup,TypeChild,PlaceArrest)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
@@ -4480,7 +4482,7 @@ jlabeltoken.setVisible(true);
                pst2.setString(13,"");
                }
                else{
-                    pst2.setString(13,NewDateTime(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
+                    pst2.setString(13,NewDate(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
                }  
                pst2.setString(14,  IdCasePerson()); 
           
@@ -4562,6 +4564,8 @@ jlabeltoken.setVisible(true);
                  else{
                   pst2.setString(57,"");
                  }
+                   pst2.setString(58,CheckNull(p, "ArrestLocation"));
+
                     pst2.execute();
                      pst2.close();  
                      
@@ -4904,13 +4908,13 @@ jlabeltoken.setVisible(true);
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
         String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
-                             + " CourtSuspect,Related,BloodGroup)\n"
+                             + " CourtSuspect,Related,BloodGroup,PlaceArrest)\n"
 //                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
 //                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
 //                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
 //                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Moo)\n"
 //                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,,?,?,?)";  
-                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
+                                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
   
               String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
@@ -5013,7 +5017,7 @@ jlabeltoken.setVisible(true);
                pst2.setString(13,"");
                }
                else{
-                    pst2.setString(13,NewDateTime(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
+                    pst2.setString(13,NewDate(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
                }  
                pst2.setString(14,  IdCasePerson()); 
              if (p.getElementsByTagName("StatusSueOrBail").item(0) == null) {
@@ -5031,8 +5035,9 @@ jlabeltoken.setVisible(true);
              }
 ////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
                   pst2.setString(17,"");
-              pst2.setString(18,NewStatusRelate(CheckNull(p, "Traffice_TypeOfPersonCase")));
-             pst2.setString(19," ");
+                 pst2.setString(18,NewStatusRelate(CheckNull(p, "Traffice_TypeOfPersonCase")));
+                  pst2.setString(19," ");
+                  pst2.setString(20,CheckNull(p, "ArrestLocation"));
 //                  if(p.getElementsByTagName("Sue").item(0) != null){
 //                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
 //                    pst2.setString(18,CheckNullSue(p, "SueSeq",1));
@@ -5339,22 +5344,22 @@ jlabeltoken.setVisible(true);
         } 
     
     }
-     public static String NewDateTime(String datetimee) throws Exception{
-         Locale lc = new Locale("th","TH");
-         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("d/MM/yyyy HH:mm",lc);
-          if(datetimee.equals("")){
-              String a="";
-        return   a;
-        
-        }
-        else{
-        Date date = inputFormat.parse(datetimee);
-       
-        String formattedDate = outputFormat.format(date);
-              return   formattedDate;
-        }
-      }
+//     public static String NewDateTime(String datetimee) throws Exception{
+//         Locale lc = new Locale("th","TH");
+//         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("d/MM/yyyy HH:mm",lc);
+//          if(datetimee.equals("")){
+//              String a="";
+//        return   a;
+//        
+//        }
+//        else{
+//        Date date = inputFormat.parse(datetimee);
+//       
+//        String formattedDate = outputFormat.format(date);
+//              return   formattedDate;
+//        }
+//      }
      public static String NewDate(String dateold) throws Exception{
          Locale lc = new Locale("th","TH");
          DateTimeFormatter  inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
