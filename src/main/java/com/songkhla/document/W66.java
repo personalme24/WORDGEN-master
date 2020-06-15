@@ -133,7 +133,14 @@ public static void w66(String cc) {
                 bookmarkvalue.put("S10",Checknull(TelStation));
                 bookmarkvalue.put("S18",Checknull(JuvenileCourt));
                 
-                   
+                            bookmarkvalue.put("C8", Checknull(s.getString("CrimeLocation")));
+                            bookmarkvalue.put("C9", Checknull(s.getString("CrimeLocationMoo")));
+                            bookmarkvalue.put("C10", Checknull(s.getString("CrimeLocationSoi")));
+                            bookmarkvalue.put("C11", Checknull(s.getString("CrimeLocationRoad")));
+                            bookmarkvalue.put("C12", Checknull(s.getString("CrimeLocationDistrict")));
+                            bookmarkvalue.put("C13", Checknull(s.getString("CrimeLocationAmphur")));
+                            bookmarkvalue.put("C14", Checknull(s.getString("CrimeLocationProvince")));
+                            bookmarkvalue.put("C15", Checknull(s.getString("DailyNumber")));
 //                   ----------------------------ผู้กล่าวหา--------------------
                
                 
@@ -266,6 +273,14 @@ public static void nw66() {
                 bookmarkvalue.put("S10","");
                 bookmarkvalue.put("S18","");
                    
+                            bookmarkvalue.put("C8", "");
+                            bookmarkvalue.put("C9", "");
+                            bookmarkvalue.put("C10", "");
+                            bookmarkvalue.put("C11", "");
+                            bookmarkvalue.put("C12", "");
+                            bookmarkvalue.put("C13", "");
+                            bookmarkvalue.put("C14", "");
+                            bookmarkvalue.put("C15", "");
 //                   ----------------------------ผู้กล่าวหา--------------------
                
                 

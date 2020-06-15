@@ -95,13 +95,34 @@ public class W62 {
                     ccYear=s.getString("crimecaseyears");
                     casetype =s.getString("casetype");
                     caseno  =s.getString("crimecasenoyear");
+                    
+                String Date="";
+                String Month="";
+                String Year="";
+                String Time="";
+                
+                
+                SimpleDateFormat sdfstart ;
+                Calendar  calstart = Calendar.getInstance();
+                sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
+               Date =sdfstart.format(calstart.getTime());
+              
+               sdfstart = new SimpleDateFormat("MMMM", new Locale("th", "TH"));  
+               Month=sdfstart.format(calstart.getTime());
+               
+               sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
+               Year=sdfstart.format(calstart.getTime());
 
+               sdfstart = new SimpleDateFormat("HH:mm", new Locale("th", "TH"));  
+               Time=sdfstart.format(calstart.getTime());
                     
                  JSONObject bookmarkvalue = new JSONObject();
              
-                
-                
-		bookmarkvalue.put("C2",Checknull(cs));
+                bookmarkvalue.put("C1",Checknull(Date));
+                bookmarkvalue.put("C01",Checknull(Month));
+                bookmarkvalue.put("C001",Checknull(Year));
+                bookmarkvalue.put("C0011",ReplaceCollon(Time));
+                bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
                  bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                   bookmarkvalue.put("CC2",Checknull(caseno));
@@ -174,7 +195,10 @@ public class W62 {
                     
                  JSONObject bookmarkvalue = new JSONObject();
              
-                
+                bookmarkvalue.put("C1","");
+                bookmarkvalue.put("C01","");
+                bookmarkvalue.put("C001","");
+                bookmarkvalue.put("C0011","");
                 bookmarkvalue.put("CC2","");
 		bookmarkvalue.put("C2","");
                 bookmarkvalue.put("C3","");

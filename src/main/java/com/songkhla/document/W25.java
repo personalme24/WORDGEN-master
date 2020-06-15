@@ -57,6 +57,15 @@ public class W25 {
              String FirstName ="";
              String LastName ="";
              String Position ="";
+             String THNumBook="";
+             String HeadName="";
+             String HeadPosition="";
+             String HeadRankFull="";
+             String HeadWorkRankFull="";
+             String HeadRankShort="";
+             String HeadWorkRankShort="";
+             String HeadWorkName="";
+             String HeadWorkPosition="";
              
              
             try {
@@ -68,6 +77,15 @@ public class W25 {
                          PoliceStationName=rs.getString("PoliceStaionName");
                          ProvincProsecutor=rs.getString("ProvincProsecutor");
                          TelStation=rs.getString("TelStation");
+                         THNumBook  =rs.getString("THNumBook");
+                         HeadName =rs.getString("HeadName");
+                         HeadPosition =rs.getString("HeadPosition");
+                         HeadRankFull=rs.getString("HeadRankFull");
+                         HeadWorkRankFull =rs.getString("HeadWorkRankFull");
+                         HeadRankShort =rs.getString("HeadRankShort");
+                         HeadWorkRankShort=rs.getString("HeadWorkRankShort");
+                         HeadWorkName =rs.getString("HeadWorkName");
+                         HeadWorkPosition =rs.getString("HeadWorkPosition");
                       }
             
                     String sqlDataPolice="SELECT * FROM Police";
@@ -140,6 +158,14 @@ public class W25 {
                  bookmarkvalue.put("S6", Checknull(StationProvince));
                  bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
                  bookmarkvalue.put("S10",Checknull(TelStation));
+                 bookmarkvalue.put("S13",Checknull(HeadName));
+                 bookmarkvalue.put("S14",Checknull(HeadPosition));
+                 bookmarkvalue.put("S15",Checknull(HeadWorkName));
+                 bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+                 bookmarkvalue.put("S29",Checknull(THNumBook));
+                 bookmarkvalue.put("S34",Checknull(HeadRankFull));
+                 bookmarkvalue.put("S35",Checknull(HeadRankShort));
+                 bookmarkvalue.put("S36",Checknull(HeadWorkRankFull));
                    
                   bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
                   
@@ -249,6 +275,13 @@ public static void nw25() {
                  bookmarkvalue.put("S6", "");
                  bookmarkvalue.put("S27","");
                  bookmarkvalue.put("S10","");
+                 bookmarkvalue.put("S13","");
+                 bookmarkvalue.put("S14","");
+                 bookmarkvalue.put("S15","");
+                 bookmarkvalue.put("S22","");
+                 bookmarkvalue.put("S34","");
+                 bookmarkvalue.put("S35","");
+                 bookmarkvalue.put("S36","");
                    
                   bookmarkvalue.put("PA7","");
                   
