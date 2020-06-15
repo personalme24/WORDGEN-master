@@ -2962,8 +2962,8 @@ jlabeltoken.setVisible(true);
                        + "VALUES (?,?,?,?)";
           String insertActionsCaseData="insert into ActionsCaseData(ActionCodeCase,ActionCrimesCase,ActionDetailCase,ActionNoteCase,ActionCaseId)\n"
                        + "VALUES (?,?,?,?,?)";
-          String insertAsset="insert into Asset(EvidenceRecordNumber,Name,Amount,Value,StatusAsset,SumValue,caseIdAsset)\n"
-                       + "VALUES (?,?,?,?,?,?,?)";
+          String insertAsset="insert into Asset(EvidenceRecordNumber,Name,Amount,Value,StatusAsset,SumValue,caseIdAsset,Remark)\n"
+                       + "VALUES (?,?,?,?,?,?,?,?)";
        try {            
 //           String[] name=err.getElementsByTagName("DisplaySuspectName").item(0).getTextContent().split("2)");
                         String test="1) นาย มังกร พ่นไฟ ";
@@ -3099,6 +3099,7 @@ jlabeltoken.setVisible(true);
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,"");
                                               pst5.execute();
                                               pst5.close();
                                               }
@@ -3120,6 +3121,8 @@ jlabeltoken.setVisible(true);
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,"");
+
                                               pst5.execute();
                                               pst5.close();
                                 }
@@ -3134,7 +3137,15 @@ jlabeltoken.setVisible(true);
                                     Element p = (Element) nNode;
                                     Element dr = (Element)errNodes8.item(temp);
                                         pst5=conn.prepareStatement(insertAsset);
-                                          String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
+                                         String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
+                                         String[] newAmount1=CheckNull(p,"Amount1").replace(".", ",").split(",");
+
+//                                        if(p.getElementsByTagName("Amount").item(0).getTextContent()!=null){
+//                                         newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
+//                                        }
+//                                        else if(p.getElementsByTagName("Amount1").item(0).getTextContent()!=null){
+//                                         newAmount=CheckNull(p,"Amount1").replace(".", ",").split(",");
+//                                        } 
                                           String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
                                                 pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
                                                 if(errNodes8.getLength()>0){
@@ -3143,12 +3154,21 @@ jlabeltoken.setVisible(true);
                                                 else{
                                                   pst5.setString(2, ""); 
                                                 }
+                                      
+                                             if((p.getElementsByTagName("Amount").item(0).getTextContent().equals("0.0"))&& (!"0.0".equals(p.getElementsByTagName("Amount1").item(0).getTextContent()))){
+                                                pst5.setString(3, newAmount1[0]);
                                              
-                                              pst5.setString(3, newAmount[0]);
+                                             }
+                                             else{
+                                                 pst5.setString(3, newAmount[0]);
+                                             
+                                             }
                                               pst5.setString(4,newValue[0]);     
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,CheckNull(p,"Remark"));
+
                                               pst5.execute();
                                               pst5.close();
                                 }
@@ -3176,6 +3196,7 @@ jlabeltoken.setVisible(true);
                                               pst5.setString(5, "ได้คืน");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,"");
 
                                              pst5.execute();
                                              pst5.close();
@@ -3201,6 +3222,7 @@ jlabeltoken.setVisible(true);
                                               pst5.setString(5, "ประทุษร้าย");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,"");
 
                                              pst5.execute();
                                              pst5.close();
@@ -3392,7 +3414,13 @@ jlabeltoken.setVisible(true);
                     pst2.setString(50,CheckNull(p, "Amphur"));
                     pst2.setString(51,CheckNull(p, "Tambon"));
                     pst2.setString(52,CheckNull(p, "Province"));
+                     if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Victim")){
                     pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
+                   }  
+                    else{  
+                     pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleSuspectType")));
+                    }
+//                    pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
                       pst2.setString(54,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
                    if(errNodesB.getLength()>0){
                        pst2.setString(55,NewDate(CheckNull(br, "RequestDate")));
@@ -4109,8 +4137,8 @@ jlabeltoken.setVisible(true);
                        + "VALUES (?,?,?,?)";
           String insertActionsCaseData="insert into ActionsCaseData(ActionCodeCase,ActionCrimesCase,ActionDetailCase,ActionNoteCase,ActionCaseId)\n"
                        + "VALUES (?,?,?,?,?)";
-          String insertAsset="insert into Asset(EvidenceRecordNumber,Name,Amount,Value,StatusAsset,SumValue,caseIdAsset)\n"
-                       + "VALUES (?,?,?,?,?,?,?)";
+          String insertAsset="insert into Asset(EvidenceRecordNumber,Name,Amount,Value,StatusAsset,SumValue,caseIdAsset,Remark)\n"
+                       + "VALUES (?,?,?,?,?,?,?,?)";
        try {            
 //           String[] name=err.getElementsByTagName("DisplaySuspectName").item(0).getTextContent().split("2)");
                         String test="1) นาย มังกร พ่นไฟ ";
@@ -4246,6 +4274,8 @@ jlabeltoken.setVisible(true);
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,"");
+
                                               pst5.execute();
                                               pst5.close();
                                               }
@@ -4267,6 +4297,8 @@ jlabeltoken.setVisible(true);
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                             pst5.setString(8,"");
+
                                               pst5.execute();
                                               pst5.close();
                                 }
@@ -4283,7 +4315,7 @@ jlabeltoken.setVisible(true);
                        
                                     String[] newAmount=CheckNull(p,"Amount1").replace(".", ",").split(",");
                                           String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
-                                          System.out.println("Druggggggggggggggg:"+newAmount[0]);
+//                                          System.out.println("Druggggggggggggggg:"+newAmount[0]);
                                         pst5=conn.prepareStatement(insertAsset);
                                                 pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
                                                 if(errNodes8.getLength()>0){
@@ -4298,6 +4330,8 @@ jlabeltoken.setVisible(true);
                                                   pst5.setString(5, "ของกลาง");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,CheckNull(p,"Remark"));
+                                              
                                               pst5.execute();
                                               pst5.close();
                                 }
@@ -4325,6 +4359,7 @@ jlabeltoken.setVisible(true);
                                               pst5.setString(5, "ได้คืน");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,"");
 
                                              pst5.execute();
                                              pst5.close();
@@ -4350,6 +4385,7 @@ jlabeltoken.setVisible(true);
                                               pst5.setString(5, "ประทุษร้าย");
                                               pst5.setString(6, "");
                                               pst5.setString(7,IdCasePerson());
+                                              pst5.setString(8,"");
 
                                              pst5.execute();
                                              pst5.close();

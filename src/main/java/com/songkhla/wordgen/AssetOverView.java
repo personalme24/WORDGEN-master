@@ -299,6 +299,8 @@ public class AssetOverView extends javax.swing.JDialog {
                     data.put("Amount", rs.getString("Amount"));
                     data.put("DateSequester", rs.getString("DateSequester"));
                     data.put("DefectMark", rs.getString("DefectMark"));
+                    data.put("Remark", rs.getString("Remark"));
+
                     data.put("Value", rs.getString("Value"));
                        data.put("PlaceFoundExhibit", rs.getString("PlaceFoundExhibit"));
                     data.put("PointFoundCheck", rs.getString("PointFoundCheck"));

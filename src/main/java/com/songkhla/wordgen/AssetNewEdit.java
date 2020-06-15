@@ -107,6 +107,7 @@ public class AssetNewEdit extends javax.swing.JDialog {
             OrderAsset.setText(Checknull(datain.get("OrderAsset"))+"");
             Name.setText(Checknull(datain.get("Name"))+"");
             OccupantName.setText(Checknull(datain.get("OccupantName"))+"");
+            Remark.setText(Checknull(datain.get("Remark"))+"");
             Amount.setText(Checknull(datain.get("Amount"))+"");
             DateSequester.getJFormattedTextField().setText(Checknull(datain.get("DateSequester"))+"");
             DefectMark.setText(Checknull(datain.get("DefectMark"))+"");
