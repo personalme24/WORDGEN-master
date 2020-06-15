@@ -1860,33 +1860,33 @@ catch (Exception d) {  //System.out.println(d);
             ResultSet rs=s.executeQuery(sqlId);
             
             if (rs.next()) {
-                PeopleRegistrationID.setText(rs.getString("PeopleRegistrationID")); 
-                IssueDate.getJFormattedTextField().setText(rs.getString("PassportNumber"));                 
-                Age.setText(rs.getString("Age")); 
-                Amphur.setText(rs.getString("Amphur")); 
+                PeopleRegistrationID.setText(Checknull(rs.getString("PeopleRegistrationID"))); 
+                IssueDate.getJFormattedTextField().setText(Checknull(rs.getString("PassportNumber")));                 
+                Age.setText(Checknull(rs.getString("Age"))); 
+                Amphur.setText(Checknull(rs.getString("Amphur"))); 
                 BloodGroup.setSelectedItem(rs.getString("BloodGroup")); 
                 BirthDay.getJFormattedTextField().setText(Checknull(rs.getString("BirthDay"))); 
-                FatherFullName.setText(rs.getString("FatherFullName")); 
-                FullNamePersonEn.setText(rs.getString("FullNamePersonEn")); 
-                OccupationPosition.setText(rs.getString("OccupationPosition")); 
-                Height.setText(rs.getString("Height")); 
-                Weight.setText(rs.getString("Weight")); 
-                Race.setText(rs.getString("Race")); 
-                Religion.setText(rs.getString("Religion")); 
-                Nationality.setText(rs.getString("Nationality")); 
-                MotherFullName.setText(rs.getString("MotherFullName")); 
+                FatherFullName.setText(Checknull(rs.getString("FatherFullName"))); 
+                FullNamePersonEn.setText(Checknull(rs.getString("FullNamePersonEn"))); 
+                OccupationPosition.setText(Checknull(rs.getString("OccupationPosition"))); 
+                Height.setText(Checknull(rs.getString("Height"))); 
+                Weight.setText(Checknull(rs.getString("Weight"))); 
+                Race.setText(Checknull(rs.getString("Race"))); 
+                Religion.setText(Checknull(rs.getString("Religion"))); 
+                Nationality.setText(Checknull(rs.getString("Nationality"))); 
+                MotherFullName.setText(Checknull(rs.getString("MotherFullName"))); 
                 Gender.setSelectedItem(rs.getString("Gender"));
-                Occupation.setText(rs.getString("Occupation"));
-                PhonePerson.setText(rs.getString("PhonePerson")); 
-                MotherFullName.setText(rs.getString("MotherFullName")); 
-                PassportNumber.setText(rs.getString("PassportNumber")); 
-               ExpiredDate.getJFormattedTextField().setText(rs.getString("ExpiredDate")+"");
-            HouseNumber.setText(rs.getString("HouseNumber")+"");
-            Moo.setText(rs.getString("Moo")+"");
-            Province.setText(rs.getString("Province"));
-            Tambon.setText(rs.getString("Tambon")+"");
-             ZipCode.setText(Checknull(rs.getString("ZipCode"))+"");
-            OtherName.setText(rs.getString("OtherName")+"");
+                Occupation.setText(Checknull(rs.getString("Occupation")));
+                PhonePerson.setText(Checknull(rs.getString("PhonePerson"))); 
+                MotherFullName.setText(Checknull(rs.getString("MotherFullName"))); 
+                PassportNumber.setText(Checknull(rs.getString("PassportNumber"))); 
+               ExpiredDate.getJFormattedTextField().setText(Checknull(rs.getString("ExpiredDate"))+"");
+            HouseNumber.setText(Checknull(rs.getString("HouseNumber")));
+            Moo.setText(Checknull(rs.getString("Moo")));
+            Province.setText(Checknull(rs.getString("Province")));
+            Tambon.setText(Checknull(rs.getString("Tambon")));
+             ZipCode.setText(Checknull(rs.getString("ZipCode")));
+            OtherName.setText(Checknull(rs.getString("OtherName")));
 
 //
 //   

@@ -4580,7 +4580,12 @@ jlabeltoken.setVisible(true);
                     pst2.setString(50,CheckNull(p, "Amphur"));
                     pst2.setString(51,CheckNull(p, "Tambon"));
                     pst2.setString(52,CheckNull(p, "Province"));
+                    if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Victim")){
                     pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
+                   }  
+                    else{  
+                     pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleSuspectType")));
+                    }
                       pst2.setString(54,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
                    if(errNodesB.getLength()>0){
                        pst2.setString(55,NewDate(CheckNull(br, "RequestDate")));
@@ -5569,7 +5574,7 @@ jlabeltoken.setVisible(true);
            else if (sts.equals("Suspect")) {
                 status = "ผู้ต้องหา";
             }
-           else if (sts.equals("Informant")) {
+           else if (sts.equals("Complainer")) {
                 status = "ผู้แจ้ง";
             }
            else if (sts.equals("witness")) {
@@ -5578,7 +5583,7 @@ jlabeltoken.setVisible(true);
            else if (sts.equals("Litigant")) {
                 status = "คู่กรณี";
             }
-           else if (sts.equals("Charger")) {
+           else if (sts.equals("Informant")) {
                 status = "ผู้กล่าวหา";
             }
            else{status = "";}
