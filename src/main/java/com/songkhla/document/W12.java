@@ -49,9 +49,11 @@ public class W12 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-            String ccYear;
-            String casetype;
-            String caseno;
+            String ccYear="";
+            String casetype="";
+            String caseno="";
+            String cs="";
+
             String PoliceStationName="";
             
              String RankPolice ="";
@@ -94,6 +96,18 @@ public class W12 {
                                 "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                                 "where crimecase.CaseId='"+cc+"' and Asset.StatusAsset='ประทุษร้าย'\n" +
                                 "group by crimecase.CaseId,Asset.NoAsset";
+                   String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+            Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
 //                   pst=conn.prepareStatement(sql);
 //           pst=PreparedStatement(sql);
                 Statement st = conn.createStatement();
@@ -103,15 +117,7 @@ public class W12 {
             int OrderAsset=0;
             int SumValue=0;
              JSONArray JSONArray = new JSONArray();
-            
-            
-            
-            while((s!=null) && (s.next()))
-            {  String  cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype=s.getString("casetype");
-                 caseno  =s.getString("crimecasenoyear");
-                String Date="";
+            String Date="";
                 String Month="";
                 String Year="";
                 
@@ -136,6 +142,11 @@ public class W12 {
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
+            
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {  
+                
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                  
                  bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
@@ -217,6 +228,19 @@ public class W12 {
 		
 		
 		try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w12.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บัญชีทรัพย์ถูกประทุษร้าย" +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
+            }
+            else{
+            try {
                   
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w12.docx"));

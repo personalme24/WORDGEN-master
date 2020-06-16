@@ -50,9 +50,10 @@ public static void w70(String cc,String noperson) {
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
             
-            String ccYear;
-            String casetype;
-            String caseno;
+            String ccYear="";
+            String casetype="";
+            String caseno="";
+            String cs="";
             String suspectFullNamePerson="";
              String PoliceStationName="";
              String HeadRankFull ="";
@@ -106,17 +107,25 @@ public static void w70(String cc,String noperson) {
                                 "left join BailAsset on Person.noperson = BailAsset.BailpersonId\n" +
                                 "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                                 "where Person.StatusBail='ประกัน' and CrimeCase.caseid='"+cc+"' and Person.noperson='"+noperson+"'";
-
+                   String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+      Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
                 String VarBA3 = null;
-            while((s!=null) && (s.next()))
-            {  String  cs =s.getString("crimecaseno");
-                 ccYear=s.getString("crimecaseyears");
-                 casetype =s.getString("casetype");
-                 caseno  =s.getString("crimecasenoyear");
-                 suspectFullNamePerson= s.getString("suspectFullNamePerson");
+                JSONObject bookmarkvalue = new JSONObject(); 
                 String Date="";
                 String Month="";
                 String Year="";
@@ -133,7 +142,7 @@ public static void w70(String cc,String noperson) {
                  
 //                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
 //                System.out.print(" - ");
-                 JSONObject bookmarkvalue = new JSONObject();
+               
 //              
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
@@ -141,6 +150,11 @@ public static void w70(String cc,String noperson) {
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
                 bookmarkvalue.put("CC2",Checknull(caseno));
+                if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            { 
+                 suspectFullNamePerson= s.getString("suspectFullNamePerson");
+               
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
@@ -258,6 +272,20 @@ public static void w70(String cc,String noperson) {
 			ex.printStackTrace();
 		}
             }
+                }
+                else{
+                try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w70.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกการเสนอสัญญาประกัน "+cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+                
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

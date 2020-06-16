@@ -49,9 +49,10 @@ public class W13 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-            String ccYear;
-            String casetype;
-            String caseno;
+            String ccYear="";
+            String casetype="";
+            String caseno="";
+            String cs="";
             String PoliceStationName="";
             
              String RankPolice ="";
@@ -96,6 +97,20 @@ public class W13 {
                                 "group by crimecase.CaseId,Asset.NoAsset";
 //                   pst=conn.prepareStatement(sql);
 //           pst=PreparedStatement(sql);
+   String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+      Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+//            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
@@ -103,15 +118,7 @@ public class W13 {
             int OrderAsset=0;
             int SumValue=0;
             JSONArray JSONArray = new JSONArray();
-            
-            
-            
-            while((s!=null) && (s.next()))
-            {  String  cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype=s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
-                String Date="";
+             String Date="";
                 String Month="";
                 String Year="";
                 
@@ -136,6 +143,11 @@ public class W13 {
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
+            
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            { 
+               
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                  
                  bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
@@ -244,6 +256,20 @@ public class W13 {
 		System.out.println(bookmarkvalue.toJSONString());
 		
 		try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w13.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บัญชีทรัพย์ถูกประทุษร้ายได้คืน" +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
+            }
+            else{
+            
+            try {
                   
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w13.docx"));
