@@ -58,7 +58,7 @@ public class W75 {
              String FirstName ="";
              String LastName ="";
              String Position ="";
-             String caseno;
+             String caseno="";
        
             String Date="";
             String Month="";
@@ -107,24 +107,25 @@ public class W75 {
                               "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                               "where crimecase.CaseId='"+cc+"' and Person.Related='ล่าม'\n" +
                               "group by crimecase.CaseId,Person.NoPerson";
-       
+            String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
                    
             
-            
+            Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
             Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
             System.out.println(sql);
-            
-            JSONArray JSONArray = new JSONArray();
-            while((s!=null) && (s.next()))
-            {    
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
-                    suspectName =s.getString("suspectName");
-                    
-                SimpleDateFormat sdfstart ;
+               SimpleDateFormat sdfstart ;
                 Calendar  calstart = Calendar.getInstance();
                 sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
                Date =sdfstart.format(calstart.getTime());
@@ -148,6 +149,18 @@ public class W75 {
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
                 
+            JSONArray JSONArray = new JSONArray();
+           if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {    
+                System.out.println("Yearsssssssssssssssssssss:"+s.getString("crimecaseyears"));
+                    cs =s.getString("crimecaseno");
+                    ccYear=s.getString("crimecaseyears");
+                    casetype =s.getString("casetype");
+                    caseno  =s.getString("crimecasenoyear");
+                    suspectName =s.getString("suspectName");
+                    
+             
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 bookmarkvalue.put("S29",Checknull(THNumBook));
@@ -230,9 +243,7 @@ public class W75 {
 		bookmarkvalue.put("TABLES", TABLES);
 		System.out.println(bookmarkvalue.toJSONString());
 		
-		
-            }
-            try {
+		 try {
                   
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w75.docx"));
@@ -243,6 +254,23 @@ public class W75 {
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}
+            }
+           
+           }
+           else{
+            try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w75.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+                        processTABLE(bookmarkvalue,wordMLPackage);
+              
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกการสอบถามเบื้องต้น(เด็ก)"+cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+           
+           }
             } catch (Exception e) {
                 e.printStackTrace();
             }

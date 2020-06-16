@@ -46,9 +46,10 @@ public class W32 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-             String ccYear;
-             String casetype;
-             String caseno;
+            String cs="";
+             String ccYear="";
+             String casetype="";
+             String caseno="";
              String PoliceStationName="";
              String StationAmphur="";
              String StationProvince="";
@@ -88,18 +89,30 @@ public class W32 {
                                "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                                 "where crimecase.CaseId='"+cc+"' and Person.TypePerson='ผู้ต้องหา' and Person.CourtSuspect='ศาลเยาวชนและครอบครัว'\n"+
                                 "group by crimecase.CaseId";
-                   
+                     String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+      Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
 //                   pst=conn.prepareStatement(sql);
 //           pst=PreparedStatement(sql);
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
+                JSONObject bookmarkvalue = new JSONObject();
+                if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
-            {  String  
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
+            {    
+                   
 //              
                   String Date="";
                 
@@ -113,7 +126,7 @@ public class W32 {
                  
 //                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
 //                System.out.print(" - ");
-                 JSONObject bookmarkvalue = new JSONObject();
+                
              
                 bookmarkvalue.put("C1",Checknull(Date));
                 
@@ -195,6 +208,20 @@ public class W32 {
 			ex.printStackTrace();
 		}
             }
+                }
+                else{
+                	try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w32.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกการจับกุมผู้ต้องหาที่เป็นเด็กหรือเยาวชน" +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+                
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }

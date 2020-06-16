@@ -59,7 +59,7 @@ public class W77 {
              String FirstName ="";
              String LastName ="";
              String Position ="";
-             String caseno;
+             String caseno="";
        
             String Date="";
             String Month="";
@@ -105,22 +105,25 @@ public class W77 {
                               "group by crimecase.CaseId,Person.NoPerson";
        
                    
-            
+              String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+            Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
             
             Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
             System.out.println(sql);
-            
-            JSONArray JSONArray = new JSONArray();
-            while((s!=null) && (s.next()))
-            {    
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
-                    suspectName =s.getString("FullNamePerson");
-            
-                SimpleDateFormat sdfstart ;
+             SimpleDateFormat sdfstart ;
                 Calendar  calstart = Calendar.getInstance();
                 sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
                Date =sdfstart.format(calstart.getTime());
@@ -143,6 +146,14 @@ public class W77 {
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
+            JSONArray JSONArray = new JSONArray();
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {    
+                   
+                    suspectName =s.getString("FullNamePerson");
+            
+               
                 bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
                 bookmarkvalue.put("C4",Checknull(ToDate(s.getString("OccuredDate"))));
                 bookmarkvalue.put("C441", ReplaceCollon(s.getString("OccuredTime")));
@@ -229,10 +240,25 @@ public class W77 {
                         processTABLE(bookmarkvalue,wordMLPackage);
                         
                        
-			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/หนังสือแจ้งการจับกุมเด็กและเยาวชน"+suspectName+""+ cs+"-"+ccYear+".doc"));
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/หนังสือแจ้งการจับกุมเด็กและเยาวชน"+suspectName+" "+ cs+"-"+ccYear+".doc"));
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}
+            }
+            else{
+             try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w77.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+                        processTABLE(bookmarkvalue,wordMLPackage);
+                        
+                       
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/หนังสือแจ้งการจับกุมเด็กและเยาวชน "+ cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
             } catch (Exception e) {
                 e.printStackTrace();
             }

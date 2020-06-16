@@ -49,11 +49,11 @@ public class W5 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-            String ccYear;
-            String cs;
-            String casetype;
+            String ccYear="";
+            String cs="";
+            String casetype="";
              String STATUS;
-             String caseno;
+             String caseno="";
              String CourtSuspect;
              String PoliceStationName="";
              String StationAmphur="";
@@ -141,6 +141,8 @@ public class W5 {
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
+           JSONObject bookmarkvalue = new JSONObject();
+           
             while((s!=null) && (s.next()))
             {    cs =s.getString("crimecaseno");
                ccYear=s.getString("crimecaseyears");
@@ -167,7 +169,7 @@ public class W5 {
                  
 //                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
 //                System.out.print(" - ");
-                 JSONObject bookmarkvalue = new JSONObject();
+//                 JSONObject bookmarkvalue = new JSONObject();
 //              
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
@@ -308,7 +310,9 @@ public class W5 {
 		
 		
 		
-		try {
+		
+                
+            }try {
                   
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w5.docx"));
@@ -322,8 +326,6 @@ public class W5 {
 			ex.printStackTrace();
 //                         JOptionPane.showMessageDialog(null, "ไม่สามารถสร้างไฟล์ได้เนื่องจากไฟล์ถูกเปิดอยู่");
 		}
-                
-            }
             } catch (Exception e) {
                 e.printStackTrace();
                

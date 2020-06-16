@@ -50,9 +50,10 @@ public class W21 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-             String ccYear;
-             String casetype;
-             String caseno;
+             String cs="";
+             String ccYear="";
+             String casetype="";
+             String caseno="";
              String PoliceStationName="";
              String StationAmphur="";
              String StationProvince="";
@@ -93,21 +94,36 @@ public class W21 {
                                     "left join ChargeCase on crimecase.caseid=ChargeCase.ChargeCaseid\n" +
                                     "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                                     "where Person.TypePerson='ผู้ตาย' or (Person.StatusInjuryOrDie='ตาย' or Person.StatusInjuryOrDie='บาดเจ็บ') and crimecase.CaseId='"+cc+"'";
-                 
+                 String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+      Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
                    
 //                   pst=conn.prepareStatement(sql);
 //           pst=PreparedStatement(sql);
-                Statement st = conn.createStatement();
+            Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
-                System.out.println(sql);
-             
-               
+            System.out.println(sql);
+            
+       
+               JSONObject bookmarkvalue = new JSONObject();
+            if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
-            {  String  
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
+            {    
+//                    cs =s.getString("crimecaseno");
+//                    ccYear=s.getString("crimecaseyears");
+//                    casetype =s.getString("casetype");
+//                    caseno  =s.getString("crimecasenoyear");
                     namePerson=s.getString("FullNamePerson");
                     TypePerson =s.getString("TypePerson");
                     StatusInjuryOrDie =s.getString("Related");
@@ -129,14 +145,14 @@ public class W21 {
                  
 //                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
 //                System.out.print(" - ");
-                 JSONObject bookmarkvalue = new JSONObject();
+                 
                 
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
-                bookmarkvalue.put("C3", Checknull(ccYear));
+                bookmarkvalue.put("C3", ccYear);
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S5", Checknull(StationAmphur));
                 bookmarkvalue.put("S6", Checknull(StationProvince));
@@ -185,7 +201,6 @@ public class W21 {
 		bookmarkvalue.put("TABLES", TABLES);
 		System.out.println(bookmarkvalue.toJSONString());
 		
-		
 		try {
                   
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
@@ -196,9 +211,23 @@ public class W21 {
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}
+		
             }
+          
                                 
-                
+            }    
+            else{
+            try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w21.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/ใบนำส่งผู้บาดเจ็บหรือศพ "+cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
             } catch (Exception e) {
                 e.printStackTrace();
             }

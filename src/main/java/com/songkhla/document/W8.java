@@ -51,9 +51,10 @@ public class W8 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-             String ccYear;
-             String casetype;
-             String caseno;
+             String ccYear="";
+             String casetype="";
+             String caseno="";
+             String cs="";
              String Occupation;
              String Related;
              String TypePerson;
@@ -105,21 +106,29 @@ public class W8 {
                                "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                               "where crimecase.CaseId='"+cc+"'and (Person.TypePerson='ผู้กล่าวหา' or Person.TypePerson='พยานและบุคคลอื่นๆ')\n" +
                               "group by crimecase.CaseId,Person.NoPerson";
-                   
+                    String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+      Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
 //                   pst=conn.prepareStatement(sql);
 //           pst=PreparedStatement(sql);
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
-            while((s!=null) && (s.next()))
-            {  String  
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                 caseno  =s.getString("crimecasenoyear");
-                 Occupation=s.getString("Occupation");
-                 TypePerson =s.getString("TypePerson");
-                 Related =s.getString("Related");
+           JSONObject bookmarkvalue = new JSONObject();
+    	bookmarkvalue.put("C2",Checknull(cs));
+                bookmarkvalue.put("C3", Checknull(ccYear));
+                bookmarkvalue.put("CC2",Checknull(caseno));  
                 String Date="";
                 String Month="";
                 String Year="";
@@ -135,7 +144,7 @@ public class W8 {
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
 //              
-                 JSONObject bookmarkvalue = new JSONObject();
+
 //                 bookmarkvalue.put("C1","Date");
 //                 bookmarkvalue.put("S27","-");
 
@@ -143,9 +152,19 @@ public class W8 {
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
-		bookmarkvalue.put("C2",Checknull(cs));
-                bookmarkvalue.put("C3", Checknull(ccYear));
-                bookmarkvalue.put("CC2",Checknull(caseno));
+            if(s.isBeforeFirst()){
+              while((s!=null) && (s.next()))
+            { 
+//                String  
+//                    cs =s.getString("crimecaseno");
+//                    ccYear=s.getString("crimecaseyears");
+//                    casetype =s.getString("casetype");
+//                 caseno  =s.getString("crimecasenoyear");
+                 Occupation=s.getString("Occupation");
+                 TypePerson =s.getString("TypePerson");
+                 Related =s.getString("Related");
+         
+	
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 bookmarkvalue.put("S5", Checknull(StationAmphur));
@@ -331,6 +350,21 @@ public class W8 {
                 }
                 
             }
+            
+            }
+            else{
+             try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w812.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกคำให้การของพยาน "+ cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
+          
             } catch (Exception e) {
                 e.printStackTrace();
             }

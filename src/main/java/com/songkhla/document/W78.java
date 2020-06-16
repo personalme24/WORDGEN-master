@@ -59,7 +59,7 @@ public class W78 {
              String FirstName ="";
              String LastName ="";
              String Position ="";
-             String caseno;
+             String caseno="";
        
             String Date="";
             String Month="";
@@ -104,7 +104,20 @@ public class W78 {
                               "where crimecase.CaseId='"+cc+"' and Person.TypePerson='ผู้ต้องหา' and Person.CourtSuspect='ศาลเยาวชนและครอบครัว'\n" +
                               "group by crimecase.CaseId,Person.NoPerson";
        
-                   
+                     String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+      Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
             
             
             Statement st = conn.createStatement();
@@ -112,12 +125,10 @@ public class W78 {
             System.out.println(sql);
             
             JSONArray JSONArray = new JSONArray();
+            if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {    
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
+                 
                     suspectName =s.getString("FullNamePerson");
             
                 SimpleDateFormat sdfstart ;
@@ -211,6 +222,21 @@ public class W78 {
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}
+            }
+            else{
+             try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w78.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+                        processTABLE(bookmarkvalue,wordMLPackage);
+                        
+                       
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/หนังสือแจ้งการจับกุมเด็กและเยาวชนไปยังผู้ปกครอง "+ cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
             } catch (Exception e) {
                 e.printStackTrace();
             }
