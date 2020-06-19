@@ -10,14 +10,21 @@ import static com.songkhla.wordgen.ActionPageInsert.ActionCrimes;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseid;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseno;
 import static com.songkhla.wordgen.LoginAuthen.getMotherboardSerial;
+import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.Shape;
+import java.awt.geom.Arc2D;
+import java.awt.geom.Area;
+import java.awt.geom.Ellipse2D;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.BufferedReader;
@@ -34,8 +41,10 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -44,6 +53,7 @@ import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 import javax.swing.UIManager;
+import javax.swing.plaf.basic.BasicProgressBarUI;
 //import org.apache.http.auth.UsernamePasswordCredentials;
 import org.json.JSONObject;
 
@@ -523,6 +533,108 @@ public class BackgroundWorker extends SwingWorker<Void, Void> {
 //        Toolkit.getDefaultToolkit().beep();
     }
 }/**/
+
+public class BackgroundWorkerCheck extends SwingWorker<Void, Void> {
+
+    private static final long SLEEP_TIME =10;
+    private String text;
+        private JProgressBar pb;
+		private JDialog dialog;
+//   public void Task() {
+//       
+//    }
+//       public ProgressWorker(JProgressBar progress) {
+//            this.progress = progress;
+//        
+            public BackgroundWorkerCheck() {
+           
+			addPropertyChangeListener(new PropertyChangeListener() {
+				@Override
+				public void propertyChange(PropertyChangeEvent evt) {
+					if ("progress".equalsIgnoreCase(evt.getPropertyName())) {
+						 if (dialog == null) {
+							dialog = new JDialog();
+                                                        ImageIcon img = new ImageIcon("./Master/WD.png");
+                                                           dialog.setIconImage(img.getImage());
+							dialog.setTitle("Processing");
+							dialog.setLayout(new GridBagLayout());
+							dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+							GridBagConstraints gbc = new GridBagConstraints();
+							gbc.insets = new Insets(2, 2, 2, 2);
+							gbc.weightx = 1;
+							gbc.gridy = 0;
+							dialog.add(new JLabel("กำลังเชื่อมต่อข้อมูลกรุณารอสักครู่..."), gbc);
+							pb = new JProgressBar();
+//							pb.setStringPainted(true);
+////                                                        pb.setForeground(Color.blue);]
+//                                               
+//                                                        pb.setMaximum(100);
+//                                                        pb.setMinimum(0);
+                                                             pb.setUI(new ProgressCircleUI());
+                                            pb.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
+                                            pb.setStringPainted(true);
+                                            pb.setFont(pb.getFont().deriveFont(24f));
+                                            pb.setForeground(Color.orange);
+
+//                                            int in = Ingeter.parseInt(nameOfTextField.getValue);   
+//                                            pb.setValue(in);
+							gbc.gridy = 1;
+//							dialog.add( gbc);
+							dialog.pack();
+							dialog.setLocationRelativeTo(null);
+							dialog.setModal(true);
+							JDialog.setDefaultLookAndFeelDecorated(true); 
+							dialog.setVisible(true);
+                                                        
+                                                        
+                                                         pb = new JProgressBar();
+// use JProgressBar#setUI(...) method
+                                       
+						}
+//						pb.setValue(getProgress());
+					}
+				}
+
+			});
+		}
+    @Override
+    public Void doInBackground() {
+//        try{
+//          for (int i = 0; i < 100; i++) {
+//              setProgress(10);
+       
+                insertData();
+//           Thread.sleep(100);
+//          }
+//        }
+//       catch (InterruptedException e) {
+//
+//                e.printStackTrace();
+//
+//                }
+
+        return null;
+    }
+
+    @Override
+    public void done() {
+                    if (dialog != null) {
+				dialog.dispose();
+			}
+  try{
+                    setVisible(false);
+                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");    
+                    MainMenuWord f=new MainMenuWord();
+                    SwingUtilities.updateComponentTreeUI(f);
+                    f.setVisible(true);
+  }
+  catch(Exception ex){
+  
+  }
+//          System.out.println(text + " is done");
+//        Toolkit.getDefaultToolkit().beep();
+    }
+}/**/
 public void insertData(){
 String  username=Username.getText();
        String password=new String(Password.getPassword());
@@ -846,6 +958,46 @@ class InformPanel extends JPanel {
     public void paintComponent(Graphics g) {
         g.drawImage(bg, 0, 0, getWidth(), getHeight(), this);
     }
+}
+class ProgressCircleUI extends BasicProgressBarUI {
+  @Override public Dimension getPreferredSize(JComponent c) {
+    Dimension d = super.getPreferredSize(c);
+    int v = Math.max(d.width, d.height);
+    d.setSize(v, v);
+    return d;
+  }
+  @Override public void paint(Graphics g, JComponent c) {
+    Insets b = progressBar.getInsets(); // area for border
+    int barRectWidth  = progressBar.getWidth()  - b.right - b.left;
+    int barRectHeight = progressBar.getHeight() - b.top - b.bottom;
+    if (barRectWidth <= 0 || barRectHeight <= 0) {
+      return;
+    }
+
+    // draw the cells
+      Graphics2D g2 = (Graphics2D) g.create();
+    g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+                        RenderingHints.VALUE_ANTIALIAS_ON);
+    g2.setPaint(progressBar.getForeground());
+    double degree = 360 * progressBar.getPercentComplete();
+    double sz = Math.min(barRectWidth, barRectHeight);
+    double cx = b.left + barRectWidth  * .5;
+    double cy = b.top  + barRectHeight * .5;
+    double or = sz * .5;
+    double ir = or * .5; //or - 20;
+      Shape inner = new Ellipse2D.Double(cx - ir, cy - ir, ir * 2, ir * 2);
+    Shape outer = new Arc2D.Double(
+        cx - or, cy - or, sz, sz, 90 - degree, degree, Arc2D.PIE);
+    Area area = new Area(outer);
+    area.subtract(new Area(inner));
+    g2.fill(area);
+    g2.dispose();
+
+    // Deal with possible text painting
+    if (progressBar.isStringPainted()) {
+      paintString(g, b.left, b.top, barRectWidth, barRectHeight, 0, b);
+    }
+  }
 }
 public static String ChangDate(String date){
         String newFormatDate=null;

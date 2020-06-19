@@ -2935,11 +2935,13 @@ jlabeltoken.setVisible(true);
              NodeList errNodes61 = doc.getElementsByTagName("IsRegain_CrimeCase");               
             NodeList errNodes71 = doc.getElementsByTagName("IsRegain"); 
             NodeList errNodesB = doc.getElementsByTagName("RequestForBail"); 
+
              NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
              NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
                 NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
                 NodeList errNodesSue = doc.getElementsByTagName("Sue_Person"); 
                 NodeList errSue = doc.getElementsByTagName("Sue"); 
+        
               Connection conn=null;
                Connection conn2=null;
 
@@ -2966,7 +2968,7 @@ jlabeltoken.setVisible(true);
                        + "VALUES (?,?,?,?,?,?,?,?)";
        try {            
 //           String[] name=err.getElementsByTagName("DisplaySuspectName").item(0).getTextContent().split("2)");
-                        String test="1) นาย มังกร พ่นไฟ ";
+
                         String renameSus=err.getElementsByTagName("DisplaySuspectName").item(0).getTextContent().replace("2) ", "2");
                         String[] nameSuspect=renameSus.split("2");
                         String renameVictim=err.getElementsByTagName("DisplayVictimsname").item(0).getTextContent().replace("2) ", "2");
@@ -3246,7 +3248,14 @@ jlabeltoken.setVisible(true);
         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
             Element p = (Element) nNode; 
-
+      NodeList nListArrTam = p.getElementsByTagName("ArrestRecord_Tambon");
+            NodeList nListArrAm = p.getElementsByTagName("ArrestRecord_Amphur");
+            NodeList nListArrPro = p.getElementsByTagName("ArrestRecord_Province");
+             NodeList nListArr = p.getElementsByTagName("ArrestRecord");
+           
+            NodeList nListTam = p.getElementsByTagName("Person_Tambon");
+            NodeList nListAm = p.getElementsByTagName("Person_Amphur");
+            NodeList nListPro = p.getElementsByTagName("Person_Province");
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
        String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,"
@@ -3254,8 +3263,8 @@ jlabeltoken.setVisible(true);
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
                             + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,TypeChild,PlaceArrest)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,TypeChild,PlaceArrest,PlaceArrestTambon,PlaceArrestAmphur,PlaceArrestProvince)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
@@ -3263,7 +3272,7 @@ jlabeltoken.setVisible(true);
                              + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
     String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
-         try {          
+         try {      
                      Statement st = conn.createStatement();
                 ResultSet rc = st.executeQuery(checkPersonData);
                             if(rc.next()){
@@ -3300,9 +3309,30 @@ jlabeltoken.setVisible(true);
                      pd.setString(13,CheckNull(p, "Road"));
                     pd.setString(14,CheckNull(p, "Lane"));
                     pd.setString(15,CheckNull(p, "Moo"));
-                    pd.setString(16,CheckNull(p, "Amphur"));
-                    pd.setString(17,CheckNull(p, "Tambon"));
-                    pd.setString(18,CheckNull(p, "Province"));
+                     if (nListAm!= null && nListAm.getLength() > 0) {
+                        Node elAm = nListAm.item(0); 
+                        Element pam = (Element) elAm ;
+                         pd.setString(16,CheckNull(pam, "Name"));
+                         }
+                        else{
+                          pd.setString(16,"");
+                        }
+                      if (nListTam!= null && nListTam.getLength() > 0) {
+                        Node elTam = nListTam.item(0); 
+                        Element ptm = (Element) elTam ;
+                         pd.setString(17,CheckNull(ptm, "Name"));
+                         }
+                        else{
+                          pd.setString(17,"");
+                        }
+                      if (nListPro!= null && nListPro.getLength() > 0) {
+                        Node elPro = nListPro.item(0); 
+                        Element ppr = (Element) elPro ;
+                         pd.setString(18,CheckNull(ppr, "Name"));
+                         }
+                        else{
+                          pd.setString(18,"");
+                        }
                       pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
                    pd.setString(20,"");
                       pd.execute();
@@ -3313,6 +3343,7 @@ jlabeltoken.setVisible(true);
                         
                         pst2=conn.prepareStatement(insertPerson);
                          Element br = (Element) errNodesB.item(0); 
+                    
 //               if(p.getElementsByTagName("PeopleRegistrationID").item(0)==null){
 //               pst2.setString(1,"");
 //               }
@@ -3348,12 +3379,7 @@ jlabeltoken.setVisible(true);
               pst2.setString(10,CheckNull(p, "Religion"));
               pst2.setString(11,CheckNull(p, "Nationality"));
               pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
-               if(p.getElementsByTagName("ArrestedDate").item(0)==null){
-               pst2.setString(13,"");
-               }
-               else{
-                    pst2.setString(13,NewDate(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
-               }  
+              
                pst2.setString(14,  IdCasePerson()); 
           
               if(p.getElementsByTagName("StatusSuspectProcess").item(0) != null){
@@ -3411,9 +3437,33 @@ jlabeltoken.setVisible(true);
                      pst2.setString(47,CheckNull(p, "Road"));
                     pst2.setString(48,CheckNull(p, "Lane"));
                     pst2.setString(49,CheckNull(p, "Moo"));
-                    pst2.setString(50,CheckNull(p, "Amphur"));
-                    pst2.setString(51,CheckNull(p, "Tambon"));
-                    pst2.setString(52,CheckNull(p, "Province"));
+
+                  
+                     if (nListAm!= null && nListAm.getLength() > 0) {
+                        Node elAm = nListAm.item(0); 
+                        Element am = (Element) elAm ;
+                         pst2.setString(50,CheckNull(am, "Name"));
+                         }
+                        else{
+                          pst2.setString(50,"");
+                        }
+                      if (nListTam!= null && nListTam.getLength() > 0) {
+                        Node elTam = nListTam.item(0); 
+                        Element tm = (Element) elTam ;
+                         pst2.setString(51,CheckNull(tm, "Name"));
+                         }
+                        else{
+                          pst2.setString(51,"");
+                        }
+                      if (nListPro!= null && nListPro.getLength() > 0) {
+                        Node elPro = nListPro.item(0); 
+                        Element pr = (Element) elPro ;
+                         pst2.setString(52,CheckNull(pr, "Name"));
+                         }
+                        else{
+                          pst2.setString(52,"");
+                        }
+
                      if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Victim")){
                     pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
                    }  
@@ -3439,7 +3489,45 @@ jlabeltoken.setVisible(true);
                  else{
                   pst2.setString(56,"");
                  }
-                  pst2.setString(57,CheckNull(p, "ArrestLocation"));
+             if (nListArr!= null && nListArr.getLength() > 0) {
+                        Node elArr = nListArr.item(0); 
+                        Element arr = (Element) elArr ;
+                         pst2.setString(13,NewDate(CheckNull(arr, "ArrestDate"))+""+NewTime(CheckNull(arr, "ArrestDate")));
+                       pst2.setString(57,CheckNull(arr, "ArrestLocation"));
+
+            }
+            else{
+              pst2.setString(13,"");
+              pst2.setString(57,"");
+
+            }     
+            if (nListArrTam != null && nListArrTam.getLength() > 0) {
+                        Node elArrTam = nListArrTam.item(0); 
+                        Element tb = (Element) elArrTam ;
+                         pst2.setString(58,CheckNull(tb, "Name"));
+            }
+            else{
+              pst2.setString(58,"");
+            }
+             if (nListArrAm != null && nListArrAm.getLength() > 0) {
+                        Node elArrAm = nListArrAm.item(0); 
+                        Element am = (Element) elArrAm ;
+                         pst2.setString(59,CheckNull(am, "Name"));
+            }
+            else{
+              pst2.setString(59,"");
+            }
+            if (nListArrPro != null && nListArrPro.getLength() > 0) {
+                        Node elArrPr = nListArrPro.item(0); 
+                        Element pr = (Element) elArrPr ;
+                         pst2.setString(60,CheckNull(pr, "Name"));
+            }
+            else{
+              pst2.setString(60,"");
+            }
+
+                  
+                 
                      pst2.execute();
                      pst2.close();  
                      
@@ -3760,17 +3848,24 @@ jlabeltoken.setVisible(true);
         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
             Element p = (Element) nNode; 
-
+      NodeList nListArrTam = p.getElementsByTagName("ArrestAndBailOut_Tambon");
+            NodeList nListArrAm = p.getElementsByTagName("Tabon_Amphur");
+            NodeList nListArrPro = p.getElementsByTagName("Tabon_Province");
+             NodeList nListArr = p.getElementsByTagName("ArrestAndBailOut");
+           
+            NodeList nListTam = p.getElementsByTagName("Person_Tambon");
+            NodeList nListAm = p.getElementsByTagName("Person_Amphur");
+            NodeList nListPro = p.getElementsByTagName("Person_Province");
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
         String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
-                             + " CourtSuspect,Related,PlaceArrest)\n"
+                             + " CourtSuspect,Related,PlaceArrest,PlaceArrestTambon,PlaceArrestAmphur,PlaceArrestProvince)\n"
 //                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
 //                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
 //                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
 //                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Moo)\n"
 //                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,,?,?,?)";  
-                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
+                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
   
               String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
@@ -3868,12 +3963,7 @@ jlabeltoken.setVisible(true);
               pst2.setString(10,CheckNull(p, "Religion"));
               pst2.setString(11,CheckNull(p, "Nationality"));
               pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
-               if(p.getElementsByTagName("ArrestedDate").item(0)==null){
-               pst2.setString(13,"");
-               }
-               else{
-                    pst2.setString(13,NewDate(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
-               }  
+              
                pst2.setString(14,  IdCasePerson()); 
              if (p.getElementsByTagName("StatusSueOrBail").item(0) == null) {
                  pst2.setString(15, "");
@@ -3891,8 +3981,41 @@ jlabeltoken.setVisible(true);
 ////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
                   pst2.setString(17,"");
                   pst2.setString(18,NewStatusRelate(CheckNull(p, "Traffice_TypeOfPersonCase")));
-                   pst2.setString(19,CheckNull(p, "ArrestLocation"));
+            if (nListArr!= null && nListArr.getLength() > 0) {
+                        Node elArr = nListArr.item(0); 
+                        Element arr = (Element) elArr ;
+                         pst2.setString(13,NewDate(CheckNull(arr, "ArrestDate"))+""+NewTime(CheckNull(arr, "ArrestDate")));
+                       pst2.setString(19,CheckNull(arr, "ArrestLocation"));
+            }
+            else{
+              pst2.setString(13,"");
+              pst2.setString(19,"");
 
+            }
+            if (nListArrTam != null && nListArrTam.getLength() > 0) {
+                        Node elArrTam = nListArrTam.item(0); 
+                        Element tb = (Element) elArrTam ;
+                         pst2.setString(20,CheckNull(tb, "Name"));
+            }
+            else{
+              pst2.setString(20,"");
+            }
+             if (nListArrAm != null && nListArrAm.getLength() > 0) {
+                        Node elArrAm = nListArrAm.item(0); 
+                        Element am = (Element) elArrAm ;
+                         pst2.setString(21,CheckNull(am, "Name"));
+            }
+            else{
+              pst2.setString(21,"");
+            }
+            if (nListArrPro != null && nListArrPro.getLength() > 0) {
+                        Node elArrPr = nListArrPro.item(0); 
+                        Element pr = (Element) elArrPr ;
+                         pst2.setString(22,CheckNull(pr, "Name"));
+            }
+            else{
+              pst2.setString(22,"");
+            }
                   
 //                  if(p.getElementsByTagName("Sue").item(0) != null){
 //                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
@@ -4103,6 +4226,7 @@ jlabeltoken.setVisible(true);
             NodeList errNodesAs = doc.getElementsByTagName("Asset_IsExhibit");               
             NodeList errNodesWea = doc.getElementsByTagName("Weapon_IsExhibit"); 
             NodeList errNodesDr = doc.getElementsByTagName("Drug_IsExhibit"); 
+             NodeList errNodesArrest = doc.getElementsByTagName("ArrestRecord"); 
 
              NodeList errNodeslo = doc.getElementsByTagName("IsLost_CrimeCase");               
             NodeList errNodeslost = doc.getElementsByTagName("IsLost"); 
@@ -4115,6 +4239,7 @@ jlabeltoken.setVisible(true);
                 NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
                 NodeList errNodesSue = doc.getElementsByTagName("Sue_Person"); 
                 NodeList errSue = doc.getElementsByTagName("Sue"); 
+
               Connection conn=null;
                Connection conn2=null;
 
@@ -4403,13 +4528,19 @@ jlabeltoken.setVisible(true);
            for (int temp = 0; temp < errNodes.getLength(); temp++) {
 
         Node nNode = errNodes.item(temp);
-
         
 
         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
             Element p = (Element) nNode; 
-
+            NodeList nListArrTam = p.getElementsByTagName("ArrestRecord_Tambon");
+            NodeList nListArrAm = p.getElementsByTagName("ArrestRecord_Amphur");
+            NodeList nListArrPro = p.getElementsByTagName("ArrestRecord_Province");
+             NodeList nListArr = p.getElementsByTagName("ArrestRecord");
+           
+            NodeList nListTam = p.getElementsByTagName("Person_Tambon");
+            NodeList nListAm = p.getElementsByTagName("Person_Amphur");
+            NodeList nListPro = p.getElementsByTagName("Person_Province");
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
        String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,"
@@ -4417,8 +4548,8 @@ jlabeltoken.setVisible(true);
                             + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
                             + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
                             + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,BloodGroup,TypeChild,PlaceArrest)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,BloodGroup,TypeChild,PlaceArrest,PlaceArrestTambon,PlaceArrestAmphur,PlaceArrestProvince)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
                              + "Occupation,"
@@ -4463,9 +4594,30 @@ jlabeltoken.setVisible(true);
                      pd.setString(13,CheckNull(p, "Road"));
                     pd.setString(14,CheckNull(p, "Lane"));
                     pd.setString(15,CheckNull(p, "Moo"));
-                    pd.setString(16,CheckNull(p, "Amphur"));
-                    pd.setString(17,CheckNull(p, "Tambon"));
-                    pd.setString(18,CheckNull(p, "Province"));
+                    if (nListAm!= null && nListAm.getLength() > 0) {
+                        Node elAm = nListAm.item(0); 
+                        Element am = (Element) elAm ;
+                         pd.setString(16,CheckNull(am, "Name"));
+                         }
+                        else{
+                          pd.setString(16,"");
+                        }
+                      if (nListTam!= null && nListTam.getLength() > 0) {
+                        Node elTam = nListTam.item(0); 
+                        Element tm = (Element) elTam ;
+                         pd.setString(17,CheckNull(tm, "Name"));
+                         }
+                        else{
+                          pd.setString(17,"");
+                        }
+                      if (nListPro!= null && nListPro.getLength() > 0) {
+                        Node elPro = nListPro.item(0); 
+                        Element pr = (Element) elPro ;
+                         pd.setString(18,CheckNull(pr, "Name"));
+                         }
+                        else{
+                          pd.setString(18,"");
+                        }
                       pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
                     pd.setString(20,"");
                    
@@ -4514,12 +4666,6 @@ jlabeltoken.setVisible(true);
               pst2.setString(10,CheckNull(p, "Religion"));
               pst2.setString(11,CheckNull(p, "Nationality"));
               pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
-               if(p.getElementsByTagName("ArrestedDate").item(0)==null){
-               pst2.setString(13,"");
-               }
-               else{
-                    pst2.setString(13,NewDate(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
-               }  
                pst2.setString(14,  IdCasePerson()); 
           
               if(p.getElementsByTagName("StatusSuspectProcess").item(0) != null){
@@ -4577,9 +4723,31 @@ jlabeltoken.setVisible(true);
                      pst2.setString(47,CheckNull(p, "Road"));
                     pst2.setString(48,CheckNull(p, "Lane"));
                     pst2.setString(49,CheckNull(p, "Moo"));
-                    pst2.setString(50,CheckNull(p, "Amphur"));
-                    pst2.setString(51,CheckNull(p, "Tambon"));
-                    pst2.setString(52,CheckNull(p, "Province"));
+                     if (nListAm!= null && nListAm.getLength() > 0) {
+                        Node elAm = nListAm.item(0); 
+                        Element am = (Element) elAm ;
+                         pst2.setString(50,CheckNull(am, "Name"));
+                         }
+                        else{
+                          pst2.setString(50,"");
+                        }
+                      if (nListTam!= null && nListTam.getLength() > 0) {
+                        Node elTam = nListTam.item(0); 
+                        Element tm = (Element) elTam ;
+                         pst2.setString(51,CheckNull(tm, "Name"));
+                         }
+                        else{
+                          pst2.setString(51,"");
+                        }
+                      if (nListPro!= null && nListPro.getLength() > 0) {
+                        Node elPro = nListPro.item(0); 
+                        Element pr = (Element) elPro ;
+                         pst2.setString(52,CheckNull(pr, "Name"));
+                         }
+                        else{
+                          pst2.setString(52,"");
+                        }
+              
                     if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Victim")){
                     pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
                    }  
@@ -4604,8 +4772,45 @@ jlabeltoken.setVisible(true);
                      }
                  else{
                   pst2.setString(57,"");
-                 }
-                   pst2.setString(58,CheckNull(p, "ArrestLocation"));
+                 }  
+           if (nListArr!= null && nListArr.getLength() > 0) {
+                        Node elArr = nListArr.item(0); 
+                        Element arr = (Element) elArr ;
+                         pst2.setString(13,NewDate(CheckNull(arr, "ArrestDate"))+""+NewTime(CheckNull(arr, "ArrestDate")));
+                       pst2.setString(58,CheckNull(arr, "ArrestLocation"));
+
+            }
+            else{
+              pst2.setString(13,"");
+              pst2.setString(58,"");
+
+            }
+
+            if (nListArrTam != null && nListArrTam.getLength() > 0) {
+                        Node elArrTam = nListArrTam.item(0); 
+                        Element tb = (Element) elArrTam ;
+                         pst2.setString(59,CheckNull(tb, "Name"));
+            }
+            else{
+              pst2.setString(59,"");
+            }
+             if (nListArrAm != null && nListArrAm.getLength() > 0) {
+                        Node elArrAm = nListArrAm.item(0); 
+                        Element am = (Element) elArrAm ;
+                         pst2.setString(60,CheckNull(am, "Name"));
+            }
+            else{
+              pst2.setString(60,"");
+            }
+            if (nListArrPro != null && nListArrPro.getLength() > 0) {
+                        Node elArrPr = nListArrPro.item(0); 
+                        Element pr = (Element) elArrPr ;
+                         pst2.setString(61,CheckNull(pr, "Name"));
+            }
+            else{
+              pst2.setString(61,"");
+            }
+       
 
                     pst2.execute();
                      pst2.close();  
@@ -4945,17 +5150,24 @@ jlabeltoken.setVisible(true);
         if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 
             Element p = (Element) nNode; 
-
+      NodeList nListArrTam = p.getElementsByTagName("ArrestAndBailOut_Tambon");
+            NodeList nListArrAm = p.getElementsByTagName("Tabon_Amphur");
+            NodeList nListArrPro = p.getElementsByTagName("Tabon_Province");
+             NodeList nListArr = p.getElementsByTagName("ArrestAndBailOut");
+           
+            NodeList nListTam = p.getElementsByTagName("Person_Tambon");
+            NodeList nListAm = p.getElementsByTagName("Person_Amphur");
+            NodeList nListPro = p.getElementsByTagName("Person_Province");
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
         String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
-                             + " CourtSuspect,Related,BloodGroup,PlaceArrest)\n"
+                             + " CourtSuspect,Related,BloodGroup,PlaceArrest,PlaceArrestTambon,PlaceArrestAmphur,PlaceArrestProvince)\n"
 //                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
 //                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
 //                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
 //                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Moo)\n"
 //                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,,?,?,?)";  
-                                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
+                                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
   
               String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
@@ -5054,12 +5266,7 @@ jlabeltoken.setVisible(true);
               pst2.setString(10,CheckNull(p, "Religion"));
               pst2.setString(11,CheckNull(p, "Nationality"));
               pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
-               if(p.getElementsByTagName("ArrestedDate").item(0)==null){
-               pst2.setString(13,"");
-               }
-               else{
-                    pst2.setString(13,NewDate(p.getElementsByTagName("ArrestedDate").item(0).getTextContent()));
-               }  
+        
                pst2.setString(14,  IdCasePerson()); 
              if (p.getElementsByTagName("StatusSueOrBail").item(0) == null) {
                  pst2.setString(15, "");
@@ -5078,7 +5285,43 @@ jlabeltoken.setVisible(true);
                   pst2.setString(17,"");
                  pst2.setString(18,NewStatusRelate(CheckNull(p, "Traffice_TypeOfPersonCase")));
                   pst2.setString(19," ");
-                  pst2.setString(20,CheckNull(p, "ArrestLocation"));
+if (nListArr!= null && nListArr.getLength() > 0) {
+                        Node elArr = nListArr.item(0); 
+                        Element arr = (Element) elArr ;
+                         pst2.setString(13,NewDate(CheckNull(arr, "ArrestDate"))+""+NewTime(CheckNull(arr, "ArrestDate")));
+                       pst2.setString(20,CheckNull(arr, "ArrestLocation"));
+
+            }
+            else{
+              pst2.setString(13,"");
+              pst2.setString(20,"");
+
+            }
+
+            if (nListArrTam != null && nListArrTam.getLength() > 0) {
+                        Node elArrTam = nListArrTam.item(0); 
+                        Element tb = (Element) elArrTam ;
+                         pst2.setString(21,CheckNull(tb, "Name"));
+            }
+            else{
+              pst2.setString(21,"");
+            }
+             if (nListArrAm != null && nListArrAm.getLength() > 0) {
+                        Node elArrAm = nListArrAm.item(0); 
+                        Element am = (Element) elArrAm ;
+                         pst2.setString(22,CheckNull(am, "Name"));
+            }
+            else{
+              pst2.setString(22,"");
+            }
+            if (nListArrPro != null && nListArrPro.getLength() > 0) {
+                        Node elArrPr = nListArrPro.item(0); 
+                        Element pr = (Element) elArrPr ;
+                         pst2.setString(23,CheckNull(pr, "Name"));
+            }
+            else{
+              pst2.setString(23,"");
+            }
 //                  if(p.getElementsByTagName("Sue").item(0) != null){
 //                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
 //                    pst2.setString(18,CheckNullSue(p, "SueSeq",1));

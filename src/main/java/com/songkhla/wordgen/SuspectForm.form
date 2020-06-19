@@ -1965,10 +1965,16 @@
                               <Component id="jRadioRestore" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jRadioStatus1" alignment="3" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabelStatusSuspect" pref="37" max="32767" attributes="0"/>
-                              <Component id="StatusSuspectOther" min="-2" pref="31" max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
+                                  <Component id="jLabelStatusSuspect" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="StatusSuspectOther" min="-2" pref="35" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="6" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -2067,7 +2073,7 @@
                 <Component class="javax.swing.JTextField" name="StatusSuspectOther">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="TH SarabunPSK" size="22" style="0"/>
+                      <Font name="TH SarabunPSK" size="20" style="0"/>
                     </Property>
                   </Properties>
                 </Component>

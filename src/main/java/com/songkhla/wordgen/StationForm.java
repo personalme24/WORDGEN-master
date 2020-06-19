@@ -41,7 +41,7 @@ public class StationForm extends javax.swing.JDialog {
        initComponents();
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
-        setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry) BETA");
+        setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
                  try{
                   Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
                   Font  sizedFont = font.deriveFont(1,28f);
@@ -1364,7 +1364,7 @@ private void data()
     
     }
       public static String Checknull(Object input){
-					if(input==null||input==""||input=="null") { return ""; }
+					if(input==null||input==""||input=="null"||input.equals("null")) { return ""; }
 					return input+"";
 					}
      public static String IdStation(){
