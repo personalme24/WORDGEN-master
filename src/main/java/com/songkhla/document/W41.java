@@ -93,7 +93,7 @@ public class W41 {
                               "left join ChargeCase on crimecase.caseid=ChargeCase.Chargecaseid\n" +
                               "left join Person on crimecase.CaseId=Person.caseIdPerson\n" +
                               "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
-                              "where crimecase.CaseId='"+cc+"'\n" +
+                              "where crimecase.CaseId='"+cc+"' and Person.Related='ผู้เสียหาย'\n" +
                               "group by crimecase.CaseId,Person.NoPerson";
                    
 //                   pst=conn.prepareStatement(sql);
@@ -139,7 +139,7 @@ public class W41 {
                 
                 bookmarkvalue.put("S2",Checknull(PoliceStationName));
                 
-                bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
+                bookmarkvalue.put("PA7",Checknull(s.getString("WitnessandOther")));
                   
                 bookmarkvalue.put("PS7",  Checknull(s.getString("SuspectandOther"))); 
                

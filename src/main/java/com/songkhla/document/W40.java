@@ -93,7 +93,7 @@ public class W40 {
                               "left join ChargeCase on crimecase.caseid=ChargeCase.Chargecaseid\n" +
                               "left join Person on crimecase.CaseId=Person.caseIdPerson\n" +
                               "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
-                              "where crimecase.CaseId='"+cc+"'and Person.TypePerson='ผู้กล่าวหา'\n" +
+                              "where crimecase.CaseId='"+cc+"'and Person.Related='ผู้เสียหาย'\n" +
                               "group by crimecase.CaseId,Person.NoPerson";
                    
 //                   pst=conn.prepareStatement(sql);

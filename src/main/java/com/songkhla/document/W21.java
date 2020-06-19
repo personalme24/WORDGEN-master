@@ -94,6 +94,7 @@ public class W21 {
                                     "left join ChargeCase on crimecase.caseid=ChargeCase.ChargeCaseid\n" +
                                     "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                                     "where Person.TypePerson='ผู้ตาย' or (Person.StatusInjuryOrDie='ตาย' or Person.StatusInjuryOrDie='บาดเจ็บ') and crimecase.CaseId='"+cc+"'";
+                     
                  String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
                          + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
                          + "from crimecase where crimecase.CaseId='"+cc+"'";
@@ -143,9 +144,7 @@ public class W21 {
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
                  
-//                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
-//                System.out.print(" - ");
-                 
+
                 
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
