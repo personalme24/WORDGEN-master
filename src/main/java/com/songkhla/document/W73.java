@@ -57,21 +57,25 @@ public class W73 {
              String FirstName ="";
              String LastName ="";
              String Position ="";
-             String caseno;
+             
        
             String Date="";
             String Month="";
             String Year="";
             String Time="";
+            
+            String ccYear="";
+            String casetype="";
+            String caseno="";
+            String cs="";
+         
          
           
             JSONObject bookmarkvalue = new JSONObject();
             JSONObject bookmarkvalue1 = new JSONObject();
             
             try {
-             String ccYear="";
-             String casetype="";
-             String cs="";
+             
                     String sqlDataPoliceStation="SELECT * FROM PoliceStation";
                       Statement sp = conn.createStatement();
                   ResultSet rs=sp.executeQuery(sqlDataPoliceStation); 
@@ -102,20 +106,31 @@ public class W73 {
                               "where crimecase.CaseId='"+cc+"' and Person.Related='นายประกัน'\n" +
                               "group by crimecase.CaseId,Person.NoPerson,BailAsset.BailAssetId";
        
-                   
+                    String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+            Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+             if (s2.next()) {                    
+                    cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
             
             
             Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
             System.out.println(sql);
             
-           
+           if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {    
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
+                   // cs =s.getString("crimecaseno");
+                   // ccYear=s.getString("crimecaseyears");
+                  //  casetype =s.getString("casetype");
+                  //  caseno  =s.getString("crimecasenoyear");
             
                 SimpleDateFormat sdfstart ;
                 Calendar  calstart = Calendar.getInstance();
@@ -167,7 +182,7 @@ public class W73 {
                        bookmarkvalue.put("P05", Checknull(Position));
                        
              */
-                      bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
+                       bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
                         bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
                         bookmarkvalue.put("P04", "");
                         bookmarkvalue.put("P05", Checknull(s.getString("InvestPosition")));
@@ -199,11 +214,26 @@ public class W73 {
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}
+            }
+            else{
+            try {
+                     	WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w73.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+                        processTABLE(bookmarkvalue,wordMLPackage);
+                     
+                       
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกการรับรองการเป็นโสด "+cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+                     
+                     }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         
-              
+
 	}
  public static void nw73() {
      
