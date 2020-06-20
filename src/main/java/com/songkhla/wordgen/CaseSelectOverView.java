@@ -3256,6 +3256,7 @@ jlabeltoken.setVisible(true);
             NodeList nListTam = p.getElementsByTagName("Person_Tambon");
             NodeList nListAm = p.getElementsByTagName("Person_Amphur");
             NodeList nListPro = p.getElementsByTagName("Person_Province");
+//--------------------------------------Person Crimes-------------------------------------------------------------------
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
        String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,"
@@ -3856,6 +3857,7 @@ jlabeltoken.setVisible(true);
             NodeList nListTam = p.getElementsByTagName("Person_Tambon");
             NodeList nListAm = p.getElementsByTagName("Person_Amphur");
             NodeList nListPro = p.getElementsByTagName("Person_Province");
+//            -----------------------------------------Person Traffic------------------------------------------
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
         String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
                               + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
@@ -3980,7 +3982,7 @@ jlabeltoken.setVisible(true);
              }
 ////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
                   pst2.setString(17,"");
-                  pst2.setString(18,NewStatusRelate(CheckNull(p, "Traffice_TypeOfPersonCase")));
+                  pst2.setString(18,NewStatusRelateTraffic(CheckNull(p, "Traffice_TypeOfPersonCase")));
             if (nListArr!= null && nListArr.getLength() > 0) {
                         Node elArr = nListArr.item(0); 
                         Element arr = (Element) elArr ;
@@ -5283,7 +5285,7 @@ jlabeltoken.setVisible(true);
              }
 ////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
                   pst2.setString(17,"");
-                 pst2.setString(18,NewStatusRelate(CheckNull(p, "Traffice_TypeOfPersonCase")));
+                 pst2.setString(18,NewStatusRelateTraffic(CheckNull(p, "Traffice_TypeOfPersonCase")));
                   pst2.setString(19," ");
 if (nListArr!= null && nListArr.getLength() > 0) {
                         Node elArr = nListArr.item(0); 
@@ -5828,6 +5830,35 @@ if (nListArr!= null && nListArr.getLength() > 0) {
             }
            else if (sts.equals("Informant")) {
                 status = "ผู้กล่าวหา";
+            }
+           else{status = "";}
+            return status;
+        
+//               return newGender;
+    }
+          public static String NewStatusRelateTraffic(String sts) {
+        String status = "";
+     
+            if (sts.equals("Victim")) {
+                status = "ผู้เสียหาย";
+            }
+           else if (sts.equals("Suspect")) {
+                status = "ผู้ต้องหา";
+            }
+           else if (sts.equals("Informant")) {
+                status = "ผู้แจ้ง";
+            }
+           else if (sts.equals("witness")) {
+                status = "พยาน";
+            }
+           else if (sts.equals("Litigant")) {
+                status = "คู่กรณี";
+            }
+           else if (sts.equals("Charger")) {
+                status = "ผู้กล่าวหา";
+            }
+           else if (sts.equals("OtherSuspect")) {
+                status = "ผู้ต้องหา";
             }
            else{status = "";}
             return status;
