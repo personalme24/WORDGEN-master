@@ -353,11 +353,15 @@ public class SuspectForm extends javax.swing.JDialog {
             else{
                  jRadioAdult.setSelected(true);
             }
-            
-            if(datain.get("StatusInjuryOrDie").equals("บาดเจ็บ")){
+            String StatusInjuryOrDie=datain.get("StatusInjuryOrDie")+"";
+            if(StatusInjuryOrDie.equals("บาดเจ็บ")){
             jCheckInjured.setSelected(true); }
-            else if(datain.get("StatusInjuryOrDie").equals("ตาย"))
+            else if(StatusInjuryOrDie.equals("ตาย"))
             { jCheckDead.setSelected(true);}
+            else{
+            jCheckDead.setSelected(false);
+            jCheckInjured.setSelected(false); 
+            }
             jLabel37.setText(Checknull(datain.get("NoPerson"))+"");
             jLabel36.setText(Checknull(datain.get("caseIdPerson"))+"");
             PeopleRegistrationID.setText(Checknull(datain.get("PeopleRegistrationID"))+"");
