@@ -306,14 +306,26 @@ try{
             String sql ="Select * from User Where username='"+username+"' and password='"+password+"'";
              ResultSet rs = stmt.executeQuery(sql);
              if(rs.next()){  
-                 System.out.println("Logouttttttttttt");
+                 
+                 String url=  "http://172.31.191.163:8383/wordgenauthen/?USER="+username+"&PASS="+password+"&Serial="+getMotherboardSerial();
+             System.out.println("url:"+url);
+                  String fff =sendGET(url); 
+                  System.out.println("Status network:"+fff);
+                  
+                  if(fff.equals("0")){
+                         System.out.println("Login");
+                      UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
+                    MainMenuWord mwa=new MainMenuWord();
+                     SwingUtilities.updateComponentTreeUI(mwa);
+                     mwa.setVisible(true);
+                     setVisible(false);
+                  }
+                  else{
+             System.out.println("Login and Update");
                yourAttemptActionPerformed();
-//               
-//                      UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");
-//                    MainMenuWord mwa=new MainMenuWord();
-//                     SwingUtilities.updateComponentTreeUI(mwa);
-//                     mwa.setVisible(true);
-//                     setVisible(false);
+                  }
+
+
              }
              else{
              
