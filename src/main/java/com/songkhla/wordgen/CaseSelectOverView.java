@@ -5760,17 +5760,21 @@ jlabeltoken.setVisible(true);
       }
        public static String NewTime(String dateold) throws Exception{
          Locale lc = new Locale("th","TH");
-         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-        SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm",lc);
+         DateTimeFormatter  inputFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+        DateTimeFormatter outputFormat =DateTimeFormatter.ofPattern("HH:mm",lc);
+//
+//         SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+//        SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm",lc);
         if(dateold.equals("")){
         return   "";
         
         }
         else{
-        Date date = inputFormat.parse(dateold);
-       
-        String formattedDate = outputFormat.format(date);
-              return   formattedDate;
+             LocalDateTime dateTime = LocalDateTime.parse(dateold, inputFormat);
+             dateTime = dateTime.plusHours(7);
+             
+            String dateThai = dateTime.format(outputFormat);
+          return   dateThai;
         }
       }
          public static String DateSend(String dateacc) throws Exception{
