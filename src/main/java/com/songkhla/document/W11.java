@@ -157,7 +157,9 @@ public class W11 {
                  
 
                  JSONObject bookmarkvalue = new JSONObject();
-//              
+              JSONArray tablecolumn = new JSONArray();
+              	JSONObject row1 = new JSONObject();
+	     JSONObject tableobj = new JSONObject();
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
@@ -241,7 +243,7 @@ public class W11 {
                         bookmarkvalue.put("P012", Checknull(s.getString("InvestRankFull"))); //ยศเต็ม
                         bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
                         
-			JSONArray tablecolumn = new JSONArray();
+//			JSONArray tablecolumn = new JSONArray();
 			System.out.println(">>>>"+OrderAsset);
 			tablecolumn.add("AS3");
                         tablecolumn.add("AS4");
@@ -253,7 +255,7 @@ public class W11 {
                        
 
 			
-			JSONObject row1 = new JSONObject();
+//			JSONObject row1 = new JSONObject();
 			
 			row1.put("AS3",Checknull(Integer.toString(OrderAsset)));
                         row1.put("AS4",Checknull(s.getString("Name")));
@@ -266,7 +268,7 @@ public class W11 {
 			JSONArray.add(row1);
                         
 
-		JSONObject tableobj = new JSONObject();
+	
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", JSONArray);
 			
@@ -291,6 +293,32 @@ public class W11 {
             }
             else{
             try {
+                       tablecolumn.add("AS3");
+                        tablecolumn.add("AS4");
+			tablecolumn.add("AS5");
+                        tablecolumn.add("AS6");
+			tablecolumn.add("AS8");
+                        tablecolumn.add("AS9");
+			tablecolumn.add("AS10");
+                         row1.put("AS3","");
+                        row1.put("AS4","");
+                        row1.put("AS5","");
+                        row1.put("AS6","");
+                        row1.put("AS8","");
+                        row1.put("AS9","");
+                        row1.put("AS10","");
+                        
+			JSONArray.add(row1);
+                        
+
+	
+		tableobj.put("COLUMNS", tablecolumn);
+		tableobj.put("TABLEDATA", JSONArray);
+			
+		JSONArray TABLES = new JSONArray();
+		TABLES.add(tableobj);
+
+		bookmarkvalue.put("TABLES", TABLES);
                   
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w11.docx"));

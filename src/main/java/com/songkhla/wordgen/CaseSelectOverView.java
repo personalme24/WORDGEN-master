@@ -3376,6 +3376,7 @@ jlabeltoken.setVisible(true);
               pst2.setString(9,CheckNull(p, "Race"));
               pst2.setString(10,CheckNull(p, "Religion"));
               pst2.setString(11,CheckNull(p, "Nationality"));
+            
               pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
               
                pst2.setString(14,  IdCasePerson()); 
@@ -3593,11 +3594,11 @@ jlabeltoken.setVisible(true);
                     NodeList nListBailAm = err4.getElementsByTagName("RequestForBail_Amphur");
                     NodeList nListBailPro = err4.getElementsByTagName("RequestForBail_Province");
                     NodeList nListBailOc = err4.getElementsByTagName("RequestForBail_Occupation");
-
+                         Node bailDetail=nListBailOc.item(0);
                       Element bTam= (Element) nListBailTam.item(0) ; 
                       Element bAmp= (Element) nListBailAm.item(0) ; 
                       Element bPro= (Element) nListBailPro.item(0) ; 
-                      Element bOccu= (Element) nListBailOc.item(0) ; 
+                      Element bOccu= (Element) bailDetail ; 
 
                     pst3.setString(1, CheckNull(err4,"BailsmanAge"));
                     pst3.setString(2,NewDate(CheckNull(err4, "BailsmanBirthDate")));
@@ -5767,12 +5768,10 @@ jlabeltoken.setVisible(true);
 //        SimpleDateFormat outputFormat = new SimpleDateFormat("HH:mm",lc);
         if(dateold.equals("")){
         return   "";
-        
         }
         else{
              LocalDateTime dateTime = LocalDateTime.parse(dateold, inputFormat);
              dateTime = dateTime.plusHours(7);
-             
             String dateThai = dateTime.format(outputFormat);
           return   dateThai;
         }
