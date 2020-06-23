@@ -126,7 +126,7 @@ public class W11 {
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
-           String VarAS1 ="";
+            String VarAS1 ="";
             String VarAS3 ="";
             String VarAS4 ="";
             String VarAS5 ="";
@@ -293,14 +293,14 @@ public class W11 {
             }
             else{
             try {
-                       tablecolumn.add("AS3");
+                        tablecolumn.add("AS3");
                         tablecolumn.add("AS4");
 			tablecolumn.add("AS5");
                         tablecolumn.add("AS6");
 			tablecolumn.add("AS8");
                         tablecolumn.add("AS9");
 			tablecolumn.add("AS10");
-                         row1.put("AS3","");
+                        row1.put("AS3","");
                         row1.put("AS4","");
                         row1.put("AS5","");
                         row1.put("AS6","");

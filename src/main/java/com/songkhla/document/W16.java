@@ -49,9 +49,10 @@ public class W16 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-            String caseno;
-            String ccYear;
-            String casetype;
+            String ccYear="";
+            String casetype="";
+            String caseno="";
+            String cs="";
             String PoliceStationName="";
             
             
@@ -73,24 +74,39 @@ public class W16 {
                                "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                                "where crimecase.CaseId='"+cc+"'";
                            
-//                   pst=conn.prepareStatement(sql);
-//           pst=PreparedStatement(sql);
+ String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+            Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+             if (s2.next()) {                    
+                    cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                    
+                        }
+            
                 Statement st = conn.createStatement();
-            ResultSet s=st.executeQuery(sql); 
+                ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
+                
+             String RE5="";
+             String RE6="";
+             String RE7="";
+             JSONArray JSONArray = new JSONArray();
             
-           JSONArray JSONArray = new JSONArray();
+              JSONObject bookmarkvalue = new JSONObject();
+              JSONArray tablecolumn = new JSONArray();
+              JSONObject row1 = new JSONObject();
+	      JSONObject tableobj = new JSONObject();
+              
             
-            
-            
+            if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
-            {  String  cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype=s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
-                 JSONObject bookmarkvalue = new JSONObject();
-//                 bookmarkvalue.put("C1","Date");
-
+            {  
+            
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
@@ -104,27 +120,16 @@ public class W16 {
                         bookmarkvalue.put("P010", Checknull(s.getString("InvestTel")));
                         bookmarkvalue.put("P012", Checknull(s.getString("InvestRankFull"))); //ยศเต็ม
                         bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
-                 /*
-                 
-                     
-                    VarRE2=VarRE2+"\n\r"+s.getString(ToDate("DateRecord"));
-                    bookmarkvalue.put("RE2", Checknull(VarRE2));
-                    VarRE3=VarRE3+"\n\r"+s.getString("NameInguiry");
-                    bookmarkvalue.put("RE3", Checknull(VarRE3));
-                    VarRE4=VarRE4+"\n\r"+s.getString("DetailRecord");
-                    bookmarkvalue.put("RE4", Checknull(VarRE4));
-                   */
-                    
-                   
+          
      
-			JSONArray tablecolumn = new JSONArray();
+			//JSONArray tablecolumn = new JSONArray();
 			
 			tablecolumn.add("RE5");
                         tablecolumn.add("RE6");
 			tablecolumn.add("RE7");
                         
 
-			JSONObject row1 = new JSONObject();
+			//JSONObject row1 = new JSONObject();
 			
 			
 			row1.put("RE5",Checknull(ToDate(s.getString("DateRecord"))));
@@ -135,7 +140,7 @@ public class W16 {
 			JSONArray.add(row1);
                         
 
-		JSONObject tableobj = new JSONObject();
+		//JSONObject tableobj = new JSONObject();
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", JSONArray);
 			
@@ -155,6 +160,39 @@ public class W16 {
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}
+            }
+             }
+            else{
+            try {
+               
+			
+			tablecolumn.add("RE5");
+                        tablecolumn.add("RE6");
+			tablecolumn.add("RE7");
+                   
+			row1.put("RE5","");
+                        row1.put("RE6","");
+                        row1.put("RE7","");
+                        	JSONArray.add(row1);
+                        
+
+	
+		tableobj.put("COLUMNS", tablecolumn);
+		tableobj.put("TABLEDATA", JSONArray);
+			
+		JSONArray TABLES = new JSONArray();
+		TABLES.add(tableobj);
+
+		bookmarkvalue.put("TABLES", TABLES);
+                        
+                WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w16.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกพนักงานสอบสวน" +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+            }
             }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -189,6 +227,9 @@ public class W16 {
                     bookmarkvalue.put("RE2", "");
                     bookmarkvalue.put("RE3", "");
                     bookmarkvalue.put("RE4", "");
+                    bookmarkvalue.put("RE5", "");
+                    bookmarkvalue.put("RE6", "");
+                    bookmarkvalue.put("RE7", "");
                    
 
 		
