@@ -51,9 +51,9 @@ public class W64 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-             String ccYear;
-             String casetype;
-             String caseno;
+             String ccYear="";
+             String casetype="";
+             String caseno="";
              String PoliceStationName="";
              String StationAmphur="";
              String StationProvince="";
@@ -63,7 +63,7 @@ public class W64 {
              String FirstName ="";
              String LastName ="";
              String Position ="";
-             
+             String cs="";
              
             try {
 //               
@@ -95,18 +95,25 @@ public class W64 {
                               "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                               "where crimecase.CaseId='"+cc+"' and Person.TypePerson='ผู้ต้องหา'\n" +
                               "group by crimecase.CaseId,Person.NoPerson";
-                   
+                   String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+             Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
 //                   pst=conn.prepareStatement(sql);
 //           pst=PreparedStatement(sql);
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
-            while((s!=null) && (s.next()))
-            {  String  
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                 caseno  =s.getString("crimecasenoyear");
                 String Date="";
                 String Month="";
                 String Year="";
@@ -128,6 +135,20 @@ public class W64 {
                
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
+                JSONObject bookmarkvalue = new JSONObject(); 
+                bookmarkvalue.put("C1",Checknull(Date));
+                bookmarkvalue.put("C01",Checknull(Month));
+                bookmarkvalue.put("C001",Checknull(Year));
+                 bookmarkvalue.put("CC2",Checknull(caseno));
+		bookmarkvalue.put("C2",Checknull(cs));
+                bookmarkvalue.put("C3",Checknull(ccYear));
+                
+                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+           if(s.isBeforeFirst()){    
+    
+            while((s!=null) && (s.next()))
+            {  
+                
                  
                ///วันที่จุดเกิดเหตุ
                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", new Locale("th", "TH"));
@@ -143,16 +164,9 @@ public class W64 {
                Year1=sdfstart.format(date.getTime());
 //                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
 //                System.out.print(" - ");
-                 JSONObject bookmarkvalue = new JSONObject();
-//              
-                bookmarkvalue.put("C1",Checknull(Date));
-                bookmarkvalue.put("C01",Checknull(Month));
-                bookmarkvalue.put("C001",Checknull(Year));
-                 bookmarkvalue.put("CC2",Checknull(caseno));
-		bookmarkvalue.put("C2",Checknull(cs));
-                bookmarkvalue.put("C3",Checknull(ccYear));
                 
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+//              
+            
                 bookmarkvalue.put("PS7", Checknull(s.getString("FullNamePerson"))); 
                 bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
                 
@@ -226,6 +240,19 @@ public class W64 {
 			ex.printStackTrace();
 		}
             }
+           }
+           else{
+           try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w64.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกการพบและปรึกษาทนาย " +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+           }
             } catch (Exception e) {
                 e.printStackTrace();
             }

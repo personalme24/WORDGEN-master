@@ -49,9 +49,9 @@ public static void w65(String cc) {
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
             
-            String ccYear;
-            String casetype;
-            String caseno;
+            String ccYear="";
+            String casetype="";
+            String caseno="";
              String PoliceStationName="";
              String StationAmphur="";
              String StationProvince="";
@@ -61,6 +61,7 @@ public static void w65(String cc) {
              String FirstName ="";
              String LastName ="";
              String Position ="";
+             String cs="";
             try {
                 
                  String sqlDataPoliceStation="SELECT * FROM PoliceStation";
@@ -93,15 +94,23 @@ public static void w65(String cc) {
                               "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                               "where crimecase.CaseId='"+cc+"'and Person.TypePerson='ผู้ต้องหา'\n" +
                               "group by crimecase.CaseId,Person.NoPerson";
-
+             String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+      Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
-            while((s!=null) && (s.next()))
-            {  String  cs =s.getString("crimecaseno");
-                 ccYear=s.getString("crimecaseyears");
-                 casetype =s.getString("casetype");
-                 caseno  =s.getString("crimecasenoyear");
                 String Date="";
                 String Month="";
                 String Year="";
@@ -119,19 +128,26 @@ public static void w65(String cc) {
 //                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
 //                System.out.print(" - ");
                  JSONObject bookmarkvalue = new JSONObject();
-//              
-                bookmarkvalue.put("C1",Checknull(Date));
+                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
                 bookmarkvalue.put("CC2",Checknull(caseno));
-                bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S5", Checknull(StationAmphur));
                 bookmarkvalue.put("S6", Checknull(StationProvince));
                 bookmarkvalue.put("S10",Checknull(TelStation));
                 bookmarkvalue.put("S17",Checknull(CriminalCourt));
+             if(s.isBeforeFirst()){    
+                
+            while((s!=null) && (s.next()))
+            {  
+//              
+               
+                bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
+               
+              
                    
 //                   ----------------------------ผู้กล่าวหา--------------------
                
@@ -234,6 +250,19 @@ public static void w65(String cc) {
 			ex.printStackTrace();
 		}
             }
+             }
+             else{
+             try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w65.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/คำร้องขอควบคุมผู้ต้องหาเพื่อตรวจพิสูจน์การเสพ " +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+             }
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -254,7 +254,7 @@ public class W76 {
             }
             }
             else{
-                System.out.println("no data");
+
             WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(new java.io.File("./TEMPLATE/w76.docx"));
                         processVariable(bookmarkvalue,wordMLPackage);
                         processTABLE(bookmarkvalue,wordMLPackage);
