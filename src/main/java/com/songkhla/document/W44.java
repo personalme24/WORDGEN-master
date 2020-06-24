@@ -51,9 +51,10 @@ public class W44 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-             String ccYear;
-             String casetype;
-             String caseno;
+             String cs="";
+             String ccYear="";
+             String casetype="";
+             String caseno="";
              String PoliceStationName="";
              String StationAmphur="";
              String StationProvince="";
@@ -97,18 +98,34 @@ public class W44 {
                               "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
                               "where crimecase.CaseId='1'and Person.Related='นายประกัน'\n" +
                               "group by crimecase.CaseId,Person.NoPerson";
-                   
-//                   pst=conn.prepareStatement(sql);
-//           pst=PreparedStatement(sql);
+                    String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+      Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
+ 
+
                 Statement st = conn.createStatement();
-            ResultSet s=st.executeQuery(sql); 
+                ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
+                
+                JSONObject bookmarkvalue = new JSONObject();
+            if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
-            {  String  
-                    cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
+            {    
+                    //cs =s.getString("crimecaseno");
+                    //ccYear=s.getString("crimecaseyears");
+                    //casetype =s.getString("casetype");
+                    //caseno  =s.getString("crimecasenoyear");
                 String Date="";
                 String Month="";
                 String Year="";
@@ -130,7 +147,7 @@ public class W44 {
                sdfstart = new SimpleDateFormat("HH:mm", new Locale("th", "TH"));  
                Time=sdfstart.format(calstart.getTime());
                
-                 JSONObject bookmarkvalue = new JSONObject();
+                 //JSONObject bookmarkvalue = new JSONObject();
 //              
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
@@ -163,12 +180,7 @@ public class W44 {
                 bookmarkvalue.put("PB26", Checknull(s.getString("Province"))); 
                 
                 bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
-                      /*
-                       bookmarkvalue.put("P02", Checknull(RankPolice));
-                       bookmarkvalue.put("P03", Checknull(FirstName));
-                       bookmarkvalue.put("P04", Checknull(LastName));
-                       bookmarkvalue.put("P05", Checknull(Position));
-                       */
+                
                        bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
                         bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
                         bookmarkvalue.put("P04", "");
@@ -180,16 +192,12 @@ public class W44 {
 			JSONArray tablecolumn = new JSONArray();
 			tablecolumn.add("C2");
 			tablecolumn.add("C3");
-//			tablecolumn.add("SUSPECT");
-//			tablecolumn.add("VICTIM");
-//			tablecolumn.add("REMARK");
+
 			JSONArray table1 = new JSONArray();
 			JSONObject row1 = new JSONObject();
 			row1.put("C2",cs);
 			row1.put("C3", ccYear);
-//			row1.put("SUSPECT", "period1");
-//			row1.put("VICTIM", "period1");
-//			row1.put("REMARK", "period1");
+
 			table1.add(row1);
 			
 
@@ -205,6 +213,18 @@ public class W44 {
 		
 		try {
                   
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w44.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/คำร้องขอคืนสิ่งของ" +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
+             }    
+            else{
+            try {
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w44.docx"));
 			processVariable(bookmarkvalue,wordMLPackage);
