@@ -48,9 +48,10 @@ public class W34 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-            String ccYear;
-            String caseno;
-            String casetype;
+            String ccYear="";
+            String casetype="" ;
+            String caseno="";
+            String cs="";
             String PoliceStationName="";
             
              String RankPolice ="";
@@ -84,8 +85,22 @@ public class W34 {
                                 "left join Asset  on crimecase.CaseId=Asset.caseIdAsset\n" +
                                 "where crimecase.CaseId='"+cc+"' and Asset.StatusAsset='ของกลาง'\n" +
                                 "group by crimecase.CaseId,Asset.NoAsset";
-//                   pst=conn.prepareStatement(sql);
-//           pst=PreparedStatement(sql);
+                   
+ String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+            Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+//            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                    cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
+
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
@@ -102,13 +117,18 @@ public class W34 {
             int OrderAsset=0;
             int SumValue=0;
              JSONArray JSONArray = new JSONArray();
-            
-       
-            while((s!=null) && (s.next()))
-            {  String  cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype =s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
+             JSONObject bookmarkvalue = new JSONObject();
+             JSONArray tablecolumn = new JSONArray();
+             JSONObject row1 = new JSONObject();
+	     JSONObject tableobj = new JSONObject();
+             
+            if(s.isBeforeFirst()){
+           while((s!=null) && (s.next()))
+            {      
+                //cs =s.getString("crimecaseno");
+                //ccYear=s.getString("crimecaseyears");
+                //casetype =s.getString("casetype");
+                //caseno  =s.getString("crimecasenoyear");
 
                  String Date="";
                 String Month="";
@@ -126,9 +146,8 @@ public class W34 {
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
                  
-//                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
-//                System.out.print(" - ");
-                 JSONObject bookmarkvalue = new JSONObject();
+
+                 //JSONObject bookmarkvalue = new JSONObject();
 //              
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
@@ -138,37 +157,14 @@ public class W34 {
                 bookmarkvalue.put("C3",Checknull(ccYear));
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                  
-                /*
-                     //ทรัพย์
-                    VarAS1=VarAS1+"\n\r"+s.getString("EvidenceRecordNumber");
-                    bookmarkvalue.put("AS1",Checknull(VarAS1));
-                   
-                    
-                   
-                    VarAS3=VarAS3+"\n\r"+(OrderAsset);
-                    bookmarkvalue.put("AS3",Checknull(VarAS3));
-                    
-                    
-                    VarAS4=VarAS4+"\n\r"+s.getString("Name");
-                    bookmarkvalue.put("AS4",Checknull(VarAS4));
-                    VarAS5=VarAS5+"\n\r"+s.getString("Amount");
-                    bookmarkvalue.put("AS5",Checknull(VarAS5));
-                    
-                    
-                    VarAS6=VarAS6+"\n\r"+s.getString("Value");
-                    bookmarkvalue.put("AS6",Checknull(VarAS6));
-
-                    VarAS10=VarAS10+"\n\r"+s.getString("Remark");
-                    bookmarkvalue.put("AS10",Checknull(VarAS10));
-*/  
-                
+        
                     ++OrderAsset ;
                     if (s.getString("Value") != null)
                     {
                     SumValue = SumValue+s.getInt("Value");
                     } 
           
-                    JSONArray tablecolumn = new JSONArray();
+                   // JSONArray tablecolumn = new JSONArray();
 			System.out.println(">>>>"+OrderAsset);
 			tablecolumn.add("AS3");
                         tablecolumn.add("AS4");
@@ -180,7 +176,7 @@ public class W34 {
                        
 
 			
-			JSONObject row1 = new JSONObject();
+			//JSONObject row1 = new JSONObject();
 			
 			row1.put("AS3",Checknull(Integer.toString(OrderAsset)));
                         row1.put("AS4",Checknull(s.getString("Name")));
@@ -192,7 +188,7 @@ public class W34 {
 			JSONArray.add(row1);
                         
 
-		JSONObject tableobj = new JSONObject();
+		//JSONObject tableobj = new JSONObject();
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", JSONArray);
 			
@@ -214,6 +210,50 @@ public class W34 {
 			ex.printStackTrace();
 		}
             }
+             }
+            else{
+            try {
+                        tablecolumn.add("AS3");
+                        tablecolumn.add("AS4");
+			tablecolumn.add("AS5");
+                        tablecolumn.add("AS6");
+			tablecolumn.add("AS8");
+                        tablecolumn.add("AS9");
+			tablecolumn.add("AS10");
+                        tablecolumn.add("AS241");
+			tablecolumn.add("AS242");
+                        row1.put("AS3","");
+                        row1.put("AS4","");
+                        row1.put("AS5","");
+                        row1.put("AS6","");
+                        row1.put("AS8","");
+                        row1.put("AS9","");
+                        row1.put("AS10","");
+                        row1.put("AS241","");
+                        row1.put("AS242","");
+                        
+			JSONArray.add(row1);
+                        
+
+	
+		tableobj.put("COLUMNS", tablecolumn);
+		tableobj.put("TABLEDATA", JSONArray);
+			
+		JSONArray TABLES = new JSONArray();
+		TABLES.add(tableobj);
+
+		bookmarkvalue.put("TABLES", TABLES);
+                
+                WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w34.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บัญชีทรัพย์ประกอบบันทึกการตรวจค้น" +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }

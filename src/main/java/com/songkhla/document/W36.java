@@ -48,9 +48,10 @@ public class W36 {
             Connection conn=null;
             conn=ConnectDatabase.connect();
             PreparedStatement pst=null;
-            String ccYear;
-            String casetype;
-            String caseno;
+            String ccYear="";
+            String casetype="" ;
+            String caseno="";
+            String cs="";
             String PoliceStationName="";
             
              String RankPolice ="";
@@ -84,6 +85,20 @@ public class W36 {
                                 "left join Asset  on crimecase.CaseId=Asset.caseIdAsset\n" +
                                 "where crimecase.CaseId='"+cc+"' and Asset.StatusAsset='ของกลาง'\n" +
                                 "group by crimecase.CaseId,Asset.NoAsset";
+                    String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
+                         + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
+                         + "from crimecase where crimecase.CaseId='"+cc+"'";
+                               
+            Statement st2 = conn.createStatement();
+            ResultSet s2=st2.executeQuery(sqlcc); 
+//            System.out.println(sqlcc);
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
 
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
@@ -100,14 +115,18 @@ public class W36 {
             
             int OrderAsset=0;
             int SumValue=0;
-            JSONArray JSONArray = new JSONArray();
-            
-       
+             JSONArray JSONArray = new JSONArray();
+             JSONObject bookmarkvalue = new JSONObject();
+             JSONArray tablecolumn = new JSONArray();
+             JSONObject row1 = new JSONObject();
+	     JSONObject tableobj = new JSONObject();
+            if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
-            {  String  cs =s.getString("crimecaseno");
-                    ccYear=s.getString("crimecaseyears");
-                    casetype=s.getString("casetype");
-                    caseno  =s.getString("crimecasenoyear");
+            {      
+                   //cs =s.getString("crimecaseno");
+                   // ccYear=s.getString("crimecaseyears");
+                   // casetype=s.getString("casetype");
+                   // caseno  =s.getString("crimecasenoyear");
                  String Date="";
                 String Month="";
                 String Year="";
@@ -124,7 +143,7 @@ public class W36 {
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
 
-                 JSONObject bookmarkvalue = new JSONObject();
+                
              
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
@@ -136,6 +155,7 @@ public class W36 {
                  
                 
                       ++OrderAsset ;
+                     
                     if (s.getString("Value") != null)
                     {
                     SumValue = SumValue+s.getInt("Value");
@@ -149,7 +169,7 @@ public class W36 {
                     bookmarkvalue.put("AS242",Checknull(VarAS242));
                     
                  
-                    JSONArray tablecolumn = new JSONArray();
+                   // JSONArray tablecolumn = new JSONArray();
 			System.out.println(">>>>"+OrderAsset);
 			tablecolumn.add("AS3");
                         tablecolumn.add("AS4");
@@ -162,7 +182,7 @@ public class W36 {
                        
 
 			
-			JSONObject row1 = new JSONObject();
+			//JSONObject row1 = new JSONObject();
 			
 			row1.put("AS3",Checknull(Integer.toString(OrderAsset)));
                         row1.put("AS4",Checknull(s.getString("Name")));
@@ -175,7 +195,7 @@ public class W36 {
 			JSONArray.add(row1);
                         
 
-		JSONObject tableobj = new JSONObject();
+		//JSONObject tableobj = new JSONObject();
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", JSONArray);
 			
@@ -190,6 +210,49 @@ public class W36 {
 		try {
                   
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w36.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บัญชีทรัพย์ประกอบบันทึกการตรวจค้นโดยไม่มีหมายค้น" +cs+"-"+ccYear+".doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+            }
+                        }
+            else{
+            try {
+                        tablecolumn.add("AS3");
+                        tablecolumn.add("AS4");
+			tablecolumn.add("AS5");
+                        tablecolumn.add("AS6");
+			tablecolumn.add("AS8");
+                        tablecolumn.add("AS9");
+			tablecolumn.add("AS10");
+                        tablecolumn.add("AS241");
+			tablecolumn.add("AS242");
+                        row1.put("AS3","");
+                        row1.put("AS4","");
+                        row1.put("AS5","");
+                        row1.put("AS6","");
+                        row1.put("AS8","");
+                        row1.put("AS9","");
+                        row1.put("AS10","");
+                        row1.put("AS241","");
+                        row1.put("AS242","");
+                        
+			JSONArray.add(row1);
+                        
+
+	
+		tableobj.put("COLUMNS", tablecolumn);
+		tableobj.put("TABLEDATA", JSONArray);
+			
+		JSONArray TABLES = new JSONArray();
+		TABLES.add(tableobj);
+
+		bookmarkvalue.put("TABLES", TABLES);
+                    
+                    WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w36.docx"));
 			processVariable(bookmarkvalue,wordMLPackage);
 			processTABLE(bookmarkvalue,wordMLPackage);

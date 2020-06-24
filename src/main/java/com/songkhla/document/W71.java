@@ -174,8 +174,25 @@ public class W71 {
             Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
             System.out.println(sql);
+                        String D1="";
+                        String D2="";
+			String D3="";
+                        String D4="";
+			String BA2="";
+                        String BA3="";
+			String BA5="";
+                        String BA6="";
+			String BA7="";
+                        String BA9="";
             
             JSONArray JSONArray = new JSONArray();
+           
+             JSONArray tablecolumn = new JSONArray();
+             JSONArray tablecolumn1 = new JSONArray();
+             JSONObject row1 = new JSONObject();
+	     JSONObject tableobj = new JSONObject();
+             JSONObject row2 = new JSONObject();
+            
             if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {    
@@ -232,20 +249,7 @@ public class W71 {
                 bookmarkvalue.put("PB26", Checknull(s.getString("Province"))); 
                 
                 bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
-                      /*
-                       bookmarkvalue.put("P02", Checknull(RankPolice));
-                       bookmarkvalue.put("P03", Checknull(FirstName));
-                       bookmarkvalue.put("P04", Checknull(LastName));
-                       bookmarkvalue.put("P05", Checknull(Position));
-
-                        bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
-                        bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
-                        bookmarkvalue.put("P04", "");
-                        bookmarkvalue.put("P05", Checknull(s.getString("InvestPosition")));
-                        bookmarkvalue.put("P012", Checknull(s.getString("InvestRankFull"))); //ยศเต็ม
-                        bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
-*/
-                
+   
                 String[]   BailAssetTotal1 = s.getString("BailAssetTotal").split(" ");
                 System.out.println(">>>>>"+Arrays.toString(BailAssetTotal1));
                 String a=BailAssetTotal1[0];
@@ -264,7 +268,7 @@ public class W71 {
                      
                       System.out.println(">>>>>"+BailAssetId);
 
-			JSONArray tablecolumn = new JSONArray();
+			//JSONArray tablecolumn = new JSONArray();
 			tablecolumn.add("BA2");
 			tablecolumn.add("BA3");
                         tablecolumn.add("BA9");
@@ -273,7 +277,7 @@ public class W71 {
 			tablecolumn.add("BA7");
 
 			
-			JSONObject row1 = new JSONObject();
+			//JSONObject row1 = new JSONObject();
                         
 			row1.put("BA2",Checknull(Integer.toString(BailAssetId)));
 			row1.put("BA3",Checknull(s.getString("BailAssetDetail")));
@@ -285,7 +289,7 @@ public class W71 {
 			JSONArray.add(row1);
                         
 
-		JSONObject tableobj = new JSONObject();
+		//JSONObject tableobj = new JSONObject();
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", JSONArray);
 			
@@ -312,7 +316,53 @@ public class W71 {
             }
             else{
              try {
-                  
+                        tablecolumn1.add("D1");
+                        tablecolumn1.add("D2");
+			tablecolumn1.add("D3");
+                        tablecolumn1.add("D4");
+			tablecolumn.add("BA2");
+                        tablecolumn.add("BA3");
+			tablecolumn.add("BA5");
+                        tablecolumn.add("BA6");
+			tablecolumn.add("BA7");
+                        tablecolumn.add("BA9");
+                        row2.put("D1","");
+                        row2.put("D2","");
+                        row2.put("D3","");
+                        row2.put("D4","");
+                        row1.put("BA2","");
+                        row1.put("BA3","");
+                        row1.put("BA5","");
+                        row1.put("BA6","");
+                        row1.put("BA7","");
+                        row1.put("BA9","");
+                        JSONArray.add(row1);
+                        JSONArray1.add(row2);
+                        
+
+
+		tableobj.put("COLUMNS", tablecolumn);
+		tableobj.put("TABLEDATA", JSONArray);
+			
+		JSONArray TABLES = new JSONArray();
+		TABLES.add(tableobj);
+
+		bookmarkvalue.put("TABLES", TABLES);
+		System.out.println(bookmarkvalue.toJSONString());
+                        
+                
+                
+
+		JSONObject tableobj1 = new JSONObject();
+		tableobj1.put("COLUMNS", tablecolumn1);
+		tableobj1.put("TABLEDATA", JSONArray1);
+			
+		JSONArray TABLES1 = new JSONArray();
+		TABLES1.add(tableobj1);
+
+		bookmarkvalue1.put("TABLES1", TABLES1);
+		System.out.println(bookmarkvalue1.toJSONString());
+                
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w71.docx"));
 			processVariable(bookmarkvalue,wordMLPackage);
