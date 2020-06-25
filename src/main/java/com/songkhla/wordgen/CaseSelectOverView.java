@@ -3004,11 +3004,11 @@ jlabeltoken.setVisible(true);
                NodeList errNodes3 = doc.getElementsByTagName("InvolvedVehicle_TrafficCase");
                NodeList errNodes4 = doc.getElementsByTagName("InvolvedVehicle");
                
-             NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
-             NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
-                NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
+//             NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
+//             NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
+//                NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
                  NodeList errNodesT = doc.getElementsByTagName("Tambon"); 
-                  NodeList errNodesOc = doc.getElementsByTagName("RequestForBail_Bailman_Occupation");
+//                  NodeList errNodesOc = doc.getElementsByTagName("RequestForBail_Bailman_Occupation");
                NodeList errNodesTb = doc.getElementsByTagName("TrafficCaseModel_Tambon");
                 NodeList errNodesAm = doc.getElementsByTagName("TrafficCaseModel_Amphur");
                 NodeList errNodesPro = doc.getElementsByTagName("TrafficCaseModel_Province");
@@ -3206,10 +3206,14 @@ jlabeltoken.setVisible(true);
             NodeList nListArrAm = p.getElementsByTagName("Tabon_Amphur");
             NodeList nListArrPro = p.getElementsByTagName("Tabon_Province");
              NodeList nListArr = p.getElementsByTagName("ArrestAndBailOut");
-            NodeList errNodesB = p.getElementsByTagName("RequestForBail"); 
+            NodeList errNodesB = p.getElementsByTagName("RequestForBail_Person"); 
             NodeList nListTam = p.getElementsByTagName("Person_Tambon");
             NodeList nListAm = p.getElementsByTagName("Person_Amphur");
             NodeList nListPro = p.getElementsByTagName("Person_Province");
+           NodeList errNodesBA = p.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
+           NodeList errNodesBA1 = p.getElementsByTagName("AssetsOfTheBailman"); 
+             NodeList errNodesBD = p.getElementsByTagName("DueDateDeliverySuspect"); 
+            NodeList errNodesOc = p.getElementsByTagName("RequestForBail_Bailman_Occupation");     
 //            -----------------------------------------Person Traffic Insert------------------------------------------
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
         String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
@@ -3497,12 +3501,18 @@ jlabeltoken.setVisible(true);
                                 if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
                                     Element p2 = (Element) nNode1; 
 //                                     Element err7 = (Element)errNodes8.item(0);  
+                                               String bailassType=CheckNull(p2,"AssetBailType");
+                                               int amoutass=Integer.parseInt(CheckNull(p2,"AssetsAmount"));
+                                               int unitass=Integer.parseInt(CheckNull(p2,"AssetsUnitValueBaht"));
+                                               String tt=amoutass*unitass+"";
                                               pstB1=conn.prepareStatement(insertBailAsset);
                                               pstB1.setString(1, CheckNull(p2,"Sequence"));
                                               pstB1.setString(2, CheckNull(p2,"AssetsName"));
                                               pstB1.setString(3, CheckNull(p2,"AssetsUnitValueBaht"));
-                                              pstB1.setString(4, CheckNull(p2,"AssetsAmount"));
-                                              pstB1.setString(5, CheckNull(p2,"AssetsTotalValueBaht"));
+                                              pstB1.setString(4, CheckNull(p2,"AssetsAmount")); 
+                                              if(bailassType.equals("BailMoney")){
+                                              pstB1.setString(5, CheckNull(p2,"AssetsUnitValueBaht"));}
+                                              else{pstB1.setString(5, tt);}
                                               pstB1.setString(6,IdPerson());
                                              pstB1.setString(7,IdCasePerson());
                                              pstB1.execute();
@@ -3650,9 +3660,7 @@ jlabeltoken.setVisible(true);
             NodeList errNodes71 = doc.getElementsByTagName("IsRegain"); 
             
 
-             NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
-             NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
-                NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
+            
                 NodeList errNodesSue = doc.getElementsByTagName("Sue_Person"); 
                 NodeList errSue = doc.getElementsByTagName("Sue"); 
         
@@ -4018,7 +4026,9 @@ jlabeltoken.setVisible(true);
             NodeList nListTam = p.getElementsByTagName("Person_Tambon");
             NodeList nListAm = p.getElementsByTagName("Person_Amphur");
             NodeList nListPro = p.getElementsByTagName("Person_Province");
-
+ NodeList errNodesBA = p.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
+             NodeList errNodesBA1 = p.getElementsByTagName("AssetsOfTheBailman"); 
+                NodeList errNodesBD = p.getElementsByTagName("DueDateDeliverySuspect"); 
 //--------------------------------------Person Crimes Insert-------------------------------------------------------------------
 //    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
        String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
@@ -4323,12 +4333,15 @@ jlabeltoken.setVisible(true);
                                 if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
                                     Element p2 = (Element) nNode1; 
 //                                     Element err7 = (Element)errNodes8.item(0);  
+                                            String bailassType=CheckNull(p2,"AssetBailType");        
                                               pstB1=conn.prepareStatement(insertBailAsset);
                                               pstB1.setString(1, CheckNull(p2,"Sequence"));
                                               pstB1.setString(2, CheckNull(p2,"AssetsName"));
                                               pstB1.setString(3, CheckNull(p2,"AssetsUnitValueBaht"));
                                               pstB1.setString(4, CheckNull(p2,"AssetsAmount"));
-                                              pstB1.setString(5, CheckNull(p2,"AssetsTotalValueBaht"));
+                                              if(bailassType.equals("BailMoney")){
+                                              pstB1.setString(5, CheckNull(p2,"AssetsUnitValueBaht"));}
+                                              else{pstB1.setString(5, CheckNull(p2,"AssetsTotalValueBaht"));}
                                               pstB1.setString(6,IdPerson());
                                              pstB1.setString(7,IdCasePerson());
                                              pstB1.execute();

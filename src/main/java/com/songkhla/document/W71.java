@@ -268,7 +268,7 @@ public class W71 {
                      
                       System.out.println(">>>>>"+BailAssetId);
 
-			//JSONArray tablecolumn = new JSONArray();
+			 tablecolumn = new JSONArray();
 			tablecolumn.add("BA2");
 			tablecolumn.add("BA3");
                         tablecolumn.add("BA9");
@@ -277,7 +277,7 @@ public class W71 {
 			tablecolumn.add("BA7");
 
 			
-			//JSONObject row1 = new JSONObject();
+		       row1 = new JSONObject();
                         
 			row1.put("BA2",Checknull(Integer.toString(BailAssetId)));
 			row1.put("BA3",Checknull(s.getString("BailAssetDetail")));
@@ -289,7 +289,7 @@ public class W71 {
 			JSONArray.add(row1);
                         
 
-		//JSONObject tableobj = new JSONObject();
+	        tableobj = new JSONObject();
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", JSONArray);
 			
@@ -299,9 +299,7 @@ public class W71 {
 		bookmarkvalue.put("TABLES", TABLES);
 		System.out.println(bookmarkvalue.toJSONString());
 		
-		
-            }
-            try {
+		  try {
                   
 			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
 					.load(new java.io.File("./TEMPLATE/w71.docx"));
@@ -313,6 +311,8 @@ public class W71 {
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}
+            }
+          
             }
             else{
              try {
