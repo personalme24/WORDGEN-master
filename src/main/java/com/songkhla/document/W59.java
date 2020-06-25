@@ -130,7 +130,7 @@ public class W59 {
                 bookmarkvalue.put("C3",Checknull(ccYear));
                 bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
                 bookmarkvalue.put("CC2",Checknull(caseno));
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName));
                 bookmarkvalue.put("S7", Checknull(KK));
                 bookmarkvalue.put("S8", Checknull(BK));
                 bookmarkvalue.put("S29", Checknull(THNumBook));

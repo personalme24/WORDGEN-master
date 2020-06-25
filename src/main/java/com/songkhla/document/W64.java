@@ -143,14 +143,12 @@ public class W64 {
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
                 
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName));
            if(s.isBeforeFirst()){    
     
             while((s!=null) && (s.next()))
             {  
-                
-                 
-               ///วันที่จุดเกิดเหตุ
+           
                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy", new Locale("th", "TH"));
                 Date date=null;
                 date = df.parse((s.getString("OccuredDate")));  

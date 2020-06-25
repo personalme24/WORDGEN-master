@@ -160,7 +160,7 @@ public class W14 {
               
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                  
-                 bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
+                 bookmarkvalue.put("PA7",Checknull(s.getString("AccuredName")));
                  
                     bookmarkvalue.put("PS7",Checknull(s.getString("SuspectandOther"))); 
                    
