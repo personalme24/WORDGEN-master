@@ -936,7 +936,7 @@ String  username=Username.getText();
                               pst4.close();
                         
         } catch (Exception e) {
-             JOptionPane.showMessageDialog(jPanel1, "Cannot Save",null, JOptionPane.INFORMATION_MESSAGE);
+//             JOptionPane.showMessageDialog(jPanel1, "Cannot Save",null, JOptionPane.INFORMATION_MESSAGE);
              System.out.println("SQL : "+pst);
         }
         

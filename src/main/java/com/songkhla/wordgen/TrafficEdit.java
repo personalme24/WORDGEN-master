@@ -161,6 +161,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import org.json.simple.JSONObject;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import java.sql.SQLException;
 /**
  *
  * @author Petpilin
@@ -446,7 +447,25 @@ JDatePickerImpl CaseRequestDateTime,CaseAcceptDate,OccuredDate,Invest_SendCaseDa
                 jCheckOtherInvest.setSelected(true);
             }
           
-            ListAsset.setText(Checknull(datain.get("AssetList"))+"");
+             String ass= datain.get("AssetList")+"";            
+//             ListAsset.setText(Checknull(datain.get("AssetList"))+"");
+             try{
+             String assetList="Select Name from Asset where caseIdAsset='"+caseid+"'";
+                 System.out.println("AssetList:"+assetList);
+             Statement stal = con.createStatement();
+                ResultSet al = stal.executeQuery(assetList); 
+             if(al.next()&& ass.equals("null")){
+             ListAsset.setText(al.getString("Name"));
+             
+             }
+             else{
+             ListAsset.setText(Checknull(datain.get("AssetList"))+"");
+
+             }
+             }
+             catch(SQLException ex){
+                    System.out.println(ex);
+             }
              EvidenceRecordCase.setText(Checknull(datain.get("AssetCode"))+"");
            
             String ac=datain.get("ActionCrimes")+"";

@@ -296,7 +296,16 @@ public class SueCrimesFrom extends javax.swing.JDialog {
              TypeChild=rs.getString("TypeChild");
               RatePrison=rs.getString("RatePrison");
                 StatusBail=rs.getString("StatusBail");
-              Block();
+                  System.out.println("PeopleRegistrationID: "+rs.getString("PeopleRegistrationID")+"");
+                PeopleRegistrationID.setText(rs.getString("PeopleRegistrationID")+"");  
+                FullNamePerson.setText(rs.getString("FullNamePerson")+"");
+                 AccureandOther.setText(Checknull(rs.getString("AccureandOther"))+"");
+             crimecaseno.setText(Checknull(rs.getString("crimecasenoyear")));
+              ChargeName.setText(Checknull(rs.getString("ChargeNameCase")));
+                 caseyear=rs.getString("crimecaseyears");
+                caseno=rs.getString("crimecaseno");
+                casetype=rs.getString("CaseType");
+              
                      PlaceArrest.setText(Checknull(rs.getString("PlaceArrest")));
             DateArrest.setText(Checknull(rs.getString("ArrestDateTime")));
            String a=rs.getString("ArrestDateTimeEnd");
@@ -501,20 +510,13 @@ public class SueCrimesFrom extends javax.swing.JDialog {
                         
                      
              }     
-                PeopleRegistrationID.setText(rs.getString("PeopleRegistrationID")+"");  
-                FullNamePerson.setText(rs.getString("FullNamePerson")+"");
-                 AccureandOther.setText(Checknull(rs.getString("AccureandOther"))+"");
-             crimecaseno.setText(Checknull(rs.getString("crimecasenoyear")));
-              ChargeName.setText(Checknull(rs.getString("ChargeNameCase")));
-                 caseyear=rs.getString("crimecaseyears");
-                caseno=rs.getString("crimecaseno");
-                casetype=rs.getString("CaseType");
+                  Block();
 //            SueFirst.setText(datain.get("SueFirst")+"");
 //            SueFirstDate.setText(datain.get("SueFirstDate")+"");   
                 }
 
                 }catch(Exception ex)
-                {}               
+                {ex.printStackTrace(); }               
 //                  caseyear=datain.get("crimecaseyears")+"";
 //                caseno=datain.get("crimecaseno")+"";
 //                casetype=datain.get("CaseType")+"";
@@ -2099,7 +2101,7 @@ SueFirstCause.setEnabled(true);
        SueSixthCause.setEnabled(false);
        Print6.setEnabled(false);
        }
-        if(Court.equals("ศาลแขวง"))
+       else if(Court.equals("ศาลแขวง"))
        {
        SueSeventh.setEnabled(false);
        SevDate.setEnabled(false);
@@ -2116,7 +2118,31 @@ SueFirstCause.setEnabled(true);
        SueSixthCause.setEnabled(false);
        Print6.setEnabled(false);
        }
-        if(Court.equals("ศาลอาญา/ศาลจังหวัด")&&RatePrison.equals("ไม่เกิน 10 ปี"))
+//         else if(Court.equals("ศาลอาญา/ศาลจังหวัด"))
+//       {
+//       SueSeventh.setEnabled(false);
+//       SevDate.setEnabled(false);
+//       SueSevenEnd.setEnabled(false);
+//       SueSevenTotal.setEnabled(false);
+//       SueSevRequest.setEnabled(false);
+//       SueSevCause.setEnabled(false);
+//       Print7.setEnabled(false);
+//       SueSixth.setEnabled(false);
+//       SixthDate.setEnabled(false);
+//       SueSixthEnd.setEnabled(false);
+//       SueSixthTotal.setEnabled(false);
+//       SueSixthRequest.setEnabled(false);
+//       SueSixthCause.setEnabled(false);
+//       Print6.setEnabled(false);
+//          SueFifth.setEnabled(false);
+//       FifthDate.setEnabled(false);
+//       SueFifthEnd.setEnabled(false);
+//       SueFifthTotal.setEnabled(false);
+//       SueFifthRequest.setEnabled(false);
+//       SueFifthCause.setEnabled(false);
+//       Print5.setEnabled(false);
+//       }
+       else if(Court.equals("ศาลอาญา/ศาลจังหวัด")&&RatePrison.equals("ไม่เกิน 10 ปี"))
        {
        SueSeventh.setEnabled(false);
        SevDate.setEnabled(false);
@@ -2140,7 +2166,7 @@ SueFirstCause.setEnabled(true);
        SueFifthCause.setEnabled(false);
        Print5.setEnabled(false);
        }
-        if(Court.equals("ศาลเยาวชนและครอบครัว")||TypeChild.equals("เด็กและเยาวชน"))
+      else  if(Court.equals("ศาลเยาวชนและครอบครัว")||TypeChild.equals("เด็กและเยาวชน"))
        {
        SueSeventh.setEnabled(false);
        SevDate.setEnabled(false);
@@ -2178,6 +2204,7 @@ SueFirstCause.setEnabled(true);
 //       SueThirdCause.setEnabled(false);
 //       Print3.setEnabled(false);
        }
+   
  
 //   try{
 //     Connection con = ConnectDatabase.connect();

@@ -2871,9 +2871,716 @@ jlabeltoken.setVisible(true);
                 }
     public static void insert_crime(JsonObject a){
      try {
+                        detail_crimes(a);
+                }
+         catch (Exception e) {
+                System.out.println(e);
+                }
+    }
+      public static void insert_traffic(JsonObject a){
+            try {
+                   detail_traffic(a);
+
+                } catch (Exception e) {
+                System.out.println(e);
+                }
+     
+                }
+          public static void update_crime(JsonObject a,String caseid){
+    
+         try {  
+             String sql = "DELETE FROM DeliverySuspect\n" +
+                            "WHERE delipersonid IN (\n" +
+                            "  SELECT delipersonid FROM DeliverySuspect a\n" +
+                            "  INNER JOIN Person b\n" +
+                            "    ON a.delipersonid=b.noperson \n" +
+                             "  WHERE b.caseidperson ='"+caseid+"');\n"+
+                          "DELETE FROM CrimeCase WHERE CrimeCase.CaseId='"+caseid+"';\n"+
+                             "DELETE FROM RecordInquiry WHERE caseidrecord='"+caseid+"';\n"+
+                             "DELETE FROM Person WHERE caseidperson='"+caseid+"';\n"+
+                             "DELETE FROM ChargeCase WHERE ChargeCaseId='"+caseid+"';\n"+
+                             "DELETE FROM RecordInquiry WHERE CaseIdRecord='"+caseid+"';\n"+
+                             "DELETE FROM ActionsCaseData WHERE ActionCaseId='"+caseid+"';\n"+
+                             "DELETE FROM BailAsset WHERE BailCaseId='"+caseid+"';\n"+                  
+                                "DELETE FROM Asset WHERE caseidasset='"+caseid+"';";              
+           Connection cond = ConnectDatabase.connect();
+                System.out.println("Delete:"+sql);
+                Statement  stmt = cond.createStatement();
+                      stmt.executeUpdate(sql);
+                    stmt.close();
+         }
+         catch(SQLException ex){
+             System.out.println(ex);
+         }
+                detail_crimes(a);
+               
+     
+                }
+      public static void update_traffic(JsonObject a,String caseid){
+     try {
+                 String sql = "DELETE FROM DeliverySuspect\n" +
+                            "WHERE delipersonid IN (\n" +
+                            "  SELECT delipersonid FROM DeliverySuspect a\n" +
+                            "  INNER JOIN Person b\n" +
+                            "    ON a.delipersonid=b.noperson \n" +
+                             "  WHERE b.caseidperson ='"+caseid+"');\n"+
+                          "DELETE FROM CrimeCase WHERE CrimeCase.CaseId='"+caseid+"';\n"+
+                             "DELETE FROM RecordInquiry WHERE caseidrecord='"+caseid+"';\n"+
+                             "DELETE FROM Person WHERE caseidperson='"+caseid+"';\n"+
+                             "DELETE FROM ChargeCase WHERE ChargeCaseId='"+caseid+"';\n"+
+                             "DELETE FROM RecordInquiry WHERE CaseIdRecord='"+caseid+"';\n"+
+                             "DELETE FROM ActionsCaseData WHERE ActionCaseId='"+caseid+"';\n"+
+                             "DELETE FROM BailAsset WHERE BailCaseId='"+caseid+"';\n"+                  
+                                "DELETE FROM Asset WHERE caseidasset='"+caseid+"';";
+         try {               
+           Connection cond = ConnectDatabase.connect();
+                System.out.println("Delete:"+sql);
+                Statement  stmt = cond.createStatement();
+                      stmt.executeUpdate(sql);
+                    stmt.close();
+         }
+         catch(SQLException ex){
+             System.out.println(ex);
+         }
+                
+             detail_traffic(a);
+
+                } catch (Exception e) {
+                System.out.println(e);
+                }
+ 
+        }
+       public static void detail_traffic(JsonObject a){
+     try {
              
                 
-                 String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen_Import/";
+                 String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen_Import/";
+//                 String url = "http://172.31.191.171:8989/ws/TrafficCaseService_Wordgen_Import";
+//                 String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen_Import";
+
+                URL obj = new URL(url);
+                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
+                con.setRequestMethod("POST");
+                con.setRequestProperty("Content-Type","application/soap+xml;charset=UTF-8");
+                String xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:exam=\"http://www.example.com/\">\n" +
+                    "   <soapenv:Header>\n" +
+                    "      <exam:authentication>\n" +
+                    "         <username>rtp</username>\n" +
+                    "         <password>rtp</password>\n" +
+                    "      </exam:authentication>\n" +
+                    "   </soapenv:Header>\n" +
+                    "   <soapenv:Body>\n" +
+                    "      <exam:TrafficCaseDetail>\n" +
+                    "         <INPUT>"+a+"</INPUT>\n" +
+                    "      </exam:TrafficCaseDetail>\n" +
+                    "   </soapenv:Body>\n" +
+                    "</soapenv:Envelope>";
+                System.out.println(xml);
+                    con.setDoOutput(true);
+                  DataOutputStream writer = new DataOutputStream(con.getOutputStream());
+                BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(writer, "UTF-8"));
+                wr.write(xml);
+                wr.flush();
+                wr.close();
+                String responseStatus = con.getResponseMessage();
+                int responseCode = con.getResponseCode();
+		System.out.println("GET Response Code :: " + responseCode);
+                System.out.println(responseStatus);
+                BufferedReader in = new BufferedReader(new InputStreamReader(
+                con.getInputStream(),"UTF-8"));
+                String inputLine;
+                StringBuffer response = new StringBuffer();
+                while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+                }
+                in.close();
+                System.out.println("response:" + response.toString());
+                	// System.out.println(response.toString());
+        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+         .parse(new InputSource(new StringReader(response.toString())));
+	       NodeList errNodes = doc.getElementsByTagName("Person");
+               NodeList errNodesArr = doc.getElementsByTagName("ArrestAndBailOut");
+               NodeList errNodes2 = doc.getElementsByTagName("TrafficCase");       
+               NodeList errNodes3 = doc.getElementsByTagName("InvolvedVehicle_TrafficCase");
+               NodeList errNodes4 = doc.getElementsByTagName("InvolvedVehicle");
+               
+             NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
+             NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
+                NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
+                 NodeList errNodesT = doc.getElementsByTagName("Tambon"); 
+                  NodeList errNodesOc = doc.getElementsByTagName("RequestForBail_Bailman_Occupation");
+               NodeList errNodesTb = doc.getElementsByTagName("TrafficCaseModel_Tambon");
+                NodeList errNodesAm = doc.getElementsByTagName("TrafficCaseModel_Amphur");
+                NodeList errNodesPro = doc.getElementsByTagName("TrafficCaseModel_Province");
+//                 NodeList errNodes5 = doc.getElementsByTagName("LawCategory");               
+               
+              Connection conn=null;
+               Connection conn2=null;
+
+               conn=ConnectDatabase.connect();
+                              conn2=ConnectDatabase.connect();
+
+         if (errNodes2.getLength() > 0) {
+            Element err = (Element)errNodes2.item(0);
+             Element er = (Element)errNodesT.item(0);
+             Element tb = (Element)errNodesTb.item(0);
+             Element am = (Element)errNodesAm.item(0);
+             Element pr = (Element)errNodesPro.item(0);
+         String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
+                       + "CaseRequestDate,CaseRequestTime,OccuredDate,OccuredTime,OccuredDateEnd,OccuredTimeEnd,ActionCodeCase,ChargeCodeCase,"
+                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,CrimeLocation,TypeCourt,CrimeLocationDistrict,CrimeLocationAmphur,CrimeLocationProvince)\n"
+                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+         String insertCharge="insert into Charge(ChargeCode,ChargeName,Law,RateOfPenalty,Note)\n"
+                       + "VALUES (?,?,?,?,?)";
+          String insertChargeCase="insert into ChargeCase(ChargeCodeCase,ChargeNameCase,LawCase,RateOfPenaltyCase,NoteCase,ChargeCaseId)\n"
+                       + "VALUES (?,?,?,?,?,?)";
+        
+      String insertActionsCase="insert into ActionsCase(ActionCode,ActionCrimes,ActionDetail,ActionNote)\n"
+                       + "VALUES (?,?,?,?)";
+          String insertActionsCaseData="insert into ActionsCaseData(ActionCodeCase,ActionCrimesCase,ActionDetailCase,ActionNoteCase,ActionCaseId)\n"
+                       + "VALUES (?,?,?,?,?)";
+           String insertAsset="insert into Asset(EvidenceRecordNumber,Name,Amount,Value,StatusAsset,SumValue,caseIdAsset)\n"
+                       + "VALUES (?,?,?,?,?,?,?)";
+       try {
+                    
+                         PreparedStatement pst=null;
+                         PreparedStatement pst1=null;
+                         PreparedStatement pst2=null;
+                          PreparedStatement pst3=null;
+                         PreparedStatement pst4=null;
+                          PreparedStatement pst5=null;
+
+//                         String[] nameSus=err.getElementsByTagName("DailyNumber").item(0).getTextContent().split("2) ",1);
+//                         System.out.println("nameeeeeeeeee:"+nameSus[0]);
+                        pst=conn.prepareStatement(insertCrime);
+                        pst.setString(1, IdCase());
+                        pst.setString(2, "คดีจราจร");
+                        pst.setString(3, err.getElementsByTagName("CrimeCaseNo").item(0).getTextContent());
+                        pst.setString(4,  err.getElementsByTagName("CrimeCaseYear").item(0).getTextContent());
+                        pst.setString(5,  err.getElementsByTagName("CaseNo").item(0).getTextContent());
+                        pst.setString(6,  NewDate( err.getElementsByTagName("CaseRequestDate").item(0).getTextContent())); 
+                        pst.setString(7,   NewTime(err.getElementsByTagName("CaseRequestDate").item(0).getTextContent()));         
+                        pst.setString(8, NewDate( err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
+                        pst.setString(9,  NewTime(err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
+                        pst.setString(10,  NewDate( err.getElementsByTagName("EventStartDate").item(0).getTextContent())); 
+                        pst.setString(11,  NewTime(err.getElementsByTagName("EventStartDate").item(0).getTextContent())); 
+                        pst.setString(12,   NewDate( err.getElementsByTagName("EventEndDate").item(0).getTextContent())); 
+                        pst.setString(13,  NewTime(err.getElementsByTagName("EventEndDate").item(0).getTextContent())); 
+                         pst.setString(14,  idAction()); 
+                          pst.setString(15,  idCharge()); 
+                            pst.setString(16, CheckNull(err, "DailyRecordNo"));  
+                   
+                            pst.setString(17, "อยู่ระหว่างสอบสวน");  
+                            pst.setString(18, CheckNull(err, "DisplaySuspectsName").replace("1) ", ""));
+                             pst.setString(19, CheckNull(err, "DisplayVictimsName").replace("1) ", ""));   
+                            pst.setString(20,"1");
+                           pst.setString(21,CheckNull(err, "Location"));   
+                            pst.setString(22,"ศาลอาญา/ศาลจังหวัด"); 
+                           pst.setString(23,CheckNull(tb, "Name"));   
+                           pst.setString(24,CheckNull(am, "Name"));   
+                           pst.setString(25,CheckNull(pr, "Name"));   
+
+                            
+//                      pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
+                     pst.execute();
+                     pst.close(); 
+//                        if(err.getElementsByTagName("BehaviorOfCrimeCase").item(0)!=null){
+//                           pst1=conn2.prepareStatement(insertActionsCase);
+//                        pst1.setString(1, idAction());
+//                        pst1.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
+//                        pst1.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
+//                        pst1.setString(4, "");     
+//                                      System.out.println("addddddddddddd:"+idAction());  
+//                        pst1.execute();
+//                     pst1.close(); 
+                     
+//                            pst2=conn.prepareStatement(insertActionsCaseData);
+//                        pst2.setString(1, idActionCase());
+//                        pst2.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
+//                        pst2.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
+//                        pst2.setString(4, "");
+//                         pst2.setString(5, IdCasePerson());  
+//                        pst2.execute();
+//                     pst2.close(); 
+//                        }
+                 
+              
+                       String selectCharge="select ChargeName from Charge where ChargeName='"+CheckNull(err, "DisplayCharge").replace("1)", "")+"'";                            
+                         Statement stc = conn.createStatement();
+                        ResultSet sc=stc.executeQuery(selectCharge); 
+                        if(sc.next()){                   
+                       pst4=conn.prepareStatement(insertChargeCase);
+                        pst4.setString(1, idChargeCase());
+                        pst4.setString(2, CheckNull(err, "DisplayCharge").replace("1)", ""));
+//                        if (errNodes5.getLength() > 0) {
+//                            Element err5 = (Element)errNodes5.item(0);
+//                         pst4.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
+//                          }
+//                          else{
+                           pst4.setString(3, "");   
+//                          }
+                        pst4.setString(4, "");
+                         pst4.setString(5, ""); 
+                        pst4.setString(6, IdCasePerson());  
+
+                        pst4.execute();
+                     pst4.close();
+                        
+                        }
+                        else{
+                              pst3=conn.prepareStatement(insertCharge);
+                        pst3.setString(1, idCharge());
+                        pst3.setString(2,CheckNull(err, "DisplayCharge").replace("1)", ""));
+//                       if (errNodes5.getLength() > 0) {
+//                            Element err5 = (Element)errNodes5.item(0);
+//                         pst3.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
+//                          }
+//                          else{
+                           pst3.setString(3, "");   
+//                          }
+                        pst3.setString(4,"");
+                         pst3.setString(5, "");  
+                        pst3.execute();
+                     pst3.close(); 
+                     
+                       pst4=conn.prepareStatement(insertChargeCase);
+                        pst4.setString(1, idChargeCase());
+                        pst4.setString(2, CheckNull(err, "DisplayCharge").replace("1)", ""));
+//                        if (errNodes5.getLength() > 0) {
+//                            Element err5 = (Element)errNodes5.item(0);
+//                         pst4.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
+//                          }
+//                          else{
+                           pst4.setString(3, "");   
+//                          }
+                        pst4.setString(4, "");
+                         pst4.setString(5, ""); 
+                        pst4.setString(6, IdCasePerson());  
+
+                        pst4.execute();
+                     pst4.close();
+                        
+                        
+                        
+                        }
+                                   
+//                          }
+                     if (errNodes3.getLength() > 0) {
+                          for (int temp = 0; temp < errNodes4.getLength(); temp++) {
+                                Node nNode = errNodes4.item(temp);
+                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+                                    Element t = (Element) nNode; 
+//                                     Element err7 = (Element)errNodes8.item(0);  
+                                              pst5=conn.prepareStatement(insertAsset);
+                                              pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
+                                              pst5.setString(2, CheckNull(t,"BrandString")+CheckNull(t,"ModelString")+CheckNull(t,"FullNoPlate"));
+                                              pst5.setString(3, CheckNull(t,"Amount1"));
+                                              pst5.setString(4, CheckNull(t,"Value"));
+                                              pst5.setString(5, "");
+                                              pst5.setString(6, "");
+                                              pst5.setString(7,IdCasePerson());
+
+                                             pst5.execute();
+                                             pst5.close();
+                                           }
+                                                  }
+                     }
+                       System.out.println("success");
+        } catch (SQLException e) {
+                System.out.println("ddddd: "+e);
+            
+        }
+	} else { 
+		     // success
+         }
+           for (int temp = 0; temp < errNodes.getLength(); temp++) {
+
+        Node nNode = errNodes.item(temp);
+
+        
+
+        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+
+            Element p = (Element) nNode; 
+      NodeList nListArrTam = p.getElementsByTagName("ArrestAndBailOut_Tambon");
+            NodeList nListArrAm = p.getElementsByTagName("Tabon_Amphur");
+            NodeList nListArrPro = p.getElementsByTagName("Tabon_Province");
+             NodeList nListArr = p.getElementsByTagName("ArrestAndBailOut");
+            NodeList errNodesB = p.getElementsByTagName("RequestForBail"); 
+            NodeList nListTam = p.getElementsByTagName("Person_Tambon");
+            NodeList nListAm = p.getElementsByTagName("Person_Amphur");
+            NodeList nListPro = p.getElementsByTagName("Person_Province");
+//            -----------------------------------------Person Traffic Insert------------------------------------------
+//    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
+        String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
+                              + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
+                             + " CourtSuspect,Related,PlaceArrest,PlaceArrestTambon,PlaceArrestAmphur,PlaceArrestProvince,BailDate,HouseNumber,Moo,Road,Soi,Amphur,Tambon,Province)\n"
+//                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
+//                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
+//                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
+//                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Moo)\n"
+//                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,,?,?,?)";  
+                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
+  
+              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
+                              + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
+                             + "Occupation,"
+                            + "HouseNumber,Road,Soi,Moo,Amphur,"
+                             + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
+                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
+    String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
+         try {           Element oc = (Element)errNodesOc.item(0); 
+                     Statement st = conn.createStatement();
+                ResultSet rc = st.executeQuery(checkPersonData);
+                            if(rc.next()){
+                                
+                            }
+                            else{
+                               PreparedStatement pd=null;
+                        
+                        pd=conn.prepareStatement(insertPersonData);
+                pd.setString(1,CheckNull(p, "PeopleRegistrationID"));
+                 pd.setString(2,CheckNull(p, "FullNamePerson"));
+                 if(p.getElementsByTagName("Birthday").item(0)==null){
+               pd.setString(3,"");
+               }
+               else{
+                    pd.setString(3,NewDate(p.getElementsByTagName("Birthday").item(0).getTextContent()));
+               }
+
+                if(p.getElementsByTagName("Gender").item(0)==null){
+               pd.setString(4,"");
+               }
+               else{
+                    pd.setString(4,NewGender(p.getElementsByTagName("Gender").item(0).getTextContent()));
+               }
+              pd.setString(5,CheckNull(p, "Age"));
+    
+              pd.setString(6,CheckNull(p, "TitleFather")+CheckNull(p, "FatherName")+" "+CheckNull(p, "FatherSurname"));
+              pd.setString(7,CheckNull(p, "TitleMother")+CheckNull(p, "MotherName")+" "+CheckNull(p, "MotherSurname"));
+              pd.setString(8,CheckNull(p, "Race"));
+              pd.setString(9,CheckNull(p, "Religion"));
+              pd.setString(10,CheckNull(p, "Nationality"));
+              if(errNodesOc.getLength()>0){
+               pd.setString(11,NewOccupation(CheckNull(oc, "NameTH")));
+              }
+              else{
+              pd.setString(11,NewOccupation(CheckNull(p, "Occupation")));}
+                    pd.setString(12,CheckNull(p, "HouseNumber"));
+                     pd.setString(13,CheckNull(p, "Road"));
+                    pd.setString(14,CheckNull(p, "Lane"));
+                    pd.setString(15,CheckNull(p, "Moo"));
+                     if (nListAm!= null && nListAm.getLength() > 0) {
+                        Node elAm = nListAm.item(0); 
+                        Element pam = (Element) elAm ;
+                         pd.setString(16,CheckNull(pam, "Name"));
+                         }
+                        else{
+                          pd.setString(16,"");
+                        }
+                      if (nListTam!= null && nListTam.getLength() > 0) {
+                        Node elTam = nListTam.item(0); 
+                        Element ptm = (Element) elTam ;
+                         pd.setString(17,CheckNull(ptm, "Name"));
+                         }
+                        else{
+                          pd.setString(17,"");
+                        }
+                      if (nListPro!= null && nListPro.getLength() > 0) {
+                        Node elPro = nListPro.item(0); 
+                        Element ppr = (Element) elPro ;
+                         pd.setString(18,CheckNull(ppr, "Name"));
+                         }
+                        else{
+                          pd.setString(18,"");
+                        }
+                      pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
+                     pd.setString(20,"");
+                 
+                      pd.execute();
+                     pd.close();  
+                            }
+                        int order=temp+1;
+                         PreparedStatement pst2=null;
+                        
+                        pst2=conn.prepareStatement(insertPerson);
+//               if(p.getElementsByTagName("PeopleRegistrationID").item(0)==null){
+//               pst2.setString(1,"");
+//               }
+//               else{
+//                    pst2.setString(1,p.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
+//               }
+                pst2.setString(1,CheckNull(p, "PeopleRegistrationID"));
+                 pst2.setString(2,CheckNull(p, "FullNamePerson"));
+                 if(p.getElementsByTagName("Birthday").item(0)==null){
+               pst2.setString(3,"");
+               }
+               else{
+                    pst2.setString(3,NewDate(p.getElementsByTagName("Birthday").item(0).getTextContent()));
+               }
+
+                if(p.getElementsByTagName("Gender").item(0)==null){
+               pst2.setString(4,"");
+               }
+               else{
+                    pst2.setString(4,NewGender(p.getElementsByTagName("Gender").item(0).getTextContent()));
+               }
+              pst2.setString(5,CheckNull(p, "Age"));
+              if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Suspect")){
+               pst2.setString(6,"ผู้ต้องหา");
+              }  
+              else{  
+               pst2.setString(6,NewTypePersonTraffic(CheckNull(p, "Traffice_TypeOfPersonCase")));
+              }
+    
+              pst2.setString(7,CheckNull(p, "FatherFullName"));
+              pst2.setString(8,CheckNull(p, "MotherFullName"));
+              pst2.setString(9,CheckNull(p, "Race"));
+              pst2.setString(10,CheckNull(p, "Religion"));
+              pst2.setString(11,CheckNull(p, "Nationality"));
+              pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
+              
+               pst2.setString(14,  IdCasePerson()); 
+               if(p.getElementsByTagName("StatusSuspectProcess").item(0) != null){
+                pst2.setString(15,CheckNull(p, "StatusSuspectProcess"));
+               }
+               else if (p.getElementsByTagName("StatusSueOrBail").item(0) != null) {
+                 pst2.setString(15, NewStatusSue(CheckNull(p, "StatusSueOrBail"))); 
+             }
+             else {
+                pst2.setString(15, "");
+             }
+            
+            
+////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
+                  pst2.setString(17,NewCourtProvince(CheckNull(p, "CourtNameTH")));
+                  pst2.setString(18,NewStatusRelateTraffic(CheckNull(p, "Traffice_TypeOfPersonCase")));
+            if (nListArr!= null && nListArr.getLength() > 0) {
+                        Node elArr = nListArr.item(0); 
+                        Element arr = (Element) elArr ;
+                         pst2.setString(13,NewDate(CheckNull(arr, "ArrestDate"))+" "+NewTime(CheckNull(arr, "ArrestDate")));
+                        if(arr.getElementsByTagName("StatusForBail").item(0).getTextContent().equals("SuspectForBail")){             
+                            pst2.setString(16,"ประกัน");              
+                         }
+                        else{
+                            pst2.setString(16,"");
+                        }
+                        pst2.setString(19,CheckNull(arr, "ArrestLocation"));
+            }
+            else{
+              pst2.setString(13,""); 
+              pst2.setString(16,"");
+              pst2.setString(19,"");
+
+            }
+            if (nListArrTam != null && nListArrTam.getLength() > 0) {
+                        Node elArrTam = nListArrTam.item(0); 
+                        Element tb = (Element) elArrTam ;
+                         pst2.setString(20,CheckNull(tb, "Name"));
+            }
+            else{
+              pst2.setString(20,"");
+            }
+             if (nListArrAm != null && nListArrAm.getLength() > 0) {
+                        Node elArrAm = nListArrAm.item(0); 
+                        Element am = (Element) elArrAm ;
+                         pst2.setString(21,CheckNull(am, "Name"));
+            }
+            else{
+              pst2.setString(21,"");
+            }
+            if (nListArrPro != null && nListArrPro.getLength() > 0) {
+                        Node elArrPr = nListArrPro.item(0); 
+                        Element pr = (Element) elArrPr ;
+                         pst2.setString(22,CheckNull(pr, "Name"));
+            }
+            else{
+              pst2.setString(22,"");
+            }
+                if(errNodesB.getLength()>0){
+                       Node BailDate=errNodesB.item(0);
+                       Element bailD=(Element)BailDate;
+                       pst2.setString(23,NewDate(CheckNull(bailD, "RequestDate")));
+                   }
+                   else{
+                   pst2.setString(23,"");
+                   }
+                   pst2.setString(24,CheckNull(p, "HouseNo"));
+                   pst2.setString(25,CheckNull(p, "Moo"));
+                   pst2.setString(26,CheckNull(p, "Road"));
+                   pst2.setString(27,CheckNull(p, "Lane"));
+                if (nListAm!= null && nListAm.getLength() > 0) {
+                        Node elAm = nListAm.item(0); 
+                        Element pam = (Element) elAm ;
+                         pst2.setString(28,CheckNull(pam, "Name"));
+                         }
+                        else{
+                          pst2.setString(28,"");
+                        }
+                      if (nListTam!= null && nListTam.getLength() > 0) {
+                        Node elTam = nListTam.item(0); 
+                        Element ptm = (Element) elTam ;
+                         pst2.setString(29,CheckNull(ptm, "Name"));
+                         }
+                        else{
+                          pst2.setString(29,"");
+                        }
+                      if (nListPro!= null && nListPro.getLength() > 0) {
+                        Node elPro = nListPro.item(0); 
+                        Element ppr = (Element) elPro ;
+                         pst2.setString(30,CheckNull(ppr, "Name"));
+                         }
+                        else{
+                          pst2.setString(30,"");
+                        }
+//                  if(p.getElementsByTagName("Sue").item(0) != null){
+//                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
+//                    pst2.setString(18,CheckNullSue(p, "SueSeq",1));
+//                     pst2.setString(19,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",1)))); 
+//                     pst2.setString(20,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",1))));                 
+//                     pst2.setString(21,CheckNullSue(p, "Amount",1)); 
+//                      pst2.setString(22,CheckNullSue(p, "SueSeq",2));
+//                     pst2.setString(23,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",2)))); 
+//                     pst2.setString(24,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",2))));                 
+//                     pst2.setString(25,CheckNullSue(p, "Amount",2));
+//                      pst2.setString(26,CheckNullSue(p, "SueSeq",2));
+//                     pst2.setString(23,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",2)))); 
+//                     pst2.setString(24,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",2))));                 
+//                     pst2.setString(25,CheckNullSue(p, "Amount",2));
+//                      pst2.setString(26,CheckNullSue(p, "SueSeq",3));
+//                     pst2.setString(27,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",3)))); 
+//                     pst2.setString(28,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",3))));                 
+//                     pst2.setString(29,CheckNullSue(p, "Amount",3));
+//                     pst2.setString(30,CheckNullSue(p, "SueSeq",4));
+//                     pst2.setString(31,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",4)))); 
+//                     pst2.setString(32,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",4))));                 
+//                     pst2.setString(33,CheckNullSue(p, "Amount",4));
+//                      pst2.setString(34,CheckNullSue(p, "SueSeq",5));
+//                     pst2.setString(35,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",5)))); 
+//                     pst2.setString(36,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",5))));                 
+//                     pst2.setString(37,CheckNullSue(p, "Amount",5));
+//                     pst2.setString(38,CheckNullSue(p, "SueSeq",6));
+//                     pst2.setString(39,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",6)))); 
+//                     pst2.setString(40,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",6))));                 
+//                     pst2.setString(41,CheckNullSue(p, "Amount",6));
+//                      pst2.setString(42,CheckNullSue(p, "SueSeq",7));
+//                     pst2.setString(43,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",7)))); 
+//                     pst2.setString(44,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",7))));                 
+//                     pst2.setString(45,CheckNullSue(p, "Amount",7));
+//                    pst2.setString(46,  CheckNull(p, "HouseNo")); 
+//                     pst2.setString(47,  CheckNull(p, "Moo"));
+                     pst2.execute();
+                     pst2.close();  
+                     
+               //       =----- ----- --------------------Bail Insert Traffic------------------------------------------
+          if(p.getElementsByTagName("ArrestAndBailOut_PersonTraffic").item(0)!=null){
+              String insertBailAsset = "INSERT INTO BailAsset (BailAssetOrder,BailAssetDetail,"
+                      + "BailAssetBath,BailAmount,BailAssetTotal,"
+                      + "BailPersonId,BailCaseId)\n"
+                      + "VALUES (?,?,?,?,?,?,?)";
+              String insertBailDel = "INSERT INTO DeliverySuspect (DeliOrder,DeliDate,DeliTimes,"
+                                   + "DeliPlace,DeliPersonId) VALUES (?,?,?,?,?)";
+                String insertBailOwn="INSERT INTO Person (Age,BirthDay,FullNamePerson,Gender,\n" +
+                        "HouseNumber,Occupation,PeopleRegistrationID,\n" +
+                        "PhonePerson,TypePerson,caseIdPerson,Related,"
+                + "OccupationPosition,OwnerBail,Tambon,Amphur,Province)\n"
+                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                PreparedStatement pst3=null;
+                PreparedStatement pstB1=null;
+                pst3=conn.prepareStatement(insertBailOwn);
+                
+               if(errNodesB.getLength()>0){
+
+                  if (errNodesBA.getLength() > 0) {
+                          for (int ab = 0; ab < errNodesBA1.getLength(); ab++) {
+                                Node nNode1 = errNodesBA1.item(ab);
+                                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
+                                    Element p2 = (Element) nNode1; 
+//                                     Element err7 = (Element)errNodes8.item(0);  
+                                              pstB1=conn.prepareStatement(insertBailAsset);
+                                              pstB1.setString(1, CheckNull(p2,"Sequence"));
+                                              pstB1.setString(2, CheckNull(p2,"AssetsName"));
+                                              pstB1.setString(3, CheckNull(p2,"AssetsUnitValueBaht"));
+                                              pstB1.setString(4, CheckNull(p2,"AssetsAmount"));
+                                              pstB1.setString(5, CheckNull(p2,"AssetsTotalValueBaht"));
+                                              pstB1.setString(6,IdPerson());
+                                             pstB1.setString(7,IdCasePerson());
+                                             pstB1.execute();
+                                             pstB1.close();
+                                           }
+                                                  }
+                     }    
+                  if (errNodesBD.getLength() > 0) {
+                          for (int ab = 0; ab < errNodesBD.getLength(); ab++) {
+                                Node nNode1 = errNodesBD.item(ab);
+                                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
+                                    Element p2 = (Element) nNode1; 
+//                                     Element err7 = (Element)errNodes8.item(0);  
+                                                PreparedStatement pstD=null;
+                                              pstD=conn.prepareStatement(insertBailDel);
+                                                     pstD.setString(1, CheckNull(p2,"Sequence"));
+                                              pstD.setString(2, NewDate(CheckNull(p2,"DueDate")));
+                                              pstD.setString(3, NewTime(CheckNull(p2,"DueDate")));
+                                              pstD.setString(4, CheckNull(p2,"HandOverLocation"));
+                                              pstD.setString(5, IdPerson());
+                                             pstD.execute();
+                                             pstD.close();
+                                           }
+                                                  }
+                     }    
+             
+                     Node bailMan=errNodesB.item(0);
+                     Element err4 = (Element) bailMan ;  
+                    NodeList nListBailTam = err4.getElementsByTagName("RequestForBail_Bailman_Tambon");
+                    NodeList nListBailAm = err4.getElementsByTagName("RequestForBail_Bailman_Amphur");
+                    NodeList nListBailPro = err4.getElementsByTagName("RequestForBail_Bailman_Province");
+                    NodeList nListBailOc = err4.getElementsByTagName("RequestForBail_Bailman_Occupation");
+
+                      Element bTam= (Element) nListBailTam.item(0) ; 
+                      Element bAmp= (Element) nListBailAm.item(0) ; 
+                      Element bPro= (Element) nListBailPro.item(0) ; 
+                      Element bOccu= (Element) nListBailOc.item(0) ; 
+
+                    pst3.setString(1, CheckNull(err4,"BailsmanAge"));
+                    pst3.setString(2,NewDate(CheckNull(err4, "BailsmanBirthDate")));
+                   pst3.setString(3, CheckNull(err4, "BailsmanFullName"));
+                   pst3.setString(4, NewGender(CheckNull(err4, "BailsmanSex")));
+                   pst3.setString(5, CheckNull(err4, "BailsmanHouseNumber"));  
+                   pst3.setString(6, CheckNull(bOccu, "NameTH"));
+                   pst3.setString(7, CheckNull(err4, "BailsmanRegisterID"));
+               
+                   pst3.setString(8, "");
+                   pst3.setString(9, "พยานและบุคคลอื่นๆ");
+                   pst3.setString(10, IdCasePerson());
+                   pst3.setString(11, "นายประกัน");
+                    pst3.setString(12,"" );
+                   pst3.setString(13, IdPerson());
+                    pst3.setString(14,  CheckNull(bTam, "Name"));
+                     pst3.setString(15,  CheckNull(bAmp, "Name"));
+                      pst3.setString(16,  CheckNull(bPro, "Name"));
+                   pst3.execute();
+                   pst3.close();
+               }
+                    
+                }
+                      System.out.println("success Person");
+
+        } catch (SQLException e) {
+                System.out.println("ddddd: "+e);
+            
+        }
+
+        }
+           }
+
+                } catch (Exception e) {
+                System.out.println(e);
+                }
+     
+                }
+       public static void detail_crimes(JsonObject a){
+     try {            
+               String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen_Import/";
 //                 String url = "http://172.31.191.171:8989/ws/CrimeCaseService_Wordgen_Import/";
 //               String url = "http://118.175.46.24:8989/ws/CrimeCaseService_Wordgen_Import/";
 
@@ -2914,10 +3621,17 @@ jlabeltoken.setVisible(true);
                 response.append(inputLine);
                 }
                 in.close();
+                         System.out.println("rea:"+a);
+
+                System.out.println("response:" + response.toString());
+                	// System.out.println(response.toString());
+       Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+         .parse(new InputSource(new StringReader(response.toString())));
+       
 //                System.out.println("response:" + response.toString());
                 	// System.out.println(response.toString());
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-         .parse(new InputSource(new StringReader(response.toString())));
+//        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
+//         .parse(new InputSource(new StringReader(response.toString())));
 	       NodeList errNodes = doc.getElementsByTagName("Person");
                NodeList errNodes2 = doc.getElementsByTagName("CrimeCase");       
                NodeList errNodes3 = doc.getElementsByTagName("ReportDailry");
@@ -2946,15 +3660,19 @@ jlabeltoken.setVisible(true);
                Connection conn2=null;
 
                conn=ConnectDatabase.connect();
-                              conn2=ConnectDatabase.connect();
+               conn2=ConnectDatabase.connect();
 
          if (errNodes2.getLength() > 0) {
             Element err = (Element)errNodes2.item(0);
+           NodeList nListCrPro = err.getElementsByTagName("CrimeCase_Location_Province");
+           NodeList nListCrTam = err.getElementsByTagName("CrimeCase_Location_Tambon");
+           NodeList nListCrAmp = err.getElementsByTagName("CrimeCase_Location_Amphur");
+                    
          String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
                        + "CaseRequestDate,CaseRequestTime,OccuredDate,OccuredTime,OccuredDateEnd,OccuredTimeEnd,ActionCodeCase,ChargeCodeCase,"
                       + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,AssetCode,TypeCourt,CrimeLocation,CrimeLocationDistrict,"
-                      + "CrimeLocationAmphur,CrimeLocationProvince)\n"
-                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
+                      + "CrimeLocationAmphur,CrimeLocationProvince,CrimeLocationRoad)\n"
+                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
          String insertCharge="insert into Charge(ChargeCode,ChargeName,Law,RateOfPenalty,Note)\n"
                        + "VALUES (?,?,?,?,?)";
           String insertChargeCase="insert into ChargeCase(ChargeCodeCase,ChargeNameCase,LawCase,RateOfPenaltyCase,NoteCase,ChargeCaseId)\n"
@@ -3025,9 +3743,33 @@ jlabeltoken.setVisible(true);
                              pst.setString(21,CheckNull(err, "EvidenceRecordNumber")); 
                              pst.setString(22,"ศาลอาญา/ศาลจังหวัด"); 
                             pst.setString(23,CheckNull(err, "CrimeLocation")); 
-                             pst.setString(24,CheckNull(err, "Tambon")); 
-                            pst.setString(25,CheckNull(err, "Amphur")); 
-                            pst.setString(26,CheckNull(err, "Province")); 
+                            if (nListCrTam!= null && nListCrTam.getLength() > 0) {
+                        Node crTam = nListCrTam.item(0); 
+                        Element tmcr = (Element) crTam ;
+                         pst.setString(24,CheckNull(tmcr, "Name"));
+                         }
+                        else{
+                          pst.setString(24,"");
+                        }
+                             if (nListCrAmp!= null && nListCrAmp.getLength() > 0) {
+                        Node crAmp = nListCrAmp.item(0); 
+                        Element ampcr = (Element) crAmp ;
+                         pst.setString(25,CheckNull(ampcr, "Name"));
+                         }
+                        else{
+                          pst.setString(25,"");
+                        }
+                  
+                       if (nListCrPro!= null && nListCrPro.getLength() > 0) {
+                        Node crPro = nListCrPro.item(0); 
+                        Element procr = (Element) crPro ;
+                         pst.setString(26,CheckNull(procr, "Name"));
+                         }
+                        else{
+                          pst.setString(26,"");
+                        }
+                         pst.setString(27,CheckNull(err, "CrimeLocationRoad"));
+
 //                      pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
                      pst.execute();
                      pst.close(); 
@@ -3037,7 +3779,7 @@ jlabeltoken.setVisible(true);
                         pst1.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
                         pst1.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
                         pst1.setString(4, "");     
-                                      System.out.println("addddddddddddd:"+idAction());  
+//                                      System.out.println("addddddddddddd:"+idAction());  
                         pst1.execute();
                      pst1.close(); 
                      
@@ -3051,8 +3793,30 @@ jlabeltoken.setVisible(true);
                      pst2.close(); 
                         }
                      if (errNodes4.getLength() > 0) {
-                            Element err4 = (Element)errNodes4.item(0);    
-                        pst3=conn.prepareStatement(insertCharge);
+                            Element err4 = (Element)errNodes4.item(0);   
+                       String selectCharge="select ChargeName from Charge where ChargeName='"+err4.getElementsByTagName("ChargeNameTH").item(0).getTextContent()+"'";                            
+                         Statement stc = conn.createStatement();
+                        ResultSet sc=stc.executeQuery(selectCharge); 
+                       if(sc.next()){
+                              pst4=conn.prepareStatement(insertChargeCase);
+                        pst4.setString(1, idChargeCase());
+                        pst4.setString(2, err4.getElementsByTagName("ChargeNameTH").item(0).getTextContent());
+                        if (errNodes5.getLength() > 0) {
+                            Element err5 = (Element)errNodes5.item(0);
+                         pst4.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
+                          }
+                          else{
+                           pst4.setString(3, "");   
+                          }
+                        pst4.setString(4, CheckNull(err4, "PenaltyNameTH"));
+                         pst4.setString(5, ""); 
+                        pst4.setString(6, IdCasePerson());  
+
+                        pst4.execute();
+                     pst4.close();
+                       }
+                       else{
+                          pst3=conn.prepareStatement(insertCharge);
                         pst3.setString(1, idCharge());
                         pst3.setString(2,err4.getElementsByTagName("ChargeNameTH").item(0).getTextContent());
                        if (errNodes5.getLength() > 0) {
@@ -3083,6 +3847,8 @@ jlabeltoken.setVisible(true);
 
                         pst4.execute();
                      pst4.close();
+                       }
+                    
                           }
                      if (errNodes6.getLength() > 0 ) {
                          if(errNodesAs.getLength() > 0 ){
@@ -3640,1908 +4406,7 @@ jlabeltoken.setVisible(true);
                 }
      
                 }
-      public static void insert_traffic(JsonObject a){
-     try {
-             
-                
-                 String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen_Import/";
-//                 String url = "http://172.31.191.171:8989/ws/TrafficCaseService_Wordgen_Import";
-//                 String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen_Import";
 
-                URL obj = new URL(url);
-                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-                con.setRequestMethod("POST");
-                con.setRequestProperty("Content-Type","application/soap+xml;charset=UTF-8");
-                String xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:exam=\"http://www.example.com/\">\n" +
-                    "   <soapenv:Header>\n" +
-                    "      <exam:authentication>\n" +
-                    "         <username>rtp</username>\n" +
-                    "         <password>rtp</password>\n" +
-                    "      </exam:authentication>\n" +
-                    "   </soapenv:Header>\n" +
-                    "   <soapenv:Body>\n" +
-                    "      <exam:TrafficCaseDetail>\n" +
-                    "         <INPUT>"+a+"</INPUT>\n" +
-                    "      </exam:TrafficCaseDetail>\n" +
-                    "   </soapenv:Body>\n" +
-                    "</soapenv:Envelope>";
-                System.out.println(xml);
-                    con.setDoOutput(true);
-                  DataOutputStream writer = new DataOutputStream(con.getOutputStream());
-                BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(writer, "UTF-8"));
-                wr.write(xml);
-                wr.flush();
-                wr.close();
-                String responseStatus = con.getResponseMessage();
-                int responseCode = con.getResponseCode();
-		System.out.println("GET Response Code :: " + responseCode);
-                System.out.println(responseStatus);
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                con.getInputStream(),"UTF-8"));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
-                while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-                }
-                in.close();
-                System.out.println("response:" + response.toString());
-                	// System.out.println(response.toString());
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-         .parse(new InputSource(new StringReader(response.toString())));
-	       NodeList errNodes = doc.getElementsByTagName("Person");
-               NodeList errNodesArr = doc.getElementsByTagName("ArrestAndBailOut");
-               NodeList errNodes2 = doc.getElementsByTagName("TrafficCase");       
-               NodeList errNodes3 = doc.getElementsByTagName("InvolvedVehicle_TrafficCase");
-               NodeList errNodes4 = doc.getElementsByTagName("InvolvedVehicle");
-               
-             NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
-             NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
-                NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
-                 NodeList errNodesT = doc.getElementsByTagName("Tambon"); 
-                  NodeList errNodesOc = doc.getElementsByTagName("RequestForBail_Bailman_Occupation");
-               NodeList errNodesTb = doc.getElementsByTagName("TrafficCaseModel_Tambon");
-                NodeList errNodesAm = doc.getElementsByTagName("TrafficCaseModel_Amphur");
-                NodeList errNodesPro = doc.getElementsByTagName("TrafficCaseModel_Province");
-//                 NodeList errNodes5 = doc.getElementsByTagName("LawCategory");               
-               
-              Connection conn=null;
-               Connection conn2=null;
-
-               conn=ConnectDatabase.connect();
-                              conn2=ConnectDatabase.connect();
-
-         if (errNodes2.getLength() > 0) {
-            Element err = (Element)errNodes2.item(0);
-             Element er = (Element)errNodesT.item(0);
-             Element tb = (Element)errNodesTb.item(0);
-             Element am = (Element)errNodesAm.item(0);
-             Element pr = (Element)errNodesPro.item(0);
-         String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
-                       + "CaseRequestDate,CaseRequestTime,OccuredDate,OccuredTime,OccuredDateEnd,OccuredTimeEnd,ActionCodeCase,ChargeCodeCase,"
-                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,CrimeLocation,TypeCourt,CrimeLocationDistrict,CrimeLocationAmphur,CrimeLocationProvince)\n"
-                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         String insertCharge="insert into Charge(ChargeCode,ChargeName,Law,RateOfPenalty,Note)\n"
-                       + "VALUES (?,?,?,?,?)";
-          String insertChargeCase="insert into ChargeCase(ChargeCodeCase,ChargeNameCase,LawCase,RateOfPenaltyCase,NoteCase,ChargeCaseId)\n"
-                       + "VALUES (?,?,?,?,?,?)";
-        
-      String insertActionsCase="insert into ActionsCase(ActionCode,ActionCrimes,ActionDetail,ActionNote)\n"
-                       + "VALUES (?,?,?,?)";
-          String insertActionsCaseData="insert into ActionsCaseData(ActionCodeCase,ActionCrimesCase,ActionDetailCase,ActionNoteCase,ActionCaseId)\n"
-                       + "VALUES (?,?,?,?,?)";
-           String insertAsset="insert into Asset(EvidenceRecordNumber,Name,Amount,Value,StatusAsset,SumValue,caseIdAsset)\n"
-                       + "VALUES (?,?,?,?,?,?,?)";
-       try {
-                    
-                         PreparedStatement pst=null;
-                         PreparedStatement pst1=null;
-                         PreparedStatement pst2=null;
-                          PreparedStatement pst3=null;
-                         PreparedStatement pst4=null;
-                          PreparedStatement pst5=null;
-
-//                         String[] nameSus=err.getElementsByTagName("DailyNumber").item(0).getTextContent().split("2) ",1);
-//                         System.out.println("nameeeeeeeeee:"+nameSus[0]);
-                        pst=conn.prepareStatement(insertCrime);
-                        pst.setString(1, IdCase());
-                        pst.setString(2, "คดีจราจร");
-                        pst.setString(3, err.getElementsByTagName("CrimeCaseNo").item(0).getTextContent());
-                        pst.setString(4,  err.getElementsByTagName("CrimeCaseYear").item(0).getTextContent());
-                        pst.setString(5,  err.getElementsByTagName("CaseNo").item(0).getTextContent());
-                        pst.setString(6,  NewDate( err.getElementsByTagName("CaseRequestDate").item(0).getTextContent())); 
-                        pst.setString(7,   NewTime(err.getElementsByTagName("CaseRequestDate").item(0).getTextContent()));         
-                        pst.setString(8, NewDate( err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
-                        pst.setString(9,  NewTime(err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
-                        pst.setString(10,  NewDate( err.getElementsByTagName("EventStartDate").item(0).getTextContent())); 
-                        pst.setString(11,  NewTime(err.getElementsByTagName("EventStartDate").item(0).getTextContent())); 
-                        pst.setString(12,   NewDate( err.getElementsByTagName("EventEndDate").item(0).getTextContent())); 
-                        pst.setString(13,  NewTime(err.getElementsByTagName("EventEndDate").item(0).getTextContent())); 
-                         pst.setString(14,  idAction()); 
-                          pst.setString(15,  idCharge()); 
-                            pst.setString(16, CheckNull(err, "DailyRecordNo"));  
-                   
-                            pst.setString(17, "อยู่ระหว่างสอบสวน");  
-                            pst.setString(18, CheckNull(err, "DisplaySuspectsName").replace("1) ", ""));
-                             pst.setString(19, CheckNull(err, "DisplayVictimsName").replace("1) ", ""));   
-                            pst.setString(20,"1");
-                           pst.setString(21,CheckNull(err, "Location"));   
-                            pst.setString(22,"ศาลอาญา/ศาลจังหวัด"); 
-                           pst.setString(23,CheckNull(tb, "Name"));   
-                           pst.setString(24,CheckNull(am, "Name"));   
-                           pst.setString(25,CheckNull(pr, "Name"));   
-
-                            
-//                      pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
-                     pst.execute();
-                     pst.close(); 
-//                        if(err.getElementsByTagName("BehaviorOfCrimeCase").item(0)!=null){
-//                           pst1=conn2.prepareStatement(insertActionsCase);
-//                        pst1.setString(1, idAction());
-//                        pst1.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-//                        pst1.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-//                        pst1.setString(4, "");     
-//                                      System.out.println("addddddddddddd:"+idAction());  
-//                        pst1.execute();
-//                     pst1.close(); 
-                     
-//                            pst2=conn.prepareStatement(insertActionsCaseData);
-//                        pst2.setString(1, idActionCase());
-//                        pst2.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-//                        pst2.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-//                        pst2.setString(4, "");
-//                         pst2.setString(5, IdCasePerson());  
-//                        pst2.execute();
-//                     pst2.close(); 
-//                        }
-                 
-                        
-                        pst3=conn.prepareStatement(insertCharge);
-                        pst3.setString(1, idCharge());
-                        pst3.setString(2,CheckNull(err, "DisplayCharge").replace("1)", ""));
-//                       if (errNodes5.getLength() > 0) {
-//                            Element err5 = (Element)errNodes5.item(0);
-//                         pst3.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
-//                          }
-//                          else{
-                           pst3.setString(3, "");   
-//                          }
-                        pst3.setString(4,"");
-                         pst3.setString(5, "");  
-                        pst3.execute();
-                     pst3.close(); 
-                     
-                       pst4=conn.prepareStatement(insertChargeCase);
-                        pst4.setString(1, idChargeCase());
-                        pst4.setString(2, CheckNull(err, "DisplayCharge").replace("1)", ""));
-//                        if (errNodes5.getLength() > 0) {
-//                            Element err5 = (Element)errNodes5.item(0);
-//                         pst4.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
-//                          }
-//                          else{
-                           pst4.setString(3, "");   
-//                          }
-                        pst4.setString(4, "");
-                         pst4.setString(5, ""); 
-                        pst4.setString(6, IdCasePerson());  
-
-                        pst4.execute();
-                     pst4.close();
-//                          }
-                     if (errNodes3.getLength() > 0) {
-                          for (int temp = 0; temp < errNodes4.getLength(); temp++) {
-                                Node nNode = errNodes4.item(temp);
-                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element t = (Element) nNode; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                              pst5=conn.prepareStatement(insertAsset);
-                                              pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
-                                              pst5.setString(2, CheckNull(t,"BrandString")+CheckNull(t,"ModelString")+CheckNull(t,"FullNoPlate"));
-                                              pst5.setString(3, CheckNull(t,"Amount1"));
-                                              pst5.setString(4, CheckNull(t,"Value"));
-                                              pst5.setString(5, "");
-                                              pst5.setString(6, "");
-                                              pst5.setString(7,IdCasePerson());
-
-                                             pst5.execute();
-                                             pst5.close();
-                                           }
-                                                  }
-                     }
-                       System.out.println("success");
-        } catch (SQLException e) {
-                System.out.println("ddddd: "+e);
-            
-        }
-	} else { 
-		     // success
-         }
-           for (int temp = 0; temp < errNodes.getLength(); temp++) {
-
-        Node nNode = errNodes.item(temp);
-
-        
-
-        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-            Element p = (Element) nNode; 
-      NodeList nListArrTam = p.getElementsByTagName("ArrestAndBailOut_Tambon");
-            NodeList nListArrAm = p.getElementsByTagName("Tabon_Amphur");
-            NodeList nListArrPro = p.getElementsByTagName("Tabon_Province");
-             NodeList nListArr = p.getElementsByTagName("ArrestAndBailOut");
-            NodeList errNodesB = p.getElementsByTagName("RequestForBail"); 
-            NodeList nListTam = p.getElementsByTagName("Person_Tambon");
-            NodeList nListAm = p.getElementsByTagName("Person_Amphur");
-            NodeList nListPro = p.getElementsByTagName("Person_Province");
-//            -----------------------------------------Person Traffic Insert------------------------------------------
-//    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
-        String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
-                              + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
-                             + " CourtSuspect,Related,PlaceArrest,PlaceArrestTambon,PlaceArrestAmphur,PlaceArrestProvince,BailDate)\n"
-//                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
-//                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
-//                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
-//                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Moo)\n"
-//                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,,?,?,?)";  
-                                 + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
-  
-              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
-                              + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
-                             + "Occupation,"
-                            + "HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
-    String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
-         try {           Element oc = (Element)errNodesOc.item(0); 
-                     Statement st = conn.createStatement();
-                ResultSet rc = st.executeQuery(checkPersonData);
-                            if(rc.next()){
-                                
-                            }
-                            else{
-                               PreparedStatement pd=null;
-                        
-                        pd=conn.prepareStatement(insertPersonData);
-                pd.setString(1,CheckNull(p, "PeopleRegistrationID"));
-                 pd.setString(2,CheckNull(p, "FullNamePerson"));
-                 if(p.getElementsByTagName("Birthday").item(0)==null){
-               pd.setString(3,"");
-               }
-               else{
-                    pd.setString(3,NewDate(p.getElementsByTagName("Birthday").item(0).getTextContent()));
-               }
-
-                if(p.getElementsByTagName("Gender").item(0)==null){
-               pd.setString(4,"");
-               }
-               else{
-                    pd.setString(4,NewGender(p.getElementsByTagName("Gender").item(0).getTextContent()));
-               }
-              pd.setString(5,CheckNull(p, "Age"));
-    
-              pd.setString(6,CheckNull(p, "TitleFather")+CheckNull(p, "FatherName")+" "+CheckNull(p, "FatherSurname"));
-              pd.setString(7,CheckNull(p, "TitleMother")+CheckNull(p, "MotherName")+" "+CheckNull(p, "MotherSurname"));
-              pd.setString(8,CheckNull(p, "Race"));
-              pd.setString(9,CheckNull(p, "Religion"));
-              pd.setString(10,CheckNull(p, "Nationality"));
-              if(errNodesOc.getLength()>0){
-               pd.setString(11,NewOccupation(CheckNull(oc, "NameTH")));
-              }
-              else{
-              pd.setString(11,NewOccupation(CheckNull(p, "Occupation")));}
-                    pd.setString(12,CheckNull(p, "HouseNumber"));
-                     pd.setString(13,CheckNull(p, "Road"));
-                    pd.setString(14,CheckNull(p, "Lane"));
-                    pd.setString(15,CheckNull(p, "Moo"));
-                    pd.setString(16,CheckNull(p, "Amphur"));
-                    pd.setString(17,CheckNull(p, "Tambon"));
-                    pd.setString(18,CheckNull(p, "Province"));
-                      pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                     pd.setString(20,"");
-                 
-                      pd.execute();
-                     pd.close();  
-                            }
-                        int order=temp+1;
-                         PreparedStatement pst2=null;
-                        
-                        pst2=conn.prepareStatement(insertPerson);
-//               if(p.getElementsByTagName("PeopleRegistrationID").item(0)==null){
-//               pst2.setString(1,"");
-//               }
-//               else{
-//                    pst2.setString(1,p.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
-//               }
-                pst2.setString(1,CheckNull(p, "PeopleRegistrationID"));
-                 pst2.setString(2,CheckNull(p, "FullNamePerson"));
-                 if(p.getElementsByTagName("Birthday").item(0)==null){
-               pst2.setString(3,"");
-               }
-               else{
-                    pst2.setString(3,NewDate(p.getElementsByTagName("Birthday").item(0).getTextContent()));
-               }
-
-                if(p.getElementsByTagName("Gender").item(0)==null){
-               pst2.setString(4,"");
-               }
-               else{
-                    pst2.setString(4,NewGender(p.getElementsByTagName("Gender").item(0).getTextContent()));
-               }
-              pst2.setString(5,CheckNull(p, "Age"));
-              if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Suspect")){
-               pst2.setString(6,"ผู้ต้องหา");
-              }  
-              else{  
-               pst2.setString(6,NewTypePersonTraffic(CheckNull(p, "Traffice_TypeOfPersonCase")));
-              }
-    
-              pst2.setString(7,CheckNull(p, "FatherName"));
-              pst2.setString(8,CheckNull(p, "MotherName"));
-              pst2.setString(9,CheckNull(p, "Race"));
-              pst2.setString(10,CheckNull(p, "Religion"));
-              pst2.setString(11,CheckNull(p, "Nationality"));
-              pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
-              
-               pst2.setString(14,  IdCasePerson()); 
-               if(p.getElementsByTagName("StatusSuspectProcess").item(0) != null){
-                pst2.setString(15,CheckNull(p, "StatusSuspectProcess"));
-               }
-               else if (p.getElementsByTagName("StatusSueOrBail").item(0) != null) {
-                 pst2.setString(15, NewStatusSue(CheckNull(p, "StatusSueOrBail"))); 
-             }
-             else {
-                pst2.setString(15, "");
-             }
-            
-            
-////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
-                  pst2.setString(17,NewCourtProvince(CheckNull(p, "CourtNameTH")));
-                  pst2.setString(18,NewStatusRelateTraffic(CheckNull(p, "Traffice_TypeOfPersonCase")));
-            if (nListArr!= null && nListArr.getLength() > 0) {
-                        Node elArr = nListArr.item(0); 
-                        Element arr = (Element) elArr ;
-                         pst2.setString(13,NewDate(CheckNull(arr, "ArrestDate"))+" "+NewTime(CheckNull(arr, "ArrestDate")));
-                        if(arr.getElementsByTagName("StatusForBail").item(0).getTextContent().equals("SuspectForBail")){             
-                            pst2.setString(16,"ประกัน");              
-                         }
-                        else{
-                            pst2.setString(16,"");
-                        }
-                        pst2.setString(19,CheckNull(arr, "ArrestLocation"));
-            }
-            else{
-              pst2.setString(13,""); 
-              pst2.setString(16,"");
-              pst2.setString(19,"");
-
-            }
-            if (nListArrTam != null && nListArrTam.getLength() > 0) {
-                        Node elArrTam = nListArrTam.item(0); 
-                        Element tb = (Element) elArrTam ;
-                         pst2.setString(20,CheckNull(tb, "Name"));
-            }
-            else{
-              pst2.setString(20,"");
-            }
-             if (nListArrAm != null && nListArrAm.getLength() > 0) {
-                        Node elArrAm = nListArrAm.item(0); 
-                        Element am = (Element) elArrAm ;
-                         pst2.setString(21,CheckNull(am, "Name"));
-            }
-            else{
-              pst2.setString(21,"");
-            }
-            if (nListArrPro != null && nListArrPro.getLength() > 0) {
-                        Node elArrPr = nListArrPro.item(0); 
-                        Element pr = (Element) elArrPr ;
-                         pst2.setString(22,CheckNull(pr, "Name"));
-            }
-            else{
-              pst2.setString(22,"");
-            }
-                if(errNodesB.getLength()>0){
-                       Node BailDate=errNodesB.item(0);
-                       Element bailD=(Element)BailDate;
-                       pst2.setString(23,NewDate(CheckNull(bailD, "RequestDate")));
-                   }
-                   else{
-                   pst2.setString(23,"");
-                   }
-//                  if(p.getElementsByTagName("Sue").item(0) != null){
-//                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
-//                    pst2.setString(18,CheckNullSue(p, "SueSeq",1));
-//                     pst2.setString(19,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",1)))); 
-//                     pst2.setString(20,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",1))));                 
-//                     pst2.setString(21,CheckNullSue(p, "Amount",1)); 
-//                      pst2.setString(22,CheckNullSue(p, "SueSeq",2));
-//                     pst2.setString(23,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",2)))); 
-//                     pst2.setString(24,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",2))));                 
-//                     pst2.setString(25,CheckNullSue(p, "Amount",2));
-//                      pst2.setString(26,CheckNullSue(p, "SueSeq",2));
-//                     pst2.setString(23,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",2)))); 
-//                     pst2.setString(24,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",2))));                 
-//                     pst2.setString(25,CheckNullSue(p, "Amount",2));
-//                      pst2.setString(26,CheckNullSue(p, "SueSeq",3));
-//                     pst2.setString(27,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",3)))); 
-//                     pst2.setString(28,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",3))));                 
-//                     pst2.setString(29,CheckNullSue(p, "Amount",3));
-//                     pst2.setString(30,CheckNullSue(p, "SueSeq",4));
-//                     pst2.setString(31,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",4)))); 
-//                     pst2.setString(32,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",4))));                 
-//                     pst2.setString(33,CheckNullSue(p, "Amount",4));
-//                      pst2.setString(34,CheckNullSue(p, "SueSeq",5));
-//                     pst2.setString(35,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",5)))); 
-//                     pst2.setString(36,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",5))));                 
-//                     pst2.setString(37,CheckNullSue(p, "Amount",5));
-//                     pst2.setString(38,CheckNullSue(p, "SueSeq",6));
-//                     pst2.setString(39,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",6)))); 
-//                     pst2.setString(40,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",6))));                 
-//                     pst2.setString(41,CheckNullSue(p, "Amount",6));
-//                      pst2.setString(42,CheckNullSue(p, "SueSeq",7));
-//                     pst2.setString(43,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",7)))); 
-//                     pst2.setString(44,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",7))));                 
-//                     pst2.setString(45,CheckNullSue(p, "Amount",7));
-//                    pst2.setString(46,  CheckNull(p, "HouseNo")); 
-//                     pst2.setString(47,  CheckNull(p, "Moo"));
-                     pst2.execute();
-                     pst2.close();  
-                     
-               //       =----- ----- --------------------Bail Insert Traffic------------------------------------------
-          if(p.getElementsByTagName("ArrestAndBailOut_PersonTraffic").item(0)!=null){
-              String insertBailAsset = "INSERT INTO BailAsset (BailAssetOrder,BailAssetDetail,"
-                      + "BailAssetBath,BailAmount,BailAssetTotal,"
-                      + "BailPersonId,BailCaseId)\n"
-                      + "VALUES (?,?,?,?,?,?,?)";
-              String insertBailDel = "INSERT INTO DeliverySuspect (DeliOrder,DeliDate,DeliTimes,"
-                                   + "DeliPlace,DeliPersonId) VALUES (?,?,?,?,?)";
-                String insertBailOwn="INSERT INTO Person (Age,BirthDay,FullNamePerson,Gender,\n" +
-                        "HouseNumber,Occupation,PeopleRegistrationID,\n" +
-                        "PhonePerson,TypePerson,caseIdPerson,Related,"
-                + "OccupationPosition,OwnerBail,Tambon,Amphur,Province)\n"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement pst3=null;
-                PreparedStatement pstB1=null;
-                pst3=conn.prepareStatement(insertBailOwn);
-                
-               if(errNodesB.getLength()>0){
-
-                  if (errNodesBA.getLength() > 0) {
-                          for (int ab = 0; ab < errNodesBA1.getLength(); ab++) {
-                                Node nNode1 = errNodesBA1.item(ab);
-                                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p2 = (Element) nNode1; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                              pstB1=conn.prepareStatement(insertBailAsset);
-                                              pstB1.setString(1, CheckNull(p2,"Sequence"));
-                                              pstB1.setString(2, CheckNull(p2,"AssetsName"));
-                                              pstB1.setString(3, CheckNull(p2,"AssetsUnitValueBaht"));
-                                              pstB1.setString(4, CheckNull(p2,"AssetsAmount"));
-                                              pstB1.setString(5, CheckNull(p2,"AssetsTotalValueBaht"));
-                                              pstB1.setString(6,IdPerson());
-                                             pstB1.setString(7,IdCasePerson());
-                                             pstB1.execute();
-                                             pstB1.close();
-                                           }
-                                                  }
-                     }    
-                  if (errNodesBD.getLength() > 0) {
-                          for (int ab = 0; ab < errNodesBD.getLength(); ab++) {
-                                Node nNode1 = errNodesBD.item(ab);
-                                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p2 = (Element) nNode1; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                                PreparedStatement pstD=null;
-                                              pstD=conn.prepareStatement(insertBailDel);
-                                                     pstD.setString(1, CheckNull(p2,"Sequence"));
-                                              pstD.setString(2, NewDate(CheckNull(p2,"DueDate")));
-                                              pstD.setString(3, NewTime(CheckNull(p2,"DueDate")));
-                                              pstD.setString(4, CheckNull(p2,"HandOverLocation"));
-                                              pstD.setString(5, IdPerson());
-                                             pstD.execute();
-                                             pstD.close();
-                                           }
-                                                  }
-                     }    
-             
-                     Node bailMan=errNodesB.item(0);
-                     Element err4 = (Element) bailMan ;  
-                    NodeList nListBailTam = err4.getElementsByTagName("RequestForBail_Bailman_Tambon");
-                    NodeList nListBailAm = err4.getElementsByTagName("RequestForBail_Bailman_Amphur");
-                    NodeList nListBailPro = err4.getElementsByTagName("RequestForBail_Bailman_Province");
-                    NodeList nListBailOc = err4.getElementsByTagName("RequestForBail_Bailman_Occupation");
-
-                      Element bTam= (Element) nListBailTam.item(0) ; 
-                      Element bAmp= (Element) nListBailAm.item(0) ; 
-                      Element bPro= (Element) nListBailPro.item(0) ; 
-                      Element bOccu= (Element) nListBailOc.item(0) ; 
-
-                    pst3.setString(1, CheckNull(err4,"BailsmanAge"));
-                    pst3.setString(2,NewDate(CheckNull(err4, "BailsmanBirthDate")));
-                   pst3.setString(3, CheckNull(err4, "BailsmanFullName"));
-                   pst3.setString(4, NewGender(CheckNull(err4, "BailsmanSex")));
-                   pst3.setString(5, CheckNull(err4, "BailsmanHouseNumber"));  
-                   pst3.setString(6, CheckNull(bOccu, "NameTH"));
-                   pst3.setString(7, CheckNull(err4, "BailsmanRegisterID"));
-               
-                   pst3.setString(8, "");
-                   pst3.setString(9, "พยานและบุคคลอื่นๆ");
-                   pst3.setString(10, IdCasePerson());
-                   pst3.setString(11, "นายประกัน");
-                    pst3.setString(12,"" );
-                   pst3.setString(13, IdPerson());
-                    pst3.setString(14,  CheckNull(bTam, "Name"));
-                     pst3.setString(15,  CheckNull(bAmp, "Name"));
-                      pst3.setString(16,  CheckNull(bPro, "Name"));
-                   pst3.execute();
-                   pst3.close();
-               }
-                    
-                }
-                      System.out.println("success Person");
-
-        } catch (SQLException e) {
-                System.out.println("ddddd: "+e);
-            
-        }
-
-        }
-           }
-
-                } catch (Exception e) {
-                System.out.println(e);
-                }
-     
-                }
-    public static void update_crime(JsonObject a,String caseid){
-     try {
-                 String sql = "DELETE FROM DeliverySuspect\n" +
-                            "WHERE delipersonid IN (\n" +
-                            "  SELECT delipersonid FROM DeliverySuspect a\n" +
-                            "  INNER JOIN Person b\n" +
-                            "    ON a.delipersonid=b.noperson \n" +
-                             "  WHERE b.caseidperson ='"+caseid+"');\n"+
-                          "DELETE FROM CrimeCase WHERE CrimeCase.CaseId='"+caseid+"';\n"+
-                             "DELETE FROM RecordInquiry WHERE caseidrecord='"+caseid+"';\n"+
-                             "DELETE FROM Person WHERE caseidperson='"+caseid+"';\n"+
-                             "DELETE FROM ChargeCase WHERE ChargeCaseId='"+caseid+"';\n"+
-                             "DELETE FROM RecordInquiry WHERE CaseIdRecord='"+caseid+"';\n"+
-                             "DELETE FROM ActionsCaseData WHERE ActionCaseId='"+caseid+"';\n"+
-                             "DELETE FROM BailAsset WHERE BailCaseId='"+caseid+"';\n"+                  
-                                "DELETE FROM Asset WHERE caseidasset='"+caseid+"';";
-         try {               
-           Connection cond = ConnectDatabase.connect();
-                System.out.println("Delete:"+sql);
-                Statement  stmt = cond.createStatement();
-                      stmt.executeUpdate(sql);
-                    stmt.close();
-         }
-         catch(SQLException ex){
-             System.out.println(ex);
-         }
-                
-                 String url = "http://172.31.191.163:8383/ws/CrimeCaseService_Wordgen_Import/";
-//                 String url = "http://172.31.191.171:8989/ws/CrimeCaseService_Wordgen_Import/";
-//               String url = "http://118.175.46.24:8989/ws/CrimeCaseService_Wordgen_Import/";
-
-                URL obj = new URL(url);
-                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-                con.setRequestMethod("POST");
-                con.setRequestProperty("Content-Type","application/soap+xml;charset=UTF-8");
-                String xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:exam=\"http://www.example.com/\">\n" +
-                "   <soapenv:Header>\n" +
-                "      <exam:authentication>\n" +
-                "         <username>rtp</username>\n" +
-                "         <password>rtp</password>\n" +
-                "      </exam:authentication>\n" +
-                "   </soapenv:Header>\n" +
-                "   <soapenv:Body>\n" +
-                "      <exam:CrimesCaseDetail>\n" +
-                "         <INPUT>"+a+"</INPUT>\n" +
-                "      </exam:CrimesCaseDetail>\n" +
-                "   </soapenv:Body>\n" +
-                "</soapenv:Envelope>";
-                System.out.println(xml);
-                    con.setDoOutput(true);
-                  DataOutputStream writer = new DataOutputStream(con.getOutputStream());
-                BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(writer, "UTF-8"));
-                wr.write(xml);
-                wr.flush();
-                wr.close();
-                String responseStatus = con.getResponseMessage();
-                System.out.println(responseStatus);
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                con.getInputStream(),"UTF-8"));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
-                while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-                }
-                in.close();
-                System.out.println("response:" + response.toString());
-                	// System.out.println(response.toString());
-             Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-         .parse(new InputSource(new StringReader(response.toString())));
-	      NodeList errNodes = doc.getElementsByTagName("Person");
-               NodeList errNodes2 = doc.getElementsByTagName("CrimeCase");       
-               NodeList errNodes3 = doc.getElementsByTagName("ReportDailry");
-               NodeList errNodes4 = doc.getElementsByTagName("Charge");
-                 NodeList errNodes5 = doc.getElementsByTagName("LawCategory");               
-             NodeList errNodes6 = doc.getElementsByTagName("IsExhibit_CrimeCase");               
-            NodeList errNodes7 = doc.getElementsByTagName("IsExhibit"); 
-            NodeList errNodesAs = doc.getElementsByTagName("Asset_IsExhibit");               
-            NodeList errNodesWea = doc.getElementsByTagName("Weapon_IsExhibit"); 
-            NodeList errNodesDr = doc.getElementsByTagName("Drug_IsExhibit"); 
-
-             NodeList errNodeslo = doc.getElementsByTagName("IsLost_CrimeCase");               
-            NodeList errNodeslost = doc.getElementsByTagName("IsLost"); 
-            NodeList errNodes8 = doc.getElementsByTagName("Drug_SubDrugType"); 
-             NodeList errNodes61 = doc.getElementsByTagName("IsRegain_CrimeCase");               
-            NodeList errNodes71 = doc.getElementsByTagName("IsRegain"); 
-             NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
-             NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
-                NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
-                NodeList errNodesSue = doc.getElementsByTagName("Sue_Person"); 
-                NodeList errSue = doc.getElementsByTagName("Sue"); 
-
-              Connection conn=null;
-               Connection conn2=null;
-
-               conn=ConnectDatabase.connect();
-                              conn2=ConnectDatabase.connect();
-
-         if (errNodes2.getLength() > 0) {
-            Element err = (Element)errNodes2.item(0);
-         String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
-                       + "CaseRequestDate,CaseRequestTime,OccuredDate,OccuredTime,OccuredDateEnd,OccuredTimeEnd,ActionCodeCase,ChargeCodeCase,"
-                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,AssetCode,TypeCourt,CrimeLocation,CrimeLocationDistrict,"
-                      + "CrimeLocationAmphur,CrimeLocationProvince)\n"
-                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)"; 
-         String insertCharge="insert into Charge(ChargeCode,ChargeName,Law,RateOfPenalty,Note)\n"
-                       + "VALUES (?,?,?,?,?)";
-          String insertChargeCase="insert into ChargeCase(ChargeCodeCase,ChargeNameCase,LawCase,RateOfPenaltyCase,NoteCase,ChargeCaseId)\n"
-                       + "VALUES (?,?,?,?,?,?)";
-        
-      String insertActionsCase="insert into ActionsCase(ActionCode,ActionCrimes,ActionDetail,ActionNote)\n"
-                       + "VALUES (?,?,?,?)";
-          String insertActionsCaseData="insert into ActionsCaseData(ActionCodeCase,ActionCrimesCase,ActionDetailCase,ActionNoteCase,ActionCaseId)\n"
-                       + "VALUES (?,?,?,?,?)";
-          String insertAsset="insert into Asset(EvidenceRecordNumber,Name,Amount,Value,StatusAsset,SumValue,caseIdAsset,Remark)\n"
-                       + "VALUES (?,?,?,?,?,?,?,?)";
-       try {            
-//           String[] name=err.getElementsByTagName("DisplaySuspectName").item(0).getTextContent().split("2)");
-                        String test="1) นาย มังกร พ่นไฟ ";
-                        String renameSus=err.getElementsByTagName("DisplaySuspectName").item(0).getTextContent().replace("2) ", "2");
-                        String[] nameSuspect=renameSus.split("2");
-                        String renameVictim=err.getElementsByTagName("DisplayVictimsname").item(0).getTextContent().replace("2) ", "2");
-                        String[] nameVictim=renameVictim.split("2");
-                         PreparedStatement pst=null;
-                         PreparedStatement pst1=null;
-                         PreparedStatement pst2=null;
-                          PreparedStatement pst3=null;
-                         PreparedStatement pst4=null;
-                           PreparedStatement pst5=null; 
-//                         String[] nameSus=err.getElementsByTagName("DailyNumber").item(0).getTextContent().split("2) ",1);
-//                         System.out.println("nameeeeeeeeee:"+nameSus[0]);
-                        pst=conn.prepareStatement(insertCrime);
-                        pst.setString(1, IdCase());
-                        pst.setString(2, "คดีอาญา");
-                        pst.setString(3, err.getElementsByTagName("CrimeCaseNo").item(0).getTextContent());
-                        pst.setString(4,  err.getElementsByTagName("CrimeCaseYear").item(0).getTextContent());
-                        pst.setString(5,  err.getElementsByTagName("CaseNo").item(0).getTextContent());
-                        pst.setString(6,  NewDate( err.getElementsByTagName("CaseRequestDate").item(0).getTextContent())); 
-                        pst.setString(7,   NewTime(err.getElementsByTagName("CaseRequestDate").item(0).getTextContent()));         
-                        pst.setString(8, NewDate( err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
-                        pst.setString(9,  NewTime(err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
-                        pst.setString(10,  NewDate( err.getElementsByTagName("OccuredDateTimeFrom").item(0).getTextContent())); 
-                        pst.setString(11,  NewTime(err.getElementsByTagName("OccuredDateTimeFrom").item(0).getTextContent())); 
-                        pst.setString(12,   NewDate( err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
-                        pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
-                         pst.setString(14,  idAction()); 
-                          pst.setString(15,  idCharge()); 
-                          if (errNodes3.getLength() > 0) {
-                            Element err3 = (Element)errNodes3.item(0);
-                         pst.setString(16, err3.getElementsByTagName("DailyNumber").item(0).getTextContent());      
-                          }
-                          else{
-                           pst.setString(16, "");   
-                          }
-                            pst.setString(17, "อยู่ระหว่างสอบสวน");  
-                         
-//                                String firstname=(name[0]+"").replace("#", "");
-//                                String n=firstname+" "+name[1];
-                            if(nameSuspect.length>1){
-                            pst.setString(18, nameSuspect[0].replace("1) ", "")+"และพวก");
-                            }
-                            else{
-                            pst.setString(18, nameSuspect[0].replace("1) ", ""));
-                            }
-                            if(nameVictim.length>1){
-                             pst.setString(19, nameVictim[0].replace("1) ", "")+"และคนอื่นๆ");  
-                            }
-                            else{
-                             pst.setString(19, nameVictim[0].replace("1) ", ""));  
-                            }
-                            pst.setString(20,"1");   
-                             pst.setString(21,CheckNull(err, "EvidenceRecordNumber")); 
-                             pst.setString(22,"ศาลอาญา/ศาลจังหวัด"); 
-                            pst.setString(23,CheckNull(err, "CrimeLocation")); 
-                             pst.setString(24,CheckNull(err, "Tambon")); 
-                            pst.setString(25,CheckNull(err, "Amphur")); 
-                            pst.setString(26,CheckNull(err, "Province")); 
-//                      pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
-                     pst.execute();
-                     pst.close(); 
-                        if(err.getElementsByTagName("BehaviorOfCrimeCase").item(0)!=null){
-                           pst1=conn2.prepareStatement(insertActionsCase);
-                        pst1.setString(1, idAction());
-                        pst1.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-                        pst1.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-                        pst1.setString(4, "");     
-                                      System.out.println("addddddddddddd:"+idAction());  
-                        pst1.execute();
-                     pst1.close(); 
-                     
-                            pst2=conn.prepareStatement(insertActionsCaseData);
-                        pst2.setString(1, idActionCase());
-                        pst2.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-                        pst2.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-                        pst2.setString(4, "");
-                         pst2.setString(5, IdCasePerson());  
-                        pst2.execute();
-                     pst2.close(); 
-                        }
-                     if (errNodes4.getLength() > 0) {
-                            Element err4 = (Element)errNodes4.item(0);    
-                        pst3=conn.prepareStatement(insertCharge);
-                        pst3.setString(1, idCharge());
-                        pst3.setString(2,err4.getElementsByTagName("ChargeNameTH").item(0).getTextContent());
-                       if (errNodes5.getLength() > 0) {
-                            Element err5 = (Element)errNodes5.item(0);
-                         pst3.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
-                          }
-                          else{
-                           pst3.setString(3, "");   
-                          }
-                        pst3.setString(4, CheckNull(err4, "PenaltyNameTH"));
-                         pst3.setString(5, "");  
-                        pst3.execute();
-                     pst3.close(); 
-                     
-                       pst4=conn.prepareStatement(insertChargeCase);
-                        pst4.setString(1, idChargeCase());
-                        pst4.setString(2, err4.getElementsByTagName("ChargeNameTH").item(0).getTextContent());
-                        if (errNodes5.getLength() > 0) {
-                            Element err5 = (Element)errNodes5.item(0);
-                         pst4.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
-                          }
-                          else{
-                           pst4.setString(3, "");   
-                          }
-                        pst4.setString(4, CheckNull(err4, "PenaltyNameTH"));
-                         pst4.setString(5, ""); 
-                        pst4.setString(6, IdCasePerson());  
-
-                        pst4.execute();
-                     pst4.close();
-                          }
-                     if (errNodes6.getLength() > 0 ) {
-                         if(errNodesAs.getLength() > 0 ){
-                          for (int temp = 0; temp < errNodesAs.getLength(); temp++) {
-                              System.err.println("Num:"+temp);
-                                Node nNode = errNodesAs.item(temp);
-                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p = (Element) nNode; 
-                                     String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
-                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
-
-                                            pst5=conn.prepareStatement(insertAsset);
-                                                pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
-                                             pst5.setString(2, CheckNull(p,"Name"));
-                                              pst5.setString(3, newAmount[0]);
-                                              pst5.setString(4, newValue[0]);     
-                                                  pst5.setString(5, "ของกลาง");
-                                              pst5.setString(6, "");
-                                              pst5.setString(7,IdCasePerson());
-                                              pst5.setString(8,"");
-
-                                              pst5.execute();
-                                              pst5.close();
-                                              }
-                         }
-                         }
-                            if(errNodesWea != null &&  errNodesWea.getLength()>0 ){
-                          for (int temp = 0; temp < errNodesWea.getLength(); temp++) {
-                              System.err.println("Wea:"+temp);
-                                Node nNode = errNodesWea.item(temp);
-                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p = (Element) nNode;
-                                   String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
-                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
-                                        pst5=conn.prepareStatement(insertAsset);
-                                                pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
-                                             pst5.setString(2, CheckNull(p,"WeaponName"));
-                                              pst5.setString(3, newAmount[0]);
-                                              pst5.setString(4, newValue[0]);     
-                                                  pst5.setString(5, "ของกลาง");
-                                              pst5.setString(6, "");
-                                              pst5.setString(7,IdCasePerson());
-                                             pst5.setString(8,"");
-
-                                              pst5.execute();
-                                              pst5.close();
-                                }
-                          
-                          }
-                            }
-                      if(errNodesDr.getLength()>0){
-                          for (int temp = 0; temp < errNodesDr.getLength(); temp++) {
-                              System.err.println("Drug:"+errNodesDr.getLength());
-                                Node nNode = errNodesDr.item(temp);
-                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p = (Element) nNode;
-                                    Element dr = (Element)errNodes8.item(temp);
-                       
-                                    String[] newAmount=CheckNull(p,"Amount1").replace(".", ",").split(",");
-                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
-//                                          System.out.println("Druggggggggggggggg:"+newAmount[0]);
-                                        pst5=conn.prepareStatement(insertAsset);
-                                                pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
-                                                if(errNodes8.getLength()>0){
-                                               pst5.setString(2, CheckNull(dr,"NameTH")); 
-                                                }
-                                                else{
-                                                  pst5.setString(2, ""); 
-                                                }
-                                             
-                                              pst5.setString(3, newAmount[0]);
-                                              pst5.setString(4, newValue[0]);     
-                                                  pst5.setString(5, "ของกลาง");
-                                              pst5.setString(6, "");
-                                              pst5.setString(7,IdCasePerson());
-                                              pst5.setString(8,CheckNull(p,"Remark"));
-                                              
-                                              pst5.execute();
-                                              pst5.close();
-                                }
-                          
-                          }
-                            }
-                                    else{
-                                        System.err.println("Ddddddddddddddddddddd");
-                                    }
-                           }
-
-                     if (errNodes61.getLength() > 0) {
-                          for (int temp = 0; temp < errNodes71.getLength(); temp++) {
-                                Node nNode = errNodes71.item(temp);
-                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p = (Element) nNode; 
-//                                     Element err7 = (Element)errNodes8.item(0); 
-                                     String[] newAmount=CheckNull(p,"Amount1").replace(".", ",").split(",");
-                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
-                                              pst5=conn.prepareStatement(insertAsset);
-                                              pst5.setString(1, CheckNull(err,"EvidenceRecordNumber").replace("null", ""));
-                                              pst5.setString(2, CheckNull(p,"DisplayAsset"));
-                                              pst5.setString(3, newAmount[0]);
-                                              pst5.setString(4, newValue[0]);
-                                              pst5.setString(5, "ได้คืน");
-                                              pst5.setString(6, "");
-                                              pst5.setString(7,IdCasePerson());
-                                              pst5.setString(8,"");
-
-                                             pst5.execute();
-                                             pst5.close();
-                                           }
-                                                  }
-                     }
-
-                       if (errNodeslo.getLength() > 0) {
-                          for (int temp = 0; temp < errNodeslost.getLength(); temp++) {
-                              System.err.println("Lost:"+temp);
-                          
-                                Node nNode = errNodeslost.item(temp);
-                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p = (Element) nNode; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                        String[] newAmount=CheckNull(p,"Amount").replace(".", ",").split(",");
-                                          String[] newValue=CheckNull(p,"Value").replace(".", ",").split(",");
-                                              pst5=conn.prepareStatement(insertAsset);
-                                              pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
-                                              pst5.setString(2, CheckNull(p,"Name"));
-                                              pst5.setString(3, newAmount[0]);
-                                              pst5.setString(4, newValue[0]);
-                                              pst5.setString(5, "ประทุษร้าย");
-                                              pst5.setString(6, "");
-                                              pst5.setString(7,IdCasePerson());
-                                              pst5.setString(8,"");
-
-                                             pst5.execute();
-                                             pst5.close();
-                                           }
-                                                  }
-                     }
-                       System.out.println("success");
-        } catch (SQLException e) {
-                System.out.println("ddddd: "+e);
-            
-        }
-	} else { 
-		     // success
-         }
-          for (int temp = 0; temp < errNodes.getLength(); temp++) {
-        Node nNode = errNodes.item(temp);
-        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-            Element p = (Element) nNode; 
-      NodeList nListArrTam = p.getElementsByTagName("ArrestRecord_Tambon");
-            NodeList nListArrAm = p.getElementsByTagName("ArrestRecord_Amphur");
-            NodeList nListArrPro = p.getElementsByTagName("ArrestRecord_Province");
-             NodeList nListArr = p.getElementsByTagName("ArrestRecord");
-              NodeList errNodesB = p.getElementsByTagName("RequestForBail"); 
-            NodeList nListTam = p.getElementsByTagName("Person_Tambon");
-            NodeList nListAm = p.getElementsByTagName("Person_Amphur");
-            NodeList nListPro = p.getElementsByTagName("Person_Province");
-
-//--------------------------------------Person Crimes Update-------------------------------------------------------------------
-//    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
-       String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
-                              + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,"
-                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
-                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
-                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
-                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,Related,FullNamePersonEn,BailDate,TypeChild,PlaceArrest,PlaceArrestTambon,PlaceArrestAmphur,PlaceArrestProvince)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
-             String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
-                              + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
-                             + "Occupation,"
-                            + "HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
-    String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
-         try {      
-                     Statement st = conn.createStatement();
-                ResultSet rc = st.executeQuery(checkPersonData);
-                            if(rc.next()){
-                                
-                            }
-                            else{
-                               PreparedStatement pd=null;
-                        
-                        pd=conn.prepareStatement(insertPersonData);
-                pd.setString(1,CheckNull(p, "PeopleRegistrationID"));
-                 pd.setString(2,CheckNull(p, "FullNamePerson"));
-                 if(p.getElementsByTagName("Birthday").item(0)==null){
-               pd.setString(3,"");
-               }
-               else{
-                    pd.setString(3,NewDate(p.getElementsByTagName("Birthday").item(0).getTextContent()));
-               }
-
-                if(p.getElementsByTagName("Gender").item(0)==null){
-               pd.setString(4,"");
-               }
-               else{
-                    pd.setString(4,NewGender(p.getElementsByTagName("Gender").item(0).getTextContent()));
-               }
-              pd.setString(5,CheckNull(p, "Age"));
-    
-              pd.setString(6,CheckNull(p, "TitleFather")+CheckNull(p, "FatherName")+" "+CheckNull(p, "FatherSurname"));
-              pd.setString(7,CheckNull(p, "TitleMother")+CheckNull(p, "MotherName")+" "+CheckNull(p, "MotherSurname"));
-              pd.setString(8,CheckNull(p, "Race"));
-              pd.setString(9,CheckNull(p, "Religion"));
-              pd.setString(10,CheckNull(p, "Nationality"));
-              pd.setString(11,NewOccupation(CheckNull(p, "Occupation")));
-                    pd.setString(12,CheckNull(p, "HouseNumber"));
-                     pd.setString(13,CheckNull(p, "Road"));
-                    pd.setString(14,CheckNull(p, "Lane"));
-                    pd.setString(15,CheckNull(p, "Moo"));
-                     if (nListAm!= null && nListAm.getLength() > 0) {
-                        Node elAm = nListAm.item(0); 
-                        Element pam = (Element) elAm ;
-                         pd.setString(16,CheckNull(pam, "Name"));
-                         }
-                        else{
-                          pd.setString(16,"");
-                        }
-                      if (nListTam!= null && nListTam.getLength() > 0) {
-                        Node elTam = nListTam.item(0); 
-                        Element ptm = (Element) elTam ;
-                         pd.setString(17,CheckNull(ptm, "Name"));
-                         }
-                        else{
-                          pd.setString(17,"");
-                        }
-                      if (nListPro!= null && nListPro.getLength() > 0) {
-                        Node elPro = nListPro.item(0); 
-                        Element ppr = (Element) elPro ;
-                         pd.setString(18,CheckNull(ppr, "Name"));
-                         }
-                        else{
-                          pd.setString(18,"");
-                        }
-                      pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                   pd.setString(20,"");
-                      pd.execute();
-                     pd.close();  
-                            }
-//                        int order=temp+1;
-                         PreparedStatement pst2=null;
-                        
-                        pst2=conn.prepareStatement(insertPerson);
-                         Element br = (Element) errNodesB.item(0); 
-                    
-//               if(p.getElementsByTagName("PeopleRegistrationID").item(0)==null){
-//               pst2.setString(1,"");
-//               }
-//               else{
-//                    pst2.setString(1,p.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
-//               }
-                pst2.setString(1,CheckNull(p, "PeopleRegistrationID"));
-                 pst2.setString(2,CheckNull(p, "FullNamePerson"));
-                 if(p.getElementsByTagName("Birthday").item(0)==null){
-               pst2.setString(3,"");
-               }
-               else{
-                    pst2.setString(3,NewDate(p.getElementsByTagName("Birthday").item(0).getTextContent()));
-               }
-
-                if(p.getElementsByTagName("Gender").item(0)==null){
-               pst2.setString(4,"");
-               }
-               else{
-                    pst2.setString(4,NewGender(p.getElementsByTagName("Gender").item(0).getTextContent()));
-               }
-              pst2.setString(5,CheckNull(p, "Age"));
-              if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Suspect")){
-               pst2.setString(6,"ผู้ต้องหา");
-              }  
-              else{  
-               pst2.setString(6,NewTypePerson(CheckNull(p, "PeopleVictimType")));
-              }
-    
-              pst2.setString(7,CheckNull(p, "TitleFather")+CheckNull(p, "FatherName")+" "+CheckNull(p, "FatherSurname"));
-              pst2.setString(8,CheckNull(p, "TitleMother")+CheckNull(p, "MotherName")+" "+CheckNull(p, "MotherSurname"));
-              pst2.setString(9,CheckNull(p, "Race"));
-              pst2.setString(10,CheckNull(p, "Religion"));
-              pst2.setString(11,CheckNull(p, "Nationality"));
-              pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
-              
-               pst2.setString(14,  IdCasePerson()); 
-          
-              if(p.getElementsByTagName("StatusSuspectProcess").item(0) != null){
-                pst2.setString(15,CheckNull(p, "StatusSuspectProcess"));
-               }
-               else if (p.getElementsByTagName("StatusSueOrBail").item(0) != null) {
-                 pst2.setString(15, NewStatusSue(CheckNull(p, "StatusSueOrBail"))); 
-             }
-             else {
-                pst2.setString(15, "");
-             }
-                 if(p.getElementsByTagName("StatusSuspectForBail").item(0).getTextContent().equals("SuspectForBail")){
-                   pst2.setString(16,"ประกัน");
-               }           
-                 else{
-                 pst2.setString(16,"");
-                 }
-//                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
-                  pst2.setString(17,NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
-//                  if(p.getElementsByTagName("Sue").item(0) != null){
-//                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
-                    pst2.setString(18,CheckNullSue(p, "SueSeq",1));
-                     pst2.setString(19,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",1)))); 
-                     pst2.setString(20,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",1))));                 
-                     pst2.setString(21,CheckNullSue(p, "Amount",1)); 
-                      pst2.setString(22,CheckNullSue(p, "SueSeq",2));
-                     pst2.setString(23,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",2)))); 
-                     pst2.setString(24,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",2))));                 
-                     pst2.setString(25,CheckNullSue(p, "Amount",2));
-                      pst2.setString(26,CheckNullSue(p, "SueSeq",2));
-                     pst2.setString(23,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",2)))); 
-                     pst2.setString(24,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",2))));                 
-                     pst2.setString(25,CheckNullSue(p, "Amount",2));
-                      pst2.setString(26,CheckNullSue(p, "SueSeq",3));
-                     pst2.setString(27,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",3)))); 
-                     pst2.setString(28,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",3))));                 
-                     pst2.setString(29,CheckNullSue(p, "Amount",3));
-                     pst2.setString(30,CheckNullSue(p, "SueSeq",4));
-                     pst2.setString(31,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",4)))); 
-                     pst2.setString(32,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",4))));                 
-                     pst2.setString(33,CheckNullSue(p, "Amount",4));
-                      pst2.setString(34,CheckNullSue(p, "SueSeq",5));
-                     pst2.setString(35,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",5)))); 
-                     pst2.setString(36,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",5))));                 
-                     pst2.setString(37,CheckNullSue(p, "Amount",5));
-                     pst2.setString(38,CheckNullSue(p, "SueSeq",6));
-                     pst2.setString(39,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",6)))); 
-                     pst2.setString(40,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",6))));                 
-                     pst2.setString(41,CheckNullSue(p, "Amount",6));
-                      pst2.setString(42,CheckNullSue(p, "SueSeq",7));
-                     pst2.setString(43,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",7)))); 
-                     pst2.setString(44,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",7))));                 
-                     pst2.setString(45,CheckNullSue(p, "Amount",7));
-                    pst2.setString(46,CheckNull(p, "HouseNumber"));
-                     pst2.setString(47,CheckNull(p, "Road"));
-                    pst2.setString(48,CheckNull(p, "Lane"));
-                    pst2.setString(49,CheckNull(p, "Moo"));
-
-                  
-                     if (nListAm!= null && nListAm.getLength() > 0) {
-                        Node elAm = nListAm.item(0); 
-                        Element am = (Element) elAm ;
-                         pst2.setString(50,CheckNull(am, "Name"));
-                         }
-                        else{
-                          pst2.setString(50,"");
-                        }
-                      if (nListTam!= null && nListTam.getLength() > 0) {
-                        Node elTam = nListTam.item(0); 
-                        Element tm = (Element) elTam ;
-                         pst2.setString(51,CheckNull(tm, "Name"));
-                         }
-                        else{
-                          pst2.setString(51,"");
-                        }
-                      if (nListPro!= null && nListPro.getLength() > 0) {
-                        Node elPro = nListPro.item(0); 
-                        Element pr = (Element) elPro ;
-                         pst2.setString(52,CheckNull(pr, "Name"));
-                         }
-                        else{
-                          pst2.setString(52,"");
-                        }
-
-                     if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Victim")){
-                    pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
-                   }  
-                    else{  
-                     pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleSuspectType")));
-                    }
-//                    pst2.setString(53,NewStatusRelate(CheckNull(p, "PeopleVictimType")));
-                      pst2.setString(54,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                  if(errNodesB.getLength()>0){
-                       Node BailDate=errNodesB.item(0);
-                       Element bailD=(Element)BailDate;
-                       pst2.setString(55,NewDate(CheckNull(bailD, "RequestDate")));
-                   }
-                   else{
-                   pst2.setString(55,"");
-                   }
-                  if(CheckNull(p, "DisplayLevelDecision")!=null){
-                     if(NewCourtProvince(CheckNull(p, "DisplayLevelDecision")).equals("ศาลเยาวชนและครอบครัว")){
-                         pst2.setString(56,"ศาลเด็กและเยาวชน");
-                     }
-                     else{
-                       pst2.setString(56,"ผู้ใหญ่");
-                     }
-                     }
-                 else{
-                  pst2.setString(56,"");
-                 }
-             if (nListArr!= null && nListArr.getLength() > 0) {
-                        Node elArr = nListArr.item(0); 
-                        Element arr = (Element) elArr ;
-                         pst2.setString(13,NewDate(CheckNull(arr, "ArrestDate"))+" "+NewTime(CheckNull(arr, "ArrestDate")));
-                       pst2.setString(57,CheckNull(arr, "ArrestLocation"));
-
-            }
-            else{
-              pst2.setString(13,"");
-              pst2.setString(57,"");
-
-            }     
-            if (nListArrTam != null && nListArrTam.getLength() > 0) {
-                        Node elArrTam = nListArrTam.item(0); 
-                        Element tb = (Element) elArrTam ;
-                         pst2.setString(58,CheckNull(tb, "Name"));
-            }
-            else{
-              pst2.setString(58,"");
-            }
-             if (nListArrAm != null && nListArrAm.getLength() > 0) {
-                        Node elArrAm = nListArrAm.item(0); 
-                        Element am = (Element) elArrAm ;
-                         pst2.setString(59,CheckNull(am, "Name"));
-            }
-            else{
-              pst2.setString(59,"");
-            }
-            if (nListArrPro != null && nListArrPro.getLength() > 0) {
-                        Node elArrPr = nListArrPro.item(0); 
-                        Element pr = (Element) elArrPr ;
-                         pst2.setString(60,CheckNull(pr, "Name"));
-            }
-            else{
-              pst2.setString(60,"");
-            }
-
-                  
-                 
-                     pst2.execute();
-                     pst2.close();  
-                     
-               //       =----- ----- --------------------Bail Crime Update------------------------------------------
-          if(p.getElementsByTagName("StatusSuspectForBail").item(0).getTextContent().equals("SuspectForBail")){
-              String insertBailAsset = "INSERT INTO BailAsset (BailAssetOrder,BailAssetDetail,"
-                      + "BailAssetBath,BailAmount,BailAssetTotal,"
-                      + "BailPersonId,BailCaseId)\n"
-                      + "VALUES (?,?,?,?,?,?,?)";
-              String insertBailDel = "INSERT INTO DeliverySuspect (DeliOrder,DeliDate,DeliTimes,"
-                                   + "DeliPlace,DeliPersonId) VALUES (?,?,?,?,?)";
-                String insertBailOwn="INSERT INTO Person (Age,BirthDay,FullNamePerson,Gender,\n" +
-                        "HouseNumber,Occupation,PeopleRegistrationID,\n" +
-                        "PhonePerson,TypePerson,caseIdPerson,Related,"
-                + "OccupationPosition,OwnerBail,Tambon,Amphur,Province)\n"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement pst3=null;
-                PreparedStatement pstB1=null;
-                pst3=conn.prepareStatement(insertBailOwn);
-                
-               if(errNodesB.getLength()>0){
-                   
-                  if (errNodesBA.getLength() > 0) {
-                          for (int ab = 0; ab < errNodesBA1.getLength(); ab++) {
-                                Node nNode1 = errNodesBA1.item(ab);
-                                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p2 = (Element) nNode1; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                              pstB1=conn.prepareStatement(insertBailAsset);
-                                              pstB1.setString(1, CheckNull(p2,"Sequence"));
-                                              pstB1.setString(2, CheckNull(p2,"AssetsName"));
-                                              pstB1.setString(3, CheckNull(p2,"AssetsUnitValueBaht"));
-                                              pstB1.setString(4, CheckNull(p2,"AssetsAmount"));
-                                              pstB1.setString(5, CheckNull(p2,"AssetsTotalValueBaht"));
-                                              pstB1.setString(6,IdPerson());
-                                             pstB1.setString(7,IdCasePerson());
-                                             pstB1.execute();
-                                             pstB1.close();
-                                           }
-                                                  }
-                     }    
-                  if (errNodesBD.getLength() > 0) {
-                          for (int ab = 0; ab < errNodesBD.getLength(); ab++) {
-                                Node nNode1 = errNodesBD.item(ab);
-                                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p2 = (Element) nNode1; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                                PreparedStatement pstD=null;
-                                              pstD=conn.prepareStatement(insertBailDel);
-                                                     pstD.setString(1, CheckNull(p2,"Sequence"));
-                                              pstD.setString(2, NewDate(CheckNull(p2,"DueDate")));
-                                              pstD.setString(3, NewTime(CheckNull(p2,"DueDate")));
-                                              pstD.setString(4, CheckNull(p2,"HandOverLocation"));
-                                              pstD.setString(5, IdPerson());
-                                             pstD.execute();
-                                             pstD.close();
-                                           }
-                                                  }
-                     }    
-                  Node bailMan=errNodesB.item(0);
-                     Element err4 = (Element) bailMan ;  
-                    NodeList nListBailTam = err4.getElementsByTagName("RequestForBail_Tambon");
-                    NodeList nListBailAm = err4.getElementsByTagName("RequestForBail_Amphur");
-                    NodeList nListBailPro = err4.getElementsByTagName("RequestForBail_Province");
-                    NodeList nListBailOc = err4.getElementsByTagName("RequestForBail_Occupation");
-
-                      Element bTam= (Element) nListBailTam.item(0) ; 
-                      Element bAmp= (Element) nListBailAm.item(0) ; 
-                      Element bPro= (Element) nListBailPro.item(0) ; 
-                      Element bOccu= (Element) nListBailOc.item(0) ; 
-
-                    pst3.setString(1, CheckNull(err4,"BailsmanAge"));
-                    pst3.setString(2,NewDate(CheckNull(err4, "BailsmanBirthDate")));
-                   pst3.setString(3, CheckNull(err4, "BailsmanFullName"));
-                   pst3.setString(4, NewGender(CheckNull(err4, "BailsmanSex")));
-                   pst3.setString(5, CheckNull(err4, "BailsmanHouseNumber"));  
-                   pst3.setString(6, CheckNull(bOccu, "NameTH"));
-                   pst3.setString(7, CheckNull(err4, "BailsmanRegisterID"));
-            
-                   pst3.setString(8, "");
-                   pst3.setString(9, "พยานและบุคคลอื่นๆ");
-                   pst3.setString(10, IdCasePerson());
-                   pst3.setString(11, "นายประกัน");
-                    pst3.setString(12,"" );
-                   pst3.setString(13, IdPerson());
-                    pst3.setString(14,  CheckNull(bTam, "Name"));
-                     pst3.setString(15,  CheckNull(bAmp, "Name"));
-                      pst3.setString(16,  CheckNull(bPro, "Name"));
-                   pst3.execute();
-                   pst3.close();
-               }
-                    
-                }
-                      System.out.println("success Person");
-                      
-                      
-                      
-                      
-        } catch (SQLException e) {
-                System.out.println("ddddd: "+e);
-            
-        }
-                            
-        }
-           }
-
-                } catch (Exception e) {
-                System.out.println(e);
-                }
-     
-                }
-      public static void update_traffic(JsonObject a,String caseid){
-     try {
-                 String sql = "DELETE FROM DeliverySuspect\n" +
-                            "WHERE delipersonid IN (\n" +
-                            "  SELECT delipersonid FROM DeliverySuspect a\n" +
-                            "  INNER JOIN Person b\n" +
-                            "    ON a.delipersonid=b.noperson \n" +
-                             "  WHERE b.caseidperson ='"+caseid+"');\n"+
-                          "DELETE FROM CrimeCase WHERE CrimeCase.CaseId='"+caseid+"';\n"+
-                             "DELETE FROM RecordInquiry WHERE caseidrecord='"+caseid+"';\n"+
-                             "DELETE FROM Person WHERE caseidperson='"+caseid+"';\n"+
-                             "DELETE FROM ChargeCase WHERE ChargeCaseId='"+caseid+"';\n"+
-                             "DELETE FROM RecordInquiry WHERE CaseIdRecord='"+caseid+"';\n"+
-                             "DELETE FROM ActionsCaseData WHERE ActionCaseId='"+caseid+"';\n"+
-                             "DELETE FROM BailAsset WHERE BailCaseId='"+caseid+"';\n"+                  
-                                "DELETE FROM Asset WHERE caseidasset='"+caseid+"';";
-         try {               
-           Connection cond = ConnectDatabase.connect();
-                System.out.println("Delete:"+sql);
-                Statement  stmt = cond.createStatement();
-                      stmt.executeUpdate(sql);
-                    stmt.close();
-         }
-         catch(SQLException ex){
-             System.out.println(ex);
-         }
-                
-                String url = "http://172.31.191.163:8383/ws/TrafficCaseService_Wordgen_Import/";
-//                                String url = "http://118.175.46.24:8989/ws/TrafficCaseService_Wordgen_Import/";
-
-
-                URL obj = new URL(url);
-                HttpURLConnection con = (HttpURLConnection) obj.openConnection();
-                con.setRequestMethod("POST");
-                con.setRequestProperty("Content-Type","application/soap+xml;charset=UTF-8");
-                String xml = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:exam=\"http://www.example.com/\">\n" +
-                    "   <soapenv:Header>\n" +
-                    "      <exam:authentication>\n" +
-                    "         <username>rtp</username>\n" +
-                    "         <password>rtp</password>\n" +
-                    "      </exam:authentication>\n" +
-                    "   </soapenv:Header>\n" +
-                    "   <soapenv:Body>\n" +
-                    "      <exam:TrafficCaseDetail>\n" +
-                    "         <INPUT>"+a+"</INPUT>\n" +
-                    "      </exam:TrafficCaseDetail>\n" +
-                    "   </soapenv:Body>\n" +
-                    "</soapenv:Envelope>";
-                System.out.println(xml);
-                    con.setDoOutput(true);
-                  DataOutputStream writer = new DataOutputStream(con.getOutputStream());
-                BufferedWriter wr = new BufferedWriter(new OutputStreamWriter(writer, "UTF-8"));
-                wr.write(xml);
-                wr.flush();
-                wr.close();
-                String responseStatus = con.getResponseMessage();
-                int responseCode = con.getResponseCode();
-		System.out.println("GET Response Code :: " + responseCode);
-                System.out.println(responseStatus);
-                BufferedReader in = new BufferedReader(new InputStreamReader(
-                con.getInputStream(),"UTF-8"));
-                String inputLine;
-                StringBuffer response = new StringBuffer();
-                while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-                }
-                in.close();
-                System.out.println("response:" + response.toString());
-                	// System.out.println(response.toString());
-        Document doc = DocumentBuilderFactory.newInstance().newDocumentBuilder()
-         .parse(new InputSource(new StringReader(response.toString())));
-	       NodeList errNodes = doc.getElementsByTagName("Person");
-               NodeList errNodes2 = doc.getElementsByTagName("TrafficCase");       
-               NodeList errNodes3 = doc.getElementsByTagName("InvolvedVehicle_TrafficCase");
-               NodeList errNodes4 = doc.getElementsByTagName("InvolvedVehicle");
-    
-             NodeList errNodesBA = doc.getElementsByTagName("AssetsOfTheBailman_RequestForBail"); 
-             NodeList errNodesBA1 = doc.getElementsByTagName("AssetsOfTheBailman"); 
-                NodeList errNodesBD = doc.getElementsByTagName("DueDateDeliverySuspect"); 
-                 NodeList errNodesT = doc.getElementsByTagName("Tambon"); 
-                  NodeList errNodesOc = doc.getElementsByTagName("RequestForBail_Bailman_Occupation");
-                    NodeList errNodesTb = doc.getElementsByTagName("TrafficCaseModel_Tambon");
-                NodeList errNodesAm = doc.getElementsByTagName("TrafficCaseModel_Amphur");
-                NodeList errNodesPro = doc.getElementsByTagName("TrafficCaseModel_Province");
-//                 NodeList errNodes5 = doc.getElementsByTagName("LawCategory");               
-               
-              Connection conn=null;
-               Connection conn2=null;
-
-               conn=ConnectDatabase.connect();
-                              conn2=ConnectDatabase.connect();
-
-         if (errNodes2.getLength() > 0) {
-            Element err = (Element)errNodes2.item(0);
-             Element er = (Element)errNodesT.item(0);
-             Element tb = (Element)errNodesTb.item(0);
-             Element am = (Element)errNodesAm.item(0);
-             Element pr = (Element)errNodesPro.item(0);
-         String insertCrime="insert into CrimeCase(CaseId,CaseType,crimecaseno,crimecaseyears,crimecasenoyear,CaseAcceptDate,CaseAccepTime,"
-                       + "CaseRequestDate,CaseRequestTime,OccuredDate,OccuredTime,OccuredDateEnd,OccuredTimeEnd,ActionCodeCase,ChargeCodeCase,"
-                      + "DailyNumber,Investigator_Result,SuspectandOther,AccureandOther,PoliceNameCase,CrimeLocation,TypeCourt,CrimeLocationDistrict,CrimeLocationAmphur,CrimeLocationProvince)\n"
-                       + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-         String insertCharge="insert into Charge(ChargeCode,ChargeName,Law,RateOfPenalty,Note)\n"
-                       + "VALUES (?,?,?,?,?)";
-          String insertChargeCase="insert into ChargeCase(ChargeCodeCase,ChargeNameCase,LawCase,RateOfPenaltyCase,NoteCase,ChargeCaseId)\n"
-                       + "VALUES (?,?,?,?,?,?)";
-        
-      String insertActionsCase="insert into ActionsCase(ActionCode,ActionCrimes,ActionDetail,ActionNote)\n"
-                       + "VALUES (?,?,?,?)";
-          String insertActionsCaseData="insert into ActionsCaseData(ActionCodeCase,ActionCrimesCase,ActionDetailCase,ActionNoteCase,ActionCaseId)\n"
-                       + "VALUES (?,?,?,?,?)";
-           String insertAsset="insert into Asset(EvidenceRecordNumber,Name,Amount,Value,StatusAsset,SumValue,caseIdAsset)\n"
-                       + "VALUES (?,?,?,?,?,?,?)";
-       try {
-                    
-                         PreparedStatement pst=null;
-                         PreparedStatement pst1=null;
-                         PreparedStatement pst2=null;
-                          PreparedStatement pst3=null;
-                         PreparedStatement pst4=null;
-                          PreparedStatement pst5=null;
-
-//                         String[] nameSus=err.getElementsByTagName("DailyNumber").item(0).getTextContent().split("2) ",1);
-//                         System.out.println("nameeeeeeeeee:"+nameSus[0]);
-                        pst=conn.prepareStatement(insertCrime);
-                        pst.setString(1, IdCase());
-                        pst.setString(2, "คดีจราจร");
-                        pst.setString(3, err.getElementsByTagName("CrimeCaseNo").item(0).getTextContent());
-                        pst.setString(4,  err.getElementsByTagName("CrimeCaseYear").item(0).getTextContent());
-                        pst.setString(5,  err.getElementsByTagName("CaseNo").item(0).getTextContent());
-                        pst.setString(6,  NewDate( err.getElementsByTagName("CaseRequestDate").item(0).getTextContent())); 
-                        pst.setString(7,   NewTime(err.getElementsByTagName("CaseRequestDate").item(0).getTextContent()));         
-                        pst.setString(8, NewDate( err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
-                        pst.setString(9,  NewTime(err.getElementsByTagName("CaseAcceptDate").item(0).getTextContent())); 
-                        pst.setString(10,  NewDate( err.getElementsByTagName("EventStartDate").item(0).getTextContent())); 
-                        pst.setString(11,  NewTime(err.getElementsByTagName("EventStartDate").item(0).getTextContent())); 
-                        pst.setString(12,   NewDate( err.getElementsByTagName("EventEndDate").item(0).getTextContent())); 
-                        pst.setString(13,  NewTime(err.getElementsByTagName("EventEndDate").item(0).getTextContent())); 
-                         pst.setString(14,  idAction()); 
-                          pst.setString(15,  idCharge()); 
-                            pst.setString(16, CheckNull(err, "DailyRecordNo"));  
-                   
-                            pst.setString(17, "อยู่ระหว่างสอบสวน");  
-                            pst.setString(18, CheckNull(err, "DisplaySuspectsName").replace("1) ", ""));
-                             pst.setString(19, CheckNull(err, "DisplayVictimsName").replace("1) ", ""));   
-                            pst.setString(20,"1");
-                           pst.setString(21,CheckNull(err, "Location"));   
-                            pst.setString(22,"ศาลอาญา/ศาลจังหวัด"); 
-                           pst.setString(23,CheckNull(tb, "Name"));   
-                           pst.setString(24,CheckNull(am, "Name"));   
-                           pst.setString(25,CheckNull(pr, "Name"));   
-
-                            
-//                      pst.setString(13,  NewTime(err.getElementsByTagName("OccuredDateTimeTo").item(0).getTextContent())); 
-                     pst.execute();
-                     pst.close();   
-//                        if(err.getElementsByTagName("BehaviorOfCrimeCase").item(0)!=null){
-//                           pst1=conn2.prepareStatement(insertActionsCase);
-//                        pst1.setString(1, idAction());
-//                        pst1.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-//                        pst1.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-//                        pst1.setString(4, "");     
-//                                      System.out.println("addddddddddddd:"+idAction());  
-//                        pst1.execute();
-//                     pst1.close(); 
-                     
-//                            pst2=conn.prepareStatement(insertActionsCaseData);
-//                        pst2.setString(1, idActionCase());
-//                        pst2.setString(2, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-//                        pst2.setString(3, err.getElementsByTagName("BehaviorOfCrimeCase").item(0).getTextContent());
-//                        pst2.setString(4, "");
-//                         pst2.setString(5, IdCasePerson());  
-//                        pst2.execute();
-//                     pst2.close(); 
-//                        }
-                 
-                        
-                        pst3=conn.prepareStatement(insertCharge);
-                        pst3.setString(1, idCharge());
-                        pst3.setString(2,CheckNull(err, "DisplayCharge").replace("1)", ""));
-//                       if (errNodes5.getLength() > 0) {
-//                            Element err5 = (Element)errNodes5.item(0);
-//                         pst3.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
-//                          }
-//                          else{
-                           pst3.setString(3, "");   
-//                          }
-                        pst3.setString(4,"");
-                         pst3.setString(5, "");  
-                        pst3.execute();
-                     pst3.close(); 
-                     
-                       pst4=conn.prepareStatement(insertChargeCase);
-                        pst4.setString(1, idChargeCase());
-                        pst4.setString(2, CheckNull(err, "DisplayCharge").replace("1)", ""));
-//                        if (errNodes5.getLength() > 0) {
-//                            Element err5 = (Element)errNodes5.item(0);
-//                         pst4.setString(3, err5.getElementsByTagName("NameTH").item(0).getTextContent());      
-//                          }
-//                          else{
-                           pst4.setString(3, "");   
-//                          }
-                        pst4.setString(4, "");
-                         pst4.setString(5, ""); 
-                        pst4.setString(6, IdCasePerson());  
-
-                        pst4.execute();
-                     pst4.close();
-//                          }
-                     if (errNodes3.getLength() > 0) {
-                          for (int temp = 0; temp < errNodes4.getLength(); temp++) {
-                                Node nNode = errNodes4.item(temp);
-                                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element t = (Element) nNode; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                              pst5=conn.prepareStatement(insertAsset);
-                                              pst5.setString(1, CheckNull(err,"EvidenceRecordNumber"));
-                                              pst5.setString(2, CheckNull(t,"BrandString")+CheckNull(t,"ModelString")+CheckNull(t,"FullNoPlate"));
-                                              pst5.setString(3, CheckNull(t,"Amount1"));
-                                              pst5.setString(4, CheckNull(t,"Value"));
-                                              pst5.setString(5, "");
-                                              pst5.setString(6, "");
-                                              pst5.setString(7,IdCasePerson());
-
-                                             pst5.execute();
-                                             pst5.close();
-                                           }
-                                                  }
-                     }
-                       System.out.println("success");
-        } catch (SQLException e) {
-                System.out.println("ddddd: "+e);
-            
-        }
-	} else { 
-		     // success
-         }
-           for (int temp = 0; temp < errNodes.getLength(); temp++) {
-
-        Node nNode = errNodes.item(temp);
-
-        
-
-        if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-            Element p = (Element) nNode; 
-      NodeList nListArrTam = p.getElementsByTagName("ArrestAndBailOut_Tambon");
-            NodeList nListArrAm = p.getElementsByTagName("Tabon_Amphur");
-            NodeList nListArrPro = p.getElementsByTagName("Tabon_Province");
-             NodeList nListArr = p.getElementsByTagName("ArrestAndBailOut");
-             NodeList errNodesB = p.getElementsByTagName("RequestForBail"); 
-           NodeList nodeCourt= p.getElementsByTagName("RequestForBail"); 
-
-            NodeList nListTam = p.getElementsByTagName("Person_Tambon");
-            NodeList nListAm = p.getElementsByTagName("Person_Amphur");
-            NodeList nListPro = p.getElementsByTagName("Person_Province");
-//    System.out.println("First Name : " +eElement.getElementsByTagName("PeopleRegistrationID").item(0).getTextContent());
-//------------------------------------------------Person Traffic Update---------------------------------------------------------
-        String insertPerson="insert into Person(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
-                              + "Age,TypePerson,FatherFullName,MotherFullName,Race,Religion,Nationality,Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,"
-                             + " CourtSuspect,Related,BloodGroup,PlaceArrest,PlaceArrestTambon,PlaceArrestAmphur,PlaceArrestProvince,BailDate)\n"
-//                             + "Occupation,ArrestDateTime,CaseIdPerson,StatusSuspect,StatusBail,CourtSuspect,SueFirst,SueFirstDate,SueFirstEnd,SueFirstTotal,"
-//                            + " SueSecond,SueSecDate,SueSecEnd,SueSecTotal,SueThird,SueThirdDate,SueThirdEnd,SueThirdTotal,"
-//                            + "SueFourth,SueFourthDate,SueFourthEnd,SueFourthtotal,SueFifth,SueFifthDate,SueFifthEnd,SueFifthTotal,"
-//                            + "SueSixth,SueSixthDate,SueSixthEnd,SueSixthTotal,SueSeven,SueSevenDate,SueSevenEnd,SueSevenTotal,HouseNumber,Moo)\n"
-//                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,,?,?,?)";  
-                                 + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";      
-  
-              String insertPersonData="insert into PersonData(PeopleRegistrationID,FullNamePerson,BirthDay,Gender,"
-                              + "Age,FatherFullName,MotherFullName,Race,Religion,Nationality,"
-                             + "Occupation,"
-                            + "HouseNumber,Road,Soi,Moo,Amphur,"
-                             + "Tambon,Province,FullNamePersonEn,BloodGroup)\n"
-                                + " VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";  
-    String checkPersonData="Select FullNamePerson,PeopleRegistrationID from persondata where FullNamePerson='"+CheckNull(p, "FullNamePerson")+"' and PeopleRegistrationID='"+CheckNull(p, "PeopleRegistrationID")+"'";  
-         try {           Element oc = (Element)errNodesOc.item(0); 
-                     Statement st = conn.createStatement();
-                ResultSet rc = st.executeQuery(checkPersonData);
-                            if(rc.next()){
-                                
-                            }
-                            else{
-                               PreparedStatement pd=null;
-                        
-                        pd=conn.prepareStatement(insertPersonData);
-                pd.setString(1,CheckNull(p, "PeopleRegistrationID"));
-                 pd.setString(2,CheckNull(p, "FullNamePerson"));
-                 if(p.getElementsByTagName("Birthday").item(0)==null){
-               pd.setString(3,"");
-               }
-               else{
-                    pd.setString(3,NewDate(p.getElementsByTagName("Birthday").item(0).getTextContent()));
-               }
-
-                if(p.getElementsByTagName("Gender").item(0)==null){
-               pd.setString(4,"");
-               }
-               else{
-                    pd.setString(4,NewGender(p.getElementsByTagName("Gender").item(0).getTextContent()));
-               }
-              pd.setString(5,CheckNull(p, "Age"));
-    
-              pd.setString(6,CheckNull(p, "TitleFather")+CheckNull(p, "FatherName")+" "+CheckNull(p, "FatherSurname"));
-              pd.setString(7,CheckNull(p, "TitleMother")+CheckNull(p, "MotherName")+" "+CheckNull(p, "MotherSurname"));
-              pd.setString(8,CheckNull(p, "Race"));
-              pd.setString(9,CheckNull(p, "Religion"));
-              pd.setString(10,CheckNull(p, "Nationality"));
-              if(errNodesOc.getLength()>0){
-               pd.setString(11,NewOccupation(CheckNull(oc, "NameTH")));
-              }
-              else{
-              pd.setString(11,NewOccupation(CheckNull(p, "Occupation")));}
-                    pd.setString(12,CheckNull(p, "HouseNumber"));
-                     pd.setString(13,CheckNull(p, "Road"));
-                    pd.setString(14,CheckNull(p, "Lane"));
-                    pd.setString(15,CheckNull(p, "Moo"));
-                    pd.setString(16,CheckNull(p, "Amphur"));
-                    pd.setString(17,CheckNull(p, "Tambon"));
-                    pd.setString(18,CheckNull(p, "Province"));
-                      pd.setString(19,CheckNull(p, "TitleEN")+" "+CheckNull(p, "FirstNameEN")+" "+CheckNull(p, "SurNameEN"));
-                    pd.setString(20," ");
-
-                      pd.execute();
-                     pd.close();  
-                            }
-       
-               
-                         PreparedStatement pst2=null;
-                        pst2=conn.prepareStatement(insertPerson);
-                pst2.setString(1,CheckNull(p, "PeopleRegistrationID"));
-                 pst2.setString(2,CheckNull(p, "FullNamePerson"));
-                 if(p.getElementsByTagName("Birthday").item(0)==null){
-               pst2.setString(3,"");
-               }
-               else{
-                    pst2.setString(3,NewDate(p.getElementsByTagName("Birthday").item(0).getTextContent()));
-               }
-
-                if(p.getElementsByTagName("Gender").item(0)==null){
-               pst2.setString(4,"");
-               }
-               else{
-                    pst2.setString(4,NewGender(p.getElementsByTagName("Gender").item(0).getTextContent()));
-               }
-              pst2.setString(5,CheckNull(p, "Age"));
-              if(p.getElementsByTagName("StatusVictimOrSuspect").item(0).getTextContent().equals("Suspect")){
-               pst2.setString(6,"ผู้ต้องหา");
-              }  
-              else{  
-               pst2.setString(6,NewTypePersonTraffic(CheckNull(p, "Traffice_TypeOfPersonCase")));
-
-              }
-    
-              pst2.setString(7,CheckNull(p, "FatherName"));
-              pst2.setString(8,CheckNull(p, "MotherName"));
-              pst2.setString(9,CheckNull(p, "Race"));
-              pst2.setString(10,CheckNull(p, "Religion"));
-              pst2.setString(11,CheckNull(p, "Nationality"));
-              pst2.setString(12,NewOccupation(CheckNull(p, "Occupation")));
-        
-               pst2.setString(14,  IdCasePerson()); 
-               if(p.getElementsByTagName("StatusSuspectProcess").item(0) != null){
-                pst2.setString(15,CheckNull(p, "StatusSuspectProcess"));
-               }
-               else if (p.getElementsByTagName("StatusSueOrBail").item(0) != null) {
-                 pst2.setString(15, NewStatusSue(CheckNull(p, "StatusSueOrBail"))); 
-             }
-             else {
-                pst2.setString(15, "");
-             }
-            
-////                 System.out.println("Courttttttttttttttttttttttttt:"+NewCourtProvince(CheckNull(p, "DisplayLevelDecision")));
-            
-                pst2.setString(17,NewCourtProvince(CheckNull(p, "CourtNameTH")));
-               
-                
-                 pst2.setString(18,NewStatusRelateTraffic(CheckNull(p, "Traffice_TypeOfPersonCase")));
-                  pst2.setString(19," ");
-            if (nListArr!= null && nListArr.getLength() > 0) {
-                        Node elArr = nListArr.item(0); 
-                        Element arr = (Element) elArr ;
-                         pst2.setString(13,NewDate(CheckNull(arr, "ArrestDate"))+" "+NewTime(CheckNull(arr, "ArrestDate")));
-                       if(arr.getElementsByTagName("StatusForBail").item(0).getTextContent().equals("SuspectForBail")){             
-                            pst2.setString(16,"ประกัน");              
-                         }
-                        else{
-                            pst2.setString(16,"");
-                        }
-                         pst2.setString(20,CheckNull(arr, "ArrestLocation"));
-
-            }
-            else{
-                pst2.setString(16,"");
-              pst2.setString(13,"");
-              pst2.setString(20,"");
-
-            }
-
-            if (nListArrTam != null && nListArrTam.getLength() > 0) {
-                        Node elArrTam = nListArrTam.item(0); 
-                        Element tb = (Element) elArrTam ;
-                         pst2.setString(21,CheckNull(tb, "Name"));
-            }
-            else{
-              pst2.setString(21,"");
-            }
-             if (nListArrAm != null && nListArrAm.getLength() > 0) {
-                        Node elArrAm = nListArrAm.item(0); 
-                        Element am = (Element) elArrAm ;
-                         pst2.setString(22,CheckNull(am, "Name"));
-            }
-            else{
-              pst2.setString(22,"");
-            }
-            if (nListArrPro != null && nListArrPro.getLength() > 0) {
-                        Node elArrPr = nListArrPro.item(0); 
-                        Element pr = (Element) elArrPr ;
-                         pst2.setString(23,CheckNull(pr, "Name"));
-            }
-            else{
-              pst2.setString(23,"");
-            }
-                if(errNodesB.getLength()>0){
-                       Node BailDate=errNodesB.item(0);
-                       Element bailD=(Element)BailDate;
-                       pst2.setString(24,NewDate(CheckNull(bailD, "RequestDate")));
-                   }
-                   else{
-                   pst2.setString(24,"");
-                   }
-//                  if(p.getElementsByTagName("Sue").item(0) != null){
-//                 ---------------------------------------ผัดฟ้อง-----------------------------------------------     
-//                    pst2.setString(18,CheckNullSue(p, "SueSeq",1));
-//                     pst2.setString(19,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",1)))); 
-//                     pst2.setString(20,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",1))));                 
-//                     pst2.setString(21,CheckNullSue(p, "Amount",1)); 
-//                      pst2.setString(22,CheckNullSue(p, "SueSeq",2));
-//                     pst2.setString(23,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",2)))); 
-//                     pst2.setString(24,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",2))));                 
-//                     pst2.setString(25,CheckNullSue(p, "Amount",2));
-//                      pst2.setString(26,CheckNullSue(p, "SueSeq",2));
-//                     pst2.setString(23,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",2)))); 
-//                     pst2.setString(24,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",2))));                 
-//                     pst2.setString(25,CheckNullSue(p, "Amount",2));
-//                      pst2.setString(26,CheckNullSue(p, "SueSeq",3));
-//                     pst2.setString(27,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",3)))); 
-//                     pst2.setString(28,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",3))));                 
-//                     pst2.setString(29,CheckNullSue(p, "Amount",3));
-//                     pst2.setString(30,CheckNullSue(p, "SueSeq",4));
-//                     pst2.setString(31,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",4)))); 
-//                     pst2.setString(32,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",4))));                 
-//                     pst2.setString(33,CheckNullSue(p, "Amount",4));
-//                      pst2.setString(34,CheckNullSue(p, "SueSeq",5));
-//                     pst2.setString(35,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",5)))); 
-//                     pst2.setString(36,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",5))));                 
-//                     pst2.setString(37,CheckNullSue(p, "Amount",5));
-//                     pst2.setString(38,CheckNullSue(p, "SueSeq",6));
-//                     pst2.setString(39,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",6)))); 
-//                     pst2.setString(40,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",6))));                 
-//                     pst2.setString(41,CheckNullSue(p, "Amount",6));
-//                      pst2.setString(42,CheckNullSue(p, "SueSeq",7));
-//                     pst2.setString(43,ChangFormat(NewDate(CheckNullSue(p, "SueStartDate",7)))); 
-//                     pst2.setString(44,ChangFormat(NewDate(CheckNullSue(p, "SueEndDate",7))));                 
-//                     pst2.setString(45,CheckNullSue(p, "Amount",7));
-//                    pst2.setString(46,  CheckNull(p, "HouseNo")); 
-//                     pst2.setString(47,  CheckNull(p, "Moo"));
-                     pst2.execute();
-                     pst2.close();  
-                     
-               //       =----- ----- --------------------Bail Update traffic------------------------------------------
-          if(p.getElementsByTagName("ArrestAndBailOut_PersonTraffic").item(0)!=null){
-              String insertBailAsset = "INSERT INTO BailAsset (BailAssetOrder,BailAssetDetail,"
-                      + "BailAssetBath,BailAmount,BailAssetTotal,"
-                      + "BailPersonId,BailCaseId)\n"
-                      + "VALUES (?,?,?,?,?,?,?)";
-              String insertBailDel = "INSERT INTO DeliverySuspect (DeliOrder,DeliDate,DeliTimes,"
-                                   + "DeliPlace,DeliPersonId) VALUES (?,?,?,?,?)";
-                String insertBailOwn="INSERT INTO Person (Age,BirthDay,FullNamePerson,Gender,\n" +
-                        "HouseNumber,Occupation,PeopleRegistrationID,\n" +
-                        "PhonePerson,TypePerson,caseIdPerson,Related,"
-                      + "OccupationPosition,OwnerBail,Tambon,Amphur,Province)\n"
-                + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                PreparedStatement pst3=null;
-                PreparedStatement pstB1=null;
-                pst3=conn.prepareStatement(insertBailOwn);
-                
-               if(errNodesB.getLength()>0){
-
-                  if (errNodesBA.getLength() > 0) {
-                          for (int ab = 0; ab < errNodesBA1.getLength(); ab++) {
-                                Node nNode1 = errNodesBA1.item(ab);
-                                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p2 = (Element) nNode1; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                              pstB1=conn.prepareStatement(insertBailAsset);
-                                              pstB1.setString(1, CheckNull(p2,"Sequence"));
-                                              pstB1.setString(2, CheckNull(p2,"AssetsName"));
-                                              pstB1.setString(3, CheckNull(p2,"AssetsUnitValueBaht"));
-                                              pstB1.setString(4, CheckNull(p2,"AssetsAmount"));
-                                              pstB1.setString(5, CheckNull(p2,"AssetsTotalValueBaht"));
-                                              pstB1.setString(6,IdPerson());
-                                             pstB1.setString(7,IdCasePerson());
-                                             pstB1.execute();
-                                             pstB1.close();
-                                           }
-                                                  }
-                     }    
-                  if (errNodesBD.getLength() > 0) {
-                          for (int ab = 0; ab < errNodesBD.getLength(); ab++) {
-                                Node nNode1 = errNodesBD.item(ab);
-                                if (nNode1.getNodeType() == Node.ELEMENT_NODE) {
-                                    Element p2 = (Element) nNode1; 
-//                                     Element err7 = (Element)errNodes8.item(0);  
-                                                PreparedStatement pstD=null;
-                                              pstD=conn.prepareStatement(insertBailDel);
-                                                     pstD.setString(1, CheckNull(p2,"Sequence"));
-                                              pstD.setString(2, NewDate(CheckNull(p2,"DueDate")));
-                                              pstD.setString(3, NewTime(CheckNull(p2,"DueDate")));
-                                              pstD.setString(4, CheckNull(p2,"HandOverLocation"));
-                                              pstD.setString(5, IdPerson());
-                                             pstD.execute();
-                                             pstD.close();
-                                           }
-                                                  }
-                     }                           
-                      Node bailMan=errNodesB.item(0);
-                     Element err4 = (Element) bailMan ;  
-                    NodeList nListBailTam = err4.getElementsByTagName("RequestForBail_Bailman_Tambon");
-                    NodeList nListBailAm = err4.getElementsByTagName("RequestForBail_Bailman_Amphur");
-                    NodeList nListBailPro = err4.getElementsByTagName("RequestForBail_Bailman_Province");
-                    NodeList nListBailOc = err4.getElementsByTagName("RequestForBail_Bailman_Occupation");
-
-                      Element bTam= (Element) nListBailTam.item(0) ; 
-                      Element bAmp= (Element) nListBailAm.item(0) ; 
-                      Element bPro= (Element) nListBailPro.item(0) ; 
-                      Element bOccu= (Element) nListBailOc.item(0) ; 
-
-                    pst3.setString(1, CheckNull(err4,"BailsmanAge"));
-                    pst3.setString(2,NewDate(CheckNull(err4, "BailsmanBirthDate")));
-                   pst3.setString(3, CheckNull(err4, "BailsmanFullName"));
-                   pst3.setString(4, NewGender(CheckNull(err4, "BailsmanSex")));
-                   pst3.setString(5, CheckNull(err4, "BailsmanHouseNumber"));  
-                   pst3.setString(6, CheckNull(bOccu, "NameTH"));
-                   pst3.setString(7, CheckNull(err4, "BailsmanRegisterID"));
-               
-                   pst3.setString(8, "");
-                   pst3.setString(9, "พยานและบุคคลอื่นๆ");
-                   pst3.setString(10, IdCasePerson());
-                   pst3.setString(11, "นายประกัน");
-                    pst3.setString(12,"" );
-                   pst3.setString(13, IdPerson());
-                    pst3.setString(14,  CheckNull(bTam, "Name"));
-                     pst3.setString(15,  CheckNull(bAmp, "Name"));
-                      pst3.setString(16,  CheckNull(bPro, "Name"));
-                   pst3.execute();
-                   pst3.close();
-               }
-                    
-                }
-                      System.out.println("success Person");
-
-        } catch (SQLException e) {
-                System.out.println("ddddd: "+e);
-            
-        }
-
-        }
-           }
-
-                } catch (Exception e) {
-                System.out.println(e);
-                }
-     
-     
-                }
    public static String IdCase(){
          Connection con=null;
          
