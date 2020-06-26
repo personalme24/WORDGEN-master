@@ -159,7 +159,6 @@ public class W7 {
                 bookmarkvalue.put("C001",Checknull(Year));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-                bookmarkvalue.put("C37",Checknull(s.getString("Invest_SendtoDepartment")));
                 bookmarkvalue.put("CC2",Checknull(caseno));
                 
                  bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));

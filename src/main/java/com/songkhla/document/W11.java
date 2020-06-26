@@ -166,12 +166,13 @@ public class W11 {
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
                 bookmarkvalue.put("S2",Checknull(PoliceStationName));
-                bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
-                bookmarkvalue.put("PS7",Checknull(s.getString("SuspectandOther"))); 
-                bookmarkvalue.put("B2",Checknull((s.getString("ChargeNameCase"))));
+               
             if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {  
+                bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
+                bookmarkvalue.put("PS7",Checknull(s.getString("SuspectandOther"))); 
+                bookmarkvalue.put("B2",Checknull((s.getString("ChargeNameCase"))));
                 ++OrderAsset ;
                    
                 String[]   Value1 = s.getString("Value").split(" ");
