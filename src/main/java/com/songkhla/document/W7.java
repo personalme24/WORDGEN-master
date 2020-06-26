@@ -126,29 +126,7 @@ public class W7 {
                    Statement st2 = conn.createStatement();
                    ResultSet s2=st2.executeQuery(sqlcc); 
                    System.out.println(sqlcc);
-           
-             if (s2.next()) {                    
-                     cs =s2.getString("ccno");
-                     ccYear=s2.getString("ccYear");
-                     casetype =s2.getString("cctype");
-                     caseno =s2.getString("ccnoyear");
-                      }
-
-                Statement st = conn.createStatement();
-            ResultSet s=st.executeQuery(sql); 
-                System.out.println(sql);
-             
-             JSONObject bookmarkvalue = new JSONObject();
-             
-             if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {  
-                    //cs =s.getString("crimecaseno");
-                    //ccYear=s.getString("crimecaseyears");
-                    //casetype= s.getString("casetype");
-                    //caseno  =s.getString("crimecasenoyear");
-                    
-                String Date="";
+           String Date="";
                 String Month="";
                 String Year="";
                 
@@ -163,11 +141,20 @@ public class W7 {
                
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
-                 
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                     ccYear=s2.getString("ccYear");
+                     casetype =s2.getString("cctype");
+                     caseno =s2.getString("ccnoyear");
+                      }
 
-                 //JSONObject bookmarkvalue = new JSONObject();
-//              
-                bookmarkvalue.put("C1",Checknull(Date));
+                Statement st = conn.createStatement();
+            ResultSet s=st.executeQuery(sql); 
+                System.out.println(sql);
+             
+             JSONObject bookmarkvalue = new JSONObject();
+             
+              bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
 		bookmarkvalue.put("C2",Checknull(cs));
@@ -189,11 +176,14 @@ public class W7 {
                  bookmarkvalue.put("S35",Checknull(HeadRankShort));
                  bookmarkvalue.put("S36",Checknull(HeadWorkRankFull));
                  bookmarkvalue.put("S37",Checknull(HeadWorkRankShort));
-                  
-                 bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
+             
+             if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {  
+                  bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
                   bookmarkvalue.put("PA13", Checknull(s.getString("AgeAccured")));
-                   bookmarkvalue.put("PA14", Checknull(s.getString("AccuredRace")));
-                    bookmarkvalue.put("PA15", Checknull(s.getString("AccuredNati"))); 
+                  bookmarkvalue.put("PA14", Checknull(s.getString("AccuredRace")));
+                  bookmarkvalue.put("PA15", Checknull(s.getString("AccuredNati"))); 
 
                     bookmarkvalue.put("PS7",  Checknull(s.getString("suspectName"))); 
                     bookmarkvalue.put("PS13", Checknull(s.getString("suspectAge")));

@@ -125,7 +125,7 @@ public class W33 {
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("CC2",Checknull(caseno));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-                 bookmarkvalue.put("S2",Checknull(PoliceStationName));
+                 bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 /*
                        bookmarkvalue.put("P02", Checknull(RankPolice));
                        bookmarkvalue.put("P03", Checknull(FirstName));

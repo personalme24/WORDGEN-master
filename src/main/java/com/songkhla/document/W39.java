@@ -114,6 +114,7 @@ public static void w39(String cc) {
                
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
+               
              if (s2.next()) {                    
                      cs =s2.getString("ccno");
                     ccYear=s2.getString("ccYear");
@@ -139,6 +140,7 @@ public static void w39(String cc) {
                  bookmarkvalue.put("S6", Checknull(StationProvince));
                  bookmarkvalue.put("S10",Checknull(TelStation));
                  bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+                 
             if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {   
@@ -212,7 +214,7 @@ public static void w39(String cc) {
 					.load(new java.io.File("./TEMPLATE/w39.docx"));
 			processVariable(bookmarkvalue,wordMLPackage);
 			processTABLE(bookmarkvalue,wordMLPackage);
-			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/หมายเรียกพยาน"+s.getString("FullNamePerson")+"" +cs+"-"+ccYear+".doc"));
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/หมายเรียกพยาน "+cs+"-"+ccYear+".doc"));
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}

@@ -150,6 +150,7 @@ public class W53 {
                         bookmarkvalue.put("P05", Checknull(s.getString("InvestPosition")));
                         bookmarkvalue.put("P012", Checknull(s.getString("InvestRankFull"))); //ยศเต็ม
                         bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
+                        bookmarkvalue.put("P010", Checknull(s.getString("InvestTel")));
                    
     
 			JSONArray tablecolumn = new JSONArray();

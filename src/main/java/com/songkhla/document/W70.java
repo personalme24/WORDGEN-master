@@ -157,6 +157,14 @@ public static void w70(String cc,String noperson) {
                 bookmarkvalue.put("S14",Checknull(HeadPosition));
                 bookmarkvalue.put("S34",Checknull(HeadRankFull));
                 bookmarkvalue.put("S35",Checknull(HeadRankShort));
+                
+                            bookmarkvalue.put("C4",Checknull(ToDate(s.getString("OccuredDate"))));
+                            bookmarkvalue.put("C441", ReplaceCollon(s.getString("OccuredTime")));
+                            bookmarkvalue.put("C5", Checknull(s.getString("CaseAcceptDate")));
+                            bookmarkvalue.put("C551", ReplaceCollon(s.getString("CaseAccepTime")));
+                            bookmarkvalue.put("C6", Checknull(ToDate(s.getString("CaseRequestDate"))));
+                            bookmarkvalue.put("C661", ReplaceCollon(s.getString("CaseRequestTime")));
+                            
                 if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             { 
@@ -219,12 +227,7 @@ public static void w70(String cc,String noperson) {
                         bookmarkvalue.put("P012", Checknull(s.getString("InvestRankFull"))); //ยศเต็ม
                         bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
                         
-                            bookmarkvalue.put("C4",Checknull(ToDate(s.getString("OccuredDate"))));
-                            bookmarkvalue.put("C441", ReplaceCollon(s.getString("OccuredTime")));
-                            bookmarkvalue.put("C5", Checknull(s.getString("CaseAcceptDate")));
-                            bookmarkvalue.put("C551", ReplaceCollon(s.getString("CaseAccepTime")));
-                            bookmarkvalue.put("C6", Checknull(ToDate(s.getString("CaseRequestDate"))));
-                            bookmarkvalue.put("C661", ReplaceCollon(s.getString("CaseRequestTime")));
+                            
                             
                             bookmarkvalue.put("C8", Checknull(s.getString("CrimeLocation")));
                             bookmarkvalue.put("C11", Checknull(s.getString("CrimeLocationRoad")));

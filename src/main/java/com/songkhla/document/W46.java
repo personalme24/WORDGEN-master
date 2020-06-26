@@ -141,7 +141,7 @@ public class W46 {
                 
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-                bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
+                
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S10",Checknull(TelStation));
                 bookmarkvalue.put("S12",Checknull(Fax));
@@ -153,6 +153,7 @@ public class W46 {
                 bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
                   
                 bookmarkvalue.put("PS7",  Checknull(s.getString("SuspectandOther"))); 
+                bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
                
                 
                     bookmarkvalue.put("C12", Checknull(s.getString("CrimeLocationDistrict")));
