@@ -103,7 +103,13 @@ public class W40 {
       Statement st2 = conn.createStatement();
             ResultSet s2=st2.executeQuery(sqlcc); 
             System.out.println(sqlcc);
-           
+           String Date="";
+                
+                SimpleDateFormat sdfstart ;
+                Calendar  calstart = Calendar.getInstance();
+                sdfstart = new SimpleDateFormat("d MMMM yyyy", new Locale("th", "TH"));  
+               Date =sdfstart.format(calstart.getTime());
+              
              if (s2.next()) {                    
                      cs =s2.getString("ccno");
                     ccYear=s2.getString("ccYear");
@@ -116,24 +122,7 @@ public class W40 {
                 System.out.println(sql);
                 
                  JSONObject bookmarkvalue = new JSONObject();
-            if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {   
-                    //cs =s.getString("crimecaseno");
-                    //ccYear=s.getString("crimecaseyears");
-                   // casetype =s.getString("casetype");
-                // caseno  =s.getString("crimecasenoyear");
-                String Date="";
-                
-                SimpleDateFormat sdfstart ;
-                Calendar  calstart = Calendar.getInstance();
-                sdfstart = new SimpleDateFormat("d MMMM yyyy", new Locale("th", "TH"));  
-               Date =sdfstart.format(calstart.getTime());
-              
-               
-                 //JSONObject bookmarkvalue = new JSONObject();
-
-                bookmarkvalue.put("C1",Checknull(Date));
+                 bookmarkvalue.put("C1",Checknull(Date));
                  bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
@@ -143,6 +132,10 @@ public class W40 {
                 bookmarkvalue.put("S6",Checknull(StationProvince));
                 bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
                 bookmarkvalue.put("S10",Checknull(TelStation));
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {  
+                
                 
                 bookmarkvalue.put("P2",  Checknull(s.getString("PeopleRegistrationID")));
                 bookmarkvalue.put("P3",  Checknull(ToDate(s.getString("IssueDate"))));
@@ -216,7 +209,7 @@ public class W40 {
 					.load(new java.io.File("./TEMPLATE/w40.docx"));
 			processVariable(bookmarkvalue,wordMLPackage);
 			processTABLE(bookmarkvalue,wordMLPackage);
-			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกการแจ้งสิทธิ "+s.getString("FullNamePerson")+"" +cs+"-"+ccYear+".doc"));
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์"+"/"+PoliceStationName+"/ปี"+ccYear+"/"+casetype+"/"+casetype+cs+"-"+ccYear+"/บันทึกการแจ้งสิทธิ "+cs+"-"+ccYear+".doc"));
 		}catch( Exception ex) {
 			ex.printStackTrace();
 		}

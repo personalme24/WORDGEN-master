@@ -115,13 +115,34 @@ public class W11 {
                                
       Statement st2 = conn.createStatement();
             ResultSet s2=st2.executeQuery(sqlcc); 
-//            System.out.println(sqlcc);
+             JSONArray JSONArray = new JSONArray();
+             JSONObject bookmarkvalue = new JSONObject();
+             JSONArray tablecolumn = new JSONArray();
+             JSONObject row1 = new JSONObject();
+	     JSONObject tableobj = new JSONObject();
+            
+                String Date="";
+                String Month="";
+                String Year="";
+                
+                
+                SimpleDateFormat sdfstart ;
+                Calendar  calstart = Calendar.getInstance();
+                sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
+               Date =sdfstart.format(calstart.getTime());
+              
+               sdfstart = new SimpleDateFormat("MMMM", new Locale("th", "TH"));  
+               Month=sdfstart.format(calstart.getTime());
+               
+               sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
+               Year=sdfstart.format(calstart.getTime());
            
              if (s2.next()) {                    
                      cs =s2.getString("ccno");
                     ccYear=s2.getString("ccYear");
                     casetype =s2.getString("cctype");
                     caseno  =s2.getString("ccnoyear");
+               
                       }
                 Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
@@ -137,82 +158,23 @@ public class W11 {
             String VarAS10 ="";
             int OrderAsset=0;
             int SumValue=0;
-            JSONArray JSONArray = new JSONArray();
-            
-             String Date="";
-                String Month="";
-                String Year="";
-                
-                
-                SimpleDateFormat sdfstart ;
-                Calendar  calstart = Calendar.getInstance();
-                sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
-               Date =sdfstart.format(calstart.getTime());
-              
-               sdfstart = new SimpleDateFormat("MMMM", new Locale("th", "TH"));  
-               Month=sdfstart.format(calstart.getTime());
-               
-               sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
-               Year=sdfstart.format(calstart.getTime());
-                 
-
-                 JSONObject bookmarkvalue = new JSONObject();
-              JSONArray tablecolumn = new JSONArray();
-              	JSONObject row1 = new JSONObject();
-	     JSONObject tableobj = new JSONObject();
+           
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName));
             if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {  
-//                String  cs =s.getString("crimecaseno");
-//                    ccYear=s.getString("crimecaseyears");
-//                    casetype = s.getString("casetype");
-//                    caseno  =s.getString("crimecasenoyear");
-               
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+
                  
                  bookmarkvalue.put("PA7",Checknull(s.getString("AccuredName")));
-                 
-                    bookmarkvalue.put("PS7",Checknull(s.getString("SuspectandOther"))); 
-                   
-                         
-                    bookmarkvalue.put("B2",Checknull((s.getString("ChargeNameCase"))));
-                     //ทรัพย์
-                 /*
-                    
-                   
-                    VarAS3=VarAS3+"\n\r"+(OrderAsset);
-                    bookmarkvalue.put("AS3",Checknull(VarAS3));
-                   
-                    
-                    VarAS4=VarAS4+"\n\r"+s.getString("Name");
-                    bookmarkvalue.put("AS4",Checknull(VarAS4));
-                    VarAS5=VarAS5+"\n\r"+s.getString("Amount");
-                    bookmarkvalue.put("AS5",Checknull(VarAS5));
-                    
-                    
-                    VarAS6=VarAS6+"\n\r"+s.getString("Value");
-                    bookmarkvalue.put("AS6",Checknull(VarAS6));
-                    if (s.getString("Value") != null)
-                    {
-                    SumValue = SumValue+s.getInt("Value");
-                    } 
-                    VarAS8=VarAS8+"\n\r"+s.getString("OccupantName");
-                    bookmarkvalue.put("AS8", Checknull(VarAS8));
-                    VarAS9=VarAS9+"\n\r"+s.getString("DateSequester");
-                    bookmarkvalue.put("AS9", Checknull(VarAS9));
-                    VarAS10=VarAS10+"\n\r"+s.getString("Remark");
-                    bookmarkvalue.put("AS10",Checknull(VarAS10));
-                    
-                    bookmarkvalue.put("AS331",Checknull(Integer.toString(OrderAsset)));
-                    bookmarkvalue.put("AS661",Checknull(Integer.toString(SumValue)));
-                    bookmarkvalue.put("AS1",Checknull(s.getString("EvidenceRecordNumber")));
-                    */
+                 bookmarkvalue.put("PS7",Checknull(s.getString("SuspectandOther"))); 
+                 bookmarkvalue.put("B2",Checknull((s.getString("ChargeNameCase"))));
+       
                    ++OrderAsset ;
                    
                 String[]   Value1 = s.getString("Value").split(" ");

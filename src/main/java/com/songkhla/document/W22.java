@@ -68,6 +68,7 @@ public class W22 {
              String HeadName ="";
              String HeadPosition="";
              String HeadRankFull="";
+             String THNumBook ="";
              
              
             try {
@@ -86,6 +87,7 @@ public class W22 {
                          HeadName=rs.getString("HeadName");
                          HeadPosition = rs.getString("HeadPosition");
                          HeadRankFull=rs.getString("HeadRankFull");
+                         THNumBook=rs.getString("THNumBook");
                       }
             
                     String sqlDataPolice="SELECT * FROM Police";
@@ -156,6 +158,7 @@ public class W22 {
                  bookmarkvalue.put("S5", Checknull(StationAmphur));
                  bookmarkvalue.put("S6", Checknull(StationProvince));
                  bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+                 bookmarkvalue.put("S29", Checknull(THNumBook));
                  bookmarkvalue.put("S10",Checknull(TelStation));
                  bookmarkvalue.put("S12",Checknull(Fax));
                 bookmarkvalue.put("S13",Checknull(HeadName));
@@ -169,13 +172,7 @@ public class W22 {
                       bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
                       
                       bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
-                      
-                      /*
-                        bookmarkvalue.put("P02", Checknull(RankPolice));
-                        bookmarkvalue.put("P03", Checknull(FirstName));
-                        bookmarkvalue.put("P04", Checknull(LastName));
-                        bookmarkvalue.put("P05", Checknull(Position));
-                         */
+                
                         bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
                         bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
                         bookmarkvalue.put("P04", "");
@@ -184,12 +181,6 @@ public class W22 {
                         bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
                    
               
-               //SimpleDateFormat datefm = new SimpleDateFormat("dd/MM/yyyy", new Locale("th", "TH"));  
-               //Date date1=datefm.parse(s.getString("OccuredDate"));
-               
-               //SimpleDateFormat datefmto  = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
-               //String OccuredDate=datefmto.format(date1.getTime());
-               
                             bookmarkvalue.put("C4",Checknull(ToDate(s.getString("OccuredDate"))));
                             bookmarkvalue.put("C441", ReplaceCollon(s.getString("OccuredTime")));
                             
@@ -213,25 +204,14 @@ public class W22 {
 			JSONArray tablecolumn = new JSONArray();
 			tablecolumn.add("C2");
 			tablecolumn.add("C3");
-//			tablecolumn.add("SUSPECT");
-//			tablecolumn.add("VICTIM");
-//			tablecolumn.add("REMARK");
+
 			JSONArray table1 = new JSONArray();
 			JSONObject row1 = new JSONObject();
 			row1.put("C2",cs);
 			row1.put("C3", ccYear);
-//			row1.put("SUSPECT", "period1");
-//			row1.put("VICTIM", "period1");
-//			row1.put("REMARK", "period1");
+
 			table1.add(row1);
-			
-//			JSONObject repl2 = new JSONObject();
-//			repl2.put("CRIMESNO", "function1");
-//			repl2.put("DESCRIPTION", "desc1");
-//			repl2.put("SUSPECT", "period1");
-//			repl2.put("VICTIM", "period1");
-//			repl2.put("REMARK", "period1");
-//			table1.add(repl2);
+
 		JSONObject tableobj = new JSONObject();
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", table1);
@@ -281,6 +261,7 @@ public class W22 {
                 bookmarkvalue.put("S13","");
                 bookmarkvalue.put("S14","");
                 bookmarkvalue.put("S34","");
+                bookmarkvalue.put("S29","");
                    
                   bookmarkvalue.put("PA7","");
                   bookmarkvalue.put("PS7",""); 

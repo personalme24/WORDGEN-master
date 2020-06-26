@@ -80,12 +80,21 @@ public class W16 {
                                
             Statement st2 = conn.createStatement();
             ResultSet s2=st2.executeQuery(sqlcc); 
+             JSONArray JSONArray = new JSONArray();
+            
+              JSONObject bookmarkvalue = new JSONObject();
+              JSONArray tablecolumn = new JSONArray();
+              JSONObject row1 = new JSONObject();
+	      JSONObject tableobj = new JSONObject();
              if (s2.next()) {                    
                     cs =s2.getString("ccno");
                     ccYear=s2.getString("ccYear");
                     casetype =s2.getString("cctype");
                     caseno  =s2.getString("ccnoyear");
-                    
+                   bookmarkvalue.put("CC2",Checknull(caseno));
+		   bookmarkvalue.put("C2",Checknull(cs));
+                   bookmarkvalue.put("C3",Checknull(ccYear));
+                   bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                         }
             
                 Statement st = conn.createStatement();
@@ -95,12 +104,7 @@ public class W16 {
              String RE5="";
              String RE6="";
              String RE7="";
-             JSONArray JSONArray = new JSONArray();
             
-              JSONObject bookmarkvalue = new JSONObject();
-              JSONArray tablecolumn = new JSONArray();
-              JSONObject row1 = new JSONObject();
-	      JSONObject tableobj = new JSONObject();
               
             
             if(s.isBeforeFirst()){

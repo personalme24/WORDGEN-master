@@ -93,6 +93,24 @@ public class W36 {
             ResultSet s2=st2.executeQuery(sqlcc); 
 //            System.out.println(sqlcc);
            
+                 String Date="";
+                String Month="";
+                String Year="";
+                
+                
+                SimpleDateFormat sdfstart ;
+                Calendar  calstart = Calendar.getInstance();
+                sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
+               Date =sdfstart.format(calstart.getTime());
+              
+               sdfstart = new SimpleDateFormat("MMMM", new Locale("th", "TH"));  
+               Month=sdfstart.format(calstart.getTime());
+               
+               sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
+               Year=sdfstart.format(calstart.getTime());
+
+                
+             
              if (s2.next()) {                    
                      cs =s2.getString("ccno");
                     ccYear=s2.getString("ccYear");
@@ -120,30 +138,6 @@ public class W36 {
              JSONArray tablecolumn = new JSONArray();
              JSONObject row1 = new JSONObject();
 	     JSONObject tableobj = new JSONObject();
-            if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {      
-                   //cs =s.getString("crimecaseno");
-                   // ccYear=s.getString("crimecaseyears");
-                   // casetype=s.getString("casetype");
-                   // caseno  =s.getString("crimecasenoyear");
-                 String Date="";
-                String Month="";
-                String Year="";
-                
-                
-                SimpleDateFormat sdfstart ;
-                Calendar  calstart = Calendar.getInstance();
-                sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
-               Date =sdfstart.format(calstart.getTime());
-              
-               sdfstart = new SimpleDateFormat("MMMM", new Locale("th", "TH"));  
-               Month=sdfstart.format(calstart.getTime());
-               
-               sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
-               Year=sdfstart.format(calstart.getTime());
-
-                
              
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
@@ -154,6 +148,10 @@ public class W36 {
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                  
                 
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {      
+
                       ++OrderAsset ;
                      
                     if (s.getString("Value") != null)
