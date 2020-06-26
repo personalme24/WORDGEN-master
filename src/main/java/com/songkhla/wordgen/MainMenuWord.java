@@ -6,12 +6,16 @@
 package com.songkhla.wordgen;
 
 
+import com.google.gson.JsonObject;
+import static com.songkhla.wordgen.CaseSelectOverView.AcceptDate;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Rectangle;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,8 +28,11 @@ import org.json.simple.JSONObject;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.Window;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.PreparedStatement;
@@ -37,7 +44,9 @@ import java.util.Locale;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JProgressBar;
 import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
 import javax.swing.UIManager;
 
 /**
@@ -60,6 +69,7 @@ public class MainMenuWord extends javax.swing.JFrame {
         ImageIcon img = new ImageIcon("./Master/WD.png");
         setIconImage(img.getImage());
        setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) Version 1.1");
+
                try{
                   Font font = Font.createFont(Font.TRUETYPE_FONT, new File("./Fonts/THSarabun Bold.ttf"));
                   Font  sizedFont = font.deriveFont(1,28f);
@@ -1755,7 +1765,7 @@ public class MainMenuWord extends javax.swing.JFrame {
         }
     }
 }
-       
+
 class BgPanel extends JPanel {
     Image bg = new ImageIcon("./Master/EDOCFINAL.png").getImage();
     @Override
