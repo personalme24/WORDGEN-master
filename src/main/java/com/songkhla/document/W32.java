@@ -97,6 +97,13 @@ public class W32 {
             ResultSet s2=st2.executeQuery(sqlcc); 
             System.out.println(sqlcc);
            
+                  String Date="";
+                
+                
+                SimpleDateFormat sdfstart ;
+                Calendar  calstart = Calendar.getInstance();
+                sdfstart = new SimpleDateFormat("d MMMM yyyy", new Locale("th", "TH"));  
+               Date =sdfstart.format(calstart.getTime());
              if (s2.next()) {                    
                      cs =s2.getString("ccno");
                     ccYear=s2.getString("ccYear");
@@ -109,26 +116,7 @@ public class W32 {
             ResultSet s=st.executeQuery(sql); 
                 System.out.println(sql);
                 JSONObject bookmarkvalue = new JSONObject();
-                if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {    
-                   
-//              
-                  String Date="";
-                
-                
-                SimpleDateFormat sdfstart ;
-                Calendar  calstart = Calendar.getInstance();
-                sdfstart = new SimpleDateFormat("d MMMM yyyy", new Locale("th", "TH"));  
-               Date =sdfstart.format(calstart.getTime());
-              
-               
-                 
-//                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
-//                System.out.print(" - ");
-                
-             
-                bookmarkvalue.put("C1",Checknull(Date));
+                 bookmarkvalue.put("C1",Checknull(Date));
                 
 		bookmarkvalue.put("C2",Checknull(cs));
                  bookmarkvalue.put("CC2",Checknull(caseno));
@@ -138,7 +126,10 @@ public class W32 {
                  bookmarkvalue.put("S6", Checknull(StationProvince));
                  bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
                  bookmarkvalue.put("S10",Checknull(TelStation));
-                 
+                if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {    
+ 
                 bookmarkvalue.put("P54",Checknull(ToDate(s.getString("ArrestDateTime"))));
                  bookmarkvalue.put("P55",Checknull(s.getString("PlaceArrest")));
                  bookmarkvalue.put("P88",ReplaceCollon(ToTime(s.getString("ArrestDateTime"))));
@@ -146,14 +137,7 @@ public class W32 {
                   
                     
                        bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
-                      
-                     
-                      /*
-                        bookmarkvalue.put("P02", Checknull(RankPolice));
-                       bookmarkvalue.put("P03", Checknull(FirstName));
-                        bookmarkvalue.put("P04", Checknull(LastName));
-                         bookmarkvalue.put("P05", Checknull(Position));
-                         */
+               
                        bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
                         bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
                         bookmarkvalue.put("P04", "");
@@ -168,25 +152,14 @@ public class W32 {
 			JSONArray tablecolumn = new JSONArray();
 			tablecolumn.add("C2");
 			tablecolumn.add("C3");
-//			tablecolumn.add("SUSPECT");
-//			tablecolumn.add("VICTIM");
-//			tablecolumn.add("REMARK");
+
 			JSONArray table1 = new JSONArray();
 			JSONObject row1 = new JSONObject();
 			row1.put("C2",cs);
 			row1.put("C3", ccYear);
-//			row1.put("SUSPECT", "period1");
-//			row1.put("VICTIM", "period1");
-//			row1.put("REMARK", "period1");
+
 			table1.add(row1);
-			
-//			JSONObject repl2 = new JSONObject();
-//			repl2.put("CRIMESNO", "function1");
-//			repl2.put("DESCRIPTION", "desc1");
-//			repl2.put("SUSPECT", "period1");
-//			repl2.put("VICTIM", "period1");
-//			repl2.put("REMARK", "period1");
-//			table1.add(repl2);
+
 		JSONObject tableobj = new JSONObject();
 		tableobj.put("COLUMNS", tablecolumn);
 		tableobj.put("TABLEDATA", table1);

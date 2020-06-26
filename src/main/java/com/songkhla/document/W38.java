@@ -102,26 +102,6 @@ public static void w38(String cc) {
       Statement st2 = conn.createStatement();
             ResultSet s2=st2.executeQuery(sqlcc); 
             System.out.println(sqlcc);
-           
-             if (s2.next()) {                    
-                     cs =s2.getString("ccno");
-                    ccYear=s2.getString("ccYear");
-                    casetype =s2.getString("cctype");
-                    caseno  =s2.getString("ccnoyear");
-                      }
-
-                Statement st = conn.createStatement();
-            ResultSet s=st.executeQuery(sql); 
-                System.out.println(sql);
-                 JSONObject bookmarkvalue = new JSONObject();
-            if(s.isBeforeFirst()){
-                
-            while((s!=null) && (s.next()))
-            {  
-                 //cs =s.getString("crimecaseno");
-                 //ccYear=s.getString("crimecaseyears");
-                // casetype =s.getString("casetype");
-                // caseno  =s.getString("crimecasenoyear");
                 String Date="";
                 String Month="";
                 String Year="";
@@ -135,11 +115,18 @@ public static void w38(String cc) {
                
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
+
+                Statement st = conn.createStatement();
+            ResultSet s=st.executeQuery(sql); 
+                System.out.println(sql);
+                 JSONObject bookmarkvalue = new JSONObject();
                  
-//                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
-//                System.out.print(" - ");
-                 //JSONObject bookmarkvalue = new JSONObject();
-//              
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
@@ -152,6 +139,11 @@ public static void w38(String cc) {
                  bookmarkvalue.put("S6", Checknull(StationProvince));
                  bookmarkvalue.put("S10",Checknull(TelStation));
                  bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+            if(s.isBeforeFirst()){
+                
+            while((s!=null) && (s.next()))
+            {  
+
                    
 //                   ----------------------------ผู้กล่าวหา--------------------
                

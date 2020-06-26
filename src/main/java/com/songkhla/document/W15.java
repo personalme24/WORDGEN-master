@@ -155,19 +155,17 @@ public class W15 {
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName));
             
             if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {  
                
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                
                  
                  bookmarkvalue.put("PA7",Checknull(s.getString("AccuredName")));
-                 
-                    bookmarkvalue.put("PS7",Checknull(s.getString("SuspectandOther"))); 
-                   
-                         
-                    bookmarkvalue.put("B2",Checknull((s.getString("ChargeNameCase"))));
+                 bookmarkvalue.put("PS7",Checknull(s.getString("SuspectandOther"))); 
+                 bookmarkvalue.put("B2",Checknull((s.getString("ChargeNameCase"))));
             
                     
               

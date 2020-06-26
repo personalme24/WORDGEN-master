@@ -63,6 +63,7 @@ public static void w23(String cc) {
              String FirstName ="";
              String LastName ="";
              String Position ="";
+             String THNumBook ="";
             try {
                 
                  String sqlDataPoliceStation="SELECT * FROM PoliceStation";
@@ -74,6 +75,7 @@ public static void w23(String cc) {
                          StationProvince=rs.getString("StationProvince");
                          ProvincProsecutor=rs.getString("ProvincProsecutor");
                          TelStation=rs.getString("TelStation");
+                         THNumBook=rs.getString("THNumBook");
                       }
             
                     String sqlDataPolice="SELECT * FROM Police";
@@ -102,6 +104,19 @@ public static void w23(String cc) {
                    Statement st2 = conn.createStatement();
                    ResultSet s2=st2.executeQuery(sqlcc); 
                    System.out.println(sqlcc);
+                   String Date="";
+                String Month="";
+                String Year="";
+                SimpleDateFormat sdfstart ;
+                Calendar  calstart = Calendar.getInstance();
+                sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
+               Date =sdfstart.format(calstart.getTime());
+              
+               sdfstart = new SimpleDateFormat("MMMM", new Locale("th", "TH"));  
+               Month=sdfstart.format(calstart.getTime());
+               
+               sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
+               Year=sdfstart.format(calstart.getTime());
            
              if (s2.next()) {                    
                      cs =s2.getString("ccno");
@@ -115,28 +130,9 @@ public static void w23(String cc) {
                 System.out.println(sql);
              
              JSONObject bookmarkvalue = new JSONObject();
-             if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            { 
-                 //cs =s.getString("crimecaseno");
-                // ccYear=s.getString("crimecaseyears");
-                // casetype=s.getString("casetype");
-                // caseno  =s.getString("crimecasenoyear");
-                String Date="";
-                String Month="";
-                String Year="";
-                SimpleDateFormat sdfstart ;
-                Calendar  calstart = Calendar.getInstance();
-                sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
-               Date =sdfstart.format(calstart.getTime());
-              
-               sdfstart = new SimpleDateFormat("MMMM", new Locale("th", "TH"));  
-               Month=sdfstart.format(calstart.getTime());
-               
-               sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
-               Year=sdfstart.format(calstart.getTime());
+                
 
-                // JSONObject bookmarkvalue = new JSONObject();
+         
                 
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
@@ -149,7 +145,13 @@ public static void w23(String cc) {
                  bookmarkvalue.put("S6", Checknull(StationProvince));
                  bookmarkvalue.put("S10",Checknull(TelStation));
                  bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+                 bookmarkvalue.put("S29", Checknull(THNumBook));
                    
+             if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            { 
+             
+               
 //              
 //                   ----------------------------ผู้ตาย--------------------
                    
@@ -183,13 +185,7 @@ public static void w23(String cc) {
                     
 
                        bookmarkvalue.put("C59","โดย "+Checknull(s.getString("CircumstancesOfDeath")));
-                      /*
-                     bookmarkvalue.put("P02", Checknull(RankPolice));
-                     bookmarkvalue.put("P03", Checknull(FirstName));
-                     bookmarkvalue.put("P04", Checknull(LastName));
-                     bookmarkvalue.put("P05", Checknull(Position));
-                    */
-                      
+               
                         bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
                         bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
                         bookmarkvalue.put("P04", "");
@@ -199,11 +195,7 @@ public static void w23(String cc) {
                         
 
 			JSONArray tablecolumn = new JSONArray();
-//			tablecolumn.add("P03");
-//			tablecolumn.add("P02");
-//			tablecolumn.add("SUSPECT");
-//			tablecolumn.add("VICTIM");
-//			tablecolumn.add("REMARK");
+
 			JSONArray table1 = new JSONArray();
 			JSONObject row1 = new JSONObject();
 
@@ -261,6 +253,7 @@ public static void nw23() {
                 bookmarkvalue.put("S6","");
                 bookmarkvalue.put("S27","");
                 bookmarkvalue.put("S10","");
+                bookmarkvalue.put("S29","");
                 
                 bookmarkvalue.put("PA7","");
              

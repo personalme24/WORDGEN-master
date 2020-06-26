@@ -106,24 +106,6 @@ public class W45 {
             ResultSet s2=st2.executeQuery(sqlcc); 
             System.out.println(sqlcc);
            
-             if (s2.next()) {                    
-                     cs =s2.getString("ccno");
-                    ccYear=s2.getString("ccYear");
-                    casetype =s2.getString("cctype");
-                    caseno  =s2.getString("ccnoyear");
-                      }
-
-                Statement st = conn.createStatement();
-            ResultSet s=st.executeQuery(sql); 
-                System.out.println(sql);
-                 JSONObject bookmarkvalue = new JSONObject();
-            if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {   
-                    //cs =s.getString("crimecaseno");
-                    //ccYear=s.getString("crimecaseyears");
-                 //casetype =s.getString("casetype");
-                // caseno  =s.getString("crimecasenoyear");
                 String Date="";
                 String Month="";
                 String Year="";
@@ -143,10 +125,19 @@ public class W45 {
 
                sdfstart = new SimpleDateFormat("HH:mm", new Locale("th", "TH"));  
                Time=sdfstart.format(calstart.getTime());
-               
-                 //JSONObject bookmarkvalue = new JSONObject();
-//              
-                bookmarkvalue.put("C1",Checknull(Date));
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
+
+                Statement st = conn.createStatement();
+            ResultSet s=st.executeQuery(sql); 
+                System.out.println(sql);
+                 JSONObject bookmarkvalue = new JSONObject();
+                 
+                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
                 bookmarkvalue.put("C0011",ReplaceCollon(Time));
@@ -156,6 +147,9 @@ public class W45 {
                 
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {   
                 bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
                   
                 bookmarkvalue.put("PS7",  Checknull(s.getString("SuspectandOther"))); 

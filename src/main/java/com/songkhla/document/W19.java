@@ -128,13 +128,8 @@ public class W19 {
                   bookmarkvalue.put("PS7",Checknull(s.getString("SuspectandOther"))); 
                    
                          
-                      bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
-                      /*
-                        bookmarkvalue.put("P02", Checknull(RankPolice));
-                        bookmarkvalue.put("P03", Checknull(FirstName));
-                        bookmarkvalue.put("P04", Checknull(LastName));
-                        bookmarkvalue.put("P05", Checknull(Position));
-                        */
+                        bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
+                    
                         bookmarkvalue.put("P02", Checknull(s.getString("InvestRank")));
                         bookmarkvalue.put("P03", Checknull(s.getString("InvestName")));
                         bookmarkvalue.put("P04", "");

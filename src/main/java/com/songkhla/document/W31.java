@@ -99,30 +99,7 @@ public class W31 {
       Statement st2 = conn.createStatement();
             ResultSet s2=st2.executeQuery(sqlcc); 
             System.out.println(sqlcc);
-           
-             if (s2.next()) {                    
-                     cs =s2.getString("ccno");
-                    ccYear=s2.getString("ccYear");
-                    casetype =s2.getString("cctype");
-                    caseno  =s2.getString("ccnoyear");
-                      }
-                Statement st = conn.createStatement();
-            ResultSet s=st.executeQuery(sql); 
-                System.out.println(sql);
-                
-                int OrderAsset=0;
-                String Name="";
-                String PointFoundCheck="";
-                JSONObject bookmarkvalue = new JSONObject();
-            if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {   
-                    //cs =s.getString("crimecaseno");
-                    //ccYear=s.getString("crimecaseyears");
-                    //casetype =s.getString("casetype");
-                    //caseno  =s.getString("crimecasenoyear");
-//              
-                 String Date="";
+                String Date="";
                 String Month="";
                 String Year="";
                 String Time="";
@@ -141,9 +118,20 @@ public class W31 {
 
                sdfstart = new SimpleDateFormat("HH:mm", new Locale("th", "TH"));  
                Time=sdfstart.format(calstart.getTime());
-               
-                 //JSONObject bookmarkvalue = new JSONObject();
-             
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
+                Statement st = conn.createStatement();
+            ResultSet s=st.executeQuery(sql); 
+                System.out.println(sql);
+                
+                int OrderAsset=0;
+                String Name="";
+                String PointFoundCheck="";
+                JSONObject bookmarkvalue = new JSONObject();
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
@@ -156,6 +144,12 @@ public class W31 {
                  bookmarkvalue.put("S6", Checknull(StationProvince));
                  bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
                  bookmarkvalue.put("S10",Checknull(TelStation));
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {   
+       
+             
+                
                  
                  bookmarkvalue.put("P54",Checknull(ToDate(s.getString("ArrestDateTime"))));
                  bookmarkvalue.put("P55",Checknull(s.getString("PlaceArrest")));

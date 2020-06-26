@@ -93,7 +93,7 @@ public class W21 {
                                     "left join crimecase on Person.caseIdPerson=crimecase.CaseId\n" +
                                     "left join ChargeCase on crimecase.caseid=ChargeCase.ChargeCaseid\n" +
                                     "left join InvestInformation on crimecase.PoliceNameCase=InvestInformation.InvestId \n" +
-                                    "where Person.TypePerson='ผู้ตาย' or (Person.StatusInjuryOrDie='ตาย' or Person.StatusInjuryOrDie='บาดเจ็บ') and crimecase.CaseId='"+cc+"'";
+                                    "where crimecase.CaseId='"+cc+"' and Person.TypePerson='ผู้ตาย' or (Person.StatusInjuryOrDie='ตาย' or Person.StatusInjuryOrDie='บาดเจ็บ')";
                      
                  String sqlcc="select crimecase.crimecaseyears as ccYear,crimecase.crimecaseno as ccno,"
                          + "crimecase.casetype as cctype,crimecase.crimecasenoyear as ccnoyear "
@@ -102,37 +102,9 @@ public class W21 {
       Statement st2 = conn.createStatement();
             ResultSet s2=st2.executeQuery(sqlcc); 
             System.out.println(sqlcc);
-           
-             if (s2.next()) {                    
-                     cs =s2.getString("ccno");
-                    ccYear=s2.getString("ccYear");
-                    casetype =s2.getString("cctype");
-                    caseno  =s2.getString("ccnoyear");
-                      }
-                   
-//                   pst=conn.prepareStatement(sql);
-//           pst=PreparedStatement(sql);
-            Statement st = conn.createStatement();
-            ResultSet s=st.executeQuery(sql); 
-            System.out.println(sql);
-            
-       
-               JSONObject bookmarkvalue = new JSONObject();
-            if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {    
-//                    cs =s.getString("crimecaseno");
-//                    ccYear=s.getString("crimecaseyears");
-//                    casetype =s.getString("casetype");
-//                    caseno  =s.getString("crimecasenoyear");
-                    namePerson=s.getString("FullNamePerson");
-                    TypePerson =s.getString("TypePerson");
-                    StatusInjuryOrDie =s.getString("Related");
                 String Date="";
                 String Month="";
                 String Year="";
-                
-                   System.out.println("datgggggggggggggggggggggggge : "+s.getString("DateSendInjuredOrDie"));
                 SimpleDateFormat sdfstart ;
                 Calendar  calstart = Calendar.getInstance();
                 sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
@@ -143,9 +115,20 @@ public class W21 {
                
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
-                 
+           
+             if (s2.next()) {                    
+                     cs =s2.getString("ccno");
+                    ccYear=s2.getString("ccYear");
+                    casetype =s2.getString("cctype");
+                    caseno  =s2.getString("ccnoyear");
+                      }
 
-                
+            Statement st = conn.createStatement();
+            ResultSet s=st.executeQuery(sql); 
+            System.out.println(sql);
+            
+       
+               JSONObject bookmarkvalue = new JSONObject();
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Year));
@@ -153,11 +136,22 @@ public class W21 {
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3", ccYear);
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 bookmarkvalue.put("S5", Checknull(StationAmphur));
                 bookmarkvalue.put("S6", Checknull(StationProvince));
                 bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
                 bookmarkvalue.put("S10",Checknull(TelStation));
-                   
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {    
+
+                    namePerson=s.getString("FullNamePerson");
+                    TypePerson =s.getString("TypePerson");
+                    StatusInjuryOrDie =s.getString("Related");
+                
+                
+                   System.out.println("datgggggggggggggggggggggggge : "+s.getString("DateSendInjuredOrDie"));
+                
                    bookmarkvalue.put("PD7",Checknull(s.getString("FullNamePerson")));
                    bookmarkvalue.put("PD135", Checknull(ToDate(s.getString("DateSendInjuredOrDie"))));
                 
