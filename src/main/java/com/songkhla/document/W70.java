@@ -149,12 +149,7 @@ public static void w70(String cc,String noperson) {
                 bookmarkvalue.put("C001",Checknull(Year));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-                bookmarkvalue.put("CC2",Checknull(caseno));
-                if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            { 
-                 suspectFullNamePerson= s.getString("suspectFullNamePerson");
-               
+                bookmarkvalue.put("CC2",Checknull(caseno)); 
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
@@ -162,6 +157,12 @@ public static void w70(String cc,String noperson) {
                 bookmarkvalue.put("S14",Checknull(HeadPosition));
                 bookmarkvalue.put("S34",Checknull(HeadRankFull));
                 bookmarkvalue.put("S35",Checknull(HeadRankShort));
+                if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            { 
+                 suspectFullNamePerson= s.getString("suspectFullNamePerson");
+               
+              
                    
 //                   ----------------------------ผู้กล่าวหา--------------------
                

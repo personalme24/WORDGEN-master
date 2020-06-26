@@ -134,19 +134,19 @@ public static void w66(String cc) {
                 bookmarkvalue.put("C001",Checknull(Year));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-                 bookmarkvalue.put("CC2",Checknull(caseno));
+                 bookmarkvalue.put("CC2",Checknull(caseno));        
+                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S5", Checknull(StationAmphur));
+                bookmarkvalue.put("S6", Checknull(StationProvince));
+                bookmarkvalue.put("S10",Checknull(TelStation));
+                bookmarkvalue.put("S18",Checknull(JuvenileCourt));
              if(s.isBeforeFirst()){    
                 
             while((s!=null) && (s.next()))
             {  
                
 //              
-               
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                bookmarkvalue.put("S5", Checknull(StationAmphur));
-                bookmarkvalue.put("S6", Checknull(StationProvince));
-                bookmarkvalue.put("S10",Checknull(TelStation));
-                bookmarkvalue.put("S18",Checknull(JuvenileCourt));
+       
                 
                             bookmarkvalue.put("C8", Checknull(s.getString("CrimeLocation")));
                             bookmarkvalue.put("C9", Checknull(s.getString("CrimeLocationMoo")));

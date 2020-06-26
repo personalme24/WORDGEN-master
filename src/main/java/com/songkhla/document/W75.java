@@ -148,6 +148,10 @@ public class W75 {
                  bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S02",Checknull(PoliceStationName));
+                bookmarkvalue.put("S29",Checknull(THNumBook));
+                bookmarkvalue.put("S12",Checknull(TelStation));
                 
             JSONArray JSONArray = new JSONArray();
            if(s.isBeforeFirst()){
@@ -161,10 +165,6 @@ public class W75 {
                     suspectName =s.getString("suspectName");
                     
              
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                bookmarkvalue.put("S02",Checknull(PoliceStationName));
-                bookmarkvalue.put("S29",Checknull(THNumBook));
-                bookmarkvalue.put("S12",Checknull(TelStation));
                 
                 bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
                 

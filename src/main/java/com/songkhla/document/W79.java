@@ -113,11 +113,7 @@ public static void w79(String cc) {
             ResultSet s=st.executeQuery(sql); 
 //                System.out.println(sql);
                  JSONObject bookmarkvalue = new JSONObject();
-            if(s.isBeforeFirst()){    
-            while((s!=null) && (s.next()))
-            {  
-                
-                String Date="";
+                 String Date="";
                 String Month="";
                 String Year="";
                 SimpleDateFormat sdfstart ;
@@ -147,6 +143,11 @@ public static void w79(String cc) {
                 bookmarkvalue.put("S6", Checknull(StationProvince));
                 bookmarkvalue.put("S10",Checknull(TelStation));
                 bookmarkvalue.put("S17",Checknull(CriminalCourt));
+            if(s.isBeforeFirst()){    
+            while((s!=null) && (s.next()))
+            {  
+                
+     
                    
 //                   ----------------------------ผู้กล่าวหา--------------------
                

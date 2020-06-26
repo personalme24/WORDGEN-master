@@ -123,15 +123,7 @@ public class W78 {
             Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
             System.out.println(sql);
-            
-            JSONArray JSONArray = new JSONArray();
-            if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {    
-                 
-                    suspectName =s.getString("FullNamePerson");
-            
-                SimpleDateFormat sdfstart ;
+             SimpleDateFormat sdfstart ;
                 Calendar  calstart = Calendar.getInstance();
                 sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
                Date =sdfstart.format(calstart.getTime());
@@ -154,6 +146,20 @@ public class W78 {
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S02",Checknull(PoliceStationName));
+                bookmarkvalue.put("S29",Checknull(THNumBook));
+                bookmarkvalue.put("S12",Checknull(TelStation));
+                bookmarkvalue.put("S30",Checknull(ProtectChild));
+            JSONArray JSONArray = new JSONArray();
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {    
+                 
+                    suspectName =s.getString("FullNamePerson");
+
+                
+               
                 bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
                 bookmarkvalue.put("C4",Checknull(ToDate(s.getString("OccuredDate"))));
                 bookmarkvalue.put("C441", ReplaceCollon(s.getString("OccuredTime")));
@@ -170,12 +176,7 @@ public class W78 {
                 bookmarkvalue.put("A2", Checknull(s.getString("ActionCrimesCase"))); 
                 bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
                 
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                bookmarkvalue.put("S02",Checknull(PoliceStationName));
-                bookmarkvalue.put("S29",Checknull(THNumBook));
-                bookmarkvalue.put("S12",Checknull(TelStation));
-                bookmarkvalue.put("S30",Checknull(ProtectChild));
-                
+              
                    
                     
                     bookmarkvalue.put("PY7",  Checknull(s.getString("FullNamePerson")));

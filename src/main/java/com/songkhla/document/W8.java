@@ -151,7 +151,16 @@ public class W8 {
               
                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
-                bookmarkvalue.put("C001",Checknull(Year));
+                bookmarkvalue.put("C001",Checknull(Year)); 
+                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S02",Checknull(PoliceStationName));
+                bookmarkvalue.put("S5", Checknull(StationAmphur));
+                bookmarkvalue.put("S6", Checknull(StationProvince));
+                bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+                bookmarkvalue.put("S10",Checknull(TelStation));
+                bookmarkvalue.put("S13",Checknull(HeadName));
+                bookmarkvalue.put("S14",Checknull(HeadPosition));
+                bookmarkvalue.put("S34",Checknull(HeadRankFull));
             if(s.isBeforeFirst()){
               while((s!=null) && (s.next()))
             { 
@@ -165,15 +174,7 @@ public class W8 {
                  Related =s.getString("Related");
          
 	
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                bookmarkvalue.put("S02",Checknull(PoliceStationName));
-                bookmarkvalue.put("S5", Checknull(StationAmphur));
-                bookmarkvalue.put("S6", Checknull(StationProvince));
-                bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
-                bookmarkvalue.put("S10",Checknull(TelStation));
-                bookmarkvalue.put("S13",Checknull(HeadName));
-                bookmarkvalue.put("S14",Checknull(HeadPosition));
-                bookmarkvalue.put("S34",Checknull(HeadRankFull));
+          
                 
                 bookmarkvalue.put("A3", Checknull(s.getString("ActionDetailCase")));
                 

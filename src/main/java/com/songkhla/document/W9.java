@@ -143,6 +143,15 @@ public static void w9(String cc) {
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
                  bookmarkvalue.put("CC2",Checknull(caseno));
+                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S02",Checknull(PoliceStationName));
+                bookmarkvalue.put("S5", Checknull(StationAmphur));
+                bookmarkvalue.put("S6", Checknull(StationProvince));
+                bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+                bookmarkvalue.put("S10",Checknull(TelStation));
+                bookmarkvalue.put("S13",Checknull(HeadName));
+                bookmarkvalue.put("S14",Checknull(HeadPosition));
+                bookmarkvalue.put("S34",Checknull(HeadRankFull));
                  if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {  
@@ -154,15 +163,7 @@ public static void w9(String cc) {
                  namePerson=s.getString("FullNamePerson");
 
               
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                bookmarkvalue.put("S02",Checknull(PoliceStationName));
-                bookmarkvalue.put("S5", Checknull(StationAmphur));
-                bookmarkvalue.put("S6", Checknull(StationProvince));
-                bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
-                bookmarkvalue.put("S10",Checknull(TelStation));
-                bookmarkvalue.put("S13",Checknull(HeadName));
-                bookmarkvalue.put("S14",Checknull(HeadPosition));
-                bookmarkvalue.put("S34",Checknull(HeadRankFull));
+                
                    
 //                   ----------------------------ผู้กล่าวหา--------------------
                

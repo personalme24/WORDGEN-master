@@ -192,14 +192,7 @@ public class W71 {
              JSONObject row1 = new JSONObject();
 	     JSONObject tableobj = new JSONObject();
              JSONObject row2 = new JSONObject();
-            
-            if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {    
-                   
-                    suspectName= s.getString("suspectName");
-            
-                SimpleDateFormat sdfstart ;
+            SimpleDateFormat sdfstart ;
                 Calendar  calstart = Calendar.getInstance();
                 sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
                Date =sdfstart.format(calstart.getTime());
@@ -227,6 +220,13 @@ public class W71 {
                 bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 bookmarkvalue.put("S13",Checknull(HeadName));
                 bookmarkvalue.put("S14",Checknull(HeadPosition));
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {    
+                   
+                    suspectName= s.getString("suspectName");
+            
+                
                 
                 bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
                   

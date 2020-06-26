@@ -17,6 +17,10 @@ import javax.swing.JOptionPane;
 import org.json.simple.JSONObject;
 import java.awt.Font;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import javax.swing.BorderFactory;
 
 /**
@@ -96,9 +100,15 @@ public class BailCrimesAdd extends javax.swing.JDialog {
             SuspectFullName.setText(rs.getString("FullNamePerson"));
             ChargeName.setText(rs.getString("ChargeNameCase"));
             PlaceArrest.setText(rs.getString("PlaceArrest"));
-            DateArrest.setText(rs.getString("ArrestDateTime"));
-             DateArrestEnd.setText(rs.getString("ArrestDateTimeEnd"));
-              DateBail.setText(rs.getString("BailDate"));
+            DateBail.setText(ToDateNotTime(rs.getString("BailDate")));
+            DateArrest.setText(ToDate(rs.getString("ArrestDateTime"))+" เวลา "+ToTime(rs.getString("ArrestDateTime")));
+           if(rs.getString("ArrestDateTimeEnd").equals("")||rs.getString("ArrestDateTimeEnd").equals("null")){
+          DateArrestEnd.setText("");
+           }
+           else{DateArrestEnd.setText(ToDate(rs.getString("ArrestDateTimeEnd"))+" เวลา "+ToTime(rs.getString("ArrestDateTimeEnd")));
+           }
+            
+              
 
                         }
                  else{
@@ -1034,6 +1044,51 @@ jTableBailAsset.getColumnModel().getColumn(6).setMaxWidth(0);
 
 
     }
+     private static String ToDate(String strDate){
+               String ResultDate="";
+         try {
+    	        if(strDate==null||strDate.equals("")||strDate.equals("null")) { return ""; }else{
+    	       SimpleDateFormat df = new SimpleDateFormat("d/MM/yyyy HH:mm", new Locale("th", "TH"));  
+               SimpleDateFormat dateto  = new SimpleDateFormat("d MMMM yyyy", new Locale("th", "TH"));  
+               Date date=null;
+               
+               date = df.parse(strDate);               
+               ResultDate=dateto.format(date.getTime());}
+         } catch (ParseException ex) {
+           
+         }
+               return ResultDate;
+}
+          private static String ToDateNotTime(String strDate){
+               String ResultDate="";
+         try {
+    	        if(strDate==null||strDate.equals("")||strDate.equals("null")) { return ""; }else{
+    	       SimpleDateFormat df = new SimpleDateFormat("d/MM/yyyy", new Locale("th", "TH"));  
+               SimpleDateFormat dateto  = new SimpleDateFormat("d MMMM yyyy", new Locale("th", "TH"));  
+               Date date=null;
+               
+               date = df.parse(strDate);               
+               ResultDate=dateto.format(date.getTime());}
+         } catch (ParseException ex) {
+            ex.printStackTrace();
+         }
+               return ResultDate;
+}
+ private static String ToTime(String strDate){
+               String ResultDate="";
+         try {
+    	        if(strDate==null||strDate.equals("")||strDate.equals("null")) { return ""; }else{
+    	       SimpleDateFormat df = new SimpleDateFormat("d/MM/yyyy HH:mm", new Locale("th", "TH"));  
+               SimpleDateFormat dateto  = new SimpleDateFormat("HH:mm", new Locale("th", "TH"));  
+               Date date=null;
+               
+               date = df.parse(strDate);               
+               ResultDate=dateto.format(date.getTime());}
+         } catch (ParseException ex) {
+           
+         }
+               return ResultDate;
+}
     /**
      * @param args the command line arguments
      */

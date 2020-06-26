@@ -121,6 +121,8 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
@@ -243,8 +245,8 @@ public class SueCrimesFrom extends javax.swing.JDialog {
           
            NumberImprison.setText(rs.getString("SueMax"));
            
-            SueStartLast.setText(ChangFormatSQL(rs.getString("DateStartMax")));
-        SueEndLast.setText(ChangFormatSQL(rs.getString("DateEndMax")));
+            SueStartLast.setText(ToDate(ChangFormatSQL(rs.getString("DateStartMax"))));
+        SueEndLast.setText(ToDate(ChangFormatSQL(rs.getString("DateEndMax"))));
         String a=CalculateDateExpr(ChangFormatSQL(rs.getString("DateEndMax")))+"";
            TotalDate.setText(a);
            
@@ -305,16 +307,16 @@ public class SueCrimesFrom extends javax.swing.JDialog {
                  caseyear=rs.getString("crimecaseyears");
                 caseno=rs.getString("crimecaseno");
                 casetype=rs.getString("CaseType");
-              
-                     PlaceArrest.setText(Checknull(rs.getString("PlaceArrest")));
-            DateArrest.setText(Checknull(rs.getString("ArrestDateTime")));
+
+                     PlaceArrest.setText(Checknull(rs.getString("PlaceArrest")));                 
+            DateArrest.setText(Checknull(ToDate(rs.getString("ArrestDateTime")))+" เวลา "+Checknull(ToTime(rs.getString("ArrestDateTime"))));
            String a=rs.getString("ArrestDateTimeEnd");
                     if(a == null || a.equals("null")|| a.equals("") )
                     { ArrestDateTimeEnd.setText("");
         //                SueFirstDate.setText("");
                  }   
                     else{
-                     ArrestDateTimeEnd.setText(rs.getString("ArrestDateTimeEnd"));
+                     ArrestDateTimeEnd.setText(Checknull(ToDate(rs.getString("ArrestDateTimeEnd")))+" เวลา "+Checknull(ToTime(rs.getString("ArrestDateTimeEnd"))));    
                      SimpleDateFormat  format = new SimpleDateFormat("d/MM/yyyy");
                      Date aa=format.parse(a);
                      SueFirstDate.setText(format.format(aa)+"");
@@ -3458,8 +3460,36 @@ catch (Exception d) {  //System.out.println(d);
            return DateNextTime;
     
     }
-  
-
+  private static String ToDate(String strDate){
+               String ResultDate="";
+         try {
+    	        if(strDate==null||strDate.equals("")||strDate.equals("null")) { return ""; }else{
+    	       SimpleDateFormat df = new SimpleDateFormat("d/MM/yyyy HH:mm", new Locale("th", "TH"));  
+               SimpleDateFormat dateto  = new SimpleDateFormat("d MMMM yyyy", new Locale("th", "TH"));  
+               Date date=null;
+               
+               date = df.parse(strDate);               
+               ResultDate=dateto.format(date.getTime());}
+         } catch (ParseException ex) {
+           
+         }
+               return ResultDate;
+}
+ private static String ToTime(String strDate){
+               String ResultDate="";
+         try {
+    	        if(strDate==null||strDate.equals("")||strDate.equals("null")) { return ""; }else{
+    	       SimpleDateFormat df = new SimpleDateFormat("d/MM/yyyy HH:mm", new Locale("th", "TH"));  
+               SimpleDateFormat dateto  = new SimpleDateFormat("HH:mm", new Locale("th", "TH"));  
+               Date date=null;
+               
+               date = df.parse(strDate);               
+               ResultDate=dateto.format(date.getTime());}
+         } catch (ParseException ex) {
+           
+         }
+               return ResultDate;
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AccureandOther;
     private javax.swing.JTextField ArrestDateTimeEnd;

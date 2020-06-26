@@ -140,9 +140,22 @@ public class W93 {
                Month=sdfstart.format(calstart.getTime());
                
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
-               Year=sdfstart.format(calstart.getTime());
+               Year=sdfstart.format(calstart.getTime()); 
+               bookmarkvalue.put("C1",Checknull(Date));
+                bookmarkvalue.put("C01",Checknull(Month));
+                bookmarkvalue.put("C001",Checknull(Checknull(Year)));
+		bookmarkvalue.put("C2",Checknull(cs));
+                bookmarkvalue.put("C3",Checknull(ccYear));
+               bookmarkvalue.put("CC2",Checknull(caseno));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S5", Checknull(StationAmphur));
+                bookmarkvalue.put("S6", Checknull(StationProvince));
+                bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
+                bookmarkvalue.put("S10",Checknull(TelStation));
+                bookmarkvalue.put("S13",Checknull(HeadName));
+            bookmarkvalue.put("S29",Checknull(THNumBook));
+                bookmarkvalue.put("S32", Checknull(StationTambon));
                  
-
              if(s.isBeforeFirst()){      
             while((s!=null) && (s.next()))
             {  
@@ -150,19 +163,9 @@ public class W93 {
                 
                
 //              
-                bookmarkvalue.put("C1",Checknull(Date));
-                bookmarkvalue.put("C01",Checknull(Month));
-                bookmarkvalue.put("C001",Checknull(Checknull(Year)));
-		bookmarkvalue.put("C2",Checknull(cs));
-                bookmarkvalue.put("C3",Checknull(ccYear));
+              
                 bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
-                 bookmarkvalue.put("CC2",Checknull(caseno));
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                bookmarkvalue.put("S5", Checknull(StationAmphur));
-                bookmarkvalue.put("S6", Checknull(StationProvince));
-                bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
-                bookmarkvalue.put("S10",Checknull(TelStation));
-                bookmarkvalue.put("S13",Checknull(HeadName));
+ 
                  if ((CourtSuspect).equals("ศาลแขวง") ){
                     bookmarkvalue.put("S17",Checknull(DistrictCourt));
                 }
@@ -175,9 +178,7 @@ public class W93 {
                 if ((CourtSuspect).equals("ศาลทหาร")){
                     bookmarkvalue.put("S17",Checknull(MilitaryCourt));
                 }
-                bookmarkvalue.put("S29",Checknull(THNumBook));
-                bookmarkvalue.put("S32", Checknull(StationTambon));
-                 
+           
    
                     bookmarkvalue.put("PA7",  Checknull(s.getString("AccureandOther")));
                     

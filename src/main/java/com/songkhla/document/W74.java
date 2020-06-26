@@ -130,15 +130,7 @@ public class W74 {
             System.out.println(sql);
             
             JSONArray JSONArray = new JSONArray();
-            if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {    
-                   // cs =s.getString("crimecaseno");
-                   // ccYear=s.getString("crimecaseyears");
-                   // casetype =s.getString("casetype");
-                   // caseno  =s.getString("crimecasenoyear");
-            
-                SimpleDateFormat sdfstart ;
+            SimpleDateFormat sdfstart ;
                 Calendar  calstart = Calendar.getInstance();
                 sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
                Date =sdfstart.format(calstart.getTime());
@@ -161,11 +153,21 @@ public class W74 {
                  bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-                bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 bookmarkvalue.put("S29",Checknull(THNumBook));
                 bookmarkvalue.put("S12",Checknull(TelStation));
+            if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {    
+                   // cs =s.getString("crimecaseno");
+                   // ccYear=s.getString("crimecaseyears");
+                   // casetype =s.getString("casetype");
+                   // caseno  =s.getString("crimecasenoyear");
+            
+               
+                bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
+         
                 
                 bookmarkvalue.put("PA7",Checknull(s.getString("AccureandOther")));
                   

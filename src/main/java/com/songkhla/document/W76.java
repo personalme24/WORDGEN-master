@@ -145,7 +145,13 @@ public class W76 {
                 bookmarkvalue.put("C0011",ReplaceCollon(Time));
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
-                bookmarkvalue.put("C3",Checknull(ccYear));
+                bookmarkvalue.put("C3",Checknull(ccYear));    
+                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S02",Checknull(PoliceStationName));
+                bookmarkvalue.put("S29",Checknull(THNumBook));
+                bookmarkvalue.put("S12",Checknull(TelStation));
+                bookmarkvalue.put("S30",Checknull(ProtectChild));
+                
             if(s.isBeforeFirst()){
             while(s.next())
             {    
@@ -171,12 +177,7 @@ public class W76 {
                 bookmarkvalue.put("A2", Checknull(s.getString("ActionCrimesCase"))); 
                 bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
                 
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                bookmarkvalue.put("S02",Checknull(PoliceStationName));
-                bookmarkvalue.put("S29",Checknull(THNumBook));
-                bookmarkvalue.put("S12",Checknull(TelStation));
-                bookmarkvalue.put("S30",Checknull(ProtectChild));
-                
+          
                    
                     
                     bookmarkvalue.put("PY7",  Checknull(s.getString("FullNamePerson")));

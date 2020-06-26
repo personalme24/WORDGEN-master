@@ -166,6 +166,13 @@ public class StationForm extends javax.swing.JDialog {
                             CheckDrug.setText(Checknull(datain.get("CheckDrug"))+"");
                             CheckOtherExhibit.setText(Checknull(datain.get("CheckOtherExhibit"))+"");
                             CauseSerious.setText(Checknull(datain.get("CauseSerious"))+"");
+                            String cs=datain.get("CauseSerious")+"";
+                            if(cs.equals("")||cs.equals("null")){
+                            jButtonReport.setVisible(false);
+                            }
+                            else{
+                            jButtonReport.setVisible(true);
+                            }
                             ProvincProsecutor.setText(Checknull(datain.get("ProvincProsecutor"))+"");
                             ProvincProsecutorCh.setText(Checknull(datain.get("ProvincProsecutorCh"))+"");
                             THNumBook.setText(Checknull(datain.get("THNumBook"))+"");
@@ -333,6 +340,7 @@ public class StationForm extends javax.swing.JDialog {
         jLabel46 = new javax.swing.JLabel();
         jLabel47 = new javax.swing.JLabel();
         HeadWorkRankShort = new javax.swing.JTextField();
+        jButtonReport = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("ข้อมูลหน่วยงานและหน่วยงานที่เกี่ยวข้อง");
@@ -622,6 +630,14 @@ public class StationForm extends javax.swing.JDialog {
 
         HeadWorkRankShort.setFont(new java.awt.Font("TH SarabunPSK", 0, 20)); // NOI18N
 
+        jButtonReport.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
+        jButtonReport.setText("ออกรายงานเหตุอุกฉกรรจ์");
+        jButtonReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReportActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -782,7 +798,9 @@ public class StationForm extends javax.swing.JDialog {
                         .addGap(10, 10, 10)
                         .addComponent(jButtonSaveStation, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonEditStation, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButtonEditStation, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonReport, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -922,7 +940,8 @@ public class StationForm extends javax.swing.JDialog {
                 .addGap(4, 4, 4)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonSaveStation)
-                    .addComponent(jButtonEditStation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButtonEditStation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jButtonReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -1014,6 +1033,7 @@ public class StationForm extends javax.swing.JDialog {
                pst.executeUpdate(); 
                pst.close();
                 closeText();
+                checkTextCauseSerious();
           jButtonEditStation.setEnabled(true);
            jButtonSaveStation.setEnabled(false);
 //               System.out.println("SQLUP :"+sql);
@@ -1112,6 +1132,7 @@ public class StationForm extends javax.swing.JDialog {
                pst.executeUpdate(); 
                pst.close();
                     closeText();
+                    checkTextCauseSerious();
           jButtonEditStation.setEnabled(true);
            jButtonSaveStation.setEnabled(false);
           } 
@@ -1200,6 +1221,10 @@ public class StationForm extends javax.swing.JDialog {
     private void PoliceStationNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PoliceStationNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PoliceStationNameActionPerformed
+
+    private void jButtonReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButtonReportActionPerformed
 private void data() 
 {
             String sql= "select * from PoliceStation";
@@ -1360,7 +1385,32 @@ private void data()
      HeadRankShort.setEnabled(false);
     HeadWorkRankFull.setEnabled(false);
     HeadWorkRankShort.setEnabled(false);
-
+    
+    
+    }
+      private void checkTextCauseSerious(){
+          String sql="Select CauseSerious from PoliceStation";
+            Connection con=null;
+         
+         con=ConnectDatabase.connect();
+          
+ 
+        try {
+            Statement s=con.createStatement();
+            ResultSet rs=s.executeQuery(sql);
+            if(rs.next()){
+                if(rs.getString("CauseSerious").equals("")||rs.getString("CauseSerious").equals("null"))
+                { jButtonReport.setVisible(false);
+                }
+                else{ jButtonReport.setVisible(true);}
+            }
+          
+        }
+        catch(SQLException ex){
+        ex.printStackTrace();
+        }
+          
+    
     
     }
       public static String Checknull(Object input){
@@ -1434,6 +1484,7 @@ private void data()
     private javax.swing.JTextField THNumBook;
     private javax.swing.JTextField TelStation;
     private javax.swing.JButton jButtonEditStation;
+    private javax.swing.JButton jButtonReport;
     private javax.swing.JButton jButtonSaveStation;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

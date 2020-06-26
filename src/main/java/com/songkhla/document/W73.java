@@ -123,16 +123,7 @@ public class W73 {
             Statement st = conn.createStatement();
             ResultSet s=st.executeQuery(sql); 
             System.out.println(sql);
-            
-           if(s.isBeforeFirst()){
-            while((s!=null) && (s.next()))
-            {    
-                   // cs =s.getString("crimecaseno");
-                   // ccYear=s.getString("crimecaseyears");
-                  //  casetype =s.getString("casetype");
-                  //  caseno  =s.getString("crimecasenoyear");
-            
-                SimpleDateFormat sdfstart ;
+            SimpleDateFormat sdfstart ;
                 Calendar  calstart = Calendar.getInstance();
                 sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
                Date =sdfstart.format(calstart.getTime());
@@ -159,6 +150,15 @@ public class W73 {
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S02",Checknull(PoliceStationName));
             
+           if(s.isBeforeFirst()){
+            while((s!=null) && (s.next()))
+            {    
+                   // cs =s.getString("crimecaseno");
+                   // ccYear=s.getString("crimecaseyears");
+                  //  casetype =s.getString("casetype");
+                  //  caseno  =s.getString("crimecasenoyear");
+            
+                
                     
                     
                 bookmarkvalue.put("PB7",  Checknull(s.getString("FullNamePerson")));

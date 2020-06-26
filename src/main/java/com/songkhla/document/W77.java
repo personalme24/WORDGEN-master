@@ -146,7 +146,12 @@ public class W77 {
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-            JSONArray JSONArray = new JSONArray();
+            JSONArray JSONArray = new JSONArray();   
+            bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S02",Checknull(PoliceStationName));
+                bookmarkvalue.put("S29",Checknull(THNumBook));
+                bookmarkvalue.put("S12",Checknull(TelStation));
+                bookmarkvalue.put("S30",Checknull(ProtectChild));
             if(s.isBeforeFirst()){
             while((s!=null) && (s.next()))
             {    
@@ -170,11 +175,7 @@ public class W77 {
                 bookmarkvalue.put("A2", Checknull(s.getString("ActionCrimesCase"))); 
                 bookmarkvalue.put("B2", Checknull(s.getString("ChargeNameCase")));
                 
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
-                bookmarkvalue.put("S02",Checknull(PoliceStationName));
-                bookmarkvalue.put("S29",Checknull(THNumBook));
-                bookmarkvalue.put("S12",Checknull(TelStation));
-                bookmarkvalue.put("S30",Checknull(ProtectChild));
+        
                 
                    
                     

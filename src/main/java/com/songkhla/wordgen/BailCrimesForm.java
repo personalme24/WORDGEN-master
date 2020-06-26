@@ -37,6 +37,7 @@ import org.xlsx4j.sml.Col;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.io.File;
+import java.text.ParseException;
 import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 
@@ -461,7 +462,7 @@ jTableBail.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScr
                 SuspectFullName.setText(rs.getString("FullNamePerson"));
                 ChargeName.setText(rs.getString("ChargeNameCase"));
                 PlaceArrest.setText(rs.getString("PlaceArrest"));
-                ArrestDate.setText(rs.getString("ArrestDateTime"));
+                ArrestDate.setText(ToDate(rs.getString("ArrestDateTime"))+" เวลา "+ToTime(rs.getString("ArrestDateTime")));
             }
 
             rs.close();
@@ -780,7 +781,37 @@ jTableBail.getColumnModel().getColumn(11).setMinWidth(130);
           return diffDays;               
     
     }
+  private static String ToDate(String strDate){
+               String ResultDate="";
+         try {
+    	        if(strDate==null||strDate.equals("")||strDate.equals("null")) { return ""; }else{
+    	       SimpleDateFormat df = new SimpleDateFormat("d/MM/yyyy HH:mm", new Locale("th", "TH"));  
+               SimpleDateFormat dateto  = new SimpleDateFormat("d MMMM yyyy", new Locale("th", "TH"));  
+               Date date=null;
+               
+               date = df.parse(strDate);               
+               ResultDate=dateto.format(date.getTime());}
+         } catch (ParseException ex) {
+             System.out.println(ex);
+         }
+               return ResultDate;
+}
+ private static String ToTime(String strDate){
+               String ResultDate="";
+         try {
+    	        if(strDate==null||strDate.equals("")||strDate.equals("null")) { return ""; }else{
+    	       SimpleDateFormat df = new SimpleDateFormat("d/MM/yyyy HH:mm", new Locale("th", "TH"));  
+               SimpleDateFormat dateto  = new SimpleDateFormat("HH:mm", new Locale("th", "TH"));  
+               Date date=null;
+               
+               date = df.parse(strDate);               
+               ResultDate=dateto.format(date.getTime());}
+         } catch (ParseException ex) {
+                        System.out.println(ex);
 
+         }
+               return ResultDate;
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddEditBail;
     private javax.swing.JTextField ArrestDate;

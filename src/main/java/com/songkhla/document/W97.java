@@ -130,23 +130,25 @@ public class W97 {
                
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
-                 JSONObject bookmarkvalue = new JSONObject();
-           if(s.isBeforeFirst()){             
-            while((s!=null) && (s.next()))
-            {  
-               
-                bookmarkvalue.put("C1",Checknull(Date));
+                 JSONObject bookmarkvalue = new JSONObject(); 
+                 bookmarkvalue.put("C1",Checknull(Date));
                 bookmarkvalue.put("C01",Checknull(Month));
                 bookmarkvalue.put("C001",Checknull(Checknull(Year)));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-                 bookmarkvalue.put("CC2",Checknull(caseno));
-                 bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                 bookmarkvalue.put("CC2",Checknull(caseno)); 
+                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S3",Checknull(PoliceStaionShort));
                 bookmarkvalue.put("S17", "");
                 bookmarkvalue.put("S22", Checknull(LocationOfDrug));
                 bookmarkvalue.put("S29", Checknull(THNumBook));
+           if(s.isBeforeFirst()){             
+            while((s!=null) && (s.next()))
+            {  
+               
+              
+                 bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
+               
                
                     bookmarkvalue.put("A3", Checknull(s.getString("ActionDetailCase")));
                     
