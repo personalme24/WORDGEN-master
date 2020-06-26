@@ -5775,9 +5775,9 @@ jTableAccure.getColumnModel().getColumn(8).setMaxWidth(0);
                 return types [columnIndex];
             }
         });
-                                  jTableWitness.getColumnModel().getColumn(7).setWidth(0);
-jTableWitness.getColumnModel().getColumn(7).setMinWidth(0);
-jTableWitness.getColumnModel().getColumn(7).setMaxWidth(0); 
+       jTableWitness.getColumnModel().getColumn(7).setWidth(0);
+      jTableWitness.getColumnModel().getColumn(7).setMinWidth(0);
+      jTableWitness.getColumnModel().getColumn(7).setMaxWidth(0); 
            if(jTableWitness.getRowCount()<=0){
 //             int rows = jTableAccure.getRowCount();
             if(typeC.equals("อาญา")){

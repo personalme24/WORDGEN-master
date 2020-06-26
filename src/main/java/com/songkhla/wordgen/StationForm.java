@@ -5,6 +5,8 @@
  */
 package com.songkhla.wordgen;
 
+
+import com.songkhla.document.W99;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,6 +21,8 @@ import javax.swing.text.DefaultEditorKit;
 import org.json.simple.JSONObject;
 import java.awt.*;
 import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import javax.swing.*;
 import javax.swing.text.*;
@@ -1224,8 +1228,104 @@ public class StationForm extends javax.swing.JDialog {
 
     private void jButtonReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReportActionPerformed
         // TODO add your handling code here:
+           new BackgroundWorker().execute();
     }//GEN-LAST:event_jButtonReportActionPerformed
-private void data() 
+ public class BackgroundWorker extends SwingWorker<Void, Void> {
+
+    private static final long SLEEP_TIME =10;
+    private String text;
+        private JProgressBar pb;
+		private JDialog dialog;
+//   public void Task() {
+//       
+//    }
+//       public ProgressWorker(JProgressBar progress) {
+//            this.progress = progress;
+//        
+            public BackgroundWorker() {
+           
+			addPropertyChangeListener(new PropertyChangeListener() {
+				@Override
+				public void propertyChange(PropertyChangeEvent evt) {
+					if ("progress".equalsIgnoreCase(evt.getPropertyName())) {
+						 if (dialog == null) {
+							dialog = new JDialog();
+                                                        ImageIcon img = new ImageIcon("./Master/WD.png");
+                                                           dialog.setIconImage(img.getImage());
+							dialog.setTitle("Processing");
+							dialog.setLayout(new GridBagLayout());
+							dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
+							GridBagConstraints gbc = new GridBagConstraints();
+							gbc.insets = new Insets(2, 2, 2, 2);
+							gbc.weightx = 1;
+							gbc.gridy = 0;
+							dialog.add(new JLabel("Processing..."), gbc);
+							pb = new JProgressBar();
+							pb.setStringPainted(true);
+//                                                        pb.setForeground(Color.blue);]
+                                               
+                                                        pb.setMaximum(100);
+                                                        pb.setMinimum(0);
+                                                        
+							gbc.gridy = 1;
+							dialog.add(pb, gbc);
+							dialog.pack();
+							dialog.setLocationRelativeTo(null);
+							dialog.setModal(true);
+							JDialog.setDefaultLookAndFeelDecorated(true); 
+							dialog.setVisible(true);
+						}
+						pb.setValue(getProgress());
+					}
+				}
+
+			});
+		}
+    @Override
+    public Void doInBackground() {
+   
+        try { 
+            for (int i = 0; i < 1; i++) {
+//                x = x - i;
+            setProgress((int)((i*100)/1)+1);
+//        setProgress(i * (100 / N));
+//				  setProgress(i);
+				Thread.sleep(10);
+//            Thread.sleep(SLEEP_TIME);// imitate a long-running task
+   
+    
+        File f3=new File("./สำนวนอิเล็กทรอนิกส์/แบบฟอร์มสำนวน");
+   
+        f3.mkdirs();
+        W99.cw99();
+                    
+               
+            }
+        } catch (InterruptedException e) {
+        }
+//        setProgress(100);
+        
+        return null;
+    }
+
+    @Override
+    public void done() {
+                    if (dialog != null) {
+				dialog.dispose();
+			}
+             Desktop desktop = Desktop.getDesktop();
+        File dirToOpen = null;
+        try {
+            dirToOpen = new File("./สำนวนอิเล็กทรอนิกส์/แบบฟอร์มสำนวน");
+            desktop.open(dirToOpen);
+        } catch (Exception iae) {
+            System.out.println("File Not Found :"+iae);
+        }
+//          System.out.println(text + " is done");
+//        Toolkit.getDefaultToolkit().beep();
+    }
+}/**/
+    private void data() 
 {
             String sql= "select * from PoliceStation";
             Connection con = ConnectDatabase.connect();

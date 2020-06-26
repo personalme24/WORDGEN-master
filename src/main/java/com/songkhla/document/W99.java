@@ -67,6 +67,8 @@ public class W99 {
              String HeadWorkRankFull ="";
              String HeadRankShort="";
              String HeadWorkRankShort ="";
+              String CauseSerious ="";
+            
              String RankPolice ="";
              String FirstName ="";
              String LastName ="";
@@ -93,6 +95,7 @@ public class W99 {
                          HeadWorkRankShort=rs.getString("HeadWorkRankShort");
                          HeadWorkName =rs.getString("HeadWorkName");
                          HeadWorkPosition =rs.getString("HeadWorkPosition");
+                         CauseSerious =rs.getString("CauseSerious");
                          THNumBook=rs.getString("THNumBook");
                       }
             
@@ -161,12 +164,13 @@ public class W99 {
                 bookmarkvalue.put("C001",Checknull(Year));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3",Checknull(ccYear));
-               
+              
+
                 bookmarkvalue.put("C37",Checknull(s.getString("Invest_SendtoDepartment")));
                 bookmarkvalue.put("C38",Checknull(s.getString("Investigator_Number")));
                 bookmarkvalue.put("STATUS",Checknull(STATUS));
                  bookmarkvalue.put("CC2",Checknull(caseno));
-                
+                  bookmarkvalue.put("TO",Checknull(CauseSerious));
                  bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                  bookmarkvalue.put("S02",Checknull(PoliceStationName));
                  bookmarkvalue.put("S5",Checknull(StationAmphur));
@@ -359,6 +363,106 @@ public class W99 {
 			ex.printStackTrace();
 		}
       }
+         public static void cw99() {
+     
+            Connection conn=null;
+            conn=ConnectDatabase.connect();
+            PreparedStatement pst=null;
+             String ccYear;
+                String CauseSerious ="";
+
+             
+             
+            try {
+//               
+                    String sqlDataPoliceStation="SELECT * FROM PoliceStation";
+                      Statement sp = conn.createStatement();
+                  ResultSet rs=sp.executeQuery(sqlDataPoliceStation); 
+                  while (rs.next()) {                    
+                         CauseSerious=rs.getString("CauseSerious");
+                        
+                      }
+            
+//                  String sqlDataPolice="SELECT * FROM Police";
+//                      Statement sp1 = conn.createStatement();
+//                  ResultSet rs1=sp1.executeQuery(sqlDataPolice); 
+//                  while (rs1.next()) {                    
+//                         RankPolice =rs1.getString("RankPolice");
+//                         FirstName=rs1.getString("FirstName");
+//                         LastName=rs1.getString("LastName");
+//                         Position=rs1.getString("Position");
+//                      }
+                  String Date="";
+                String Month="";
+                String Year="";
+                
+                
+                SimpleDateFormat sdfstart ;
+                Calendar  calstart = Calendar.getInstance();
+                sdfstart = new SimpleDateFormat("d", new Locale("th", "TH"));  
+               Date =sdfstart.format(calstart.getTime());
+              
+               sdfstart = new SimpleDateFormat("MMMM", new Locale("th", "TH"));  
+               Month=sdfstart.format(calstart.getTime());
+               
+               sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
+               Year=sdfstart.format(calstart.getTime());
+                        JSONObject bookmarkvalue = new JSONObject();
+//              
+                        bookmarkvalue.put("TO",CauseSerious);
+
+                        bookmarkvalue.put("C1",Checknull(Date));
+                       bookmarkvalue.put("C01",Checknull(Month));
+                       bookmarkvalue.put("C001",Checknull(Year));
+                	JSONArray tablecolumn = new JSONArray();
+			tablecolumn.add("C2");
+			tablecolumn.add("C3");
+//			tablecolumn.add("SUSPECT");
+//			tablecolumn.add("VICTIM");
+//			tablecolumn.add("REMARK");
+			JSONArray table1 = new JSONArray();
+			JSONObject row1 = new JSONObject();
+			row1.put("C2","");
+			row1.put("C3", "");
+//			row1.put("SUSPECT", "period1");
+//			row1.put("VICTIM", "period1");
+//			row1.put("REMARK", "period1");
+			table1.add(row1);
+			
+//			JSONObject repl2 = new JSONObject();
+//			repl2.put("CRIMESNO", "function1");
+//			repl2.put("DESCRIPTION", "desc1");
+//			repl2.put("SUSPECT", "period1");
+//			repl2.put("VICTIM", "period1");
+//			repl2.put("REMARK", "period1");
+//			table1.add(repl2);
+		JSONObject tableobj = new JSONObject();
+		tableobj.put("COLUMNS", tablecolumn);
+		tableobj.put("TABLEDATA", table1);
+			
+		JSONArray TABLES = new JSONArray();
+		TABLES.add(tableobj);
+		bookmarkvalue.put("TABLES", TABLES);
+		System.out.println(bookmarkvalue.toJSONString());
+		
+		
+		try {
+                  
+			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage
+					.load(new java.io.File("./TEMPLATE/w99.docx"));
+			processVariable(bookmarkvalue,wordMLPackage);
+			processTABLE(bookmarkvalue,wordMLPackage);
+			wordMLPackage.save(new java.io.File("./สำนวนอิเล็กทรอนิกส์/แบบฟอร์มสำนวน/รายงานเหตุอุกฉกรรจ์และสะเทือนขวัญและเหตุที่ต้องรายงานด่วน.doc"));
+		}catch( Exception ex) {
+			ex.printStackTrace();
+		}
+                   
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        
+              
+	}
 	public static void processVariable(JSONObject inputdata,WordprocessingMLPackage wordMLPackage) throws Exception {
 		Object KEYSET[] = inputdata.keySet().toArray();
 		Map<DataFieldName, String> map = new HashMap<DataFieldName, String>();

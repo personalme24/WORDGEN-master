@@ -4307,7 +4307,7 @@ jlabeltoken.setVisible(true);
                  
                      pst2.execute();
                      pst2.close();  
-                     
+ 
                //       =----- ----- --------------------Bail Insert Crime------------------------------------------
           if(p.getElementsByTagName("StatusSuspectForBail").item(0).getTextContent().equals("SuspectForBail")){
               String insertBailAsset = "INSERT INTO BailAsset (BailAssetOrder,BailAssetDetail,"
@@ -4403,9 +4403,7 @@ jlabeltoken.setVisible(true);
                 }
                       System.out.println("success Person");
                       
-                      
-                      
-                      
+    
         } catch (SQLException e) {
                 System.out.println("ddddd: "+e);
             
