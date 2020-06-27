@@ -73,7 +73,7 @@ public class LogInPage extends javax.swing.JFrame {
         initComponents();
           ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) Version 1.1");
+            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry) Version 2.0");
             setMaximumSize(new Dimension(1280, 760));
         setMinimumSize(new Dimension(1280, 760));
         setMaximizedBounds ( new Rectangle ( 1280, 760 ) );

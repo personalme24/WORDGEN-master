@@ -3458,12 +3458,12 @@
                                           <Component id="jCheckW272" alignment="0" min="-2" pref="295" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="14" max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jCheckW260" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jCheckW259" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jCheckW258" alignment="0" min="-2" pref="289" max="-2" attributes="0"/>
+                                          <Component id="jCheckW259" max="32767" attributes="0"/>
                                           <Component id="jCheckW257" alignment="0" min="-2" pref="289" max="-2" attributes="0"/>
                                           <Component id="jCheckW274" min="-2" pref="289" max="-2" attributes="0"/>
+                                          <Component id="jCheckW258" alignment="0" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>

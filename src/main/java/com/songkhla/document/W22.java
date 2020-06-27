@@ -427,7 +427,7 @@ public class W22 {
                return ResultDate;
 }
 public static String Checknull(String input){
-					if(input==null||input==""||input=="null") { return ""; }
+					if(input==null||input==""||input=="null"||input.equals("null")) { return ""; }
 					return getThaiNumber(input);
 					}
       public static String ReplaceCollon(String inputTime){

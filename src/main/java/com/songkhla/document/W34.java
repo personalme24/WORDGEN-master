@@ -154,7 +154,7 @@ public class W34 {
                     SumValue = SumValue+s.getInt("Value");
                     } 
           
-                   // JSONArray tablecolumn = new JSONArray();
+                     tablecolumn = new JSONArray();
 			System.out.println(">>>>"+OrderAsset);
 			tablecolumn.add("AS3");
                         tablecolumn.add("AS4");
@@ -166,7 +166,7 @@ public class W34 {
                        
 
 			
-			//JSONObject row1 = new JSONObject();
+			 row1 = new JSONObject();
 			
 			row1.put("AS3",Checknull(Integer.toString(OrderAsset)));
                         row1.put("AS4",Checknull(s.getString("Name")));

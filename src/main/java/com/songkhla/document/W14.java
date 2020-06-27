@@ -229,7 +229,7 @@ public class W14 {
                        bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
                         
 
-			//JSONArray tablecolumn = new JSONArray();
+                         tablecolumn = new JSONArray();
 			System.out.println(">>>>"+OrderAsset);
 			tablecolumn.add("AS3");
                         tablecolumn.add("AS4");
@@ -240,7 +240,7 @@ public class W14 {
 			tablecolumn.add("AS10");
                        
 
-			//JSONObject row1 = new JSONObject();
+			row1 = new JSONObject();
 			
 			
 			row1.put("AS3",Checknull(Integer.toString(OrderAsset)));

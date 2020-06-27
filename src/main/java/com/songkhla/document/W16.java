@@ -126,14 +126,14 @@ public class W16 {
                         bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
           
      
-			//JSONArray tablecolumn = new JSONArray();
+		 tablecolumn = new JSONArray();
 			
 			tablecolumn.add("RE5");
                         tablecolumn.add("RE6");
 			tablecolumn.add("RE7");
                         
 
-			//JSONObject row1 = new JSONObject();
+			 row1 = new JSONObject();
 			
 			
 			row1.put("RE5",Checknull(ToDate(s.getString("DateRecord"))));
