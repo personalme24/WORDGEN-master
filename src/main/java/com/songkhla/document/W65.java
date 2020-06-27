@@ -62,6 +62,7 @@ public static void w65(String cc) {
              String LastName ="";
              String Position ="";
              String cs="";
+             String THNumBook ="";
             try {
                 
                  String sqlDataPoliceStation="SELECT * FROM PoliceStation";
@@ -73,6 +74,7 @@ public static void w65(String cc) {
                          StationProvince=rs.getString("StationProvince");
                          CriminalCourt=rs.getString("CriminalCourt");
                          TelStation=rs.getString("TelStation");
+                         THNumBook=rs.getString("THNumBook");
                       }
             
                     String sqlDataPolice="SELECT * FROM Police";
@@ -139,6 +141,8 @@ public static void w65(String cc) {
                 bookmarkvalue.put("S6", Checknull(StationProvince));
                 bookmarkvalue.put("S10",Checknull(TelStation));
                 bookmarkvalue.put("S17",Checknull(CriminalCourt));
+                bookmarkvalue.put("S29", Checknull(THNumBook));
+                
              if(s.isBeforeFirst()){    
                 
             while((s!=null) && (s.next()))
@@ -193,49 +197,16 @@ public static void w65(String cc) {
                         bookmarkvalue.put("P05", Checknull(s.getString("InvestPosition")));
                         bookmarkvalue.put("P012", Checknull(s.getString("InvestRankFull"))); //ยศเต็ม
                         bookmarkvalue.put("P013", Checknull(s.getString("InvestPosition"))); //ตำแหน่งเต็ม
-                               
-                    
-                    
-                    
-                    
-                 
-//		bookmarkvalue.put("P7", s.getString("AccureandOther"));
-//                bookmarkvalue.put("P13", s.getString("AccureandOther"));
-//		bookmarkvalue.put("test01", "พ.ต.อ.");
-//		bookmarkvalue.put("test02", "พนักงานสอบสวน");
-//		bookmarkvalue.put("test03", "สน.ดอนเมือง");
-//                bookmarkvalue.put("test04", "สน.ดอนเมือง5");
-		
-    
+ 
 			JSONArray tablecolumn = new JSONArray();
-//			tablecolumn.add("P03");
-//			tablecolumn.add("P02");
-//			tablecolumn.add("SUSPECT");
-//			tablecolumn.add("VICTIM");
-//			tablecolumn.add("REMARK");
+
 			JSONArray table1 = new JSONArray();
 			JSONObject row1 = new JSONObject();
-//			row1.put("P03","-");
-//			row1.put("P02", ccYear);
-//			row1.put("SUSPECT", "period1");
-//			row1.put("VICTIM", "period1");
-//			row1.put("REMARK", "period1");
+
 			table1.add(row1);
-			
-//			JSONObject repl2 = new JSONObject();
-//			repl2.put("CRIMESNO", "function1");
-//			repl2.put("DESCRIPTION", "desc1");
-//			repl2.put("SUSPECT", "period1");
-//			repl2.put("VICTIM", "period1");
-//			repl2.put("REMARK", "period1");
-//			table1.add(repl2);
+
 		JSONObject tableobj = new JSONObject();
-//		tableobj.put("COLUMNS", tablecolumn);
-//		tableobj.put("TABLEDATA", table1);
-			
-//		JSONArray TABLES = new JSONArray();
-//		TABLES.add(tableobj);
-//		bookmarkvalue.put("TABLES", TABLES);
+
 		System.out.println(bookmarkvalue.toJSONString());
 		
 		
@@ -285,6 +256,7 @@ public static void nw65() {
                 bookmarkvalue.put("S6", "");
                 bookmarkvalue.put("S10","");
                 bookmarkvalue.put("S17","");
+                bookmarkvalue.put("S29","");
                    
 //                   ----------------------------ผู้กล่าวหา--------------------
                

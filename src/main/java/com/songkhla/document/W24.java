@@ -137,7 +137,7 @@ public static void w24(String cc) {
                 bookmarkvalue.put("CC2",Checknull(caseno));
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("C3", ccYear);
-                bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S2",Checknull(PoliceStationName));
                  bookmarkvalue.put("S3", Checknull(PoliceStaionShort));
                  bookmarkvalue.put("S7", Checknull(KK));
                  bookmarkvalue.put("S8",Checknull(BK));

@@ -129,6 +129,7 @@ public class W51 {
                 bookmarkvalue.put("C3", Checknull(ccYear));
                 bookmarkvalue.put("CC2",Checknull(caseno));
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
+                bookmarkvalue.put("S02",Checknull(PoliceStationName));
                 bookmarkvalue.put("S5", Checknull(StationAmphur));
                 bookmarkvalue.put("S6", Checknull(StationProvince));
                 bookmarkvalue.put("S27",Checknull(ProvincProsecutor));
@@ -212,6 +213,7 @@ public static void nw51() {
                 bookmarkvalue.put("C4", "");
                 bookmarkvalue.put("CC2","");
                 bookmarkvalue.put("S2","");
+                bookmarkvalue.put("S02","");
                 bookmarkvalue.put("S5", "");
                 bookmarkvalue.put("S6", "");
                 bookmarkvalue.put("S27","");

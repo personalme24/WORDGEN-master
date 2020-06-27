@@ -136,7 +136,7 @@ public class W47 {
 		bookmarkvalue.put("C2",Checknull(cs));
                 bookmarkvalue.put("CC2",Checknull(caseno));
                 bookmarkvalue.put("C3", Checknull(ccYear));
-                bookmarkvalue.put("C4", Checknull(ToDate(s.getString("OccuredDate"))));
+                
                 
                 bookmarkvalue.put("S2",Checknull(PoliceStationName).substring(10));
                 bookmarkvalue.put("S5", Checknull(StationAmphur));
@@ -148,6 +148,7 @@ public class W47 {
               
             while((s!=null) && (s.next()))
             {  
+                bookmarkvalue.put("C4", Checknull(ToDate(s.getString("OccuredDate"))));
                 bookmarkvalue.put("PA2",  Checknull(s.getString("PeopleRegistrationID")));
                 bookmarkvalue.put("PA3",  Checknull(ToDate(s.getString("IssueDate"))));
                 bookmarkvalue.put("PA5",  Checknull(s.getString("IssuedBy")));

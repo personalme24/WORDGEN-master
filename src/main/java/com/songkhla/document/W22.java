@@ -141,9 +141,7 @@ public class W22 {
                
                sdfstart = new SimpleDateFormat("yyyy", new Locale("th", "TH"));  
                Year=sdfstart.format(calstart.getTime());
-                 
-//                System.out.print("ข้อหา :: "+s.getString("ChargeCode"));
-//                System.out.print(" - ");
+
                  JSONObject bookmarkvalue = new JSONObject();
 //              
                 bookmarkvalue.put("C1",Checknull(Date));
