@@ -220,7 +220,7 @@ public class LogInPage extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("TH SarabunPSK", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("ระบบสำนวนอิเล็กทรอนิกส์(CRIMES E-Inquiry) เวอร์ชั่นทดลองใช้งาน");
+        jLabel3.setText("ระบบสำนวนอิเล็กทรอนิกส์(CRIMES E-Inquiry) เวอร์ชั่น 2.0");
 
         jLabel4.setFont(new java.awt.Font("TH SarabunPSK", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));

@@ -206,7 +206,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#xe23;&#xe30;&#xe1a;&#xe1a;&#xe2a;&#xe33;&#xe19;&#xe27;&#xe19;&#xe2d;&#xe34;&#xe40;&#xe25;&#xe47;&#xe01;&#xe17;&#xe23;&#xe2d;&#xe19;&#xe34;&#xe01;&#xe2a;&#xe4c;(CRIMES E-Inquiry) &#xe40;&#xe27;&#xe2d;&#xe23;&#xe4c;&#xe0a;&#xe31;&#xe48;&#xe19;&#xe17;&#xe14;&#xe25;&#xe2d;&#xe07;&#xe43;&#xe0a;&#xe49;&#xe07;&#xe32;&#xe19;"/>
+            <Property name="text" type="java.lang.String" value="&#xe23;&#xe30;&#xe1a;&#xe1a;&#xe2a;&#xe33;&#xe19;&#xe27;&#xe19;&#xe2d;&#xe34;&#xe40;&#xe25;&#xe47;&#xe01;&#xe17;&#xe23;&#xe2d;&#xe19;&#xe34;&#xe01;&#xe2a;&#xe4c;(CRIMES E-Inquiry) &#xe40;&#xe27;&#xe2d;&#xe23;&#xe4c;&#xe0a;&#xe31;&#xe48;&#xe19; 2.0"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
