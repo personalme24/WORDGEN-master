@@ -1010,7 +1010,7 @@ public class MainMenuWord extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("TH SarabunPSK", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("ระบบสำนวนอิเล็กทรอนิกส์(CRIMES E-Inquiry) เวอร์ชั่นทดลองใช้งาน Copyright © 2020 (ว1.008497) ศูนย์เทคโนโลยีสารสนเทศกลาง สำนักงานตำรวจแห่งชาติ All Right Reserve.");
+        jLabel7.setText("ระบบสำนวนอิเล็กทรอนิกส์(CRIMES E-Inquiry)  Copyright © 2020 (ว1.008497) ศูนย์เทคโนโลยีสารสนเทศกลาง สำนักงานตำรวจแห่งชาติ All Right Reserve.");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
