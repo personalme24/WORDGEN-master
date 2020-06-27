@@ -1674,6 +1674,7 @@ JTextPopupMenu.addTo(CourtResult);
             }
         ));
         jTableSuspect.setGridColor(new java.awt.Color(255, 255, 255));
+        jTableSuspect.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
         jTableSuspect.getTableHeader().setOpaque(false);
         jTableSuspect.setRowHeight(25);
         jTableSuspect.setRowMargin(2);
