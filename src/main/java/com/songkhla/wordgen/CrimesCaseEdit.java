@@ -863,7 +863,6 @@ JTextPopupMenu.addTo(CourtResult);
         jLabelChargeCode = new javax.swing.JLabel();
         jButtonSaveCase = new javax.swing.JButton();
         jButtonEditCase = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -2884,8 +2883,6 @@ JTextPopupMenu.addTo(CourtResult);
             }
         });
 
-        jLabel19.setText("Copyright © 2020 (ว1.008497) ศูนย์เทคโนโลยีสารสนเทศกลาง สำนักงานตำรวจแห่งชาติ All Right Reserve.");
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -2901,10 +2898,6 @@ JTextPopupMenu.addTo(CourtResult);
                         .addComponent(jButtonEditCase, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 1152, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(151, 151, 151))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel19)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2919,8 +2912,7 @@ JTextPopupMenu.addTo(CourtResult);
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonSaveCase)
                     .addComponent(jButtonEditCase))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jLabel19))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -5976,7 +5968,6 @@ jTableAccure.getColumnModel().getColumn(8).setMaxWidth(0);
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;

@@ -217,7 +217,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Copyright &#xa9; 2020 (&#xe27;1.008497) &#xe28;&#xe39;&#xe19;&#xe22;&#xe4c;&#xe40;&#xe17;&#xe04;&#xe42;&#xe19;&#xe42;&#xe25;&#xe22;&#xe35;&#xe2a;&#xe32;&#xe23;&#xe2a;&#xe19;&#xe40;&#xe17;&#xe28;&#xe01;&#xe25;&#xe32;&#xe07; &#xe2a;&#xe33;&#xe19;&#xe31;&#xe01;&#xe07;&#xe32;&#xe19;&#xe15;&#xe33;&#xe23;&#xe27;&#xe08;&#xe41;&#xe2b;&#xe48;&#xe07;&#xe0a;&#xe32;&#xe15;&#xe34; All Right Reserve."/>
+            <Property name="text" type="java.lang.String" value="Copyright &#xa9; 2020 (&#xe27;1.008497) &#xe28;&#xe39;&#xe19;&#xe22;&#xe4c;&#xe40;&#xe17;&#xe04;&#xe42;&#xe19;&#xe42;&#xe25;&#xe22;&#xe35;&#xe2a;&#xe32;&#xe23;&#xe2a;&#xe19;&#xe40;&#xe17;&#xe28;&#xe01;&#xe25;&#xe32;&#xe07; &#xe2a;&#xe33;&#xe19;&#xe31;&#xe01;&#xe07;&#xe32;&#xe19;&#xe15;&#xe33;&#xe23;&#xe27;&#xe08;&#xe41;&#xe2b;&#xe48;&#xe07;&#xe0a;&#xe32;&#xe15;&#xe34; All Rights Reserved."/>
           </Properties>
         </Component>
       </SubComponents>

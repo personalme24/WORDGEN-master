@@ -224,7 +224,7 @@ public class LogInPage extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("TH SarabunPSK", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Copyright © 2020 (ว1.008497) ศูนย์เทคโนโลยีสารสนเทศกลาง สำนักงานตำรวจแห่งชาติ All Right Reserve.");
+        jLabel4.setText("Copyright © 2020 (ว1.008497) ศูนย์เทคโนโลยีสารสนเทศกลาง สำนักงานตำรวจแห่งชาติ All Rights Reserved.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

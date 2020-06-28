@@ -204,11 +204,6 @@
                   </Group>
                   <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
               </Group>
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-              </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -228,8 +223,7 @@
                       <Component id="jButtonSaveCase" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonEditCase" alignment="0" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
-                  <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="29" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -3862,11 +3856,6 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonEditCaseActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel19">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Copyright &#xa9; 2020 (&#xe27;1.008497) &#xe28;&#xe39;&#xe19;&#xe22;&#xe4c;&#xe40;&#xe17;&#xe04;&#xe42;&#xe19;&#xe42;&#xe25;&#xe22;&#xe35;&#xe2a;&#xe32;&#xe23;&#xe2a;&#xe19;&#xe40;&#xe17;&#xe28;&#xe01;&#xe25;&#xe32;&#xe07; &#xe2a;&#xe33;&#xe19;&#xe31;&#xe01;&#xe07;&#xe32;&#xe19;&#xe15;&#xe33;&#xe23;&#xe27;&#xe08;&#xe41;&#xe2b;&#xe48;&#xe07;&#xe0a;&#xe32;&#xe15;&#xe34; All Right Reserve."/>
-          </Properties>
         </Component>
       </SubComponents>
     </Container>
