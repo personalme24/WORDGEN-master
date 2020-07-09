@@ -8,6 +8,7 @@ package com.songkhla.wordgen;
 
 
 import com.songkhla.document.W1;
+import com.songkhla.document.W10;
 import com.songkhla.document.W11;
 import com.songkhla.document.W12;
 import com.songkhla.document.W13;
@@ -81,6 +82,12 @@ import com.songkhla.document.W80;
 import com.songkhla.document.W812;
 import com.songkhla.document.W9;
 import com.songkhla.document.W93;
+import com.songkhla.document.W94;
+import com.songkhla.document.W95;
+import com.songkhla.document.W96;
+import com.songkhla.document.W97;
+import com.songkhla.document.W98;
+import com.songkhla.document.W99;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseid;
 import static com.songkhla.wordgen.CrimesCaseEdit.crimecaseno;
 import static com.songkhla.wordgen.ListAccused.jTableAccure;
@@ -748,6 +755,8 @@ JTextPopupMenu.addTo(CourtResult);
         jCheckW261 = new javax.swing.JCheckBox();
         jCheckW228 = new javax.swing.JCheckBox();
         jCheckW253 = new javax.swing.JCheckBox();
+        jCheckW210 = new javax.swing.JCheckBox();
+        jCheckW298 = new javax.swing.JCheckBox();
         jPanel17 = new javax.swing.JPanel();
         jCheckW240 = new javax.swing.JCheckBox();
         jCheckW241 = new javax.swing.JCheckBox();
@@ -758,6 +767,11 @@ JTextPopupMenu.addTo(CourtResult);
         jCheckW224 = new javax.swing.JCheckBox();
         jCheckW265 = new javax.swing.JCheckBox();
         jCheckW279 = new javax.swing.JCheckBox();
+        jCheckW297 = new javax.swing.JCheckBox();
+        jCheckW296 = new javax.swing.JCheckBox();
+        jCheckW294 = new javax.swing.JCheckBox();
+        jCheckW299 = new javax.swing.JCheckBox();
+        jCheckW295 = new javax.swing.JCheckBox();
         jPanel16 = new javax.swing.JPanel();
         jCheckW246 = new javax.swing.JCheckBox();
         jCheckW245 = new javax.swing.JCheckBox();
@@ -2135,6 +2149,21 @@ JTextPopupMenu.addTo(CourtResult);
         });
         jPanel14.add(jCheckW253, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 310, 314, -1));
 
+        jCheckW210.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW210.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW210.setText("ใบต่อคำให้การ");
+        jPanel14.add(jCheckW210, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 180, -1));
+
+        jCheckW298.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW298.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW298.setText("บันทึกคำให้การรับสารภาพของผู้ต้องหา");
+        jCheckW298.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW298ActionPerformed(evt);
+            }
+        });
+        jPanel14.add(jCheckW298, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, 314, -1));
+
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "เอกสารชันสูตรและอื่นๆ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("TH SarabunPSK", 1, 24))); // NOI18N
 
@@ -2184,6 +2213,51 @@ JTextPopupMenu.addTo(CourtResult);
             }
         });
 
+        jCheckW297.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW297.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW297.setText("ใบส่งตรวจสารเสพติด");
+        jCheckW297.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW297ActionPerformed(evt);
+            }
+        });
+
+        jCheckW296.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW296.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW296.setText("บันทึกการแจ้งสิทธิของผู้ถูกจับหรือผู้ต้องหา");
+        jCheckW296.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW296ActionPerformed(evt);
+            }
+        });
+
+        jCheckW294.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW294.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW294.setText("แบบตรวจรับของกลางยาเสพติดรายใหญ่");
+        jCheckW294.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW294ActionPerformed(evt);
+            }
+        });
+
+        jCheckW299.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW299.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW299.setText("แบบรายงานเหตุอุกฉกรรจ์และสะเทือนขวัญ");
+        jCheckW299.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW299ActionPerformed(evt);
+            }
+        });
+
+        jCheckW295.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW295.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW295.setText("แบบตรวจรับของกลางยาเสพติดรายย่อย");
+        jCheckW295.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW295ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -2193,29 +2267,24 @@ JTextPopupMenu.addTo(CourtResult);
                     .addComponent(jCheckW240)
                     .addComponent(jCheckW241, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW242, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckW265, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckW265, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckW297, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckW296, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckW294, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckW224, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW221, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW223, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW222, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckW279, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jCheckW279, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckW295)
+                    .addComponent(jCheckW299, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel17Layout.setVerticalGroup(
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel17Layout.createSequentialGroup()
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel17Layout.createSequentialGroup()
-                        .addComponent(jCheckW240)
-                        .addGap(0, 0, 0)
-                        .addComponent(jCheckW241)
-                        .addGap(0, 0, 0)
-                        .addComponent(jCheckW242)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCheckW265)
-                        .addGap(0, 0, 0)
-                        .addComponent(jCheckW279))
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(jCheckW221)
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2224,8 +2293,30 @@ JTextPopupMenu.addTo(CourtResult);
                                 .addComponent(jCheckW223))
                             .addComponent(jCheckW222))
                         .addGap(0, 0, 0)
-                        .addComponent(jCheckW224)))
-                .addGap(40, 40, 40))
+                        .addComponent(jCheckW224))
+                    .addGroup(jPanel17Layout.createSequentialGroup()
+                        .addComponent(jCheckW240)
+                        .addGap(0, 0, 0)
+                        .addComponent(jCheckW241)
+                        .addGap(0, 0, 0)
+                        .addComponent(jCheckW242)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jCheckW265)
+                        .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addComponent(jCheckW279)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckW299)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckW295))
+                            .addGroup(jPanel17Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckW297)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckW296)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jCheckW294)))))
+                .addContainerGap())
         );
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
@@ -3718,6 +3809,30 @@ JTextPopupMenu.addTo(CourtResult);
         catch (Exception d) {  //System.out.println(d);
         }
     }//GEN-LAST:event_CrimeLocationAmphurKeyReleased
+
+    private void jCheckW298ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW298ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW298ActionPerformed
+
+    private void jCheckW297ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW297ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW297ActionPerformed
+
+    private void jCheckW296ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW296ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW296ActionPerformed
+
+    private void jCheckW294ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW294ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW294ActionPerformed
+
+    private void jCheckW299ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW299ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW299ActionPerformed
+
+    private void jCheckW295ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW295ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW295ActionPerformed
   
        private void yourAttemptActionPerformed() {
 
@@ -3830,6 +3945,9 @@ JTextPopupMenu.addTo(CourtResult);
 //        if(jCheckW209.isSelected()){
 //            W9.w9(no);
 //        }
+       if(jCheckW210.isSelected()){
+            W10.w10(no);
+        }
         if(jCheckW211.isSelected()){
             W11.w11(no);
         }
@@ -4021,6 +4139,24 @@ JTextPopupMenu.addTo(CourtResult);
                     }
                if(jCheckW293.isSelected()){
                         W93.w93(no);
+                    }
+                if(jCheckW294.isSelected()){
+                        W94.w94(no);
+                    }
+               if(jCheckW295.isSelected()){
+                        W95.w95(no);
+                    }
+               if(jCheckW296.isSelected()){
+                        W96.w96(no);
+                    }
+               if(jCheckW297.isSelected()){
+                        W97.w97(no);
+                    }
+               if(jCheckW298.isSelected()){
+                        W98.w98(no);
+                    }
+               if(jCheckW299.isSelected()){
+                        W99.w99(no);
                     }
             }
         } catch (InterruptedException e) {
@@ -4820,7 +4956,9 @@ jTableWitness.getColumnModel().getColumn(7).setMaxWidth(0);
            insertDataReport(jCheckW208.getText());   
 //            W812.w812(no);
         }
-      
+       if(jCheckW210.isSelected()){
+           insertDataReport(jCheckW210.getText()); 
+        }
       
         if(jCheckW211.isSelected()){
            insertDataReport(jCheckW211.getText()); 
@@ -5035,6 +5173,24 @@ jTableWitness.getColumnModel().getColumn(7).setMaxWidth(0);
                if(jCheckW293.isSelected()){
                    insertDataReport(jCheckW293.getText());
                     }
+               if(jCheckW294.isSelected()){
+                   insertDataReport(jCheckW294.getText());
+                    }
+               if(jCheckW295.isSelected()){
+                   insertDataReport(jCheckW295.getText());
+                    }
+               if(jCheckW296.isSelected()){
+                   insertDataReport(jCheckW296.getText());
+                    }
+               if(jCheckW297.isSelected()){
+                   insertDataReport(jCheckW297.getText());
+                    }
+               if(jCheckW298.isSelected()){
+                   insertDataReport(jCheckW298.getText());
+                    }
+               if(jCheckW299.isSelected()){
+                   insertDataReport(jCheckW299.getText());
+                    }
       }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTextField ActionCrimes;
@@ -5093,6 +5249,7 @@ jTableWitness.getColumnModel().getColumn(7).setMaxWidth(0);
     private javax.swing.JCheckBox jCheckW206;
     private javax.swing.JCheckBox jCheckW207;
     private javax.swing.JCheckBox jCheckW208;
+    private javax.swing.JCheckBox jCheckW210;
     private javax.swing.JCheckBox jCheckW211;
     private javax.swing.JCheckBox jCheckW212;
     private javax.swing.JCheckBox jCheckW213;
@@ -5161,6 +5318,12 @@ jTableWitness.getColumnModel().getColumn(7).setMaxWidth(0);
     private javax.swing.JCheckBox jCheckW279;
     private javax.swing.JCheckBox jCheckW280;
     private javax.swing.JCheckBox jCheckW293;
+    private javax.swing.JCheckBox jCheckW294;
+    private javax.swing.JCheckBox jCheckW295;
+    private javax.swing.JCheckBox jCheckW296;
+    private javax.swing.JCheckBox jCheckW297;
+    private javax.swing.JCheckBox jCheckW298;
+    private javax.swing.JCheckBox jCheckW299;
     private javax.swing.JComboBox<Object> jComboPoliceName;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

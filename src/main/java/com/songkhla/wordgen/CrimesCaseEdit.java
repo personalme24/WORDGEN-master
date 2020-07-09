@@ -8,6 +8,7 @@ package com.songkhla.wordgen;
 
 
 import com.songkhla.document.W1;
+import com.songkhla.document.W10;
 import com.songkhla.document.W11;
 import com.songkhla.document.W12;
 import com.songkhla.document.W13;
@@ -89,6 +90,8 @@ import com.songkhla.document.W80;
 import com.songkhla.document.W812;
 import com.songkhla.document.W9;
 import com.songkhla.document.W93;
+import com.songkhla.document.W94;
+import com.songkhla.document.W95;
 import com.songkhla.document.W96;
 import com.songkhla.document.W97;
 import com.songkhla.document.W98;
@@ -823,6 +826,7 @@ JTextPopupMenu.addTo(CourtResult);
         jCheckW228 = new javax.swing.JCheckBox();
         jCheckW253 = new javax.swing.JCheckBox();
         jCheckW280 = new javax.swing.JCheckBox();
+        jCheckW210 = new javax.swing.JCheckBox();
         jPanel17 = new javax.swing.JPanel();
         jCheckW240 = new javax.swing.JCheckBox();
         jCheckW241 = new javax.swing.JCheckBox();
@@ -836,6 +840,8 @@ JTextPopupMenu.addTo(CourtResult);
         jCheckW297 = new javax.swing.JCheckBox();
         jCheckW296 = new javax.swing.JCheckBox();
         jCheckW299 = new javax.swing.JCheckBox();
+        jCheckW294 = new javax.swing.JCheckBox();
+        jCheckW295 = new javax.swing.JCheckBox();
         jPanel16 = new javax.swing.JPanel();
         jCheckW246 = new javax.swing.JCheckBox();
         jCheckW245 = new javax.swing.JCheckBox();
@@ -2217,7 +2223,7 @@ JTextPopupMenu.addTo(CourtResult);
         jCheckW201.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW201.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW201.setText("บันทึกการตรวจสำนวนการสอบสวน");
-        jPanel14.add(jCheckW201, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 32, 384, -1));
+        jPanel14.add(jCheckW201, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 384, -1));
 
         jCheckW202.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW202.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -2227,12 +2233,12 @@ JTextPopupMenu.addTo(CourtResult);
                 jCheckW202ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW202, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 62, 384, -1));
+        jPanel14.add(jCheckW202, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 384, -1));
 
         jCheckW203.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW203.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW203.setText("หนังสือส่งสำนวนคดีที่เห็นควรสั่งฟ้อง แต่ยังไม่ได้ตัวผู้ต้องหา");
-        jPanel14.add(jCheckW203, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 95, 384, -1));
+        jPanel14.add(jCheckW203, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 384, -1));
 
         jCheckW204.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW204.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -2242,12 +2248,12 @@ JTextPopupMenu.addTo(CourtResult);
                 jCheckW204ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW204, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 128, 384, -1));
+        jPanel14.add(jCheckW204, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 384, -1));
 
         jCheckW205.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW205.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW205.setText("รายงานการสอบสวน");
-        jPanel14.add(jCheckW205, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 194, 384, -1));
+        jPanel14.add(jCheckW205, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 384, -1));
 
         jCheckW206.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW206.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -2258,12 +2264,12 @@ JTextPopupMenu.addTo(CourtResult);
                 jCheckW206ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW206, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 161, -1, -1));
+        jPanel14.add(jCheckW206, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
         jCheckW207.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW207.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW207.setText("รายงานการสอบสวนสำนวนชันสูตรพลิกศพ");
-        jPanel14.add(jCheckW207, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, 384, -1));
+        jPanel14.add(jCheckW207, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 384, -1));
 
         jCheckW208.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW208.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -2273,12 +2279,12 @@ JTextPopupMenu.addTo(CourtResult);
                 jCheckW208ActionPerformed(evt);
             }
         });
-        jPanel14.add(jCheckW208, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, 380, -1));
+        jPanel14.add(jCheckW208, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, 380, -1));
 
         jCheckW209.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW209.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW209.setText("บันทึกคำให้การผู้ต้องหา");
-        jPanel14.add(jCheckW209, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 384, -1));
+        jPanel14.add(jCheckW209, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 384, -1));
 
         jCheckW226.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW226.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -2303,7 +2309,7 @@ JTextPopupMenu.addTo(CourtResult);
         jCheckW216.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW216.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW216.setText("บันทึกพนักงานสอบสวน");
-        jPanel14.add(jCheckW216, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 384, -1));
+        jPanel14.add(jCheckW216, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 384, -1));
 
         jCheckW293.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW293.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -2413,7 +2419,7 @@ JTextPopupMenu.addTo(CourtResult);
         jCheckW233.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW233.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
         jCheckW233.setText("บันทึกการตรวจค้น");
-        jPanel14.add(jCheckW233, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 320, 30));
+        jPanel14.add(jCheckW233, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, 320, 30));
 
         jCheckW261.setBackground(new java.awt.Color(255, 255, 255));
         jCheckW261.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
@@ -2445,6 +2451,11 @@ JTextPopupMenu.addTo(CourtResult);
             }
         });
         jPanel14.add(jCheckW280, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 330, 314, -1));
+
+        jCheckW210.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW210.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW210.setText("ใบต่อคำให้การ");
+        jPanel14.add(jCheckW210, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, 384, -1));
 
         jPanel17.setBackground(new java.awt.Color(255, 255, 255));
         jPanel17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "เอกสารชันสูตรและอื่นๆ", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.ABOVE_TOP, new java.awt.Font("TH SarabunPSK", 1, 24))); // NOI18N
@@ -2522,6 +2533,24 @@ JTextPopupMenu.addTo(CourtResult);
             }
         });
 
+        jCheckW294.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW294.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW294.setText("แบบตรวจรับของกลางยาเสพติดรายใหญ่");
+        jCheckW294.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW294ActionPerformed(evt);
+            }
+        });
+
+        jCheckW295.setBackground(new java.awt.Color(255, 255, 255));
+        jCheckW295.setFont(new java.awt.Font("TH SarabunPSK", 0, 22)); // NOI18N
+        jCheckW295.setText("แบบตรวจรับของกลางยาเสพติดรายย่อย");
+        jCheckW295.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckW295ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -2533,9 +2562,11 @@ JTextPopupMenu.addTo(CourtResult);
                     .addComponent(jCheckW242, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW265, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW297, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCheckW296, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCheckW296, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckW294, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCheckW295)
                     .addComponent(jCheckW299, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW224, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCheckW221, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2572,7 +2603,11 @@ JTextPopupMenu.addTo(CourtResult);
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckW296)
                     .addComponent(jCheckW299))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCheckW294)
+                    .addComponent(jCheckW295))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
@@ -4149,6 +4184,14 @@ JTextPopupMenu.addTo(CourtResult);
     private void jCheckW299ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW299ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckW299ActionPerformed
+
+    private void jCheckW294ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW294ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW294ActionPerformed
+
+    private void jCheckW295ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckW295ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCheckW295ActionPerformed
      private void yourAttemptActionPerformed() {
 
 
@@ -4273,6 +4316,9 @@ JTextPopupMenu.addTo(CourtResult);
       
         if(jCheckW209.isSelected()){
             W9.w9(no);
+        }
+        if(jCheckW210.isSelected()){
+            W10.w10(no);
         }
         if(jCheckW211.isSelected()){
             W11.w11(no);
@@ -4484,8 +4530,15 @@ JTextPopupMenu.addTo(CourtResult);
                if(jCheckW280.isSelected()){
                         W80.w80(no);
                     }
+               
                if(jCheckW293.isSelected()){
                         W93.w93(no);
+                    }
+               if(jCheckW294.isSelected()){
+                        W94.w94(no);
+                    }
+               if(jCheckW295.isSelected()){
+                        W95.w95(no);
                     }
                if(jCheckW296.isSelected()){
                         W96.w96(no);
@@ -4969,6 +5022,10 @@ if(OccuredDate.getJFormattedTextField().getText().equals("23/8/2562")){
                        counter++;
 
         }
+        if(jCheckW210.isSelected()){
+                       counter++;
+
+        }
         if(jCheckW211.isSelected()){
                        counter++;
 
@@ -5239,6 +5296,12 @@ if(OccuredDate.getJFormattedTextField().getText().equals("23/8/2562")){
                if(jCheckW293.isSelected()){
                        counter++;
                     }
+               if(jCheckW294.isSelected()){
+                       counter++;
+                    }
+               if(jCheckW295.isSelected()){
+                       counter++;
+                    }
                if(jCheckW296.isSelected()){
                        counter++;
 
@@ -5292,6 +5355,9 @@ if(OccuredDate.getJFormattedTextField().getText().equals("23/8/2562")){
       
         if(jCheckW209.isSelected()){
           insertDataReport(jCheckW209.getText());  
+        }
+         if(jCheckW210.isSelected()){
+          insertDataReport(jCheckW210.getText());  
         }
         if(jCheckW211.isSelected()){
            insertDataReport(jCheckW211.getText()); 
@@ -5500,6 +5566,18 @@ if(OccuredDate.getJFormattedTextField().getText().equals("23/8/2562")){
                if(jCheckW279.isSelected()){
                     insertDataReport(jCheckW279.getText());
                     }
+               if(jCheckW280.isSelected()){
+                   insertDataReport(jCheckW280.getText());
+                    }
+               if(jCheckW293.isSelected()){
+                   insertDataReport(jCheckW293.getText());
+                    }
+               if(jCheckW294.isSelected()){
+                   insertDataReport(jCheckW294.getText());
+                    }
+               if(jCheckW295.isSelected()){
+                   insertDataReport(jCheckW295.getText());
+                    }
                if(jCheckW296.isSelected()){
                    insertDataReport(jCheckW296.getText());
                     }
@@ -5508,9 +5586,6 @@ if(OccuredDate.getJFormattedTextField().getText().equals("23/8/2562")){
                     }
                if(jCheckW298.isSelected()){
                    insertDataReport(jCheckW298.getText());
-                    }
-               if(jCheckW293.isSelected()){
-                   insertDataReport(jCheckW293.getText());
                     }
                if(jCheckW299.isSelected()){
                    insertDataReport(jCheckW299.getText());
@@ -5885,6 +5960,7 @@ jTableAccure.getColumnModel().getColumn(8).setMaxWidth(0);
     private javax.swing.JCheckBox jCheckW207;
     private javax.swing.JCheckBox jCheckW208;
     private javax.swing.JCheckBox jCheckW209;
+    private javax.swing.JCheckBox jCheckW210;
     private javax.swing.JCheckBox jCheckW211;
     private javax.swing.JCheckBox jCheckW212;
     private javax.swing.JCheckBox jCheckW213;
@@ -5953,6 +6029,8 @@ jTableAccure.getColumnModel().getColumn(8).setMaxWidth(0);
     private javax.swing.JCheckBox jCheckW279;
     private javax.swing.JCheckBox jCheckW280;
     private javax.swing.JCheckBox jCheckW293;
+    private javax.swing.JCheckBox jCheckW294;
+    private javax.swing.JCheckBox jCheckW295;
     private javax.swing.JCheckBox jCheckW296;
     private javax.swing.JCheckBox jCheckW297;
     private javax.swing.JCheckBox jCheckW298;
