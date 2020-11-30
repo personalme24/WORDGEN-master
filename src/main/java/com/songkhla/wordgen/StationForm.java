@@ -232,7 +232,13 @@ public class StationForm extends javax.swing.JDialog {
        JTextPopupMenu.addToTextArea(CauseSerious);
        
 
-
+ addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
 
 
 //          JPopupMenu menu = new JPopupMenu();

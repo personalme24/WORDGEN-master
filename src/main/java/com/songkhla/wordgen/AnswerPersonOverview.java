@@ -33,6 +33,13 @@ public class AnswerPersonOverview extends javax.swing.JDialog {
         typeCase=datacase.get("TypeCase")+"";
          typePerson=datacase.get("TypePerson")+"";
        RefreshData();
+        addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

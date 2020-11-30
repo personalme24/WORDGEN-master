@@ -107,7 +107,13 @@ public class TrafficOverView extends javax.swing.JDialog {
         jPanelRequestDate.setLayout(new FlowLayout());
         jPanelRequestDate.add(DateRequestSearch);    
         RefreshData();
-        
+         addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
  
     /**

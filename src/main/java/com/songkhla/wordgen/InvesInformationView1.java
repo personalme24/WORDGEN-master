@@ -37,7 +37,13 @@ public class InvesInformationView1 extends javax.swing.JDialog{
             setIconImage(img.getImage());
             setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
         RefreshData();
-        
+            addWindowListener(new java.awt.event.WindowAdapter() {
+           @Override
+           public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                   System.exit(0);
+       //        }
+           }
+       });    
     }
 
     /**

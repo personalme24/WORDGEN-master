@@ -45,7 +45,13 @@ String typeC;
        txtCaseNO.setText(datain.get("CaseIdSus")+"");
         typeC=datain.get("TypeCaseS")+"";
          RefreshData();
-      
+              addWindowListener(new java.awt.event.WindowAdapter() {
+           @Override
+           public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                   System.exit(0);
+       //        }
+           }
+       });
        
     }
 

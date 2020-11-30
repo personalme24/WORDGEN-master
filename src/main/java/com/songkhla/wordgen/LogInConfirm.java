@@ -55,11 +55,21 @@ public class LogInConfirm extends javax.swing.JDialog{
                  System.out.println("sadasd"+rs.getString("Username"));
                  Username.setText(rs.getString("Username"));
                
-                 }
+                 } 
+             rs.close();
+             stmt.close();
              }
              catch(SQLException sq){
              
              }
+           
+              addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

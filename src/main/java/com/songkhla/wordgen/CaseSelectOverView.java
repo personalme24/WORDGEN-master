@@ -360,7 +360,13 @@ jlabeltoken.setVisible(true);
          casenocc6.setEnabled(false);
          caseyearscc3.setEnabled(false);
          caseyearscc4.setEnabled(false);   
-
+ addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 // 
     /**

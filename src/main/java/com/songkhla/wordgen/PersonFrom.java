@@ -154,6 +154,13 @@ public class PersonFrom extends javax.swing.JDialog {
         isInsert=true;
         
         }
+         addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

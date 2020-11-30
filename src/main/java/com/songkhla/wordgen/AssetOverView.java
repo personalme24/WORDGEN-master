@@ -73,7 +73,13 @@ public class AssetOverView extends javax.swing.JDialog {
 //        JScrollPane scrollPane = new JScrollPane(jTableAsset);
 //jTableAsset.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 //jTableAsset.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());
-
+ addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /** This method is called from within the constructor to

@@ -58,6 +58,13 @@ public class RecordInvestigatorView extends javax.swing.JDialog {
         caseId.setText(caseIdRec);
         caseId.setVisible(false);
         RefreshData();
+         addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

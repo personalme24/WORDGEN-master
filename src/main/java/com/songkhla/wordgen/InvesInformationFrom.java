@@ -44,7 +44,7 @@ public class InvesInformationFrom extends javax.swing.JDialog {
         initComponents();
             ImageIcon img = new ImageIcon("./Master/WD.png");
             setIconImage(img.getImage());
-            setTitle("ระบบสำนวนอิเล็คทรอนิกส์ (CRIMES E-inquiry)");
+            setTitle("ระบบสำนวนอิเล็กทรอนิกส์ (CRIMES E-inquiry)");
             
             UtilDateModel model = new UtilDateModel();
             model.setValue(Calendar.getInstance().getTime());
@@ -100,6 +100,13 @@ public class InvesInformationFrom extends javax.swing.JDialog {
                            }
              }
              );
+         addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

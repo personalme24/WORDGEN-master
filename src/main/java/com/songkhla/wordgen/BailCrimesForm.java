@@ -101,7 +101,13 @@ jTableBail.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScr
 //        jPanelDateSearch.setLayout(new FlowLayout());
 //        jPanelDateSearch.add(DateSearch);  
         
-  
+   addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

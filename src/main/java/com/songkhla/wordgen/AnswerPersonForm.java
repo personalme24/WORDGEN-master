@@ -86,6 +86,13 @@ public class AnswerPersonForm extends javax.swing.JDialog{
         AnswerDetail.setText(WitnessForm.AnswerPerson.getText());
         }
           JTextPopupMenu.addTo(AnswerDetail);
+           addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

@@ -37,7 +37,13 @@ public class ActionListMenu extends javax.swing.JDialog {
             jTableAction.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
             jTableAction.getTableHeader().setOpaque(false);
         RefreshData();
-       
+        addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**
@@ -101,9 +107,6 @@ public class ActionListMenu extends javax.swing.JDialog {
         jTableAction.setFont(new java.awt.Font("TH SarabunPSK", 1, 22)); // NOI18N
         jTableAction.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
                 {null, null}
             },
             new String [] {

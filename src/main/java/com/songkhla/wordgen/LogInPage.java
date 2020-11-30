@@ -46,6 +46,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -117,19 +118,26 @@ public class LogInPage extends javax.swing.JFrame {
                  JOptionPane.OK_OPTION); 
                  
                  }
-                 
+                 rs2.close();
              }
              else{
              
              
              }
         
- 
+             rs3.close();
+             stmt2.close();
         }
         catch(Exception ex){
          ex.printStackTrace();
         }
-
+        addWindowListener(new java.awt.event.WindowAdapter() {
+           @Override
+           public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                   System.exit(0);
+       //        }
+           }
+       });
 //}
     }
 
@@ -353,10 +361,14 @@ try{
                    JOptionPane.showMessageDialog(null, "ชื่อผู้ใช้ของท่านยังไม่ได้รับสิทธิ์พนักงานสอบสวนหรือหัวหน้างานสอบสวน กรุณาติดต่อ 1228 กด 2");            
                   } 
                   else if(statusconnect.equals("1")){
-                          yourAttemptActionPerformed();
+//                         new BackgroundWorker().execute();
+                         yourAttemptActionPerformed();
                   }
                   else if(statusconnect.equals("2")){
                         JOptionPane.showMessageDialog(null, "อายุการใช้งานชื่อผู้ใช้ของท่านในระบบ CRIMES หมดอายุ 12กรุณาติดต่อ 1228");            
+                  }
+                   else if(statusconnect.equals("5")){
+                        JOptionPane.showMessageDialog(null, "พบข้อผิดพลาดเกี่ยวกับข้อมูล กรุณาติดต่อ 1228");            
                   }
                   }
 //-------------------------Traning-------------------------------------------
@@ -368,6 +380,8 @@ try{
 //                    }
                  
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "ไม่พบการเชื่อมต่อ");            
+
         }
              }
             }
@@ -417,10 +431,12 @@ private static String sendGET(String GET_URL) {
                 try{
 		URL serverUrl = new URL(GET_URL);
 		HttpURLConnection con = (HttpURLConnection) serverUrl.openConnection();      
-                con.setConnectTimeout(1000);
+
 		con.setRequestMethod("GET");
 		con.setRequestProperty("User-Agent", "Mozilla/5.0");
                 con.setRequestProperty("Accept-Charset", "UTF-8");
+                con.setConnectTimeout(5000);
+                con.setReadTimeout(5000);
                 System.out.println("ssss"+con.getResponseCode());
 		int responseCode = con.getResponseCode();
 		System.out.println("GET Response Code :: " + responseCode);
@@ -443,10 +459,16 @@ private static String sendGET(String GET_URL) {
                         return null;
 		}
                 }
-                catch(IOException ie){
-                System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+ie);
-                return "0";
-                }
+           
+                catch (java.net.SocketTimeoutException e) {
+                   System.out.println("Socket Error"+e.getMessage());
+
+                    return "0";
+                 } catch (IOException ie) {
+                                     System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAA"+ie.getMessage());
+
+                    return "0";
+                 }
 	}
      private void yourAttemptActionPerformed() {
 
@@ -462,47 +484,37 @@ public class BackgroundWorker extends SwingWorker<Void, Void> {
     private String text;
         private JProgressBar pb;
 		private JDialog dialog;
-//   public void Task() {
-//       
-//    }
-//       public ProgressWorker(JProgressBar progress) {
-//            this.progress = progress;
-//        
+                        private JLabel ab;
             public BackgroundWorker() {
            
 			addPropertyChangeListener(new PropertyChangeListener() {
 				@Override
 				public void propertyChange(PropertyChangeEvent evt) {
-					if ("progress".equalsIgnoreCase(evt.getPropertyName())) {
+//					if ("progress".equalsIgnoreCase(evt.getPropertyName())) {
 						 if (dialog == null) {
-							dialog = new JDialog();
-                                                        ImageIcon img = new ImageIcon("./Master/WD.png");
-                                                           dialog.setIconImage(img.getImage());
-							dialog.setTitle("Processing");
-							dialog.setLayout(new GridBagLayout());
-							dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-							GridBagConstraints gbc = new GridBagConstraints();
-							gbc.insets = new Insets(2, 2, 2, 2);
-							gbc.weightx = 1;
-							gbc.gridy = 0;
-							dialog.add(new JLabel("กำลังเชื่อมต่อข้อมูลกรุณารอสักครู่..."), gbc);
-							pb = new JProgressBar();
-							pb.setStringPainted(true);
-//                                                        pb.setForeground(Color.blue);]
-                                               
-                                                        pb.setMaximum(100);
-                                                        pb.setMinimum(0);
-                                                        
-							gbc.gridy = 1;
-//							dialog.add( gbc);
-							dialog.pack();
-							dialog.setLocationRelativeTo(null);
-							dialog.setModal(true);
-							JDialog.setDefaultLookAndFeelDecorated(true); 
-							dialog.setVisible(true);
+								dialog = new JDialog();
+                                                                      JPanel jp=new JPanel();
+//                                                    jp.setBackground(new java.awt.Color(255, 255, 255));
+//                                                 ImageIcon loading = new ImageIcon("./Master/ajax-loader.gif");
+                                            //     jp.setLayout(BorderLayout.CENTER);
+                                                 jp.add(new JLabel("กำลังเชื่อมต่อข้อมูลกรุณารอสักครู่... ", JLabel.CENTER));
+                                            //    frame.add(new JLabel("กำลังขอหมายเลขประจำวัน... ", loading, JLabel.CENTER));
+                                                dialog.add(jp);
+                                                dialog.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+                                                dialog.setMinimumSize(new Dimension(300, 100));
+                                                dialog.setBackground(new java.awt.Color(255, 255, 255));
+                                            //    frame.setSize(400, 300);
+                                              
+
+                                                dialog.pack();
+                                                dialog.setLocationRelativeTo(null);
+                                                dialog.setModal(true);
+                                                JDialog.setDefaultLookAndFeelDecorated(true);
+                                                dialog.setVisible(true);
+                                                    
 						}
 //						pb.setValue(getProgress());
-					}
+//					}
 				}
 
 			});
@@ -510,17 +522,17 @@ public class BackgroundWorker extends SwingWorker<Void, Void> {
     @Override
     public Void doInBackground() {
 //        try{
-//          for (int i = 0; i < 100; i++) {
-//              setProgress(10);
-       
+//          for (int i = 0; i < 20; i++) {
+////              setProgress(10);
+//              System.out.println(""+i);
                 insertData();
-//           Thread.sleep(100);
+//            Thread.sleep(100);
 //          }
 //        }
-//       catch (InterruptedException e) {
-//
+//       catch (Exception e) {
+//////
 //                e.printStackTrace();
-//
+//////
 //                }
 
         return null;
@@ -546,107 +558,7 @@ public class BackgroundWorker extends SwingWorker<Void, Void> {
     }
 }/**/
 
-public class BackgroundWorkerCheck extends SwingWorker<Void, Void> {
 
-    private static final long SLEEP_TIME =10;
-    private String text;
-        private JProgressBar pb;
-		private JDialog dialog;
-//   public void Task() {
-//       
-//    }
-//       public ProgressWorker(JProgressBar progress) {
-//            this.progress = progress;
-//        
-            public BackgroundWorkerCheck() {
-           
-			addPropertyChangeListener(new PropertyChangeListener() {
-				@Override
-				public void propertyChange(PropertyChangeEvent evt) {
-					if ("progress".equalsIgnoreCase(evt.getPropertyName())) {
-						 if (dialog == null) {
-							dialog = new JDialog();
-                                                        ImageIcon img = new ImageIcon("./Master/WD.png");
-                                                           dialog.setIconImage(img.getImage());
-							dialog.setTitle("Processing");
-							dialog.setLayout(new GridBagLayout());
-							dialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
-							GridBagConstraints gbc = new GridBagConstraints();
-							gbc.insets = new Insets(2, 2, 2, 2);
-							gbc.weightx = 1;
-							gbc.gridy = 0;
-							dialog.add(new JLabel("กำลังเชื่อมต่อข้อมูลกรุณารอสักครู่..."), gbc);
-							pb = new JProgressBar();
-//							pb.setStringPainted(true);
-////                                                        pb.setForeground(Color.blue);]
-//                                               
-//                                                        pb.setMaximum(100);
-//                                                        pb.setMinimum(0);
-                                                             pb.setUI(new ProgressCircleUI());
-                                            pb.setBorder(BorderFactory.createEmptyBorder(8, 8, 8, 8));
-                                            pb.setStringPainted(true);
-                                            pb.setFont(pb.getFont().deriveFont(24f));
-                                            pb.setForeground(Color.orange);
-
-//                                            int in = Ingeter.parseInt(nameOfTextField.getValue);   
-//                                            pb.setValue(in);
-							gbc.gridy = 1;
-//							dialog.add( gbc);
-							dialog.pack();
-							dialog.setLocationRelativeTo(null);
-							dialog.setModal(true);
-							JDialog.setDefaultLookAndFeelDecorated(true); 
-							dialog.setVisible(true);
-                                                        
-                                                        
-                                                         pb = new JProgressBar();
-// use JProgressBar#setUI(...) method
-                                       
-						}
-//						pb.setValue(getProgress());
-					}
-				}
-
-			});
-		}
-    @Override
-    public Void doInBackground() {
-//        try{
-//          for (int i = 0; i < 100; i++) {
-//              setProgress(10);
-       
-                insertData();
-//           Thread.sleep(100);
-//          }
-//        }
-//       catch (InterruptedException e) {
-//
-//                e.printStackTrace();
-//
-//                }
-
-        return null;
-    }
-
-    @Override
-    public void done() {
-                    if (dialog != null) {
-				dialog.dispose();
-			}
-  try{
-                    setVisible(false);
-                     UIManager.setLookAndFeel("com.sun.java.swing.plaf.nimbus.NimbusLookAndFeel");    
-                    MainMenuWord f=new MainMenuWord();
-                    SwingUtilities.updateComponentTreeUI(f);
-                    f.setVisible(true);
-  }
-  catch(Exception ex){
-  
-  }
-//          System.out.println(text + " is done");
-//        Toolkit.getDefaultToolkit().beep();
-    }
-}/**/
 public void insertData(){
 String  username=Username.getText();
        String password=new String(Password.getPassword());
@@ -942,7 +854,7 @@ String  username=Username.getText();
         
       
              }
-
+             
              
         } catch (Exception e) {
         }

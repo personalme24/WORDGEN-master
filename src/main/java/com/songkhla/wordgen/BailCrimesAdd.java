@@ -132,6 +132,13 @@ public class BailCrimesAdd extends javax.swing.JDialog {
         }
         refreshBailSendData();
         refreshAssetData();
+  addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});       
     }
 
     /**

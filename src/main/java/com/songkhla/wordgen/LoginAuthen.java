@@ -116,6 +116,7 @@ public class LoginAuthen {
      catch (Exception ex) { 
                   Logger.getLogger(ConnectDatabase.class.getName()).log(Level.SEVERE, null, ex);
               }
+    
     }
     
         public static String getMotherboardSerial(){

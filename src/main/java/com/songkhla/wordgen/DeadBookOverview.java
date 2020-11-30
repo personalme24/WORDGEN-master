@@ -34,7 +34,13 @@ public class DeadBookOverview extends javax.swing.JDialog {
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         jTable1.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());
         RefreshData();
-        
+        addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+}); 
     }
 
     /**

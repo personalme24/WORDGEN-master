@@ -35,7 +35,13 @@ public class CrimeBookOverview extends javax.swing.JDialog {
         jTable1.setPreferredScrollableViewportSize(Toolkit.getDefaultToolkit().getScreenSize());
         RefreshData();
 //        jButton1.setVisible(false);
-        
+    addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});     
     }
 
     /**

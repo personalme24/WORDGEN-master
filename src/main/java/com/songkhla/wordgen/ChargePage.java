@@ -114,7 +114,13 @@ public class ChargePage extends javax.swing.JDialog {
          JTextPopupMenu.addTo(Law);
          JTextPopupMenu.addTo(RateOfPenalty);
          JTextPopupMenu.addTo(Note);
-     
+      addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
 //    ChargePage(CrimesCaseEdit aThis, Object object) {

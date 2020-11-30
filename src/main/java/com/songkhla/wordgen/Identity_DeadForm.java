@@ -242,7 +242,13 @@ public class Identity_DeadForm extends javax.swing.JDialog {
             crimecaseno.setVisible(false);
     
         }
-          
+        addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});   
     }
     
 

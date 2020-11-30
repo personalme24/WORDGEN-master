@@ -470,7 +470,13 @@ JTextPopupMenu.addTo(CapitalCrimeCaseNumber);
 JTextPopupMenu.addTo(Prosecutor_Result);
 JTextPopupMenu.addTo(CourtResult);
            JTextPopupMenu.addTo(CircumstancesOfDeath);
- 
+  addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 //   private class CloseListener implements ActionListener{
 //

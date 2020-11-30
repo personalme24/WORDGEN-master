@@ -51,7 +51,13 @@ public class ActionList extends javax.swing.JDialog {
                 System.out.println("Error Font:"+x);
             }
         RefreshData();
-       
+        addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

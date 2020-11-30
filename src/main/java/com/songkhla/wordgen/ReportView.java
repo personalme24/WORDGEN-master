@@ -64,7 +64,13 @@ public class ReportView extends javax.swing.JDialog {
 //             jComboBox1.setModel(new DefaultComboBoxModel<>(years_tmp.toArray()));
 //            jComboBox1.add(years_tmp.toArray());
 //jPanel2.validate();
-        
+         addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

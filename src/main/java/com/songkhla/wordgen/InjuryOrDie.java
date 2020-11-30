@@ -119,6 +119,13 @@ public class InjuryOrDie extends javax.swing.JDialog {
         DateSendInjuredOrDie.getJFormattedTextField().setText( WitnessForm.DateSendInjuredOrDie.getText());
         }
           JTextPopupMenu.addTo(CauseSendInjuredOrDie);
+           addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**

@@ -81,7 +81,13 @@ public class CrimesCaseOverView1 extends javax.swing.JDialog {
         jPanelRequestDateSearch.setLayout(new FlowLayout());
         jPanelRequestDateSearch.add(DateRequestSearch);    
         RefreshData();
- 
+  addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
  
     /**

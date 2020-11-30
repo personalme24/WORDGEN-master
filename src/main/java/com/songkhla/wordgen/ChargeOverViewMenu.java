@@ -45,6 +45,13 @@ public class ChargeOverViewMenu extends javax.swing.JDialog {
                  jTableCharge.getTableHeader().setFont(new Font("TH SarabunPSK", Font.BOLD, 20));
             jTableCharge.getTableHeader().setOpaque(false);
         RefreshData();
+         addWindowListener(new java.awt.event.WindowAdapter() {
+    @Override
+    public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+            System.exit(0);
+//        }
+    }
+});
     }
 
     /**
